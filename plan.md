@@ -22,3 +22,10 @@
 - Redux (for easy state management)
 - Node
 - Material.ui
+
+
+#### REDUX NOTES
+Store methods:
+- getState for reading the current state of the application
+- dispatch for dispatching an action
+- subscribe for listening to state changes
