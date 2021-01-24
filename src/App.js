@@ -7,9 +7,14 @@ function App () {
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="logo" alt="logo" />
+                <button id="playButton" onClick={hideLogo}>Play</button>
             </header>
         </div>
     );
+}
+
+const hideLogo = () => {
+    console.log(this.sibling)
 }
 
 export default App;

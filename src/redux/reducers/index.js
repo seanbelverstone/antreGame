@@ -4,10 +4,14 @@
 // Must use Object.assign to keep the original state unaltered.
 // Must use array.concat to retain immutability
 
-import { ADD_GOLD } from "../constants/actionTypes";
+import { 
+    ADD_GOLD, 
+    HIDE_LOGO 
+    } from "../constants/actionTypes";
 
 const initialState = {
-    inventory: []
+    inventory: [],
+    logoDisplay: "block"
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +20,13 @@ const rootReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             inventory: state.inventory.concat(action.payload)
         });
+    
+    case HIDE_LOGO:
+        return Object.assign({}, state, {
+            logoDisplay: action.payload
+        })
+
+
     default:
         state;
     }

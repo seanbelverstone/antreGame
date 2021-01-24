@@ -2,3 +2,5 @@
 // to prevent typos and duplicates.
 
 export const ADD_GOLD = "ADD_GOLD";
+
+export const HIDE_LOGO = "HIDE_LOGO";
