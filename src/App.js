@@ -14,7 +14,7 @@ function App () {
 }
 
 const hideLogo = () => {
-    console.log(this.sibling)
+    console.log()
 }
 
 export default App;

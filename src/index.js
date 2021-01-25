@@ -4,14 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
-
 render(
-    // Wrapping up the App to make it aware of the store
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <App />,
     document.getElementById("root")
 );
 
