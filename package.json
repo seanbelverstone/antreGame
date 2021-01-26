@@ -1,34 +1,36 @@
 {
-  "name": "antre",
-  "version": "0.1.0",
-  "private": true,
+  "name": "antre-game",
+  "version": "1.0.0",
+  "description": "A `choose your own adventure` style web game",
+  "engines": {
+    "node": "v14.15.4"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node -r esm server.js",
+    "start:dev": "concurrently \"nodemon -r esm --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.18.7"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "css-loader": "^5.0.1",
+    "esm": "^3.2.25",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "redux": "^4.0.5",
     "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {}
+  }
 }
