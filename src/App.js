@@ -11,21 +11,20 @@ function App () {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className={hide ? "hide" : "show"} alt="logo" id="logo"/>
-                {/* <button 
-                    id="playButton" 
-                    onClick={() => setHide(!hide)} 
-                    className={hide ? "hide" : "show"}>
-                        Play
-                </button> */}
+            <header className="App-header" id={hide ? "hide" : "show"}>
+                <img src={logo} alt="logo" id="logo"/>
                 <form noValidate autoComplete="off" id="login">
-                    <TextField id="outlined-basic" label="Username" variant="outlined"/>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" />
-                    <Button variant="contained" color="primary">
+                    <TextField className="formInput" label="Username" variant="outlined"/>
+                    <TextField className="formInput" label="Password" variant="outlined" type="password"/>
+                    <Button 
+                        variant="contained" 
+                        color="primary"
+                        onClick={() => setHide(!hide)} 
+                        >
                         Login
                     </Button>
                     <a id="create">CREATE AN ACCOUNT</a>
+                    {/* will do api call here to make an account to database */}
                 </form>
                 
             </header>
