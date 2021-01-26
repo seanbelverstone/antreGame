@@ -25,10 +25,8 @@ function App () {
                     <Button variant="contained" color="primary">
                         Login
                     </Button>
-                </form>
-                <div>
                     <a id="create">CREATE AN ACCOUNT</a>
-                </div>
+                </form>
                 
             </header>
         </div>
