@@ -13,12 +13,6 @@ function App () {
         <div className="App">
             <header className="App-header" id={hide ? "hide" : "show"}>
                 <img src={logo} alt="logo" id="logo"/>
-                {/* <button 
-                    id="playButton" 
-                    onClick={() => setHide(!hide)} 
-                    className={hide ? "hide" : "show"}>
-                        Play
-                </button> */}
                 <form noValidate autoComplete="off" id="login">
                     <TextField className="formInput" label="Username" variant="outlined"/>
                     <TextField className="formInput" label="Password" variant="outlined" type="password"/>
@@ -30,6 +24,7 @@ function App () {
                         Login
                     </Button>
                     <a id="create">CREATE AN ACCOUNT</a>
+                    {/* will do api call here to make an account to database */}
                 </form>
                 
             </header>
