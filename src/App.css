@@ -20,3 +20,35 @@
   position: absolute;
   bottom: 22%;
 }
+
+/* hide button and image */
+.hide {
+  animation: fadeOut 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* Bring button and image back into view */
+.show {
+  animation: fadeIn 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+
+  100% {
+    transform: scale(0);
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    display: "block"
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
