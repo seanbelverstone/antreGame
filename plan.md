@@ -19,17 +19,51 @@
 
 #### Technologies
 - React
-- Redux (for easy state management)
 - Node
 - Material.ui
 
+#### Psuedocode
+**Models**
+    *User*
+    - Username
+    - Email
+    - Password (salted)
+    - Relational - 1 to many
 
-#### REDUX NOTES
-Store methods:
-- getState for reading the current state of the application
-- dispatch for dispatching an action
-- subscribe for listening to state changes
+<!-- This data gets updated via a post when user saves the game. Name, Race and Class don't change -->
+    *Character*
+    - Name
+    - Race
+    - Class
+    - Health
+    - Strength
+    - Defence
+    - Wisdom
+    - Luck
+    - Weapon
+    - Head
+    - Chest
+    - Hands
+    - Feet
+    - Amulet
+    - Gold
 
-**mapStateToProps** does exactly what its name suggests: **it connects a part of the Redux state to the props of a React component.** By doing so a connected React component will have access to the exact part of the store it needs.
+**Text + Choices**
+Store all inside a json object. Separate by names - eg. Cave decision - cave.inspect/cave.north/cave.cry/cave.nothing
 
-**mapDispatchToProps** does something similar, but for actions. **mapDispatchToProps connects Redux actions to React props.** This way a connected React component will be able to send messages to the store.
+for example:
+
+script {
+    cave {
+        inspect: "",
+        north: "",
+        cry: "",
+        nothing: ""
+    },
+    goblinAttack {
+        fight: "",
+        bargain: "",
+        hide: "",
+        flee: ""
+    }
+}
