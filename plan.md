@@ -36,8 +36,8 @@
     - Race
     - Class
     - Health
-    - Strength
-    - Defence
+    - Strength + 3 
+    - Defence + 5
     - Wisdom
     - Luck
     - Weapon
@@ -72,10 +72,21 @@ script {
 All enemies have set health/defence/wisdom/luck.
 Script creates a dice roll for both user and enemy attacks/defence
 User has options:
-    - *Normal attack*: roll is multipled by attacker's strength and is divided by enemy defence (eg, (4dmg x 4str) / 2 defence = 8dmg). Always hits
-    - *Special attack*: same as normal attack, however strength is tripled, but a luck roll is incorporated. Roll 1 - 6 and add user luck value. If enemy luck roll is less, attack hits.
-    - *Use potion* (disabled if none in inventory)
-    - *Skill*
+    - **Normal attack**
+        weapon damage x dice + (str x 2) / defence
+
+        Always hits
+        
+    - **Special attack** 
+        (2x weapon damage x dice) + (str x 4) / defence
+    
+        .then()
+        
+        Roll 1 - 6 and add user luck value. If enemy luck roll is less, attack hits.
+
+
+    - **Use potion** (disabled if none in inventory)
+    - **Skill**
 
 **Skills**
 Warrior: {
@@ -86,6 +97,52 @@ Rogue: {
     Rapid attack: Doubles special attack damage (5 turn cooldown)
 }
 
-Mage: {
+Paladin: {
     Heal: restores 30% health (5 turn cooldown)
+}
+
+**Classes**
+Warrior: {
+    health: 60,
+    str: 5,
+    def: 4,
+    wisdom: 1,
+    luck: 2
+}
+
+Rogue: {
+    health: 40,
+    str: 2,
+    def: 2
+    wisdom: 3,
+    luck: 5
+}
+
+Paladin: {
+    health: 50,
+    str: 3,
+    def: 3,
+    wisdom: 4,
+    luck: 2
+}
+
+**Weapons**
+inset there
+
+
+**Enemies**
+Skeleton: {
+    health: 15,
+    str: 1,
+    def: 2,
+    wisdom: 1,
+    luck: 1
+}
+
+Colossal Worm: {
+    health: 100,
+    str: 8,
+    def: 5,
+    wisdom: 1,
+    luck: 2
 }
