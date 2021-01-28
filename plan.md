@@ -46,6 +46,7 @@ The data below gets updated via a post when user saves the game. Name, Race and 
 - Hands
 - Feet
 - Amulet
+- Health Potions
 - Gold
 
 ## **Text + Choices**
@@ -78,7 +79,7 @@ User has options:
     - Always hits
         
 - ### Special attack
-    - (2x weapon damage x dice) + (str x 4) / defence     
+    - (3x weapon damage x dice) + (str x 3) / defence     
     - Then, roll 1 - 6 and add user luck value. If enemy luck roll is less, attack hits.
 
 
@@ -133,18 +134,19 @@ Paladin:
 ## **Inventory**
 
 ### Weapons
-- No weapon - 2 damage
+- No weapon - 1 damage
+- Steel sword - 2 damage
 - Rusty axe - 3 damage
 - Steel dagger - 4 damage
-- Wizard's staff - 5 damage
+- Halberd - 6 damage
 - Steel shortsword - 7 damage
 - Black iron sword - 11 damage
 - Warhammer - 14 damage
 
 ### Armor
-- Chainmail: +4 defense
-- Leather helmet: +2 defense
-- Plate boots: +5 defense + 1 strength
+- Chainmail: +3 defense
+- Leather helmet: +1 defense
+- Plate boots: +4 defense + 1 strength
 - Enchanted iron greaves: +4 defense + 2 luck + 2 wisdom
 
 ### Amulet
@@ -154,16 +156,26 @@ Paladin:
 
 ## **Enemies**
 Skeleton
-- Health: 15,
+- Health: 40,
 - Strength: 1,
 - Defense: 2,
 - Wisdom: 1,
 - Luck: 1
+- Weapon: dagger (2 damage)
+
+Dragon (young)
+- Health: 70,
+- Strength: 3,
+- Defense: 3,
+- Wisdom: 4,
+- Luck: 2
+- Weapon: claws (8 damage)
 
 Colossal Worm:
-- Health: 100,
+- Health: 180,
 - Strength: 8,
 - Defense: 5,
 - Wisdom: 1,
-- luck: 2
+- Luck: 2
+- Weapon: Teeth (14 damage)
 
