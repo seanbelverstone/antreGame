@@ -16,5 +16,5 @@ module.exports = {
       .create(request.body)
       .then(dbModel => response.json(dbModel))
       .catch(err => response.status(422).json(err));
-  }
+  },
 };
