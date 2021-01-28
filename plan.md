@@ -67,6 +67,9 @@ for example:
         - hide: "",
         - flee: ""
 
+User can drink a health potion either in battle (using up a turn), or after any text section. They can also
+check their inventory, stats and other things during the game via a popout side menu
+
 ## **Fight Sequences**
 
 All enemies have set health/defence/wisdom/luck.
@@ -110,14 +113,14 @@ All skills have cooldowns, based on the character's wisdom count.
 
 ## **Classes**
 Warrior:
-- Health: 60,
+- Health: 80,
 - Strength: 5,
 - Defense: 4,
 - Wisdom: 1,
 - Luck: 2
 
 Rogue:
-- Health: 40,
+- Health: 60,
 - Strength: 2,
 - Defense: 2
 - Wisdom: 3,
@@ -125,13 +128,16 @@ Rogue:
 
 
 Paladin:
-- Health: 50,
+- Health: 70,
 - Strength: 3,
 - Defense: 3,
 - Wisdom: 4,
 - Luck: 2
 
 ## **Inventory**
+
+### Health Potions
+Health potions heal (roll * roll + 15) health.
 
 ### Weapons
 - No weapon - 1 damage
@@ -155,13 +161,29 @@ Paladin:
 
 
 ## **Enemies**
+Goblin
+- Health: 40,
+- Strength: 2,
+- Defense: 2,
+- Wisdom: 1,
+- Luck: 1
+- Weapon: Axe (3 damage)
+
 Skeleton
 - Health: 40,
 - Strength: 1,
 - Defense: 2,
 - Wisdom: 1,
 - Luck: 1
-- Weapon: dagger (2 damage)
+- Weapon: Dagger (4 damage)
+
+Giant Rat
+- Health: 60,
+- Strength: 4,
+- Defense: 2,
+- Wisdom: 1,
+- Luck: 3
+- Weapon: Teeth (6 damage)
 
 Dragon (young)
 - Health: 70,
@@ -169,7 +191,55 @@ Dragon (young)
 - Defense: 3,
 - Wisdom: 4,
 - Luck: 2
-- Weapon: claws (8 damage)
+- Weapon: Claws (8 damage)
+
+Memory Knight
+- Health: 90,
+- Strength: 3,
+- Defense: 3,
+- Wisdom: 3,
+- Luck: 2
+- Weapon: Longsword (7 damage)
+
+Memory Pikeman
+- Health: 90,
+- Strength: 2,
+- Defense: 4,
+- Wisdom: 2,
+- Luck: 3
+- Weapon: Pike (7 damage)
+
+Blind Lizard
+- Health: 90,
+- Strength: 4,
+- Defense: 1,
+- Wisdom: 1,
+- Luck: 2
+- Weapon: Teeth (8 damage)
+
+Skeletal Knight
+- Health: 140,
+- Strength: 6,
+- Defense: 5,
+- Wisdom: 2,
+- Luck: 3
+- Weapon: War Spear (10 damage)
+
+Runed Manticore
+- Health: 160,
+- Strength: 6,
+- Defense: 4,
+- Wisdom: 5,
+- Luck: 4
+- Weapon: Rune Strike (11 damage)
+
+Necro Beast-master
+- Health: 170,
+- Strength: 5,
+- Defense: 3,
+- Wisdom: 6,
+- Luck: 3
+- Weapon: Bladed Whip (12 damage)
 
 Colossal Worm:
 - Health: 180,
