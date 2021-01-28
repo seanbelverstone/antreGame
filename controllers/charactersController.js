@@ -20,7 +20,7 @@ module.exports = {
 
   update: (request, response) => {
     db.Character.update(request.params.id, (result) => {
-        console.log(result);
+        // console.log(result);
         
         res.json(result);
     })

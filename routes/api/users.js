@@ -1,4 +1,4 @@
-const UsersController = require("../../controllers/UsersController");
+const UsersController = require("../../controllers/usersController");
 
 export default function(app) {
 
