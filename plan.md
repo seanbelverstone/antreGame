@@ -9,8 +9,7 @@
 - Usage of RNG for moves, enhanced by equipped items
 - Inventory
 - Spiderweb-style structure of progression, 4 different options per encounter
-- Upon death, revert to start
-
+- Upon death, game over
 #### Nice-to-haves
 - Achievements
 - Stats
@@ -127,7 +126,8 @@ Paladin: {
 }
 
 **Weapons**
-inset there
+Rusty axe - 3 damage
+Jeweled
 
 
 **Enemies**
