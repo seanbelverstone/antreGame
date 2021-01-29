@@ -8,6 +8,6 @@ export default function(app) {
     app.route("/api/characters/")
         .post(CharactersController.create);
 
-    app.route("/api/characters/id")
+    app.route("/api/characters/")
         .put(CharactersController.update);
 }

@@ -19,10 +19,13 @@ module.exports = {
   },
 
   update: (request, response) => {
-    db.Character.update(request.params.id, (result) => {
-        // console.log(result);
-        
-        res.json(result);
-    })
+    db.Character.update(
+      request.body, {
+        where: {
+          id: request.body.id
+        }
+    }).then(dbModel => {
+      response.json(dbModel);
+    });
 }
 };
