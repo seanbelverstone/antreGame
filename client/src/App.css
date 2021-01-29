@@ -4,7 +4,7 @@
   display: block;
 }
 
-.App-header {
+.loginWrapper {
   background-color: #282c34;
   min-height: 100vh; /* vh is relative to the viewport */
   display: flex;

@@ -1,33 +1,22 @@
 import React, { useState } from "react";
-import logo from "./assets/images/AntreLarge.png";
-import { TextField, Button } from "@material-ui/core";
-import "./App.css";
+import Login from "./components/Login";
 
-function App () {
+const App = () => {
 
-    const [hide, setHide] = useState(false);
-
-    
+// PSUEDOCODE
+/* 
+Have a rendered component within App.
+- Create an if statement that does onload, display Login. If createAccount is clicked, set Login style to animation + display none. Set show animation to CreateAccount to show.
+- Toast popup on account created, CreateAccount style animation + display none, opposite for Login. Maybe autofill Login with created account username?
+- Then, when login button is clicked, if password matches, show character creation screen.
+- Character Creation will have a block, with created characters shown (get request for characterController). This displays the character's details and part of the level (if saved/applicable).
+- New Character button is available, character creation modal pops up. User creates character, modal disappears and getAllCharacters runs again.
+- When character is selected, go to relevant level (default is start for new character).
+*/
 
     return (
         <div className="App">
-            <header className="App-header" id={hide ? "hide" : "show"}>
-                <img src={logo} alt="logo" id="logo"/>
-                <form noValidate autoComplete="off" id="login">
-                    <TextField className="formInput" label="Username" variant="outlined"/>
-                    <TextField className="formInput" label="Password" variant="outlined" type="password"/>
-                    <Button 
-                        variant="contained" 
-                        color="primary"
-                        onClick={() => setHide(!hide)} 
-                        >
-                        Login
-                    </Button>
-                    <a id="create">CREATE AN ACCOUNT</a>
-                    {/* will do api call here to make an account to database */}
-                </form>
-                
-            </header>
+            <Login />
         </div>
     );
 }
