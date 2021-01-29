@@ -1,4 +1,4 @@
-  const authController = require("../../controllers");
+  const authController = require("../../controllers/authController");
 
 export default function(app) {
     app.route("/api/auth/")

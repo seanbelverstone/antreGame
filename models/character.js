@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         hands: DataTypes.STRING,
         feet: DataTypes.STRING,
         amulet: DataTypes.STRING,
+        healthPotions: DataTypes.INTEGER,
         gold: DataTypes.INTEGER
     }, {});
 
