@@ -43,6 +43,7 @@ The data below gets updated via a post when user saves the game. Name, Race and 
 - Weapon
 - Head
 - Chest
+- Legs
 - Hands
 - Feet
 - Amulet

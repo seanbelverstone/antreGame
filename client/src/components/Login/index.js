@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
-import "../../App.css";
+import "./style.css";
 
 const Login = () => {
 
@@ -20,7 +20,6 @@ const Login = () => {
                             >
                             Login
                         </Button>
-                        <a id="create">CREATE AN ACCOUNT</a>
                     </form>
                     
                 </header>

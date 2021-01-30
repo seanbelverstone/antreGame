@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Login from "./components/Login";
+import "./App.css";
 
 const App = () => {
+
+    const [displayedComponent, setDisplayedComponent] = useState(<Login />)
 
 // PSUEDOCODE
 /* 
@@ -14,9 +17,12 @@ Have a rendered component within App.
 - When character is selected, go to relevant level (default is start for new character).
 */
 
+
+
     return (
         <div className="App">
             <Login />
+            <a id="create">CREATE AN ACCOUNT</a>
         </div>
     );
 }

@@ -1,80 +1,14 @@
-#logo {
-  height: 90vmin;
-  pointer-events: none;
-  display: block;
-}
-
-.loginWrapper {
-  background-color: #282c34;
-  min-height: 100vh; /* vh is relative to the viewport */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: white;
-  position: relative;
-}
-
-#login {
-  position: absolute;
-  bottom: 10%;
-  display: flex;
-  flex-direction: column;
-}
-
-.formInput {
-  margin: 0 5px 0 5px;
-  background-color: #f7f7f7;
-  margin-bottom: 10px !important;
-}
-
 #create {
   text-align: center;
   color: black;
   padding-top: 35px;
   font-size: 16px;
+  position: absolute;
+  bottom: 10%;
+  left: 46.5%;
 }
 
 #create:hover {
   color: rgb(143, 143, 143);
   text-decoration: underline;
-}
-
-/* hide button and image */
-#hide {
-  animation: fadeOut 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-/* Bring button and image back into view */
-#show {
-  animation: fadeIn 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fadeOut {
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(0);
-    display: none;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    display: "block"
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
