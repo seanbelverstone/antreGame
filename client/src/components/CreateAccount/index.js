@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
-import Login from "../Login";
+import Snackbar from "../Snackbar";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
 import "./style.css";
 
-const CreateAccount = ({ selectedComponent, changeComponent }) => {
-
-    console.log(changeComponent)
+const CreateAccount = ({ changeComponent }) => {
 
     // State for username section
     const [username, setUsername] = useState("");
@@ -25,7 +23,7 @@ const CreateAccount = ({ selectedComponent, changeComponent }) => {
     const [passwordError, setPasswordError] = useState(false);
     const [passwordHelperText, setPasswordHelperText] = useState("");
 
-    // const [submitDisabled, setSubmitDisabled] = useState(true);
+    const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
     // Email validation check with regex
     const validateEmail = (email) => {
@@ -83,9 +81,9 @@ const CreateAccount = ({ selectedComponent, changeComponent }) => {
     const createNewUser = () => {
         API.createUser(username, email, password).then(() => {
             // Set the username to session storage so we can use it later
-            window.sessionStorage.setItem("antreUsername", username)
-        })
-        changeComponent(<Login />)
+            window.sessionStorage.setItem("antreUsername", username);
+        });
+        setSnackbarDisplay(true);
     }
 
     return(
@@ -140,6 +138,7 @@ const CreateAccount = ({ selectedComponent, changeComponent }) => {
                 </Button>
 
             </form>
+            <Snackbar changeComponent={changeComponent} display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
     )
