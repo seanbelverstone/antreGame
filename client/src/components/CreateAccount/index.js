@@ -65,7 +65,10 @@ const CreateAccount = (props) => {
     const checkPasswords = () => {
         if (password !== confirmPassword) {
             setPasswordError(true);
-            setPasswordHelperText("The passwords don't match")
+            setPasswordHelperText("Passwords don't match")
+        } if (password.length === 0 || confirmPassword.length === 0) {
+            setPasswordError(true);
+            setPasswordHelperText("Please enter a password")
         } else {
             setPasswordError(false);
             setPasswordHelperText("");
@@ -92,8 +95,7 @@ const CreateAccount = (props) => {
                 <TextField 
                     className="formInput" 
                     label="Email" 
-                    variant="outlined" 
-                    type="email" 
+                    variant="outlined"  
                     onChange={event => setEmail(event.target.value)} 
                     error={emailError} 
                     helperText={emailHelperText}
