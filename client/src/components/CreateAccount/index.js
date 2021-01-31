@@ -72,10 +72,16 @@ const CreateAccount = (props) => {
         } else {
             setPasswordError(false);
             setPasswordHelperText("");
-            API.createUser(username, email, password).then(() => {
-                console.log("Done")
-            })
+
+            createNewUser();
         }
+    }
+
+    const createNewUser = () => {
+        API.createUser(username, email, password).then(() => {
+            // Set the username to session storage so we can use it later
+            window.sessionStorage.setItem("Username", username)
+        })
     }
 
     return(
