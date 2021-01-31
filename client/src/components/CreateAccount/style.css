@@ -1,0 +1,21 @@
+#title {
+    font-size: 30px;
+}
+
+#smallLogo {
+    width: 15vh;
+    position: absolute;
+    left: 40%;
+}
+
+#createAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin: 15% 25% 10% 25%;
+}
+
+.formInput, #submit {
+    margin-top: 10px !important;
+}

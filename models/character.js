@@ -1,24 +1,90 @@
 module.exports = (sequelize, DataTypes) => {
     const Character = sequelize.define("Character", {
-        name: DataTypes.STRING,
-        race: DataTypes.STRING,
-        class: DataTypes.STRING,
-        health: DataTypes.INTEGER,
-        strength: DataTypes.INTEGER,
-        defence: DataTypes.INTEGER,
-        wisdom: DataTypes.INTEGER,
-        luck: DataTypes.INTEGER,
-        weapon: DataTypes.STRING,
-        head: DataTypes.STRING,
-        chest: DataTypes.STRING,
-        hands: DataTypes.STRING,
-        feet: DataTypes.STRING,
-        amulet: DataTypes.STRING,
-        healthPotions: DataTypes.INTEGER,
-        gold: DataTypes.INTEGER
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        race: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        class: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        health: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        strength: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        defence: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        wisdom: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        luck: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        weapon: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "No weapon"
+        },
+        head: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "None"
+        },
+        chest: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Ragged shirt"
+        },
+        legs: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Ragged pants"
+        },
+        hands: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "None"
+        },
+        feet: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Old boots"
+        },
+        amulet: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "None"
+        },
+        healthPotions: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        gold: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        level: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "start"
+        }
     }, {});
 
-    Character.sync();
+    Character.sync({});
     return Character;
 }
 
