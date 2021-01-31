@@ -47,7 +47,9 @@ Have a rendered component within App.
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
                 <a id="back" onClick={() => changeToLoginPage(<Login />)} style={{display: backDisplay}}>BACK</a>
                     {displayedComponent}
-                <a id="create" onClick={() => changeToCreatePage(<CreateAccount />)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
+                <a id="create" 
+                onClick={() => changeToCreatePage(<CreateAccount selectedComponent={displayedComponent} changeComponent={changeToLoginPage}/>)} 
+                style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
             </header>
         </div>
     );

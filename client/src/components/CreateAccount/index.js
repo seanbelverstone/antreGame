@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+import Login from "../Login";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
 import "./style.css";
 
-const CreateAccount = (props) => {
+const CreateAccount = ({ selectedComponent, changeComponent }) => {
+
+    console.log(changeComponent)
 
     // State for username section
     const [username, setUsername] = useState("");
@@ -82,6 +85,7 @@ const CreateAccount = (props) => {
             // Set the username to session storage so we can use it later
             window.sessionStorage.setItem("antreUsername", username)
         })
+        changeComponent(<Login />)
     }
 
     return(
