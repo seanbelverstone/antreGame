@@ -5,24 +5,23 @@ import "./style.css";
 
 const Login = () => {
 
-    const [hide, setHide] = useState(false);
+    
 
     return(
-        <header className="loginWrapper" id={hide ? "hide" : "show"}>
-                    <img src={logo} alt="logo" id="logo"/>
-                    <form noValidate autoComplete="off" id="login">
-                        <TextField className="formInput" label="Username" variant="outlined"/>
-                        <TextField className="formInput" label="Password" variant="outlined" type="password"/>
-                        <Button 
-                            variant="contained" 
-                            color="primary"
-                            onClick={() => setHide(!hide)} 
-                            >
-                            Login
-                        </Button>
-                    </form>
+        <div>
+            <img src={logo} alt="logo" id="logo"/>
+            <form noValidate autoComplete="off" id="login">
+                <TextField className="formInput" label="Username" variant="outlined"/>
+                <TextField className="formInput" label="Password" variant="outlined" type="password"/>
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    >
+                    Login
+                </Button>
+            </form>
+        </div>
                     
-                </header>
     )
 }
 

@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import Login from "./components/Login";
+import CreateAccount from "./components/CreateAccount";
 import "./App.css";
 
 const App = () => {
 
-    const [displayedComponent, setDisplayedComponent] = useState(<Login />)
+    const [hide, setHide] = useState(false);
+    const [displayedComponent, setDisplayedComponent] = useState(<Login/>)
+
+    const changePage = () => {
+        setHide(!hide);
+        changeComponent();
+    }
+
+    const changeComponent = () => {
+        setTimeout(() => {
+            setDisplayedComponent(<CreateAccount />);
+            setHide(false)
+        }, 500);
+    }
 
 // PSUEDOCODE
 /* 
@@ -21,8 +35,10 @@ Have a rendered component within App.
 
     return (
         <div className="App">
-            <Login />
-            <a id="create">CREATE AN ACCOUNT</a>
+            <header className="loginWrapper" id={hide ? "hide" : "show"}>
+                    {displayedComponent}
+                <a id="create" onClick={() => changePage()}>CREATE AN ACCOUNT</a>
+            </header>
         </div>
     );
 }
