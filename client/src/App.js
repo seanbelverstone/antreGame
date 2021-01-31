@@ -7,6 +7,7 @@ const App = () => {
 
     const [hide, setHide] = useState(false);
     const [displayedComponent, setDisplayedComponent] = useState(<Login/>)
+    const [display, setDisplay] = useState("block");
 
     const changePage = () => {
         setHide(!hide);
@@ -15,6 +16,7 @@ const App = () => {
 
     const changeComponent = () => {
         setTimeout(() => {
+            setDisplay("none");
             setDisplayedComponent(<CreateAccount />);
             setHide(false)
         }, 500);
@@ -37,7 +39,7 @@ Have a rendered component within App.
         <div className="App">
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
                     {displayedComponent}
-                <a id="create" onClick={() => changePage()}>CREATE AN ACCOUNT</a>
+                <a id="create" onClick={() => changePage()} style={{display: display}}>CREATE AN ACCOUNT</a>
             </header>
         </div>
     );

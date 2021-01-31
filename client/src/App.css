@@ -6,7 +6,16 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: white;
+  position: relative;
+}
+
+.wrapper {
+  height: 80vmin;
+  min-width: 60vh;
+  background-color: #f6f6f6;
+  padding: 50px;
+  border-radius: 10px;
+  text-align: center;
   position: relative;
 }
 

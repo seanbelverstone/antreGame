@@ -9,7 +9,7 @@ const Login = () => {
 
     return(
         <div>
-            <img src={logo} alt="logo" id="logo"/>
+            <img src={logo} alt="logo" className="wrapper"/>
             <form noValidate autoComplete="off" id="login">
                 <TextField className="formInput" label="Username" variant="outlined"/>
                 <TextField className="formInput" label="Password" variant="outlined" type="password"/>

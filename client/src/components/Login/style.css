@@ -1,58 +1,52 @@
-#logo {
-    height: 90vmin;
-    pointer-events: none;
-    display: block;
-  }
+#login {
+  position: absolute;
+  bottom: 18%;
+  left: 45%;
+  display: flex;
+  flex-direction: column;
+}
   
-  #login {
-    position: absolute;
-    bottom: 18%;
-    left: 45%;
-    display: flex;
-    flex-direction: column;
-  }
+.formInput {
+  margin: 0 5px 0 5px;
+  background-color: #f7f7f7;
+  margin-bottom: 10px !important;
+}
   
-  .formInput {
-    margin: 0 5px 0 5px;
-    background-color: #f7f7f7;
-    margin-bottom: 10px !important;
-  }
-  
-  /* hide button and image */
-  #hide {
-    animation: fadeOut 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
+/* hide button and image */
+#hide {
+  animation: fadeOut 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
   
   /* Bring button and image back into view */
-  #show {
-    animation: fadeIn 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+#show {
+  animation: fadeIn 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+  
+@keyframes fadeOut {
+
+  50% {
+    opacity: 0;
   }
-  
-  @keyframes fadeOut {
-  
-    50% {
-      opacity: 0;
-    }
-  
-    100% {
-      transform: scale(0);
-      display: none;
-      opacity: 0;
-    }
+
+  100% {
+    transform: scale(0);
+    display: none;
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    0% {
-      display: "block";
-      transform: scale(0);
-    }
-  
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
+}
+
+@keyframes fadeIn {
+  0% {
+    display: "block";
+    transform: scale(0);
   }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
