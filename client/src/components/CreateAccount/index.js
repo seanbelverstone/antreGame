@@ -80,7 +80,7 @@ const CreateAccount = (props) => {
     const createNewUser = () => {
         API.createUser(username, email, password).then(() => {
             // Set the username to session storage so we can use it later
-            window.sessionStorage.setItem("Username", username)
+            window.sessionStorage.setItem("antreUsername", username)
         })
     }
 

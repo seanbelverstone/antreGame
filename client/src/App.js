@@ -10,15 +10,20 @@ const App = () => {
     const [createDisplay, setCreateDisplay] = useState("block");
     const [backDisplay, setBackDisplay] = useState("none");
 
-    const changePage = (component) => {
+    const changeToCreatePage = (component) => {
         setHide(!hide);
-        changeComponent(component);
+        changeComponent(component, "none", "block");
     }
 
-    const changeComponent = (component) => {
+    const changeToLoginPage = (component) => {
+        setHide(!hide);
+        changeComponent(component, "block", "none");
+    }
+
+    const changeComponent = (component, createStyle, backStyle) => {
         setTimeout(() => {
-            setCreateDisplay("none");
-            setBackDisplay("block");
+            setCreateDisplay(createStyle);
+            setBackDisplay(backStyle);
             setDisplayedComponent(component);
             setHide(false)
         }, 500);
@@ -40,9 +45,9 @@ Have a rendered component within App.
     return (
         <div className="App">
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
-                <a id="back" onClick={() => changePage(<Login />)} style={{display: backDisplay}}>BACK</a>
+                <a id="back" onClick={() => changeToLoginPage(<Login />)} style={{display: backDisplay}}>BACK</a>
                     {displayedComponent}
-                <a id="create" onClick={() => changePage(<CreateAccount />)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
+                <a id="create" onClick={() => changeToCreatePage(<CreateAccount />)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
             </header>
         </div>
     );
