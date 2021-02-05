@@ -5,11 +5,6 @@ import "./App.css";
 
 const App = () => {
 
-    const [hide, setHide] = useState(false);
-    const [displayedComponent, setDisplayedComponent] = useState(<Login/>)
-    const [createDisplay, setCreateDisplay] = useState("block");
-    const [backDisplay, setBackDisplay] = useState("none");
-
     const changeToCreatePage = (component) => {
         setHide(!hide);
         changeComponent(component, "none", "block");
@@ -21,6 +16,12 @@ const App = () => {
         changeComponent(component, "block", "none");
     }
 
+    const changeToSelectCharacterPage = (component) => {
+        console.log("Switching to character creation screen")
+        setHide(!hide);
+        changeComponent(component, "none", "none");
+    }
+
     const changeComponent = (component, createStyle, backStyle) => {
         setTimeout(() => {
             setCreateDisplay(createStyle);
@@ -29,6 +30,19 @@ const App = () => {
             setHide(false)
         }, 500);
     }
+
+    // Having to set state after the functions have been created, running into asynchronous issues.
+    // State for hiding login wrapper
+    const [hide, setHide] = useState(false);
+    // Set default component to be Login. Have to pass changeComponent twice, due to the way it renders.
+    const [displayedComponent, setDisplayedComponent] = useState(<Login changeComponent={changeToSelectCharacterPage}/>)
+    // State for CREATE AN ACCOUNT text
+    const [createDisplay, setCreateDisplay] = useState("block");
+    // State for BACK button on CreateAccount page
+    const [backDisplay, setBackDisplay] = useState("none");
+
+
+    
 
 // PSUEDOCODE
 /* 
@@ -46,7 +60,11 @@ Have a rendered component within App.
     return (
         <div className="App">
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
-                <a id="back" onClick={() => changeToLoginPage(<Login />)} style={{display: backDisplay}}>BACK</a>
+                {/* Back button goes back to Login page, and we're passing in the changeComponent function */}
+                <a id="back" 
+                    onClick={() => changeToLoginPage(<Login changeComponent={changeToSelectCharacterPage}/>)} 
+                    style={{display: backDisplay}}>
+                        BACK</a>
                     {displayedComponent}
                 <a id="create" onClick={() => changeToCreatePage(<CreateAccount changeComponent={changeToLoginPage}/>)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
             </header>

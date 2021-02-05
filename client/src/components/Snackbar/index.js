@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 let username = window.sessionStorage.getItem("antreUsername");
-console.log(username);
 if (!username) {
     username = "player"
 }
