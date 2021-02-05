@@ -34,6 +34,13 @@ module.exports = (sequelize, DataTypes) => {
     );
   };
 
-  User.sync({});
+  User.associate = function(models) {
+    // Associating User with their characters
+    // Also, when a user is deleted, their characters are also removed.
+    User.hasMany(models.Character, {
+      onDelete: "cascade"
+    });
+  }
+
   return User;
 };

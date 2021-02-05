@@ -4,6 +4,7 @@ import passport from "passport";
 const PORT = process.env.PORT || 3001;
 const app = express();
 require("dotenv").config();
+const db = require("./models");
 import routes from "./routes";
 import LocalStrategy from './strategies/local';
 import JWTStrategy from './strategies/jwt';
@@ -29,6 +30,8 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+db.sequelize.sync({}).then(function() {
+  app.listen(PORT, function() {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  });
+})

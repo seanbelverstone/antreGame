@@ -82,9 +82,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: "start"
         }
-    }, {});
+    });
 
-    Character.sync({});
+    Character.associate = function(models) {
+        // Characters belong to users. The foreign key ensures one cant be created without a userId
+        Character.belongsTo(models.User, {
+          foreignKey: {
+            
+            allowNull: false
+          }
+        });
+      };
+
     return Character;
 }
 
