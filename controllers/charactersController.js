@@ -1,10 +1,25 @@
 const db = require("../models");
 
 module.exports = {
+
+  // route for finding a single character
   get: (request, response) => {
     db.Character.findOne({
       where: {
         id: request.params.id
+      },
+      include: [db.User]
+    }).then((character) => {
+      response.json(character);
+    });
+  },
+
+  // route for finding all characters related to the user
+  get: (request, response) => {
+    db.Character.findAll({
+      where: {
+        id: request.query.id,
+        include: [db.User]
       }
     }).then((character) => {
       response.json(character);
