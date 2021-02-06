@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CustomizedSnackbars({ changeComponent, display, setDisplay }) {
+  export default function CustomizedSnackbars({ changeToLogin, display, setDisplay }) {
     const classes = useStyles();
     console.log(display)
   
@@ -34,7 +34,7 @@ function Alert(props) {
       }
   
       setDisplay(false);
-      changeComponent(<Login />)
+      changeToLogin(<Login />)
     };
   
     return (

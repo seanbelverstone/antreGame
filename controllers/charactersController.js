@@ -15,7 +15,6 @@ module.exports = {
 
   // route for finding all characters related to the user
   get: (request, response) => {
-    console.log(db.User)
     db.Character.findAll({
       where: {
         userId: request.params.id,
@@ -26,7 +25,6 @@ module.exports = {
   },
    
   create: (request, response) => {
-    console.log(request.body)
     db.Character
       .create(request.body)
       .then(dbModel => response.json(dbModel))

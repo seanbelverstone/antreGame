@@ -10,7 +10,7 @@ import "./style.css";
 
 const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
 
-    const [characters, setCharacter] = useState([]);
+    const [characters, updateCharacters] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
 
     // Works the same as componentDidMount. Runs when component has rendered
@@ -19,7 +19,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
         API.getAllCharacters(userId)
         .then(results => {
             // pushes the data to the characters array
-            setCharacter(results.data);
+            updateCharacters(characters.concat(results.data));
             checkForSpace();
         })
         // have to pass an array as a second argument to stop infinite loops
@@ -88,8 +88,11 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
 
     const checkForSpace = () => {
         // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
+        console.log(characters);
         if(characters.length < 4) {
             setLessThanFour("flex")
+        } else {
+            setLessThanFour("none")
         }
     }
 

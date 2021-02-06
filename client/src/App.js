@@ -70,7 +70,7 @@ Have a rendered component within App.
                     style={{display: backDisplay}}>
                         BACK</a>
                     {displayedComponent}
-                <a id="create" onClick={() => changeToCreatePage(<CreateAccount changeComponent={changeToLoginPage}/>)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
+                <a id="create" onClick={() => changeToCreatePage(<CreateAccount changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage} changeToCreate={changeToCreateCharacterPage}/>)} style={{display: createDisplay}}>CREATE AN ACCOUNT</a>
             </header>
         </div>
     );

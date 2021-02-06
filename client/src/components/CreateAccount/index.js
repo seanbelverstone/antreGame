@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
 import "./style.css";
 
-const CreateAccount = ({ changeComponent }) => {
+const CreateAccount = ({ changeToLogin, changeToCharacter, changeToCreate }) => {
 
     // State for username section
     const [username, setUsername] = useState("");
@@ -138,7 +138,7 @@ const CreateAccount = ({ changeComponent }) => {
                 </Button>
 
             </form>
-            <Snackbar changeComponent={changeComponent} display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
+            <Snackbar changeToLogin={changeToLogin} changeToCharacter={changeToCharacter} changeToCreate={changeToCreate} display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
     )

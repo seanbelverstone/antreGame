@@ -22,7 +22,6 @@ export default {
     },
 
     createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId) => {
-        console.log(UserId)
         return axios.post("/api/characters", {
             name, 
             race, 
