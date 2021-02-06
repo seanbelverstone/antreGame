@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from "../Login";
+import { navigate } from "hookrouter";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,8 +33,7 @@ function Alert(props) {
         return;
       }
 
-      window.location.href="/";
-  
+      navigate("/");
       setDisplay(false);
     };
   

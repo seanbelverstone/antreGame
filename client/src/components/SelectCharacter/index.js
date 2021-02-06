@@ -97,7 +97,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
     }
 
     return(
-        <div className="wrapper">
+        <div className="selectWrapper">
             <div id="charTitle">SELECT A CHARACTER</div>
             <Button variant="outlined" id="logout" onClick={() => changeToLogin(<Login />)}>LOG OUT</Button>
 

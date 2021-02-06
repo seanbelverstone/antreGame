@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SelectCharacter from "../SelectCharacter";
+import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
@@ -27,8 +27,9 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
 
                 // set the user's ID to session storage, so we can use it throughout the applicable
                 window.sessionStorage.setItem("id", results.data.user.id);
+                window.sessionStorage.setItem("jwtToken", results.data.token);
 
-                changeToCharacter(<SelectCharacter changeToCharacter={changeToCharacter} changeToLogin={changeToLogin} changeToCreate={changeToCreate}/>)
+                navigate("/select");
             })
             .catch(error => {
                 console.log(error);

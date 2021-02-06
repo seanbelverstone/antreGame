@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const jwtToken = window.sessionStorage.getItem("jwtToken")   
+
 export default {
 
     createUser: (username, email, password) => {
@@ -18,7 +20,10 @@ export default {
     },
 
     getAllCharacters: (userId) => {
-        return axios.get(`/api/characters/${userId}`)
+        return axios.get(`/api/characters/${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`}
+        })
     },
 
     createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId) => {
@@ -32,6 +37,8 @@ export default {
             wisdom,
             luck,
             UserId
-        })
-    }
+        }, {
+            headers: {
+            'Authorization': `Bearer ${jwtToken}`}
+    })}
 }
