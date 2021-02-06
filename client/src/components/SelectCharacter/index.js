@@ -11,6 +11,11 @@ const SelectCharacter = () => {
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
         console.log("rendered")
+        const userId = parseInt(window.sessionStorage.getItem("id"));
+        API.getAllCharacters(userId)
+        .then(results => {
+            console.log(results)
+        })
     })
 
     return(

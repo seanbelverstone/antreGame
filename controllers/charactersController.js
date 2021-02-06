@@ -7,8 +7,7 @@ module.exports = {
     db.Character.findOne({
       where: {
         id: request.params.id
-      },
-      include: [db.User]
+      }
     }).then((character) => {
       response.json(character);
     });
@@ -16,10 +15,10 @@ module.exports = {
 
   // route for finding all characters related to the user
   get: (request, response) => {
+    console.log(db.User)
     db.Character.findAll({
       where: {
-        id: request.query.id,
-        include: [db.User]
+        userId: request.params.id,
       }
     }).then((character) => {
       response.json(character);

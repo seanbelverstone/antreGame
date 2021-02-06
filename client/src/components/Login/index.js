@@ -19,7 +19,6 @@ const Login = ({ changeComponent }) => {
         event.preventDefault();
         API.checkUser(username, password)
             .then(results => {
-                console.log(results)
 
                 // Clears out any errors if there are any
                 setUsernameError(false);
