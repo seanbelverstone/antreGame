@@ -31,5 +31,7 @@
 }
 
 #smallLogo {
+    margin-top: 10px;
     width: 15vh;
+    align-self: center;
 }

@@ -138,10 +138,9 @@ const CreateAccount = () => {
                     >
                     Submit
                 </Button>
-
+                <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
             <Snackbar setDisplay={setSnackbarDisplay}/>
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
     )
 }
