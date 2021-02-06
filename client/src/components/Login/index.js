@@ -40,8 +40,8 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
     
 
     return(
-        <div>
-            <img src={logo} alt="logo" className="wrapper"/>
+        <div className="loginWrapper">
+            <img src={logo} alt="logo" id="antreLogo"/>
             <form noValidate autoComplete="off" id="login" onSubmit={onSubmit}>
                 <TextField 
                     className="formInput" 
@@ -66,6 +66,7 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                     >
                     Login
                 </Button>
+                <a id="create" href="/account">CREATE AN ACCOUNT</a>
             </form>
         </div>
                     

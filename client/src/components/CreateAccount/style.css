@@ -1,11 +1,21 @@
-#title {
-    font-size: 30px;
+.createWrapper {
+    height: 80vmin;
+    min-width: 60vh;
+    background-color: #f7f7f7;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-#smallLogo {
-    width: 15vh;
+#back {
     position: absolute;
-    left: 40%;
+    left: 39%;
+    top: 6%;
+    z-index: 2;
+}  
+
+#title {
+    font-size: 30px;
 }
 
 #createAccount {
@@ -18,4 +28,8 @@
 
 .formInput, #submit {
     margin-top: 10px !important;
+}
+
+#smallLogo {
+    width: 15vh;
 }

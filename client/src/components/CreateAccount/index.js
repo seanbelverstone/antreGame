@@ -3,9 +3,10 @@ import { TextField, Button } from "@material-ui/core";
 import Snackbar from "../Snackbar";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
+import "../../App.css";
 import "./style.css";
 
-const CreateAccount = ({ changeToLogin, changeToCharacter, changeToCreate }) => {
+const CreateAccount = () => {
 
     // State for username section
     const [username, setUsername] = useState("");
@@ -87,7 +88,8 @@ const CreateAccount = ({ changeToLogin, changeToCharacter, changeToCreate }) => 
     }
 
     return(
-        <div className="wrapper">
+        <div className="createWrapper">
+            <a id="back" href="/">BACK</a>
             <div id="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccount" onSubmit={handleSubmit}>
 
@@ -138,7 +140,7 @@ const CreateAccount = ({ changeToLogin, changeToCharacter, changeToCreate }) => 
                 </Button>
 
             </form>
-            <Snackbar changeToLogin={changeToLogin} changeToCharacter={changeToCharacter} changeToCreate={changeToCreate} display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
+            <Snackbar setDisplay={setSnackbarDisplay}/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
     )
