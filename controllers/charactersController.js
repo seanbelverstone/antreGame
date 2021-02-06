@@ -26,6 +26,7 @@ module.exports = {
   },
    
   create: (request, response) => {
+    console.log(request.body)
     db.Character
       .create(request.body)
       .then(dbModel => response.json(dbModel))

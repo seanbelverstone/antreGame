@@ -21,16 +21,18 @@ export default {
         return axios.get(`/api/characters/${userId}`)
     },
 
-    createNewCharacter: (charName, charRace, charClass, health, strength, defense, wisdom, luck) => {
+    createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId) => {
+        console.log(UserId)
         return axios.post("/api/characters", {
-            charName, 
-            charRace, 
+            name, 
+            race, 
             charClass,
             health,
             strength,
             defense,
             wisdom,
-            luck
+            luck,
+            UserId
         })
     }
 }
