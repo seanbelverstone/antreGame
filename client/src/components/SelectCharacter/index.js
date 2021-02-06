@@ -4,10 +4,11 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import Login from "../Login";
+import CreateCharacter from "../CreateCharacter";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = ({ changeToLogin }) => {
+const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
 
     const [characters, setCharacter] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
@@ -102,7 +103,7 @@ const SelectCharacter = ({ changeToLogin }) => {
 
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
-                <IconButton variant="contained" color="primary">
+                <IconButton variant="contained" color="primary" onClick={() => changeToCreate(<CreateCharacter />)}>
                     <AddIcon />
                 </IconButton>
             </div>

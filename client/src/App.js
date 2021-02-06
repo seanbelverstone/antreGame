@@ -17,7 +17,11 @@ const App = () => {
     }
 
     const changeToSelectCharacterPage = (component) => {
-        console.log("Switching to character creation screen")
+        setHide(!hide);
+        changeComponent(component, "none", "none");
+    }
+
+    const changeToCreateCharacterPage = (component) => {
         setHide(!hide);
         changeComponent(component, "none", "none");
     }
@@ -35,7 +39,7 @@ const App = () => {
     // State for hiding login wrapper
     const [hide, setHide] = useState(false);
     // Set default component to be Login. Have to pass changeComponent twice, due to the way it renders.
-    const [displayedComponent, setDisplayedComponent] = useState(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage}/>)
+    const [displayedComponent, setDisplayedComponent] = useState(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage} changeToCreate={changeToCreateCharacterPage}/>)
     // State for CREATE AN ACCOUNT text
     const [createDisplay, setCreateDisplay] = useState("block");
     // State for BACK button on CreateAccount page
@@ -62,7 +66,7 @@ Have a rendered component within App.
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
                 {/* Back button goes back to Login page, and we're passing in the changeComponent function */}
                 <a id="back" 
-                    onClick={() => changeToLoginPage(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage}/>)} 
+                    onClick={() => changeToLoginPage(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage} changeToCreate={changeToCreateCharacterPage}/>)} 
                     style={{display: backDisplay}}>
                         BACK</a>
                     {displayedComponent}
