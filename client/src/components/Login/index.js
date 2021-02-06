@@ -28,7 +28,7 @@ const Login = ({ changeComponent }) => {
                 // set the user's ID to session storage, so we can use it throughout the applicable
                 window.sessionStorage.setItem("id", results.data.user.id);
 
-                changeComponent(<SelectCharacter />)
+                changeComponent(<SelectCharacter changeComponent={changeComponent} />)
             })
             .catch(error => {
                 console.log(error);

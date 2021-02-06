@@ -18,6 +18,7 @@
 
 /* Wraps the identity, stats and level/time sections. */
 .characterWrapper {
+    min-width: 370px;
     display: flex;
     border: 2px solid black;
     border-radius: 5px;
@@ -32,11 +33,11 @@
 .identity {
     padding: 4px;
     text-align: left;
+    width: 25%;
 }
 
 .raceAndClass, .stats, .levelAndTime {
     display: flex;
-    justify-content: space-around;
 }
 
 .race {
@@ -52,9 +53,17 @@
     flex-direction: column;
 }
 
-.identity, .health, .strength, .defense, .wisdom, .luck, .level {
+.health {
+    border-left: 1px solid black;
+}
+
+.health, .strength, .defense, .wisdom, .luck, .level {
     border-right: 1px solid black;
     padding: 4px;
+}
+
+.subHeadings {
+    text-decoration: underline;
 }
 
 .time {
@@ -90,6 +99,7 @@
 #creatorWrapper {
     flex-direction: row;
     justify-content: space-evenly;
+    max-width: 470px;
 }
 
 .MuiSvgIcon-root {

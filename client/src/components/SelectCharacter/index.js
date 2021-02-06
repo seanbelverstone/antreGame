@@ -3,17 +3,17 @@ import { Button } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
+import Login from "../Login";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = () => {
+const SelectCharacter = ({ changeComponent }) => {
 
     const [characters, setCharacter] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
 
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
-        console.log("rendered")
         const userId = parseInt(window.sessionStorage.getItem("id"));
         API.getAllCharacters(userId)
         .then(results => {
@@ -27,8 +27,8 @@ const SelectCharacter = () => {
     const renderCharacters = () => {
         return characters.map((character) => {
             return(
-                <div className="characterBlock">
-                    <div className="characterWrapper" key={character.id}>
+                <div className="characterBlock" key={character.id}>
+                    <div className="characterWrapper">
 
                         <section className="identity">
                             <div className="name">{character.name}</div>
@@ -40,34 +40,34 @@ const SelectCharacter = () => {
 
                         <section className="stats">
                             <section className="health">
-                                <div>HP</div>
+                                <div className="subHeadings">HP</div>
                                 <div>{character.health}</div>
                             </section>
                             <section className="strength">
-                                <div>Str</div>
+                                <div className="subHeadings">Str</div>
                                 <div>{character.strength}</div>
                             </section>
                             <section className="defense">
-                                <div>Def</div>
+                                <div className="subHeadings">Def</div>
                                 <div>{character.defense}</div>
                             </section>
                             <section className="wisdom">
-                                <div>Wis</div>
+                                <div className="subHeadings">Wis</div>
                                 <div>{character.wisdom}</div>
                             </section>
                             <section className="luck">
-                                <div>Luck</div>
+                                <div className="subHeadings">Luck</div>
                                 <div>{character.luck}</div>
                             </section>                 
                         </section>
 
                         <section className="levelAndTime">
                             <section className="level">
-                                <div>Level</div>   
+                                <div className="subHeadings">Level</div>   
                                 <div>{character.level}</div>
                             </section>
                             <section  className="time">
-                                <div>Time</div>
+                                <div className="subHeadings">Time</div>
                                 <div>{character.time}</div>
                             </section>                    
                         </section>
@@ -86,7 +86,7 @@ const SelectCharacter = () => {
     }
 
     const checkForSpace = () => {
-        // Allows the user to have only 4 characters
+        // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
         if(characters.length < 4) {
             setLessThanFour("flex")
         }
@@ -95,7 +95,7 @@ const SelectCharacter = () => {
     return(
         <div className="wrapper">
             <div id="charTitle">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout">LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={() => changeComponent(<Login />)}>LOG OUT</Button>
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
