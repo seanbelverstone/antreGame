@@ -1,7 +1,22 @@
-.characterBlock {
-    display: flex;
+#logout {
+    position: absolute;
+    left: 3%;
+    top: 3%;
 }
 
+#charTitle {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/* This block wraps the entire section, so we can have the PLAY/DELETE buttons out of the wrapper */
+.characterBlock {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/* Wraps the identity, stats and level/time sections. */
 .characterWrapper {
     display: flex;
     border: 2px solid black;
@@ -9,8 +24,10 @@
     background-color: white;
     justify-content: space-between;
     padding: 10px;
+    margin: 10px;
     align-items: center;
 }
+
 
 .identity {
     padding: 4px;
@@ -68,4 +85,21 @@
 
 #play, #delete {
     margin: 2px;
+}
+
+#creatorWrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.MuiSvgIcon-root {
+    font-size: 2.5rem !important;
+}
+
+.MuiIconButton-root {
+    padding: 0px !important;
+}
+
+#smallLogo {
+    bottom: 5%;
 }

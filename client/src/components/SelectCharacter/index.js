@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -86,17 +88,23 @@ const SelectCharacter = () => {
     const checkForSpace = () => {
         // Allows the user to have only 4 characters
         if(characters.length < 4) {
-            setLessThanFour("block")
+            setLessThanFour("flex")
         }
     }
 
     return(
         <div className="wrapper">
-            <div>SELECT A CHARACTER</div>
-            <Button variant="outlined">LOG OUT</Button>
+            <div id="charTitle">SELECT A CHARACTER</div>
+            <Button variant="outlined" id="logout">LOG OUT</Button>
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}
-            <div style={{display: lessThanFour}}>Create a new character</div>
+            <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
+                <div id="createNew">Create a new character</div>
+                <IconButton variant="contained" color="primary">
+                    <AddIcon />
+                </IconButton>
+            </div>
+
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
                     
