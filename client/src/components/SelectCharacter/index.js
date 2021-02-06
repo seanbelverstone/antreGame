@@ -35,7 +35,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
                             <div className="name">{character.name}</div>
                             <section className="raceAndClass">
                                 <div className="race">{character.race}</div>
-                                <div className="charClass">  {character.charClass}</div>
+                                <div className="class">  {character.class}</div>
                             </section>
                         </section>
 

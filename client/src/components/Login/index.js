@@ -28,7 +28,7 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                 // set the user's ID to session storage, so we can use it throughout the applicable
                 window.sessionStorage.setItem("id", results.data.user.id);
 
-                changeToCharacter(<SelectCharacter changeToLogin={changeToLogin} changeToCreate={changeToCreate}/>)
+                changeToCharacter(<SelectCharacter changeToCharacter={changeToCharacter} changeToLogin={changeToLogin} changeToCreate={changeToCreate}/>)
             })
             .catch(error => {
                 console.log(error);

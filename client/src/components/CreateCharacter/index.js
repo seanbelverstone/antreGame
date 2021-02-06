@@ -43,11 +43,10 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const sessionId = window.sessionStorage.getItem("id");
-        checkName(sessionId);
+        checkName();
     }
 
-    const checkName = (userId) => {
+    const checkName = () => {
         if (name.length > 11 || name.length < 1) {
             setNameError(true);
             setNameHelperText("Please use a name that is less than 10 characters")
@@ -55,11 +54,11 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
         } else {
             setNameError(false);
             setNameHelperText("");
-            setStats(userId);
+            setStats();
         }
     }
 
-    const setStats = (userId) => {
+    const setStats = () => {
         switch (charClass) {
             case "warrior":
                 setHealth(80)
@@ -82,11 +81,14 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
                 setWisdom(4);
                 setLuck(2);
         }
-        createNewCharacter(userId);
+        createNewCharacter();
     }
 
-    const createNewCharacter = (userId) => {
-        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
+    const createNewCharacter = () => {
+        // put api bit in here
+        console.log("eegs")
+        console.log(`Name ${name}`)
+        API.createNewCharacter(name, race, charClass, strength, defense, wisdom, luck)
             .then(results => {
                 console.log(results)
             })
@@ -114,9 +116,9 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
                             value={race}
                             onChange={handleRaceChange}
                             >
-                            <MenuItem value={"Human"}>Human</MenuItem>
-                            <MenuItem value={"Elf"}>Elf</MenuItem>
-                            <MenuItem value={"Dwarf"}>Dwarf</MenuItem>
+                            <MenuItem value={"human"}>Human</MenuItem>
+                            <MenuItem value={"elf"}>Elf</MenuItem>
+                            <MenuItem value={"dwarf"}>Dwarf</MenuItem>
                         </Select>
                     </FormControl>
                     <FormControl className={classes.formControl}>
@@ -127,9 +129,9 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
                             value={charClass}
                             onChange={handleClassChange}
                             >
-                            <MenuItem value={"Warrior"}>Warrior</MenuItem>
-                            <MenuItem value={"Rogue"}>Rogue</MenuItem>
-                            <MenuItem value={"Paladin"}>Paladin</MenuItem>
+                            <MenuItem value={"warrior"}>Warrior</MenuItem>
+                            <MenuItem value={"rogue"}>Rogue</MenuItem>
+                            <MenuItem value={"paladin"}>Paladin</MenuItem>
                         </Select>
                     </FormControl>
                     <Button 
