@@ -122,9 +122,9 @@ Warrior:
 
 Rogue:
 - Health: 60,
-- Strength: 2,
+- Strength: 3,
 - Defense: 2
-- Wisdom: 3,
+- Wisdom: 2,
 - Luck: 5
 
 
