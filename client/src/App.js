@@ -35,7 +35,7 @@ const App = () => {
     // State for hiding login wrapper
     const [hide, setHide] = useState(false);
     // Set default component to be Login. Have to pass changeComponent twice, due to the way it renders.
-    const [displayedComponent, setDisplayedComponent] = useState(<Login changeComponent={changeToSelectCharacterPage}/>)
+    const [displayedComponent, setDisplayedComponent] = useState(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage}/>)
     // State for CREATE AN ACCOUNT text
     const [createDisplay, setCreateDisplay] = useState("block");
     // State for BACK button on CreateAccount page
@@ -62,7 +62,7 @@ Have a rendered component within App.
             <header className="loginWrapper" id={hide ? "hide" : "show"}>
                 {/* Back button goes back to Login page, and we're passing in the changeComponent function */}
                 <a id="back" 
-                    onClick={() => changeToLoginPage(<Login changeComponent={changeToSelectCharacterPage}/>)} 
+                    onClick={() => changeToLoginPage(<Login changeToCharacter={changeToSelectCharacterPage} changeToLogin={changeToLoginPage}/>)} 
                     style={{display: backDisplay}}>
                         BACK</a>
                     {displayedComponent}

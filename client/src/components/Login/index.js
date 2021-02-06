@@ -5,7 +5,7 @@ import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
 import "./style.css";
 
-const Login = ({ changeComponent }) => {
+const Login = ({ changeToCharacter, changeToLogin }) => {
 
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState(false);
@@ -28,7 +28,7 @@ const Login = ({ changeComponent }) => {
                 // set the user's ID to session storage, so we can use it throughout the applicable
                 window.sessionStorage.setItem("id", results.data.user.id);
 
-                changeComponent(<SelectCharacter changeComponent={changeComponent} />)
+                changeToCharacter(<SelectCharacter changeToCharacter={changeToCharacter} changeToLogin={changeToLogin} />)
             })
             .catch(error => {
                 console.log(error);

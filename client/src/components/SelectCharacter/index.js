@@ -7,7 +7,7 @@ import Login from "../Login";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = ({ changeComponent }) => {
+const SelectCharacter = ({ changeToLogin }) => {
 
     const [characters, setCharacter] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
@@ -95,9 +95,11 @@ const SelectCharacter = ({ changeComponent }) => {
     return(
         <div className="wrapper">
             <div id="charTitle">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout" onClick={() => changeComponent(<Login />)}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={() => changeToLogin(<Login />)}>LOG OUT</Button>
+
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}
+
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
                 <IconButton variant="contained" color="primary">
