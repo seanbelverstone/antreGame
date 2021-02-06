@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
-import Login from "../Login";
+import { navigate } from "hookrouter";
 import CreateCharacter from "../CreateCharacter";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -96,10 +96,15 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
         }
     }
 
+    const logout = () => {
+        window.sessionStorage.clear();
+        navigate("/")
+    }
+
     return(
         <div className="selectWrapper">
             <div id="charTitle">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout" onClick={() => changeToLogin(<Login />)}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}
