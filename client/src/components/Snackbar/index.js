@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CustomizedSnackbars({ changeToLogin, display, setDisplay }) {
+  export default function CustomizedSnackbars({ display, setDisplay }) {
     const classes = useStyles();
     console.log(display)
   
@@ -32,9 +32,10 @@ function Alert(props) {
       if (reason === 'clickaway') {
         return;
       }
+
+      window.location.href="/";
   
       setDisplay(false);
-      changeToLogin(<Login />)
     };
   
     return (

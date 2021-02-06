@@ -8,11 +8,18 @@
 }
 
 #back {
+    text-align: center;
+    color: black;
     position: absolute;
     left: 39%;
     top: 6%;
     z-index: 2;
 }  
+
+#back:hover {
+    color: rgb(143, 143, 143);
+    text-decoration: underline;
+}
 
 #title {
     font-size: 30px;
