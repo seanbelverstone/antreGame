@@ -3,4 +3,41 @@
     border: 2px solid black;
     border-radius: 5px;
     background-color: white;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.raceAndClass, .stats, .levelAndTime {
+    display: flex;
+    justify-content: space-around;
+}
+
+.class {
+    align-self: flex-end;
+}
+
+.health, .strength, .defense, .wisdom, .luck {
+    display: flex;
+    flex-direction: column;
+}
+
+.health, .strength, .defense, .wisdom, .luck, .level, .time {
+    border-right: 1px solid black;
+
+}
+
+.strength {
+    color: darkred;
+}
+
+.defense {
+    color: darkgreen;
+}
+
+.wisdom {
+    color: darkblue;
+}
+
+.luck {
+    color: goldenrod;
 }

@@ -29,30 +29,51 @@ const SelectCharacter = () => {
 
                 <section className="identity">
                     <div className="name">{character.name}</div>
-                    <div className="race">{character.race}</div>
-                    <div className="class">{character.class}</div>
+                    <section className="raceAndClass">
+                        <div className="race">{character.race}</div>
+                        <div className="class">  {character.class}</div>
+                    </section>
                 </section>
 
                 <section className="stats">
-                    <div>Health</div>
-                    <div className="health">{character.health}</div>
-                    <div>Strength</div>
-                    <div className="strength">{character.strength}</div>
-                    <div>Defense</div>
-                    <div className="defense">{character.defense}</div>
-                    <div>Wisdom</div>
-                    <div className="wisdom">{character.wisdom}</div>
-                    <div>Luck</div>
-                    <div className="luck">{character.luck}</div>
+                    <section className="health">
+                        <div>Health</div>
+                        <div>{character.health}</div>
+                    </section>
+                    <section className="strength">
+                        <div>Strength</div>
+                        <div>{character.strength}</div>
+                    </section>
+                    <section className="defense">
+                        <div>Defense</div>
+                        <div>{character.defense}</div>
+                    </section>
+                    <section className="wisdom">
+                        <div>Wisdom</div>
+                        <div>{character.wisdom}</div>
+                    </section>
+                    <section className="luck">
+                        <div>Luck</div>
+                        <div>{character.luck}</div>
+                    </section>                 
                 </section>
 
                 <section className="levelAndTime">
-                    <div>Level</div>   
-                    <div className="level">{character.level}</div>
-                    <div>Time</div>
-                    <div className="time">{character.time}</div>
+                    <section className="level">
+                        <div>Level</div>   
+                        <div>{character.level}</div>
+                    </section>
+                    <section  className="time">
+                        <div>Time</div>
+                        <div>{character.time}</div>
+                    </section>                    
                 </section>
-
+                <Button variant="contained" color="primary">
+                    PLAY
+                </Button>
+                <Button variant="contained" color="secondary">
+                    DELETE
+                </Button>
             </div>
             )
         })
