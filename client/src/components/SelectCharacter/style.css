@@ -1,0 +1,115 @@
+#logout {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+}
+
+#charTitle {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/* This block wraps the entire section, so we can have the PLAY/DELETE buttons out of the wrapper */
+.characterBlock {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/* Wraps the identity, stats and level/time sections. */
+.characterWrapper {
+    min-width: 370px;
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
+
+
+.identity {
+    padding: 4px;
+    text-align: left;
+    width: 25%;
+}
+
+.raceAndClass, .stats, .levelAndTime {
+    display: flex;
+}
+
+.race {
+    padding-right: 4px;
+}
+
+.class {
+    align-self: flex-end;
+}
+
+.health, .strength, .defense, .wisdom, .luck {
+    display: flex;
+    flex-direction: column;
+}
+
+.health {
+    border-left: 1px solid black;
+}
+
+.health, .strength, .defense, .wisdom, .luck, .level {
+    border-right: 1px solid black;
+    padding: 4px;
+}
+
+.subHeadings {
+    text-decoration: underline;
+}
+
+.time {
+    padding: 4px;
+}
+
+.strength {
+    color: darkred;
+}
+
+.defense {
+    color: darkgreen;
+}
+
+.wisdom {
+    color: darkblue;
+}
+
+.luck {
+    color: goldenrod;
+}
+
+.charButtons {
+    display: flex !important;
+    flex-direction: column;
+    padding: 4px;
+}
+
+#play, #delete {
+    margin: 2px;
+}
+
+#creatorWrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 470px;
+}
+
+.MuiSvgIcon-root {
+    font-size: 2.5rem !important;
+}
+
+.MuiIconButton-root {
+    padding: 0px !important;
+}
+
+#smallLogo {
+    bottom: 5%;
+}

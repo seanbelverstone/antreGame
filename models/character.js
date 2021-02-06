@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        defence: {
+        defense: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -81,10 +81,24 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "start"
+        },
+        time: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
-    }, {});
+    });
 
-    Character.sync({});
+    Character.associate = function(models) {
+        // Characters belong to users. The foreign key ensures one cant be created without a userId
+        Character.belongsTo(models.User, {
+          foreignKey: {
+            
+            allowNull: false
+          }
+        });
+      };
+
     return Character;
 }
 

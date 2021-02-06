@@ -11,4 +11,8 @@ export default {
     checkUser: (username, password) => {
         return axios.post("/api/auth", {username, password}) 
     },
+
+    getAllCharacters: (userId) => {
+        return axios.get(`/api/characters/${userId}`)
+    }
 }
