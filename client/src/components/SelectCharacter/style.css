@@ -1,3 +1,7 @@
+.characterBlock {
+    display: flex;
+}
+
 .characterWrapper {
     display: flex;
     border: 2px solid black;
@@ -5,11 +9,21 @@
     background-color: white;
     justify-content: space-between;
     padding: 10px;
+    align-items: center;
+}
+
+.identity {
+    padding: 4px;
+    text-align: left;
 }
 
 .raceAndClass, .stats, .levelAndTime {
     display: flex;
     justify-content: space-around;
+}
+
+.race {
+    padding-right: 4px;
 }
 
 .class {
@@ -21,9 +35,13 @@
     flex-direction: column;
 }
 
-.health, .strength, .defense, .wisdom, .luck, .level, .time {
+.identity, .health, .strength, .defense, .wisdom, .luck, .level {
     border-right: 1px solid black;
+    padding: 4px;
+}
 
+.time {
+    padding: 4px;
 }
 
 .strength {
@@ -40,4 +58,14 @@
 
 .luck {
     color: goldenrod;
+}
+
+.charButtons {
+    display: flex !important;
+    flex-direction: column;
+    padding: 4px;
+}
+
+#play, #delete {
+    margin: 2px;
 }

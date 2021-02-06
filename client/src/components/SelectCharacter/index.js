@@ -25,56 +25,60 @@ const SelectCharacter = () => {
     const renderCharacters = () => {
         return characters.map((character) => {
             return(
-            <div className="characterWrapper" key={character.id}>
+                <div className="characterBlock">
+                    <div className="characterWrapper" key={character.id}>
 
-                <section className="identity">
-                    <div className="name">{character.name}</div>
-                    <section className="raceAndClass">
-                        <div className="race">{character.race}</div>
-                        <div className="class">  {character.class}</div>
-                    </section>
-                </section>
+                        <section className="identity">
+                            <div className="name">{character.name}</div>
+                            <section className="raceAndClass">
+                                <div className="race">{character.race}</div>
+                                <div className="class">  {character.class}</div>
+                            </section>
+                        </section>
 
-                <section className="stats">
-                    <section className="health">
-                        <div>Health</div>
-                        <div>{character.health}</div>
-                    </section>
-                    <section className="strength">
-                        <div>Strength</div>
-                        <div>{character.strength}</div>
-                    </section>
-                    <section className="defense">
-                        <div>Defense</div>
-                        <div>{character.defense}</div>
-                    </section>
-                    <section className="wisdom">
-                        <div>Wisdom</div>
-                        <div>{character.wisdom}</div>
-                    </section>
-                    <section className="luck">
-                        <div>Luck</div>
-                        <div>{character.luck}</div>
-                    </section>                 
-                </section>
+                        <section className="stats">
+                            <section className="health">
+                                <div>HP</div>
+                                <div>{character.health}</div>
+                            </section>
+                            <section className="strength">
+                                <div>Str</div>
+                                <div>{character.strength}</div>
+                            </section>
+                            <section className="defense">
+                                <div>Def</div>
+                                <div>{character.defense}</div>
+                            </section>
+                            <section className="wisdom">
+                                <div>Wis</div>
+                                <div>{character.wisdom}</div>
+                            </section>
+                            <section className="luck">
+                                <div>Luck</div>
+                                <div>{character.luck}</div>
+                            </section>                 
+                        </section>
 
-                <section className="levelAndTime">
-                    <section className="level">
-                        <div>Level</div>   
-                        <div>{character.level}</div>
+                        <section className="levelAndTime">
+                            <section className="level">
+                                <div>Level</div>   
+                                <div>{character.level}</div>
+                            </section>
+                            <section  className="time">
+                                <div>Time</div>
+                                <div>{character.time}</div>
+                            </section>                    
+                        </section>
+                    </div>
+                    <section className="charButtons">
+                            <Button variant="contained" color="primary" id="play">
+                                PLAY
+                            </Button>
+                            <Button variant="contained" color="secondary" id="delete">
+                                DELETE
+                            </Button>
                     </section>
-                    <section  className="time">
-                        <div>Time</div>
-                        <div>{character.time}</div>
-                    </section>                    
-                </section>
-                <Button variant="contained" color="primary">
-                    PLAY
-                </Button>
-                <Button variant="contained" color="secondary">
-                    DELETE
-                </Button>
-            </div>
+                </div>
             )
         })
     }
