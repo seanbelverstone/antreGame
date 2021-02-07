@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
+const CreateCharacter = () => {
     
     const classes = useStyles();
     const [name, setName] = useState("");
@@ -95,7 +95,7 @@ const CreateCharacter = ({ changeToLogin, changeToCreate }) => {
     }
 
     return(
-        <div className="wrapper">
+        <div className="createWrapper">
             <form id="formWrapper" onSubmit={handleSubmit}>
                 <div id="charTitle">CREATE A CHARACTER</div>
                     <FormControl className={classes.formControl}>

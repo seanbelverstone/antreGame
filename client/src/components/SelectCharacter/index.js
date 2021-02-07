@@ -8,7 +8,7 @@ import CreateCharacter from "../CreateCharacter";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
+const SelectCharacter = () => {
 
     const [characters, updateCharacters] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
@@ -19,11 +19,18 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
         API.getAllCharacters(userId)
         .then(results => {
             // pushes the data to the characters array
-            updateCharacters(characters.concat(results.data));
-            checkForSpace();
+            const newCharacters = results.data;
+            updateCharacters(prev => [...prev, ...newCharacters]);
+            
         })
         // have to pass an array as a second argument to stop infinite loops
     }, [])
+
+    useEffect(() => {
+        if (characters.length) {
+            checkForSpace()
+        }
+    }, [characters]);
 
     const renderCharacters = () => {
         return characters.map((character) => {
@@ -35,7 +42,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
                             <div className="name">{character.name}</div>
                             <section className="raceAndClass">
                                 <div className="race">{character.race}</div>
-                                <div className="class">  {character.class}</div>
+                                <div className="charClass">  {character.charClass}</div>
                             </section>
                         </section>
 
@@ -111,7 +118,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
 
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
-                <IconButton variant="contained" color="primary" onClick={() => changeToCreate(<CreateCharacter />)}>
+                <IconButton variant="contained" color="primary" href="/create">
                     <AddIcon />
                 </IconButton>
             </div>
