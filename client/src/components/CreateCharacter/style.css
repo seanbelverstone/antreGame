@@ -1,4 +1,4 @@
-.selectWrapper {
+.createWrapper {
     height: 80vmin;
     min-width: 60vh;
     background-color: #f7f7f7;
@@ -11,4 +11,19 @@
     display: flex;
     flex-direction: column;
     margin: 0 25% 0 25%;
+}
+
+#back {
+    text-align: center;
+    color: black;
+    position: absolute;
+    left: 60%;
+    top: 6%;
+    z-index: 2;
+}  
+
+#createLogout {
+    position: absolute;
+    left: 37%;
+    top: 6%;
 }

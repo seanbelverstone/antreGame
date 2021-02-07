@@ -33,6 +33,8 @@ const CreateCharacter = () => {
     const [wisdom, setWisdom] = useState(0);
     const [luck, setLuck] = useState(0);
 
+    const userId = window.sessionStorage.getItem("id");
+
     const handleRaceChange = (event) => {
         setRace(event.target.value);
     };
@@ -87,16 +89,23 @@ const CreateCharacter = () => {
     const createNewCharacter = () => {
         // put api bit in here
         console.log("eegs")
-        console.log(`Name ${name}`)
-        API.createNewCharacter(name, race, charClass, strength, defense, wisdom, luck)
+        console.log(`Name ${userId}`)
+        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
             .then(results => {
                 console.log(results)
             })
     }
 
+    const logout = () => {
+        window.sessionStorage.clear();
+        navigate("/")
+    }
+
     return(
         <div className="createWrapper">
             <form id="formWrapper" onSubmit={handleSubmit}>
+            <a id="back" href="/select">BACK</a>
+            <Button variant="outlined" id="createLogout" onClick={logout}>LOG OUT</Button>
                 <div id="charTitle">CREATE A CHARACTER</div>
                     <FormControl className={classes.formControl}>
                         <TextField 
@@ -116,9 +125,9 @@ const CreateCharacter = () => {
                             value={race}
                             onChange={handleRaceChange}
                             >
-                            <MenuItem value={"human"}>Human</MenuItem>
-                            <MenuItem value={"elf"}>Elf</MenuItem>
-                            <MenuItem value={"dwarf"}>Dwarf</MenuItem>
+                            <MenuItem value={"Human"}>Human</MenuItem>
+                            <MenuItem value={"Elf"}>Elf</MenuItem>
+                            <MenuItem value={"Dwarf"}>Dwarf</MenuItem>
                         </Select>
                     </FormControl>
                     <FormControl className={classes.formControl}>
@@ -129,9 +138,9 @@ const CreateCharacter = () => {
                             value={charClass}
                             onChange={handleClassChange}
                             >
-                            <MenuItem value={"warrior"}>Warrior</MenuItem>
-                            <MenuItem value={"rogue"}>Rogue</MenuItem>
-                            <MenuItem value={"paladin"}>Paladin</MenuItem>
+                            <MenuItem value={"Warrior"}>Warrior</MenuItem>
+                            <MenuItem value={"Rogue"}>Rogue</MenuItem>
+                            <MenuItem value={"Paladin"}>Paladin</MenuItem>
                         </Select>
                     </FormControl>
                     <Button 

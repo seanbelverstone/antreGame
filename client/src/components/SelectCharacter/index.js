@@ -15,6 +15,7 @@ const SelectCharacter = () => {
 
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
+        checkForSpace();
         const userId = parseInt(window.sessionStorage.getItem("id"));
         API.getAllCharacters(userId)
         .then(results => {
