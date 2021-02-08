@@ -3,9 +3,10 @@ import { TextField, Button } from "@material-ui/core";
 import Snackbar from "../Snackbar";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
+import "../../App.css";
 import "./style.css";
 
-const CreateAccount = ({ changeComponent }) => {
+const CreateAccount = () => {
 
     // State for username section
     const [username, setUsername] = useState("");
@@ -87,7 +88,8 @@ const CreateAccount = ({ changeComponent }) => {
     }
 
     return(
-        <div className="wrapper">
+        <div className="createWrapper">
+            <a id="back" href="/">BACK</a>
             <div id="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccount" onSubmit={handleSubmit}>
 
@@ -136,10 +138,9 @@ const CreateAccount = ({ changeComponent }) => {
                     >
                     Submit
                 </Button>
-
+                <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
-            <Snackbar changeComponent={changeComponent} display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Account created. Welcome, ${username}`} destination="/"/>
         </div>
     )
 }

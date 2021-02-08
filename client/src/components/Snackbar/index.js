@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from "../Login";
+import { navigate } from "hookrouter";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CustomizedSnackbars({ changeComponent, display, setDisplay }) {
+  export default function CustomizedSnackbars({ display, setDisplay, message, destination }) {
     const classes = useStyles();
     console.log(display)
   
@@ -32,16 +32,16 @@ function Alert(props) {
       if (reason === 'clickaway') {
         return;
       }
-  
+
+      navigate(destination);
       setDisplay(false);
-      changeComponent(<Login />)
     };
   
     return (
       <div className={classes.root}>
         <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-             Account created. Welcome, {username}!
+            {message}
           </Alert>
         </Snackbar>
       </div>

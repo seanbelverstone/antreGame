@@ -1,11 +1,19 @@
+.selectWrapper {
+    height: 80vmin;
+    min-width: 60vh;
+    background-color: #f7f7f7;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 #logout {
     position: absolute;
-    left: 3%;
-    top: 3%;
+    left: 35%;
+    top: 6%;
 }
 
 #charTitle {
-    margin-top: 30px;
     font-size: 20px;
 }
 

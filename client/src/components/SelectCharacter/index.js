@@ -3,27 +3,35 @@ import { Button } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
-import Login from "../Login";
+import { navigate } from "hookrouter";
 import CreateCharacter from "../CreateCharacter";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
+const SelectCharacter = () => {
 
-    const [characters, setCharacter] = useState([]);
+    const [characters, updateCharacters] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
 
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
+        checkForSpace();
         const userId = parseInt(window.sessionStorage.getItem("id"));
         API.getAllCharacters(userId)
         .then(results => {
             // pushes the data to the characters array
-            setCharacter(results.data);
-            checkForSpace();
+            const newCharacters = results.data;
+            updateCharacters(prev => [...prev, ...newCharacters]);
+            
         })
         // have to pass an array as a second argument to stop infinite loops
     }, [])
+
+    useEffect(() => {
+        if (characters.length) {
+            checkForSpace()
+        }
+    }, [characters]);
 
     const renderCharacters = () => {
         return characters.map((character) => {
@@ -35,7 +43,7 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
                             <div className="name">{character.name}</div>
                             <section className="raceAndClass">
                                 <div className="race">{character.race}</div>
-                                <div className="class">  {character.class}</div>
+                                <div className="charClass">  {character.charClass}</div>
                             </section>
                         </section>
 
@@ -88,22 +96,30 @@ const SelectCharacter = ({ changeToLogin, changeToCreate }) => {
 
     const checkForSpace = () => {
         // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
+        console.log(characters);
         if(characters.length < 4) {
             setLessThanFour("flex")
+        } else {
+            setLessThanFour("none")
         }
     }
 
+    const logout = () => {
+        window.sessionStorage.clear();
+        navigate("/")
+    }
+
     return(
-        <div className="wrapper">
+        <div className="selectWrapper">
             <div id="charTitle">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout" onClick={() => changeToLogin(<Login />)}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}
 
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
-                <IconButton variant="contained" color="primary" onClick={() => changeToCreate(<CreateCharacter />)}>
+                <IconButton variant="contained" color="primary" href="/create">
                     <AddIcon />
                 </IconButton>
             </div>

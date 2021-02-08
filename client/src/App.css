@@ -1,42 +1,29 @@
-#back {
-  position: absolute;
-  left: 39%;
-  top: 6%;
-  z-index: 2;
-}
-
-.loginWrapper {
+.appWrapper {
   background-color: #282c34;
-  min-height: 100vh; /* vh is relative to the viewport */
+  min-height: 80vh; /* vh is relative to the viewport */
+  min-width: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   position: relative;
-}
-
-.wrapper {
-  height: 80vmin;
-  min-width: 60vh;
-  background-color: #f7f7f7;
-  padding: 50px;
   border-radius: 10px;
+  padding: 20px;
   text-align: center;
-  position: relative;
+  animation: fadeIn 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
-#create {
-  text-align: center;
-  color: black;
-  padding-top: 35px;
-  font-size: 16px;
-  position: absolute;
-  bottom: 10%;
-  left: 46.5%;
-}
+@keyframes fadeIn {
+  0% {
+    display: "flex";
+    transform: scale(0);
+  }
 
-#create:hover, #back:hover {
-  color: rgb(143, 143, 143);
-  text-decoration: underline;
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

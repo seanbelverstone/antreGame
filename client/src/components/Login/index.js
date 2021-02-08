@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SelectCharacter from "../SelectCharacter";
+import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
@@ -24,11 +24,12 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                 setUsernameError(false);
                 setPasswordError(false);
                 setPasswordHelperText("");
-
                 // set the user's ID to session storage, so we can use it throughout the applicable
                 window.sessionStorage.setItem("id", results.data.user.id);
-
-                changeToCharacter(<SelectCharacter changeToLogin={changeToLogin} changeToCreate={changeToCreate}/>)
+                window.sessionStorage.setItem("jwtToken", results.data.token);
+            })
+            .then(() => {
+                navigate("/select");
             })
             .catch(error => {
                 console.log(error);
@@ -38,10 +39,13 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
             });
     }
     
+    const setSession = () => {
+
+    }
 
     return(
-        <div>
-            <img src={logo} alt="logo" className="wrapper"/>
+        <div className="loginWrapper">
+            <img src={logo} alt="logo" id="antreLogo"/>
             <form noValidate autoComplete="off" id="login" onSubmit={onSubmit}>
                 <TextField 
                     className="formInput" 
@@ -66,6 +70,7 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                     >
                     Login
                 </Button>
+                <a id="create" href="/account">CREATE AN ACCOUNT</a>
             </form>
         </div>
                     

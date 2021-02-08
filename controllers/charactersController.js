@@ -15,7 +15,6 @@ module.exports = {
 
   // route for finding all characters related to the user
   get: (request, response) => {
-    console.log(db.User)
     db.Character.findAll({
       where: {
         userId: request.params.id,

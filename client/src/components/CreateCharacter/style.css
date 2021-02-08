@@ -1,0 +1,85 @@
+.createWrapper {
+    height: 80vmin;
+    min-width: 60vh;
+    background-color: #f7f7f7;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#formWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 25% 0 25%;
+}
+
+#back {
+    text-align: center;
+    color: black;
+    position: absolute;
+    left: 60%;
+    top: 6%;
+    z-index: 2;
+}  
+
+#createLogout {
+    position: absolute;
+    left: 37%;
+    top: 6%;
+}
+
+#createTitle {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.MuiInputBase-input, .MuiSelect-root {
+    font-weight: bold !important;
+}
+
+#human:hover, #elf:hover, #dwarf:hover, #warrior:hover, #rogue:hover, #paladin:hover {
+    font-weight: bold;
+}
+
+#classDescription {
+    font-size: 16px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#stats {
+    width: 25vh;
+}
+
+#strength {
+    color: darkred;
+}
+
+#defense {
+    color: darkgreen;
+}
+
+#wisdom {
+    color: darkblue;
+}
+
+#luck {
+    color: goldenrod;
+}
+
+#desAndSkill {
+    margin-left: 40px;
+    width: 70vh;
+}
+
+#desAndSkill, #skill {
+    text-align: left;
+    padding: 5px;
+}
+
+#skillName {
+    margin-block-end: 0;
+    text-decoration: underline;
+}
