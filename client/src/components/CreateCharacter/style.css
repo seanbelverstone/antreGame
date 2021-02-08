@@ -27,3 +27,8 @@
     left: 37%;
     top: 6%;
 }
+
+#warrior:hover, #rogue:hover, #paladin:hover {
+    font-weight: bold;
+}
+
