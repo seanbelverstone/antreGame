@@ -140,7 +140,7 @@ const CreateAccount = () => {
                 </Button>
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
-            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay}/>
+            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Account created. Welcome, ${username}`} destination="/"/>
         </div>
     )
 }

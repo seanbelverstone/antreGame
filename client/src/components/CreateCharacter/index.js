@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
+import Snackbar from "../Snackbar";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -33,8 +34,12 @@ const CreateCharacter = () => {
     const [defense, setDefense] = useState(0);
     const [wisdom, setWisdom] = useState(0);
     const [luck, setLuck] = useState(0);
+
     const [description, setDescription] = useState("");
+    const [descriptonDisplay, setDescriptionDisplay] = useState(0);
     const [skill, setSkill] = useState("");
+
+    const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
     const userId = window.sessionStorage.getItem("id");
 
@@ -54,6 +59,7 @@ const CreateCharacter = () => {
                 setLuck(2);
                 setDescription("Strong and fierce, the warrior is a reliable combatant.")
                 setSkill("Stalwart Defense: Impervious to damage for 1 turn.")
+                setDescriptionDisplay(1)
                 break;
             case "Rogue":
                 setHealth(60)
@@ -63,6 +69,7 @@ const CreateCharacter = () => {
                 setLuck(4);
                 setDescription("As deadly as they are cunning, the rogue utilizes their luck to end fights quickly.")
                 setSkill("Rapid Attack: Doubles special attack damage")
+                setDescriptionDisplay(1)
                 break;
             case "Paladin":
                 setHealth(70)
@@ -72,6 +79,7 @@ const CreateCharacter = () => {
                 setLuck(2);
                 setDescription("Using other worldly powers to surpass their foes, the paladin is the wisest of them all.")
                 setSkill("Holy Remedy: Restores 30% health")
+                setDescriptionDisplay(1)
                 break;
             default:
                 setHealth(0)
@@ -116,6 +124,7 @@ const CreateCharacter = () => {
         API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
             .then(results => {
                 console.log(results)
+                setSnackbarDisplay(true);
             })
     }
 
@@ -129,7 +138,7 @@ const CreateCharacter = () => {
             <form id="formWrapper" onSubmit={handleSubmit}>
             <a id="back" href="/select">BACK</a>
             <Button variant="outlined" id="createLogout" onClick={logout}>LOG OUT</Button>
-                <div id="charTitle">CREATE A CHARACTER</div>
+                <div id="createTitle">CREATE A CHARACTER</div>
                     <FormControl className={classes.formControl}>
                         <TextField 
                             className="formInput" 
@@ -148,9 +157,9 @@ const CreateCharacter = () => {
                             value={race}
                             onChange={handleRaceChange}
                             >
-                            <MenuItem value={"Human"}>Human</MenuItem>
-                            <MenuItem value={"Elf"}>Elf</MenuItem>
-                            <MenuItem value={"Dwarf"}>Dwarf</MenuItem>
+                            <MenuItem value={"Human"} id="human">Human</MenuItem>
+                            <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
+                            <MenuItem value={"Dwarf"} id="dwarf">Dwarf</MenuItem>
                         </Select>
                     </FormControl>
                     <FormControl className={classes.formControl}>
@@ -166,17 +175,19 @@ const CreateCharacter = () => {
                             <MenuItem value={"Paladin"} id="paladin">Paladin</MenuItem>
                         </Select>
                     </FormControl>
-                    <div id="classDescription">
-                        <h3>{charClass}</h3>
+                    <div id="classDescription" style={{opacity: descriptonDisplay}}>
                         <div id="stats">
-                            <div>HP: {health}</div>
-                            <div>Strength: {strength}</div>
-                            <div>Defense: {defense}</div>
-                            <div>Wisdom: {wisdom}</div>
-                            <div>Luck: {luck}</div>
+                            <div id="health">HP: {health}</div>
+                            <div id="strength">Strength: {strength}</div>
+                            <div id="defense">Defense: {defense}</div>
+                            <div id="wisdom">Wisdom: {wisdom}</div>
+                            <div id="luck">Luck: {luck}</div>
                         </div>
-                        <div id="description">{description}</div>
-                        <div id="skill">{skill}</div>
+                        <div id="desAndSkill">
+                            <div id="description">{description}</div>
+                            <h3 id="skillName">Skill</h3>
+                            <div id="skill">{skill}</div>
+                        </div>
                     </div>
                     <Button 
                         variant="contained" 
@@ -186,6 +197,7 @@ const CreateCharacter = () => {
                         Create
                     </Button>
             </form>
+            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
                     

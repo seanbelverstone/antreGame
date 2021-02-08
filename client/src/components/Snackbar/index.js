@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CustomizedSnackbars({ display, setDisplay }) {
+  export default function CustomizedSnackbars({ display, setDisplay, message, destination }) {
     const classes = useStyles();
     console.log(display)
   
@@ -33,7 +33,7 @@ function Alert(props) {
         return;
       }
 
-      navigate("/");
+      navigate(destination);
       setDisplay(false);
     };
   
@@ -41,7 +41,7 @@ function Alert(props) {
       <div className={classes.root}>
         <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-             Account created. Welcome, {username}!
+            {message}
           </Alert>
         </Snackbar>
       </div>
