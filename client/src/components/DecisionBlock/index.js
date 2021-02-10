@@ -105,6 +105,7 @@ const DecisionBlock = () => {
     return(
         <div className="decisionWrapper">
             <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+            
             <Typewriter
                 id="text"
                 options={{
