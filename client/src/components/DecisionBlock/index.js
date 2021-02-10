@@ -12,6 +12,7 @@ const DecisionBlock = () => {
     const [storyText, setStoryText] = useState("");
     const [modifier, setModifier] = useState("");
     const [options, setOptions] = useState([]);
+    const [clicked, setClicked] = useState("");
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -19,19 +20,19 @@ const DecisionBlock = () => {
     }, [])
 
     useEffect(() => {
-        handleLevel();
-        handleText();
+        handleLevel(currentCharacter.level);
+        handleText(currentCharacter.level);
     }, [currentCharacter])
 
-    const handleLevel = () => {
-        setCurrentLevel(currentCharacter.level)
+    const handleLevel = (choice) => {
+        setCurrentLevel(choice)
     }
 
-    const handleText = () => {
+    const handleText = (choice) => {
         // loops through the storylines array, and matches the character's level with the corresponding object
         for(let i = 0; i < storylines.length; i++) {
             
-            if (storylines[i].level === currentCharacter.level) {
+            if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text.split("||"))
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
@@ -42,15 +43,28 @@ const DecisionBlock = () => {
 
     const renderOptions = () => {
         // maps through the options array and creates divs for them
-        return options.map(option => {
+        console.log(modifier[0])
+        if (modifier[0] != undefined && modifier[0].death) {
             return(
-                <div className="options" key={option.target}>
-                    <Button className="optionText" variant="contained" color="primary">
-                        {option.label}
-                    </Button>
-                </div>
+                <p>You died.</p>
             )
-        })
+        } else {
+            return options.map(option => {
+                return(
+                    <div className="options" key={option.target}>
+                        <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
+                            {option.label}
+                        </Button>
+                    </div>
+                )
+            })
+        }
+    }
+
+    const handleClick = (option) => {
+        setClicked(option.target);
+        handleLevel(option.target);
+        handleText(option.target);
     }
 
     const logout = () => {

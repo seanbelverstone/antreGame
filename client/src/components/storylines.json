@@ -144,21 +144,36 @@
     {
         "level": "01bd-Goblin Battle",
         "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself. The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
-        "modifier": 0,
-        "options": {
-            "label": "Fight Sequence",
-            "enemy": {
-                "name": "Goblin",
-                "health": 40,
-                "strength": 2,
-                "defense": 2,
-                "wisdom": 1,
-                "luck": 1,
-                "weapon": {
-                    "name": "dagger",
-                    "dmg": 3
-                }
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Goblin",
+            "health": 40,
+            "strength": 2,
+            "defense": 2,
+            "wisdom": 1,
+            "luck": 1,
+            "weapon": {
+                "name": "dagger",
+                "dmg": 3
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
             },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
             "victory": {
                 "target": "01bda-Goblin Victory"
             }
@@ -199,21 +214,36 @@
     {
         "level": "02aa-Open Door",
         "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon heading the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
-        "modifier": 0,
-        "options": {
-            "label": "Fight Sequence",
-            "enemy": {
-                "name": "Skeleton",
-                "health": 40,
-                "strength": 1,
-                "defense": 2,
-                "wisdom": 1,
-                "luck": 1,
-                "weapon": {
-                    "name": "dagger",
-                    "dmg": 4
-                }
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Skeleton",
+            "health": 40,
+            "strength": 1,
+            "defense": 2,
+            "wisdom": 1,
+            "luck": 1,
+            "weapon": {
+                "name": "dagger",
+                "dmg": 4
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
             },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
             "victory": {
                 "target": "02aaa-Skeleton Victory"
             }
