@@ -13,6 +13,16 @@ module.exports = {
     });
   },
 
+  delete: (request, response) => {
+    db.Character.destroy({
+      where: {
+        id: request.params.id
+      }
+    }).then((deletedCharacter) => {
+      response.json(deletedCharacter)
+    }).catch(err => response.status(422).json(err));
+  },
+
   // route for finding all characters related to the user
   get: (request, response) => {
     db.Character.findAll({
@@ -40,5 +50,5 @@ module.exports = {
     }).then(dbModel => {
       response.json(dbModel);
     });
-}
+  }
 };

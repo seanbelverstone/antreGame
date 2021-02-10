@@ -118,9 +118,6 @@ const CreateCharacter = () => {
     }
 
     const createNewCharacter = () => {
-        // put api bit in here
-        console.log("eegs")
-        console.log(`Name ${userId}`)
         API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
             .then(results => {
                 console.log(results)

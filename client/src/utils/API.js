@@ -40,5 +40,13 @@ export default {
         }, {
             headers: {
             'Authorization': `Bearer ${jwtToken}`}
-    })}
+        })
+    },
+    
+    deleteCharacter: (characterId) => {
+        return axios.delete(`/api/characters/${characterId}`, {
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`}
+        })
+    }
 }

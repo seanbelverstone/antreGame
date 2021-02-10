@@ -38,10 +38,6 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                 setPasswordHelperText(`Username/password doesn't exist.`)
             });
     }
-    
-    const setSession = () => {
-
-    }
 
     return(
         <div className="loginWrapper">

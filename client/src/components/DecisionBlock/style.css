@@ -1,0 +1,41 @@
+.decisionWrapper {
+    height: auto;
+    min-width: 60vh;
+    background-color: #f7f7f7;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#text {
+    margin-top: 50px;
+    border: 2px solid black;
+    width: 60vh;
+    text-align: left;
+    padding: 50px;
+}
+
+#optionArea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 60vh;
+    padding: 50px;
+}
+
+.options {
+    padding: 20px;
+}
+
+.options button {
+    padding: 20px;
+    width: 120px;
+    height: 80px;
+}
+
+#footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vh;
+}

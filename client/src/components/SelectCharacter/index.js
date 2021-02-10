@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import { navigate } from "hookrouter";
-import CreateCharacter from "../CreateCharacter";
+import DeleteButton from "../DeleteButton";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
@@ -33,8 +33,14 @@ const SelectCharacter = () => {
         }
     }, [characters]);
 
+    const playThisCharacter = (character) => {
+        window.sessionStorage.setItem("currentCharacter", JSON.stringify(character));
+    }
+
     const renderCharacters = () => {
+
         return characters.map((character) => {
+            // stores all the characters to session storage so we can access them in the decision block
             return(
                 <div className="characterBlock" key={character.id}>
                     <div className="characterWrapper">
@@ -82,12 +88,15 @@ const SelectCharacter = () => {
                         </section>
                     </div>
                     <section className="charButtons">
-                            <Button variant="contained" color="primary" id="play">
+                            <Button variant="contained" color="primary" id="play" href="/play" onClick={() => playThisCharacter(character)}>
                                 PLAY
                             </Button>
-                            <Button variant="contained" color="secondary" id="delete">
+
+                            <DeleteButton id={character.id}/>
+
+                            {/* <Button variant="contained" color="secondary" id="delete">
                                 DELETE
-                            </Button>
+                            </Button> */}
                     </section>
                 </div>
             )
@@ -96,7 +105,6 @@ const SelectCharacter = () => {
 
     const checkForSpace = () => {
         // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
-        console.log(characters);
         if(characters.length < 4) {
             setLessThanFour("flex")
         } else {
