@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import { navigate } from "hookrouter";
-import CreateCharacter from "../CreateCharacter";
+import DeleteButton from "../DeleteButton";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
@@ -85,9 +85,12 @@ const SelectCharacter = () => {
                             <Button variant="contained" color="primary" id="play">
                                 PLAY
                             </Button>
-                            <Button variant="contained" color="secondary" id="delete">
+
+                            <DeleteButton />
+
+                            {/* <Button variant="contained" color="secondary" id="delete">
                                 DELETE
-                            </Button>
+                            </Button> */}
                     </section>
                 </div>
             )
