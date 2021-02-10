@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import storylines from "../storylines.json";
 import smallLogo from "../../assets/images/Antre.png";
-import helmet from "../../assets/images/invIcons/helmet.svg";
+import enemies from "../../assets/images/enemyIcons";
 import "./style.css";
 
 const DecisionBlock = () => {
@@ -64,7 +64,7 @@ const DecisionBlock = () => {
             return(options.map(fightOption => {
                 return(
                     <div className="options" key={fightOption.target}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
+                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFightChoice(fightOption)}>
                             {fightOption.label}
                         </Button>
                     </div>
