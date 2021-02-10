@@ -33,8 +33,14 @@ const SelectCharacter = () => {
         }
     }, [characters]);
 
+    const playThisCharacter = (character) => {
+        window.sessionStorage.setItem("currentCharacter", JSON.stringify(character));
+    }
+
     const renderCharacters = () => {
+
         return characters.map((character) => {
+            // stores all the characters to session storage so we can access them in the decision block
             return(
                 <div className="characterBlock" key={character.id}>
                     <div className="characterWrapper">
@@ -82,7 +88,7 @@ const SelectCharacter = () => {
                         </section>
                     </div>
                     <section className="charButtons">
-                            <Button variant="contained" color="primary" id="play" href="/play">
+                            <Button variant="contained" color="primary" id="play" href="/play" onClick={() => playThisCharacter(character)}>
                                 PLAY
                             </Button>
 

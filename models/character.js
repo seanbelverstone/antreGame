@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
         level: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "start"
+            defaultValue: "01-Start"
         },
         time: {
             type: DataTypes.INTEGER,
