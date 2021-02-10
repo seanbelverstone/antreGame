@@ -55,9 +55,10 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.bool.isRequired,
 };
 
-export default function DeleteButton() {
+export default function DeleteButton(id) {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(false);
+  const [charId, setCharId] = useState(id)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -70,8 +71,11 @@ export default function DeleteButton() {
   };
 
   const handleDelete = (value) => {
+      console.log(charId.id)
     if (value) {
-
+       API.deleteCharacter(charId.id)
+            .then((results) => 
+            API.getAllCharacters())
     }
   }
 

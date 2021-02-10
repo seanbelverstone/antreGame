@@ -86,7 +86,7 @@ const SelectCharacter = () => {
                                 PLAY
                             </Button>
 
-                            <DeleteButton />
+                            <DeleteButton id={character.id}/>
 
                             {/* <Button variant="contained" color="secondary" id="delete">
                                 DELETE

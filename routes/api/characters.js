@@ -4,7 +4,8 @@ export default function(app) {
 
     // single character
     app.route("/api/characters/:id")
-        .get(CharactersController.get);
+        .get(CharactersController.get)
+        .delete(CharactersController.delete);
 
     // all characters
     app.route("/api/characters/")
@@ -15,4 +16,5 @@ export default function(app) {
 
     app.route("/api/characters/")
         .put(CharactersController.update);
+
 }
