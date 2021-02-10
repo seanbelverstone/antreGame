@@ -1,7 +1,7 @@
 [
     {
         "level": "01-Start",
-        "text": "You wake up, cold and alone. || How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
+        "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
         "modifier": [
             {
                 "weapon": {

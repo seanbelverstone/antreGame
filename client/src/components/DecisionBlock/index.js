@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import storylines from "../storylines.json";
+import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
 import "./style.css";
@@ -38,7 +39,7 @@ const DecisionBlock = () => {
         for(let i = 0; i < storylines.length; i++) {
             
             if (storylines[i].level === choice) {
-                setStoryText(storylines[i].text.split("||"))
+                setStoryText(storylines[i].text)
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -104,7 +105,15 @@ const DecisionBlock = () => {
     return(
         <div className="decisionWrapper">
             <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
-            <p id="text">{storyText}</p>
+            <Typewriter
+                id="text"
+                options={{
+                    strings: storyText,
+                    autoStart: true,
+                    loop: false,
+                    delay: 50
+                }}
+            />
 
             <img src={currentEnemy} style={{display: imageDisplay}} id="enemyImage" />
             <div id="optionArea">{renderOptions()}</div>
