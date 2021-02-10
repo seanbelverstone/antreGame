@@ -62,6 +62,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: "Old boots"
         },
+        torch: {
+            type: DataTypes.TINYINT,
+            allowNull: false,
+            defaultValue: 0
+        },
         amulet: {
             type: DataTypes.STRING,
             allowNull: false,
