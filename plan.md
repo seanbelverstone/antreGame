@@ -142,7 +142,7 @@ Health potions heal (roll * roll + 15) health.
 
 ### Weapons
 - No weapon - 1 damage
-- Steel sword - 2 damage
+- Rusty shortsword - 3 damage
 - Rusty axe - 3 damage
 - Steel dagger - 4 damage
 - Halberd - 6 damage

@@ -1,0 +1,89 @@
+[
+    {
+        "level": "start",
+        "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Rusty shortsword",
+                    "dmg": 3
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Go North",
+                "target": "tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "cry"
+            },
+            {
+                "label": "Do nothing",
+                "target": "goblins"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "torch"
+            }
+        ]
+    },
+    {
+        "level": "tunnel",
+        "text": "Deciding to to leave the cave behind you and find some answers to why you're here, you head north. Ahead of you is a short tunnel, that leads to a door that is slightly ajar. Opening it, you are faced with a small room. To your left is a closed door and to your right is the remains of both a fire and a poor adventurer that lies decomposing beside it. There is also a path that continues north.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "threePaths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "inspectAdventurer"
+            }
+        ]
+    },
+    {
+        "level": "cry",
+        "text": "Tears run down your cheeks, as you feel completely lost. How did you get here? Whatever the case, that crying did make you feel a little better.",
+        "modifier": [
+            {
+                "wisdom": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "start"
+            }
+        ]
+    },
+    {
+        "level": "goblins",
+        "text": "You decide to remain right where you are, and resign into a state of bewildered depression. After all, you didn't ask to be here. Before you can start to brood over the circumstances that led to your arrival here, you hear some voices up ahead. It sounds like goblins!",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Flee",
+                "target": "goblinFlee"
+            },
+            {
+                "label": "Hide",
+                "target": "goblinHide"
+            },
+            {
+                "label": "Bargain",
+                ""
+            }
+        ]
+    }
+]
