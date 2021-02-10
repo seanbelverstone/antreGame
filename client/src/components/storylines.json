@@ -1,6 +1,6 @@
 [
     {
-        "level": "Start",
+        "level": "01-Start",
         "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
         "modifier": [
             {
@@ -13,47 +13,47 @@
         "options": [
             {
                 "label": "Go North",
-                "target": "Tunnel"
+                "target": "02-Tunnel"
             },
             {
                 "label": "Cry",
-                "target": "Cry"
+                "target": "01a-Cry"
             },
             {
                 "label": "Do nothing",
-                "target": "Goblins"
+                "target": "01b-Goblins"
             },
             {
                 "label": "Inspect Torch",
-                "target": "Torch"
+                "target": "01c-Torch"
             }
         ]
     },
     {
-        "level": "Tunnel",
+        "level": "02-Tunnel",
         "text": "Deciding to to leave the cave behind you and find some answers to why you're here, you head north. Ahead of you is a short tunnel, that leads to a door that is slightly ajar. Opening it, you are faced with a small room. To your left is a closed door and to your right is the remains of both a fire and a poor adventurer that lies decomposing beside it. There is also a path that continues north.",
         "modifier": 0,
         "options": [
             {
                 "label": "Open door",
-                "target": "Locked"
+                "target": "02a-Locked"
             },
             {
                 "label": "Continue North",
-                "target": "Three Paths"
+                "target": "03-Three Paths"
             },
             {
                 "label": "Relight fire",
-                "target": "Relight Fire"
+                "target": "02b-Relight Fire"
             },
             {
                 "label": "Inspect the adventurer",
-                "target": "Dead Adventurer"
+                "target": "02c-Dead Adventurer"
             }
         ]
     },
     {
-        "level": "Cry",
+        "level": "01a-Cry",
         "text": "Tears run down your cheeks, as you feel completely lost. How did you get here? Whatever the case, that crying did make you feel a little better.",
         "modifier": [
             {
@@ -63,31 +63,161 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "start"
+                "target": "01-Start"
             }
         ]
     },
     {
-        "level": "Goblins",
+        "level": "01b-Goblins",
         "text": "You decide to remain right where you are, and resign into a state of bewildered depression. After all, you didn't ask to be here. Before you can start to brood over the circumstances that led to your arrival, you hear some voices up ahead. It sounds like goblins!",
         "modifier": 0,
         "options": [
             {
                 "label": "Flee",
-                "target": "Goblin Flee"
+                "target": "01ba-Goblin Flee"
             },
             {
                 "label": "Hide",
-                "target": "Goblin Hide"
+                "target": "01bb-Goblin Hide"
             },
             {
                 "label": "Bargain",
-                "target": "Bargain"
+                "target": "01bc-Bargain"
             },
             {
                 "label": "Fight",
-                "target": "Goblin Battle"
+                "target": "01bd-Goblin Battle"
             }
         ]
+    },
+    {
+        "level": "01c-Torch",
+        "text": "You approach the torch and take a closer look. You notice that this sconce is no typical one, as it can be removed from the wall. Additionally it appears to have some kind of flint and steel type of switch, which will reignite it if its flame goes out. Amazing! You extinguish the torch and add it to your inventory.",
+        "modifier": [
+            {
+                "torch": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "01-Start"
+            }
+        ]
+    },
+    {
+        "level": "01ba-Goblin Flee",
+        "text": "Terrified of what goblins might do if they see you, you attempt to run away. Sprinting to the back of the cave, you are only met with a cold, hard wall. You grope around in the darkness for some kind of opening, some escape from this hellhole. 'Well, what do we have here then?' a voice cackles behind you. You spin around to see your foe, but a goblin quickly dashes forward, plunging its dagger into your stomach and slashing it to the side, spilling your innards all over the floor. Darkness consumes everything.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "01bb-Goblin Hide",
+        "text": "Realizing your only option may be to hide, you frantically search the room for a suitable hiding place, coming upon a boulder that might just be big enough to conseal you from your approaching doom. Wiping sweat from your brow, you wait. The voices have stopped. Maybe they've turned around and gone the other way? After a few moments, your curiosity gets the better of you and you shuffle around to peer over the boulder. There is a flash of steel, and you realize that the goblins were waiting for you. You hear their laughing and feel their blades as you die before them.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "01bc-Bargain",
+        "text": "Holding the rusty sword loosely in your hand, you stand your ground as the goblins approach. As they enter the doorway, the stop in their tracks. 'Cor, look at this one. He looks ready for battle!' Knowing that all goblins love a good deal, you hold up your hands and explain that you'd rather offer them your sword. 'That thing doesn't look like it's worth the dirt under my nails', the goblin sneers. 'Tell ya what. We'll take your sword, in exchange for you life. Sound good? Good.' And with that, the goblins snatch up your weapon and disappear from the way they came. Damn. That weapon could have been useful. At least you're still breathing.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "none",
+                    "dmg": 1
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "01-Start"
+            }
+        ]
+    },
+    {
+        "level": "01bd-Goblin Battle",
+        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself. The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
+        "modifier": 0,
+        "options": {
+            "label": "Fight Sequence",
+            "enemy": {
+                "name": "Goblin",
+                "health": 40,
+                "strength": 2,
+                "defense": 2,
+                "wisdom": 1,
+                "luck": 1,
+                "weapon": {
+                    "name": "dagger",
+                    "dmg": 3
+                }
+            },
+            "victory": {
+                "target": "01bda-Goblin Victory"
+            }
+        }
+    },
+    {
+        "level": "01bda-Goblin Victory",
+        "text": "You strike the goblin down, and its lifeless body hits the floor with a thump. You quickly rifle through its belongings, and find a few gold pieces. You also decide to take the weapon it was holding.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "dagger",
+                    "dmg": 3
+                },
+                "gold": 3
+            }
+        ],
+        "options": {
+            "label": "Return to the task at hand",
+            "target": "01-Start"
+        }
+    },
+    {
+        "level": "02a-Locked",
+        "text": "Walking towards the door on your left, you try the handle. It's locked. Looking around for a key, you manage to spot one just poking out from beneath the door. You pick it up, wipe some dust off it, and place it in the keyhole.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02aa-Open Door"
+            },
+            {
+                "label": "Leave the door alone",
+                "target": "02-Tunnel"
+            }
+        ]
+    },
+    {
+        "level": "02aa-Open Door",
+        "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon heading the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
+        "modifier": 0,
+        "options": {
+            "label": "Fight Sequence",
+            "enemy": {
+                "name": "Skeleton",
+                "health": 40,
+                "strength": 1,
+                "defense": 2,
+                "wisdom": 1,
+                "luck": 1,
+                "weapon": {
+                    "name": "dagger",
+                    "dmg": 4
+                }
+            },
+            "victory": {
+                "target": "02aaa-Skeleton Victory"
+            }
+        }
     }
+
 ]
