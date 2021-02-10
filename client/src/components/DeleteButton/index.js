@@ -74,11 +74,9 @@ export default function DeleteButton(id) {
 
   const handleDelete = (value) => {
       const userId = parseInt(window.sessionStorage.getItem("id"));
-      console.log(charId)
-      console.log(userId);
     if (value) {
        API.deleteCharacter(charId.id)
-            .then((results) => 
+            .then(() => 
             location.reload());
     }
   }

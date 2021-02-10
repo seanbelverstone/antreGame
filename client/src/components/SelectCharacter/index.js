@@ -99,7 +99,6 @@ const SelectCharacter = () => {
 
     const checkForSpace = () => {
         // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
-        console.log(characters);
         if(characters.length < 4) {
             setLessThanFour("flex")
         } else {
