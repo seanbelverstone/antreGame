@@ -65,7 +65,12 @@ const DecisionBlock = () => {
 
             <div id="optionArea">{renderOptions()}</div>
 
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            <footer id="footer">
+                <Button variant="contained">Inventory</Button>
+                <Button variant="contained">Save Game</Button>
+
+                <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            </footer>
         </div>
                     
     )

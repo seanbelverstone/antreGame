@@ -1,8 +1,8 @@
 .decisionWrapper {
-    height: 80vmin;
+    height: auto;
     min-width: 60vh;
     background-color: #f7f7f7;
-    padding: 50px;
+    padding: 40px;
     border-radius: 10px;
     text-align: center;
 }
@@ -31,4 +31,11 @@
     padding: 20px;
     width: 120px;
     height: 80px;
+}
+
+#footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vh;
 }
