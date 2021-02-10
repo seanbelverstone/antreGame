@@ -82,7 +82,7 @@ const SelectCharacter = () => {
                         </section>
                     </div>
                     <section className="charButtons">
-                            <Button variant="contained" color="primary" id="play">
+                            <Button variant="contained" color="primary" id="play" href="/play">
                                 PLAY
                             </Button>
 

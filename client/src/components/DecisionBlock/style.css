@@ -1,0 +1,8 @@
+.decisionWrapper {
+    height: 80vmin;
+    min-width: 60vh;
+    background-color: #f7f7f7;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
