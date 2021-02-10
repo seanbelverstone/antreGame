@@ -159,24 +159,28 @@
             "weapon": {
                 "name": "dagger",
                 "dmg": 3
+            }
         },
         "options": [
             {
-                "label": "Normal Attack"
+                "label": "Normal Attack",
+                "target": "normal"
             },
             {
-                "label": "Special Attack"
+                "label": "Special Attack",
+                "target": "special"
             },
             {
-                "label": "Use health potion"
+                "label": "Use health potion",
+                "target": "potion"
             },
             {
-                "label": "Use skill"
+                "label": "Use skill",
+                "target": "skill"
             }
         ],
-            "victory": {
-                "target": "01bda-Goblin Victory"
-            }
+        "victory": {
+            "target": "01bda-Goblin Victory"
         }
     },
     {

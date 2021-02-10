@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import storylines from "../storylines.json";
 import smallLogo from "../../assets/images/Antre.png";
+import helmet from "../../assets/images/invIcons/helmet.svg";
 import "./style.css";
 
 const DecisionBlock = () => {
@@ -13,6 +14,10 @@ const DecisionBlock = () => {
     const [modifier, setModifier] = useState("");
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
+    const [currentEnemy, setCurrentEnemy] = useState({});
+    const [enemyImage, setEnemyImage] = useState("");
+    const [imageDisplay, setImageDisplay] = useState("none");
+
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -36,6 +41,9 @@ const DecisionBlock = () => {
                 setStoryText(storylines[i].text.split("||"))
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
+                if (storylines[i].enemy) {
+                    setCurrentEnemy(storylines[i].enemy)
+                }
                 renderOptions();
             }
         }
@@ -43,12 +51,27 @@ const DecisionBlock = () => {
 
     const renderOptions = () => {
         // maps through the options array and creates divs for them
-        console.log(modifier[0])
         if (modifier[0] != undefined && modifier[0].death) {
             return(
                 <p>You died.</p>
             )
+        } else if (modifier[0] != undefined && modifier[0].fight) {
+            // If fight: true appears in the decision block, render the fight screen instead.
+
+            // Trying to make it so the image is set to be whatever comes through dynamically, but will take some further thought.
+            // setEnemyImage(`../../assets/images/enemyImages/${enemy}`)
+            // setImageDisplay("block");
+            return(options.map(fightOption => {
+                return(
+                    <div className="options" key={fightOption.target}>
+                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
+                            {fightOption.label}
+                        </Button>
+                    </div>
+                )
+            }))
         } else {
+            // Otherwise, show the option page
             return options.map(option => {
                 return(
                     <div className="options" key={option.target}>
@@ -61,10 +84,16 @@ const DecisionBlock = () => {
         }
     }
 
+    // This takes the value from the option, and sets the level and text based on its target
     const handleClick = (option) => {
         setClicked(option.target);
         handleLevel(option.target);
         handleText(option.target);
+    }
+
+    const handleFight = (option) => {
+        console.log(option)
+        // inside here, do a switch case for normal attack, special attack etc.
     }
 
     const logout = () => {
@@ -77,6 +106,7 @@ const DecisionBlock = () => {
             <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
             <p id="text">{storyText}</p>
 
+            <img src={currentEnemy} style={{display: imageDisplay}} id="enemyImage" />
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
