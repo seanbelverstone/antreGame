@@ -1,6 +1,6 @@
 [
     {
-        "level": "start",
+        "level": "Start",
         "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
         "modifier": [
             {
@@ -13,47 +13,47 @@
         "options": [
             {
                 "label": "Go North",
-                "target": "tunnel"
+                "target": "Tunnel"
             },
             {
                 "label": "Cry",
-                "target": "cry"
+                "target": "Cry"
             },
             {
                 "label": "Do nothing",
-                "target": "goblins"
+                "target": "Goblins"
             },
             {
                 "label": "Inspect Torch",
-                "target": "torch"
+                "target": "Torch"
             }
         ]
     },
     {
-        "level": "tunnel",
+        "level": "Tunnel",
         "text": "Deciding to to leave the cave behind you and find some answers to why you're here, you head north. Ahead of you is a short tunnel, that leads to a door that is slightly ajar. Opening it, you are faced with a small room. To your left is a closed door and to your right is the remains of both a fire and a poor adventurer that lies decomposing beside it. There is also a path that continues north.",
         "modifier": 0,
         "options": [
             {
                 "label": "Open door",
-                "target": "locked"
+                "target": "Locked"
             },
             {
                 "label": "Continue North",
-                "target": "threePaths"
+                "target": "Three Paths"
             },
             {
                 "label": "Relight fire",
-                "target": "fire"
+                "target": "Relight Fire"
             },
             {
                 "label": "Inspect the adventurer",
-                "target": "inspectAdventurer"
+                "target": "Dead Adventurer"
             }
         ]
     },
     {
-        "level": "cry",
+        "level": "Cry",
         "text": "Tears run down your cheeks, as you feel completely lost. How did you get here? Whatever the case, that crying did make you feel a little better.",
         "modifier": [
             {
@@ -68,21 +68,25 @@
         ]
     },
     {
-        "level": "goblins",
-        "text": "You decide to remain right where you are, and resign into a state of bewildered depression. After all, you didn't ask to be here. Before you can start to brood over the circumstances that led to your arrival here, you hear some voices up ahead. It sounds like goblins!",
+        "level": "Goblins",
+        "text": "You decide to remain right where you are, and resign into a state of bewildered depression. After all, you didn't ask to be here. Before you can start to brood over the circumstances that led to your arrival, you hear some voices up ahead. It sounds like goblins!",
         "modifier": 0,
         "options": [
             {
                 "label": "Flee",
-                "target": "goblinFlee"
+                "target": "Goblin Flee"
             },
             {
                 "label": "Hide",
-                "target": "goblinHide"
+                "target": "Goblin Hide"
             },
             {
                 "label": "Bargain",
-                ""
+                "target": "Bargain"
+            },
+            {
+                "label": "Fight",
+                "target": "Goblin Battle"
             }
         ]
     }
