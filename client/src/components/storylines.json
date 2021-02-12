@@ -233,6 +233,7 @@
             "weapon": {
                 "name": "dagger",
                 "dmg": 4
+            }
         },
         "options": [
             {
@@ -251,8 +252,7 @@
             "victory": {
                 "target": "02aaa-Skeleton Victory"
             }
-        }
-    },
+        },
     {
         "level": "02aaa-Skeleton Victory",
         "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties and leave the room.",

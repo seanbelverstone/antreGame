@@ -17,7 +17,9 @@ const DecisionBlock = () => {
     const [clicked, setClicked] = useState("");
     const [currentEnemy, setCurrentEnemy] = useState({});
     const [enemyImage, setEnemyImage] = useState("");
-    const [imageDisplay, setImageDisplay] = useState("none");
+    const [imageDisplay, setImageDisplay] = useState("hidden");
+    const [optionFade, setOptionFade] = useState("hidden");
+    const [milliseconds, setMilliseconds] = useState(0);
 
 
     useEffect(() => {
@@ -30,6 +32,10 @@ const DecisionBlock = () => {
         handleText(currentCharacter.level);
     }, [currentCharacter])
 
+    useEffect(() => {
+        setButtonTimes();
+    }, [storyText])
+
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
     }
@@ -39,7 +45,7 @@ const DecisionBlock = () => {
         for(let i = 0; i < storylines.length; i++) {
             
             if (storylines[i].level === choice) {
-                setStoryText(storylines[i].text)
+                setStoryText(storylines[i].text);
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -51,6 +57,7 @@ const DecisionBlock = () => {
     }
 
     const renderOptions = () => {
+
         // maps through the options array and creates divs for them
         if (modifier[0] != undefined && modifier[0].death) {
             return(
@@ -64,7 +71,7 @@ const DecisionBlock = () => {
             // setImageDisplay("block");
             return(options.map(fightOption => {
                 return(
-                    <div className="options" key={fightOption.target}>
+                    <div className="options" key={fightOption.target} display={{visibility: imageDisplay}}>
                         <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFightChoice(fightOption)}>
                             {fightOption.label}
                         </Button>
@@ -75,7 +82,7 @@ const DecisionBlock = () => {
             // Otherwise, show the option page
             return options.map(option => {
                 return(
-                    <div className="options" key={option.target}>
+                    <div className="options" id={optionFade} key={option.target}  display={{visibility: imageDisplay}}>
                         <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
@@ -83,6 +90,20 @@ const DecisionBlock = () => {
                 )
             })
         }
+
+    }
+
+    const setButtonTimes = () => {
+        // do storyText.length * 30. That is how many milliseconds it takes to type out the whole thing. Then do setOptionDisplay or whatever
+        console.log(storyText.length)
+        if (storyText.length === 0) {
+            return;
+        }
+
+        setTimeout(() => {
+            setOptionFade("fade")
+            setImageDisplay("visible")
+        }, (storyText.length * 30 + 2000))
     }
 
     // This takes the value from the option, and sets the level and text based on its target
@@ -90,6 +111,8 @@ const DecisionBlock = () => {
         setClicked(option.target);
         handleLevel(option.target);
         handleText(option.target);
+        setOptionFade("none");
+        setImageDisplay("hidden")
     }
 
     const handleFight = (option) => {
@@ -112,11 +135,12 @@ const DecisionBlock = () => {
                     strings: storyText,
                     autoStart: true,
                     loop: false,
-                    delay: 50
+                    delay: 30,
                 }}
+
             />
 
-            <img src={currentEnemy} style={{display: imageDisplay}} id="enemyImage" />
+            <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" />
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">

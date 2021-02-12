@@ -15,15 +15,14 @@ const SelectCharacter = () => {
 
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
-        checkForSpace();
         const userId = parseInt(window.sessionStorage.getItem("id"));
         API.getAllCharacters(userId)
         .then(results => {
             // pushes the data to the characters array
             const newCharacters = results.data;
             updateCharacters(prev => [...prev, ...newCharacters]);
-            
         })
+        checkForSpace();
         // have to pass an array as a second argument to stop infinite loops
     }, [])
 

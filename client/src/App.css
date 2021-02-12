@@ -18,11 +18,13 @@
 
 @keyframes fadeIn {
   0% {
-    display: "flex";
+    visibility: visible;
+    display: flex;
     transform: scale(0);
   }
 
   100% {
+    visibility: visible;
     transform: scale(1);
     opacity: 1;
   }

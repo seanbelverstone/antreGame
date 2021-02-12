@@ -25,6 +25,7 @@
 
 .options {
     padding: 20px;
+    visibility: hidden;
 }
 
 .options button {
@@ -38,4 +39,10 @@
     flex-direction: column;
     justify-content: center;
     width: 80vh;
+}
+
+#fade {
+    animation: fadeIn 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
