@@ -13,6 +13,7 @@
     width: 60vh;
     text-align: left;
     padding: 50px;
+    min-height: 20vh;
 }
 
 #optionArea {

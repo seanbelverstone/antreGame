@@ -71,11 +71,12 @@ const DecisionBlock = () => {
             // setImageDisplay("block");
             return(options.map(fightOption => {
                 return(
-                    <div className="options" key={fightOption.target} display={{visibility: imageDisplay}}>
+                    <div className="options" id={optionFade} key={fightOption.target} display={{visibility: imageDisplay}}>
                         <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFightChoice(fightOption)}>
                             {fightOption.label}
                         </Button>
                     </div>
+                    // Need to replace the direction for "RETURN TO THE TASK AT HAND", where it still goes back to the previous section but written slightly different.
                 )
             }))
         } else {
@@ -95,14 +96,13 @@ const DecisionBlock = () => {
 
     // This function renders the decision buttons based on how long it takes to write the story text.
     const setButtonTimes = () => {
-        console.log(storyText.length)
         if (storyText.length === 0) {
             return;
         }
         setTimeout(() => {
             setOptionFade("fade")
             setImageDisplay("visible")
-        }, (storyText.length * 30 + 2000))
+        }, (storyText.length * 20 + 2000))
     }
 
     // This takes the value from the option, and sets the level and text based on its target
@@ -134,7 +134,7 @@ const DecisionBlock = () => {
                     strings: storyText,
                     autoStart: true,
                     loop: false,
-                    delay: 30,
+                    delay: 20,
                 }}
 
             />
