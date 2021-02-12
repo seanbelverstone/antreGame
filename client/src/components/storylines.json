@@ -150,7 +150,7 @@
             }
         ],
         "enemy": {
-            "name": "Goblin",
+            "name": "GOBLIN",
             "health": 40,
             "strength": 2,
             "defense": 2,
@@ -224,7 +224,7 @@
             }
         ],
         "enemy": {
-            "name": "Skeleton",
+            "name": "SKELETON",
             "health": 40,
             "strength": 1,
             "defense": 2,

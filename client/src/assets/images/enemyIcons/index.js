@@ -1,25 +1,25 @@
-import giantRat from "./giantRat.png";
-import goblin from "./goblin.svg"
-import skeleton from "./skeleton.svg";
-import dragon from "./dragon.svg";
-import knight from "./knight.svg";
-import pikeman from "./pikeman.svg";
-import lizard from "./lizard.svg";
-import skeletalKnight from "./skeletalKnight.svg";
-import manticore from "./manticore.svg";
-import beastmaster from "./beastmaster.svg";
-import worm from "./worm.svg";
+import GIANT_RAT from "./giantRat.png";
+import GOBLIN from "./goblin.svg"
+import SKELETON from "./skeleton.svg";
+import DRAGON from "./dragon.svg";
+import KNIGHT from "./knight.svg";
+import PIKEMAN from "./pikeman.svg";
+import BLIND_LIZARD from "./lizard.svg";
+import SKELETAL_KNIGHT from "./skeletalKnight.svg";
+import MANTICORE from "./manticore.svg";
+import UNDEAD_BEASTMASTER from "./beastmaster.svg";
+import COLOSSAL_WORM from "./worm.svg";
 
 export default {
-    giantRat,
-    goblin,
-    skeleton,
-    dragon,
-    knight,
-    pikeman,
-    lizard,
-    skeletalKnight,
-    manticore,
-    beastmaster,
-    worm
+    GIANT_RAT,
+    GOBLIN,
+    SKELETON,
+    DRAGON,
+    KNIGHT,
+    PIKEMAN,
+    BLIND_LIZARD,
+    SKELETAL_KNIGHT,
+    MANTICORE,
+    UNDEAD_BEASTMASTER,
+    COLOSSAL_WORM
 }

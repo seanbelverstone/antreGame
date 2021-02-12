@@ -57,7 +57,6 @@ const DecisionBlock = () => {
     }
 
     const renderOptions = () => {
-
         // maps through the options array and creates divs for them
         if (modifier[0] != undefined && modifier[0].death) {
             return(
@@ -102,7 +101,20 @@ const DecisionBlock = () => {
         setTimeout(() => {
             setOptionFade("fade")
             setImageDisplay("visible")
+            setTimeout(() => {
+                displayEnemy();
+            }, 3000)
         }, (storyText.length * 20 + 2000))
+
+    }
+
+    const displayEnemy = () => {
+        if (modifier[0] != undefined && modifier[0].fight) {
+            setEnemyImage(enemies)
+            console.log(enemies)
+            console.log(currentEnemy.name)
+        }
+        return;
     }
 
     // This takes the value from the option, and sets the level and text based on its target
@@ -139,7 +151,7 @@ const DecisionBlock = () => {
 
             />
 
-            {/* <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" /> */}
+            <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" />
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
