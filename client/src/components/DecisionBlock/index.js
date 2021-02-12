@@ -93,13 +93,12 @@ const DecisionBlock = () => {
 
     }
 
+    // This function renders the decision buttons based on how long it takes to write the story text.
     const setButtonTimes = () => {
-        // do storyText.length * 30. That is how many milliseconds it takes to type out the whole thing. Then do setOptionDisplay or whatever
         console.log(storyText.length)
         if (storyText.length === 0) {
             return;
         }
-
         setTimeout(() => {
             setOptionFade("fade")
             setImageDisplay("visible")
@@ -140,7 +139,7 @@ const DecisionBlock = () => {
 
             />
 
-            <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" />
+            {/* <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" /> */}
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
