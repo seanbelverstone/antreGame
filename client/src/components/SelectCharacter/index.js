@@ -10,12 +10,14 @@ import "./style.css";
 
 const SelectCharacter = () => {
 
+    const userId = parseInt(window.sessionStorage.getItem("id"));
+
     const [characters, updateCharacters] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
 
     // Works the same as componentDidMount. Runs when component has rendered
     useEffect(() => {
-        const userId = parseInt(window.sessionStorage.getItem("id"));
+        console.log("running")
         API.getAllCharacters(userId)
         .then(results => {
             // pushes the data to the characters array
@@ -24,7 +26,7 @@ const SelectCharacter = () => {
         })
         checkForSpace();
         // have to pass an array as a second argument to stop infinite loops
-    }, [])
+    }, [userId])
 
     useEffect(() => {
         if (characters.length) {
@@ -37,7 +39,6 @@ const SelectCharacter = () => {
     }
 
     const renderCharacters = () => {
-
         return characters.map((character) => {
             // stores all the characters to session storage so we can access them in the decision block
             return(

@@ -71,7 +71,7 @@ const DecisionBlock = () => {
             return(options.map(fightOption => {
                 return(
                     <div className="options" id={optionFade} key={fightOption.target} display={{visibility: imageDisplay}}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFightChoice(fightOption)}>
+                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
                             {fightOption.label}
                         </Button>
                     </div>
@@ -110,8 +110,8 @@ const DecisionBlock = () => {
 
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight) {
-            setEnemyImage(enemies)
-            console.log(enemies)
+            setEnemyImage(enemies[currentEnemy.name])
+            console.log(enemies[currentEnemy.name])
             console.log(currentEnemy.name)
         }
         return;
@@ -151,7 +151,7 @@ const DecisionBlock = () => {
 
             />
 
-            <img src={currentEnemy} style={{visibility: imageDisplay}} id="enemyImage" />
+            <img src={enemyImage} style={{visibility: imageDisplay}} id="enemyImage" />
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
