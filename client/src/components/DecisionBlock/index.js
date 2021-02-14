@@ -23,8 +23,8 @@ const DecisionBlock = () => {
     // this determines the width of the health. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
-    const [currentUserHealth, setCurrentUserHealth] = useState(0);
-    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(0);
+    const [currentUserHealth, setCurrentUserHealth] = useState(1);
+    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
 
 
     useEffect(() => {
@@ -150,12 +150,14 @@ const DecisionBlock = () => {
                 break;
             default: return
         }
+
     }
 
     const setHealthWidth = () => {
         // This sets the red enemy health bar to be a percentage of the total amount
-        setEnemyHealthWidth(`${(100 * currentEnemyHealth) / currentEnemy.health}%`)
-        if (currentEnemyHealth <= 0) {
+        let newWidth = (100 * currentEnemyHealth) / currentEnemy.health
+        setEnemyHealthWidth(`${newWidth}%`)
+        if (newWidth <= 0) {
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
         }
