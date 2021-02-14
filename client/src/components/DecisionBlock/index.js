@@ -41,6 +41,10 @@ const DecisionBlock = () => {
         setButtonTimes();
     }, [storyText])
 
+    useEffect(() => {
+        setHealthWidth();
+    })
+
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
     }
@@ -133,7 +137,7 @@ const DecisionBlock = () => {
         // inside here, do a switch case for normal attack, special attack etc.
         switch (option.label) {
             case "Normal Attack":
-                attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense);
+                attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Special Attack":
                 attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck);
@@ -146,6 +150,10 @@ const DecisionBlock = () => {
                 break;
             default: return
         }
+    }
+
+    const setHealthWidth = () => {
+        setEnemyHealthWidth(`${(100 * currentEnemyHealth) / currentEnemy.health}%`)
     }
 
     const logout = () => {

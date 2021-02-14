@@ -46,9 +46,12 @@ const luckCheck = (luck, enemyLuck, finalDamage) => {
 
     if (myRoll + luck >= enemyRoll + enemyLuck) {
         console.log(`Your special attack lands, and does ${finalDamage}!`)
+        return finalDamage;
     } else {
         console.log("You miss")
+        return 0;
     }
+
 };
 
 export default {
@@ -56,7 +59,7 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weapon, strength, enemyDef) => {
+    normalAttack: (weapon, strength, enemyDef, enemyHealth, setEnemyHealth) => {
         checkUserWeapon(weapon);
         const initialRoll = diceRoll();
     
@@ -65,6 +68,7 @@ export default {
         console.log(`The enemy has ${enemyDef} defence points`)
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
         console.log(`Your hit the enemy for ${finalDamage} !`)
+        setEnemyHealth(enemyHealth - finalDamage)
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
@@ -117,6 +121,8 @@ export default {
         console.log(`You have ${myDef} defence points`)
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
         console.log(`The enemy hits you for ${finalDamage}!`)
-    },
+
+        return finalDamage;
+    }
 
 }
