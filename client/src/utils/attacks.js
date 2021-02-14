@@ -34,7 +34,7 @@ const checkUserWeapon = (weapon) => {
 
 
 // Luck check compares users and enemy luck rolls
-const luckCheck = (luck, enemyLuck, finalDamage) => {
+const luckCheck = (luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth) => {
 
     let myRoll = diceRoll();
     let enemyRoll = diceRoll();
@@ -46,11 +46,11 @@ const luckCheck = (luck, enemyLuck, finalDamage) => {
 
     if (myRoll + luck >= enemyRoll + enemyLuck) {
         console.log(`Your special attack lands, and does ${finalDamage}!`)
-        return finalDamage;
     } else {
         console.log("You miss")
-        return 0;
     }
+
+    setEnemyHealth(enemyHealth - finalDamage)
 
 };
 
@@ -72,7 +72,7 @@ export default {
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
-    specialAttack: (weapon, strength, enemyDef, luck, enemyLuck) => {
+    specialAttack: (weapon, strength, enemyDef, luck, enemyLuck, enemyHealth, setEnemyHealth) => {
         const initalRoll = diceRoll();
         checkUserWeapon(weapon);
     
@@ -86,7 +86,7 @@ export default {
         console.log(`You roll again for a luck check. \n`)
     
     
-        luckCheck(luck, enemyLuck, finalDamage);  
+        luckCheck(luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth);  
     },
 
     useHealthPotion: () => {

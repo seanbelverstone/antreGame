@@ -140,7 +140,7 @@ const DecisionBlock = () => {
                 attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Special Attack":
-                attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck);
+                attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Use health potion":
                 attacks.useHealthPotion();
@@ -153,7 +153,12 @@ const DecisionBlock = () => {
     }
 
     const setHealthWidth = () => {
+        // This sets the red enemy health bar to be a percentage of the total amount
         setEnemyHealthWidth(`${(100 * currentEnemyHealth) / currentEnemy.health}%`)
+        if (currentEnemyHealth <= 0) {
+            setCurrentEnemyHealth(0);
+            setEnemyHealthWidth(0);
+        }
     }
 
     const logout = () => {
