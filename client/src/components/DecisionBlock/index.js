@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import storylines from "../../utils/storylines.json";
+import attacks from "../../utils/attacks.js";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
@@ -66,7 +67,7 @@ const DecisionBlock = () => {
             // If fight: true appears in the decision block, render the fight screen instead.
             return(options.map(fightOption => {
                 return(
-                    <div className={`options ${optionFade}`} key={fightOption.target} display={{display: imageDisplay}}>
+                    <div className={`options ${optionFade}`} key={fightOption.label} display={{display: imageDisplay}}>
                         <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
                             {fightOption.label}
                         </Button>
@@ -121,7 +122,24 @@ const DecisionBlock = () => {
 
     const handleFight = (option) => {
         console.log(option)
+        console.log(currentEnemy);
+        console.log(currentCharacter);
         // inside here, do a switch case for normal attack, special attack etc.
+        switch (option.label) {
+            case "Normal Attack":
+                attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense);
+                break;
+            case "Special Attack":
+                attacks.specialAttack();
+                break;
+            case "Use health potion":
+                attacks.useHealthPotion();
+                break;
+            case "Use skill":
+                attacks.useSkill();
+                break;
+            default: return
+        }
     }
 
     const logout = () => {
