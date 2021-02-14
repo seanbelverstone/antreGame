@@ -217,7 +217,7 @@
     },
     {
         "level": "02aa-Open Door",
-        "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon heading the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
+        "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon hearing the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
         "modifier": [
             {
                 "fight": 1
