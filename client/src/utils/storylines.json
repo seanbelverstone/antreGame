@@ -195,10 +195,12 @@
                 "gold": 3
             }
         ],
-        "options": {
-            "label": "Return to the task at hand",
-            "target": "01-Start"
-        }
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "01-Start"
+            }
+        ]
     },
     {
         "level": "02a-Locked",
@@ -265,10 +267,12 @@
                 }
             }
         ],
-        "options": {
-            "label": "Return to the room",
-            "target": "02-Tunnel"
-        }
+        "options": [
+            {
+                "label": "Return to the room",
+                "target": "02-Tunnel"
+            }
+        ]
     }
 
 ]

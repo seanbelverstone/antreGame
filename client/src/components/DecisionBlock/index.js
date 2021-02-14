@@ -17,9 +17,11 @@ const DecisionBlock = () => {
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
     const [currentEnemy, setCurrentEnemy] = useState({});
+    const [victoryTarget, setVictoryTarget] = useState({});
     const [enemyImage, setEnemyImage] = useState("");
     const [imageDisplay, setImageDisplay] = useState("none");
     const [optionFade, setOptionFade] = useState("hidden");
+    const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
     // this determines the width of the health. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
@@ -59,6 +61,7 @@ const DecisionBlock = () => {
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
                     setCurrentEnemy(storylines[i].enemy)
+                    setVictoryTarget(storylines[i].victory)
                 }
                 renderOptions();
             }
@@ -69,13 +72,13 @@ const DecisionBlock = () => {
     const renderOptions = () => {
         if (modifier[0] != undefined && modifier[0].death) {
             return(
-                <p>You died.</p>
+                <p className={`options ${optionFade}`}>You died.</p>
             )
         } else if (modifier[0] != undefined && modifier[0].fight) {
             // If fight: true appears in the decision block, render the fight screen instead.
             return(options.map(fightOption => {
                 return(
-                    <div className={`options ${optionFade}`} key={fightOption.label} display={{display: imageDisplay}}>
+                    <div className={`options ${optionFade}`} key={fightOption.label}>
                         <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
                             {fightOption.label}
                         </Button>
@@ -87,7 +90,7 @@ const DecisionBlock = () => {
             // Otherwise, show the option page
             return options.map(option => {
                 return(
-                    <div className={`options ${optionFade}`} key={option.target}  display={{display: imageDisplay}}>
+                    <div className={`options ${optionFade}`} key={option.target}>
                         <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
@@ -104,7 +107,7 @@ const DecisionBlock = () => {
             return;
         }
         setTimeout(() => {
-            setOptionFade("fade")
+            setOptionFade("fadeIn")
             displayEnemy();
         }, (storyText.length * 30 + 2000))
 
@@ -113,8 +116,10 @@ const DecisionBlock = () => {
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight) {
+            console.log("displaying enemy")
             setEnemyImage(enemies[currentEnemy.name])
             setImageDisplay("block");
+            setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
             setCurrentEnemyHealth(currentEnemy.health);
         }
@@ -131,10 +136,9 @@ const DecisionBlock = () => {
     }
 
     const handleFight = (option) => {
-        console.log(option)
-        console.log(currentEnemy);
-        console.log(currentCharacter);
-        // inside here, do a switch case for normal attack, special attack etc.
+        // roll a die, 1-3 user turn 4-6 enemy turn.
+        // if statement that if user turn, buttons are available. Else, buttons are disabled + perform enemy attack
+
         switch (option.label) {
             case "Normal Attack":
                 attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
@@ -148,9 +152,8 @@ const DecisionBlock = () => {
             case "Use skill":
                 attacks.useSkill(currentCharacter.charClass);
                 break;
-            default: return
+            default: return;
         }
-
     }
 
     const setHealthWidth = () => {
@@ -158,9 +161,26 @@ const DecisionBlock = () => {
         let newWidth = (100 * currentEnemyHealth) / currentEnemy.health
         setEnemyHealthWidth(`${newWidth}%`)
         if (newWidth <= 0) {
+            console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
+            nextPhase();
         }
+    }
+
+    const nextPhase = () => {
+        // setTimeout(() => {
+        //     setEnemyBlockFade("fadeOut")
+        // }, 1000)
+        setTimeout(() => {
+            setEnemyBlockFade("hidden");
+            setImageDisplay("none");
+            setCurrentEnemy({});
+            setEnemyImage("");
+            setClicked(victoryTarget.target)
+            handleLevel(victoryTarget.target);
+            handleText(victoryTarget.target);
+        }, 2000)
     }
 
     const logout = () => {
@@ -182,7 +202,7 @@ const DecisionBlock = () => {
                 }}
 
             />
-            <div style={{display: imageDisplay}} className={optionFade} id="enemyBlock">
+            <div style={{display: imageDisplay}} className={enemyBlockFade} id="enemyBlock">
                 <div>{currentEnemy.name}</div>
                 <div className="healthArea">
                     <div className="healthText">
@@ -201,6 +221,7 @@ const DecisionBlock = () => {
                     <div id="userBar" style={{width: userHealthWidth}}></div>
                 </div>
             </div>
+            
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
