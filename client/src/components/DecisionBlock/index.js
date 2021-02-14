@@ -23,6 +23,9 @@ const DecisionBlock = () => {
     // this determines the width of the health. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
+    const [currentUserHealth, setCurrentUserHealth] = useState(0);
+    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(0);
+
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -107,7 +110,9 @@ const DecisionBlock = () => {
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight) {
             setEnemyImage(enemies[currentEnemy.name])
-            setImageDisplay("block")
+            setImageDisplay("block");
+            setCurrentUserHealth(currentCharacter.health);
+            setCurrentEnemyHealth(currentEnemy.health);
         }
         return;
     }
@@ -166,17 +171,17 @@ const DecisionBlock = () => {
                 <div>{currentEnemy.name}</div>
                 <div className="healthArea">
                     <div className="healthText">
-                        {currentEnemy.health}/{currentEnemy.health}
+                        {currentEnemyHealth}/{currentEnemy.health}
                     </div>
                     <div id="enemyBar" style={{width: enemyHealthWidth}}></div>
                 </div>
 
                 <img src={enemyImage} />
                 
-                <div id="charName">{(currentCharacter.name).toUpperCase()}</div>
+                <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
                     <div className="healthText">
-                        {currentCharacter.health}/{currentCharacter.health}
+                        {currentUserHealth}/{currentCharacter.health}
                     </div>
                     <div id="userBar" style={{width: userHealthWidth}}></div>
                 </div>
