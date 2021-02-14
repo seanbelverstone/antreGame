@@ -50,25 +50,37 @@
 
 #enemyBlock {
     max-width: 280px;
+    margin: 0 25% 0 25%;
 }
 
-#healthArea {
+.healthArea {
     border: 2px solid black;
     border-radius: 5px;
     height: 20px;
     position: relative;
 }
 
-#bar {
-    background-color: darkred;
+#enemyBar, #userBar {
     height: 20px;
     position: absolute;
     bottom: 0%;
 }
 
-#healthText {
+#enemyBar {
+    background-color: darkred;
+}
+
+#userBar {
+    background-color: darkgreen;
+}
+
+.healthText {
     position: absolute;
     bottom: 0%;
     left: 43%;
     z-index: 2;
+}
+
+#charName {
+    margin-top: 50px;
 }

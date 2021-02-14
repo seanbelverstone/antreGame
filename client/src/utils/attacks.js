@@ -89,8 +89,23 @@ export default {
         console.log(`You drink a health potion, restoring ${diceRoll() * diceRoll() + 15} health.`)
     },
 
-    useSkill: (skill) => {
-        console.log(`Using ${skill}`)
+    useSkill: (charClass) => {
+        console.log(`You are a ${charClass}`)
+        let skill;
+        switch(charClass) {
+            case "Warrior":
+                skill = "Stalwart defense";
+                break;
+            case "Rogue":
+                skill = "Rapid attack";
+                break;
+            case "Paladin":
+                skill = "Holy remedy";
+                break;
+            default: return;
+        }
+
+        console.log(`You used ${skill}, which did... something`)
     },
 
     // ENEMY ATTACKS

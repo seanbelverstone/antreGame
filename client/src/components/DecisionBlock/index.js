@@ -21,7 +21,8 @@ const DecisionBlock = () => {
     const [imageDisplay, setImageDisplay] = useState("none");
     const [optionFade, setOptionFade] = useState("hidden");
     // this determines the width of the health. Will change based on damage done
-    const [healthWidth, setHealthWidth] = useState("100%");
+    const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
+    const [userHealthWidth, setUserHealthWidth] = useState("100%");
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -130,13 +131,13 @@ const DecisionBlock = () => {
                 attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense);
                 break;
             case "Special Attack":
-                attacks.specialAttack();
+                attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck);
                 break;
             case "Use health potion":
                 attacks.useHealthPotion();
                 break;
             case "Use skill":
-                attacks.useSkill();
+                attacks.useSkill(currentCharacter.charClass);
                 break;
             default: return
         }
@@ -162,16 +163,23 @@ const DecisionBlock = () => {
 
             />
             <div style={{display: imageDisplay}} className={optionFade} id="enemyBlock">
-                <div>HP</div>
-                <div id="healthArea">
-                    <div id="healthText">
+                <div>{currentEnemy.name}</div>
+                <div className="healthArea">
+                    <div className="healthText">
                         {currentEnemy.health}/{currentEnemy.health}
                     </div>
-                    <div id="bar" style={{width: healthWidth}}></div>
+                    <div id="enemyBar" style={{width: enemyHealthWidth}}></div>
                 </div>
 
                 <img src={enemyImage} />
-
+                
+                <div id="charName">{(currentCharacter.name).toUpperCase()}</div>
+                <div className="healthArea" id="userHealthArea">
+                    <div className="healthText">
+                        {currentCharacter.health}/{currentCharacter.health}
+                    </div>
+                    <div id="userBar" style={{width: userHealthWidth}}></div>
+                </div>
             </div>
             <div id="optionArea">{renderOptions()}</div>
 
