@@ -227,6 +227,7 @@ const DecisionBlock = () => {
         } else {
             return;
         }
+        saveGame();
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
