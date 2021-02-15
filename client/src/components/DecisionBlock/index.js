@@ -224,9 +224,7 @@ const DecisionBlock = () => {
                     ]);
                 }
             })
-        } else {
-            return;
-        }
+        } 
         saveGame();
     }
 
