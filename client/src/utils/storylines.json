@@ -262,9 +262,11 @@
             {
                 "weapon": {
                     "name": "dagger",
-                    "dmg": 3,
-                    "wisdom": 1
+                    "dmg": 3
                 }
+            },
+            {
+                "wisdom": 1
             }
         ],
         "options": [
