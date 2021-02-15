@@ -129,7 +129,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "none",
+                    "name": "No weapon",
                     "dmg": 1
                 }
             }
@@ -261,7 +261,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "dagger",
+                    "name": "Dagger",
                     "dmg": 3
                 }
             },
