@@ -45,7 +45,7 @@ module.exports = {
     db.Character.update(
       request.body, {
         where: {
-          id: request.body.id
+          id: request.params.id
         }
     }).then(dbModel => {
       response.json(dbModel);

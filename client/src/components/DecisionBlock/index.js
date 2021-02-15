@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
+import API from "../../utils/API";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Typewriter from 'typewriter-effect';
@@ -28,7 +29,24 @@ const DecisionBlock = () => {
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
     const [currentUserHealth, setCurrentUserHealth] = useState(1);
     const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
+    const [maxHealth, setMaxHealth] = useState();
 
+    // stats that will change and be passed to save function
+    const [strength, setStrength] = useState();
+    const [defense, setDefense] = useState();
+    const [wisdom, setWisdom] = useState();
+    const [luck, setLuck] = useState();
+    const [weapon, setWeapon] = useState();
+    const [head, setHead] = useState();
+    const [chest, setChest] = useState();
+    const [legs, setLegs] = useState();
+    const [hands, setHands] = useState();
+    const [feet, setFeet] = useState();
+    const [torch, setTorch] = useState();
+    const [amulet, setAmulet] = useState();
+    const [healthPotions, setHealthPotions] = useState();
+    const [gold, setGold] = useState();
+    const [time, setTime] = useState();
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -50,6 +68,22 @@ const DecisionBlock = () => {
 
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
+        
+        // sets max health based on the character's class
+        switch (currentCharacter.charClass) {
+            case "Warrior":
+                setMaxHealth(80)
+                break;
+            case "Rogue":
+                setMaxHealth(60)
+                break;
+            case "Paladin":
+                setMaxHealth(70)
+                break;
+            default: return
+        }
+        // sets the character health
+        setCurrentUserHealth(currentCharacter.health)
     }
 
     const handleText = (choice) => {
@@ -193,7 +227,7 @@ const DecisionBlock = () => {
             nextPhase();
         }
 
-        let userNewWidth = (100 * currentUserHealth) / currentCharacter.health;
+        let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
         if (userNewWidth <= 0) {
             console.log("You are dead.")
@@ -220,7 +254,34 @@ const DecisionBlock = () => {
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
             // After fights are complete, save game
+            saveGame();
         }, 2000)
+    }
+
+    const saveGame = () => {
+        API.updateCharacter(
+            currentUserHealth,
+            strength,
+            defense,
+            wisdom,
+            luck,
+            weapon,
+            head,
+            chest,
+            legs,
+            hands,
+            feet,
+            torch,
+            amulet,
+            healthPotions,
+            gold,
+            currentLevel,
+            time,
+            currentCharacter.id
+            )
+            .then((results) => {
+                console.log(results);
+            }) 
     }
 
     const logout = () => {
@@ -256,7 +317,7 @@ const DecisionBlock = () => {
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
                     <div className="healthText">
-                        {currentUserHealth}/{currentCharacter.health}
+                        {currentUserHealth}/{maxHealth}
                     </div>
                     <div id="userBar" style={{width: userHealthWidth}}></div>
                 </div>
@@ -266,7 +327,7 @@ const DecisionBlock = () => {
 
             <footer id="footer">
                 <Button variant="contained" disabled={buttonDisabled}>Inventory</Button>
-                <Button variant="contained" disabled={buttonDisabled}>Save Game</Button>
+                <Button variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </footer>
