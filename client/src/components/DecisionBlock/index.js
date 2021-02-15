@@ -181,6 +181,8 @@ const DecisionBlock = () => {
                 // tried to use a switch case but that didnt work for some reason
                 if (mod.weapon) {
                     setWeapon(mod.weapon.name)
+                } else if (mod.health) {
+                    setCurrentUserHealth(currentUserHealth + mod.health)
                 } else if (mod.strength) {
                     setStrength(strength + mod.strength)
                 } else if (mod.defense) {

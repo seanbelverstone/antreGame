@@ -130,13 +130,32 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "01-Start"
+                "target": "01-Start Bargain Variant"
+            }
+        ]
+    },
+    {
+        "level": "01-Start Bargain Variant",
+        "text": "After the goblins leave, you reevaluate your choices. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "01a-Cry"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "01c-Torch"
             }
         ]
     },
     {
         "level": "01bd-Goblin Battle",
-        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself. The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
+        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself.' The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
         "modifier": [
             {
                 "fight": 1
@@ -193,7 +212,26 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "01-Start"
+                "target": "01-Start Victory Variant"
+            }
+        ]
+    },
+    {
+        "level": "01-Start Victory Variant",
+        "text": "Giving the dead goblin one last kick to make sure he's dead, and decide to move on. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet. The other goblin that ran away is nowhere to be seen.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "01a-Cry"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "01c-Torch"
             }
         ]
     },
@@ -228,7 +266,7 @@
             "wisdom": 1,
             "luck": 1,
             "weapon": {
-                "name": "dagger",
+                "name": "iron axe",
                 "dmg": 4
             }
         },
