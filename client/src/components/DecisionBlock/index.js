@@ -4,6 +4,7 @@ import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
+import Inventory from "../Inventory";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
@@ -56,6 +57,7 @@ const DecisionBlock = () => {
     useEffect(() => {
         handleLevel(currentCharacter.level);
         handleText(currentCharacter.level);
+        handleStats(currentCharacter);
     }, [currentCharacter])
 
     useEffect(() => {
@@ -65,6 +67,24 @@ const DecisionBlock = () => {
     useEffect(() => {
         setHealthWidth();
     })
+
+    const handleStats = (c) => {
+        setStrength(c.strength);
+        setDefense(c.defense);
+        setWisdom(c.wisdom);
+        setLuck(c.luck);
+        setWeapon(c.weapon);
+        setHead(c.head);
+        setChest(c.chest);
+        setLegs(c.legs);
+        setHands(c.hands);
+        setFeet(c.feet);
+        setTorch(c.torch);
+        setAmulet(c.amulet);
+        setHealthPotions(c.healthPotions);
+        setGold(c.gold);
+
+    };
 
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
@@ -92,6 +112,7 @@ const DecisionBlock = () => {
             
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
+                console.log(storylines[i].modifier)
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -143,9 +164,54 @@ const DecisionBlock = () => {
         }
         setTimeout(() => {
             setOptionFade("fadeIn")
+            checkModifier();
             displayEnemy();
         }, (storyText.length * 30 + 2000))
 
+    }
+
+    const checkModifier = () => {
+        // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
+        // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
+        if (modifier && currentCharacter.level !== currentLevel) {
+            modifier.forEach(mod => {
+                console.log(mod)
+
+                // FYI, i hate using an if statement like this.
+                // tried to use a switch case but that didnt work for some reason
+                if (mod.weapon) {
+                    setWeapon(mod.weapon.name)
+                } else if (mod.strength) {
+                    setStrength(strength + mod.strength)
+                } else if (mod.defense) {
+                    setDefense(defense + mod.defense)
+                } else if (mod.wisdom) {
+                    setWisdom(wisdom + mod.wisdom)
+                } else if (mod.luck) {
+                    setLuck(luck + mod.luck)
+                } else if (mod.head) {
+                    setHead(mod.head)
+                } else if (mod.chest) {
+                    setChest(mod.chest)
+                } else if (mod.legs) {
+                    setLegs(mod.legs)
+                } else if (mod.hands) {
+                    setHands(mod.hands)
+                } else if (mod.feet) {
+                    setFeet(mod.feet)
+                } else if (mod.torch) {
+                    setTorch(mod.torch)
+                } else if (mod.amulet) {
+                    setAmulet(mod.amulet)
+                } else if (mod.healthPotions) {
+                    setHealthPotions(healthPotions + mod.healthPotions)
+                } else if (mod.gold) {
+                    setGold(gold + mod.gold)
+                }
+            })
+        } else {
+            return;
+        }
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -212,7 +278,7 @@ const DecisionBlock = () => {
             default: return;
         }
 
-        if (currentEnemyHealth > 0) {
+        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
             enemyTurn();
         }
     }
@@ -233,6 +299,7 @@ const DecisionBlock = () => {
         setUserHealthWidth(`${userNewWidth}%`);
 
         // if user is dead, hide all images and just render "you are dead"
+        // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
         if (userNewWidth <= 0) {
             console.log("You are dead.")
             setEnemyBlockFade("hidden");
@@ -334,8 +401,28 @@ const DecisionBlock = () => {
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
-                <Button variant="contained" disabled={buttonDisabled}>Inventory</Button>
-                <Button variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+                <Inventory
+                    id="inventory"
+                    disabled={buttonDisabled}
+                    health={currentUserHealth}
+                    strength={strength}
+                    defense={defense}
+                    wisdom={wisdom}
+                    luck={luck}
+                    weapon={weapon}
+                    head={head}
+                    chest={chest}
+                    legs={legs}
+                    hands={hands}
+                    feet={feet}
+                    torch={torch}
+                    amulet={amulet}
+                    healthPotions={healthPotions}
+                    gold={healthPotions}
+                    />
+                <div>
+                    <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+                </div>
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </footer>

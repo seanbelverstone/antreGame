@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         weapon: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "No weapon"
+            defaultValue: "Rusty shortsword"
         },
         head: {
             type: DataTypes.STRING,

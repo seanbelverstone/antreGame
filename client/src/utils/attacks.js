@@ -5,29 +5,32 @@ const diceRoll = () => {
 let weaponDamage;
 
 const checkUserWeapon = (weapon) => {
-    switch(weapon) {
-        case "No weapon":
+    switch(weapon.toLowerCase()) {
+        case "no weapon":
             weaponDamage = 1;
             break;
-        case "Rusty shortsword":
+        case "rusty shortsword":
+            weaponDamage = 2;
+            break;
+        case "dagger":
             weaponDamage = 3;
             break;
-        case "Dagger":
-            weaponDamage = 3;
-            break;
-        case "Steel dagger":
+        case "iron axe":
             weaponDamage = 4;
             break;
-        case "Halberd":
+        case "steel dagger":
+            weaponDamage = 5;
+            break;
+        case "halberd":
             weaponDamage = 6;
             break;
-        case "Steel shortsword":
+        case "steel shortsword":
             weaponDamage = 7;
             break;
-        case "Black iron sword":
+        case "black iron sword":
             weaponDamage = 11;
             break;
-        case "Warhammer":
+        case "warhammer":
             weaponDamage = 14;
     }
 };
