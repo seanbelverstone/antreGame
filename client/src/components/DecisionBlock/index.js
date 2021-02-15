@@ -10,6 +10,7 @@ import "./style.css";
 
 const DecisionBlock = () => {
 
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const [currentCharacter, setCurrentCharacter] = useState({})
     const [currentLevel, setCurrentLevel] = useState("")
     const [storyText, setStoryText] = useState("");
@@ -79,7 +80,7 @@ const DecisionBlock = () => {
             return(options.map(fightOption => {
                 return(
                     <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)}>
+                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
                             {fightOption.label}
                         </Button>
                     </div>
@@ -124,8 +125,28 @@ const DecisionBlock = () => {
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
             setCurrentEnemyHealth(currentEnemy.health);
+            decideTurn();
         }
         return;
+    }
+
+    const decideTurn = () => {
+        // Begin each battle with a dice roll, to see who goes first
+        let diceRoll = (Math.floor(Math.random() * 6) + 1);
+        if (diceRoll >= 1 || diceRoll <= 3) {
+            console.log("Your turn")
+            setButtonDisabled(false);
+        } else {
+            console.log("Enemy turn")
+            setButtonDisabled(true);
+            enemyTurn();
+        }
+        
+    }
+
+    const enemyTurn = () => {
+        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
+        setButtonDisabled(false);
     }
 
     // This takes the value from the option, and sets the level and text based on its target
@@ -138,9 +159,7 @@ const DecisionBlock = () => {
     }
 
     const handleFight = (option) => {
-        // roll a die, 1-3 user turn 4-6 enemy turn.
-        // if statement that if user turn, buttons are available. Else, buttons are disabled + perform enemy attack
-
+        
         switch (option.label) {
             case "Normal Attack":
                 attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
@@ -156,18 +175,33 @@ const DecisionBlock = () => {
                 break;
             default: return;
         }
+
+        if (currentEnemyHealth > 0) {
+            enemyTurn();
+        }
     }
 
     const setHealthWidth = () => {
         // This sets the red enemy health bar to be a percentage of the total amount
-        let newWidth = (100 * currentEnemyHealth) / currentEnemy.health
-        setEnemyHealthWidth(`${newWidth}%`)
+        let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
+        setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
-        if (newWidth <= 0) {
+        if (enemyNewWidth <= 0) {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             nextPhase();
+        }
+
+        let userNewWidth = (100 * currentUserHealth) / currentCharacter.health;
+        setUserHealthWidth(`${userNewWidth}%`);
+        if (userNewWidth <= 0) {
+            console.log("You are dead.")
+            setModifier([
+                {
+                    "death": 1
+                }
+            ])
         }
     }
 
@@ -195,7 +229,7 @@ const DecisionBlock = () => {
 
     return(
         <div className="decisionWrapper">
-            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
             
             <Typewriter
                 id="text"
@@ -230,8 +264,8 @@ const DecisionBlock = () => {
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
-                <Button variant="contained">Inventory</Button>
-                <Button variant="contained">Save Game</Button>
+                <Button variant="contained" disabled={buttonDisabled}>Inventory</Button>
+                <Button variant="contained" disabled={buttonDisabled}>Save Game</Button>
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </footer>

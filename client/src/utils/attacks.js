@@ -113,7 +113,7 @@ export default {
     },
 
     // ENEMY ATTACKS
-    enemyNormalAttack: (enemyWeapon, strength, myDef) => {
+    enemyNormalAttack: (enemyWeapon, strength, myDef, userHealth, setUserHealth) => {
         const initialRoll = diceRoll();
 
         console.log(`The enemy rolled a ${initialRoll}`);
@@ -122,7 +122,7 @@ export default {
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
         console.log(`The enemy hits you for ${finalDamage}!`)
 
-        return finalDamage;
+        setUserHealth(userHealth - finalDamage)
     }
 
 }
