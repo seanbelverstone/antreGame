@@ -109,7 +109,7 @@ const DecisionBlock = () => {
     const handleText = (choice) => {
         // loops through the storylines array, and matches the character's level with the corresponding object
         for(let i = 0; i < storylines.length; i++) {
-            
+
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
                 console.log(storylines[i].modifier)
@@ -182,7 +182,11 @@ const DecisionBlock = () => {
                 if (mod.weapon) {
                     setWeapon(mod.weapon.name)
                 } else if (mod.health) {
-                    setCurrentUserHealth(currentUserHealth + mod.health)
+                    if (currentUserHealth + mod.health > maxHealth) {
+                        setCurrentUserHealth(maxHealth)
+                    } else {
+                        setCurrentUserHealth(currentUserHealth + mod.health)
+                    }
                 } else if (mod.strength) {
                     setStrength(strength + mod.strength)
                 } else if (mod.defense) {
@@ -205,12 +209,19 @@ const DecisionBlock = () => {
                     setTorch(mod.torch)
                 } else if (mod.amulet) {
                     setAmulet(mod.amulet)
-                } else if (mod.healthPotions) {
-                    setHealthPotions(healthPotions + mod.healthPotions)
+                } else if (mod.healthPotion) {
+                    setHealthPotions(healthPotions + mod.healthPotion)
                 } else if (mod.gold) {
                     setGold(gold + mod.gold)
                 } else if (mod.luckCheck) {
-                    console.log(attacks.campaignLuckCheck(luck));
+                    const checkingLuck = attacks.campaignLuckCheck(luck);
+                    console.log(checkingLuck[0]);
+                    setOptions([
+                        {
+                        "label": checkingLuck[0].label,
+                        "target": checkingLuck[0].target
+                        }
+                    ]);
                 }
             })
         } else {

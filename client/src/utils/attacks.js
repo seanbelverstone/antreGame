@@ -119,18 +119,28 @@ export default {
         let userLuckModifier = luck / 2;
 
         let myRoll = diceRoll();
-        let updatedNumber = Math.floor(myroll + userLuckModifier);
-        const death = "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end.";
-        const badLuck = "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.";
-        const bestLuck = "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.";
+        let updatedNumber = Math.floor(myRoll + userLuckModifier);
+        const deathLevel = "04bab-Death";
+        const deathText = "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end."
+        const badLuckLevel = "04bac-Bad Luck";
+        const badLuckText = "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.";
+        const bestLuckLevel = "04bad-Best Luck";
+        const bestLuckText = "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.";
 
+        let options;
         if(updatedNumber <= 1) {
-            return death;
+            options = deathLevel
         } else if (myRoll > 1 && myRoll < 6) {
-            return badLuck;
+            options = badLuckLevel;
         } else {
-            return bestLuck;
+            options = bestLuckLevel;
         }
+        return [
+            {
+                label: "Continue",
+                target: options
+            }
+        ]
     
     },
 

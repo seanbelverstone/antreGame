@@ -362,7 +362,7 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "02-Tunnel"
+                "target": "02-Tunnel Fire Variant"
             }
         ]
     },
@@ -377,7 +377,45 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "02-Tunnel"
+                "target": "02-Tunnel Adventurer Variant"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Fire Variant",
+        "text": "Feeling somewhat refreshed, you return to your decision.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Adventurer Variant",
+        "text": "You stand up from the adventurer, leaving them looking slightly more disheveled than before. The same options remain.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
             }
         ]
     },
@@ -479,6 +517,17 @@
     {
         "level": "04ba-Continue",
         "text": "By either incredible courage or plain stupidity, you decide to continue down the dark, trap-ridden path.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "04baa-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "04baa-Check Luck",
+        "text": "Checking luck...",
         "modifier": [
             {
                 "luckCheck": true
@@ -486,8 +535,70 @@
         ],
         "options": [
             {
-                "label": "Check Your Luck",
-                "target": "04baa-Check Luck"
+                "label": "Continue",
+                "target": "none"
+            }
+        ]
+    },
+    {
+      "level": "04bab-Death",
+      "text": "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end.",
+      "modifier": [
+          {
+              "death": 1
+          }
+      ]
+    },
+    {
+        "level": "04bac-Bad Luck",
+        "text": "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.",
+        "modifier": [
+            {
+                "health": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "04bad-Best Luck",
+        "text": "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.",
+        "modifier": [
+            {
+                "strength": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "05-Sleeping Goblins",
+        "text": "Reaching the end of the trap-filled hallway, you reach the corner where the light was eminating from. Slowly easing your head around the corner to see the source from the light, you see a couple of goblins sleeping by the remains of a fire. The fire looks like it has only been out for a short while. The only noise you can hear is a quiet snuffling, although you're unsure to where it's coming from.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Approach Goblins",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Attack Goblins",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Call Out",
+                "target": "?-Single Door"
+            },
+            {
+                "label": "Throw a rock",
+                "target": "?-Ash Path"
             }
         ]
     }
