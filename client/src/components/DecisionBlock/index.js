@@ -219,6 +219,7 @@ const DecisionBlock = () => {
             setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
+            // After fights are complete, save game
         }, 2000)
     }
 
