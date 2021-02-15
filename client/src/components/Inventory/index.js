@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import invImages from "../../assets/images/invIcons";
 import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    minWidth: "40vh"
   },
 }));
 
@@ -69,7 +71,11 @@ export default function Inventory(
             <h2 id="transition-modal-title">Inventory</h2>
             <div id="all">
                 <section className="section1">
-                    <div>Weapon: {weapon}</div>
+                    <div id="weapon">
+                        <img className="icon" src={invImages.sword} />
+                        <div>Weapon: {weapon}</div>
+                    </div>
+
                     <div>Head: {head}</div>
                     <div>Chest: {chest}</div>
                     <div>Legs: {legs}</div>
