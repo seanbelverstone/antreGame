@@ -114,6 +114,8 @@ const DecisionBlock = () => {
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
+
+    // For some reason this is running after an enemy has been killed... not sure how to fix that
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight) {
             console.log("displaying enemy")
@@ -160,6 +162,7 @@ const DecisionBlock = () => {
         // This sets the red enemy health bar to be a percentage of the total amount
         let newWidth = (100 * currentEnemyHealth) / currentEnemy.health
         setEnemyHealthWidth(`${newWidth}%`)
+        // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
         if (newWidth <= 0) {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
@@ -168,10 +171,12 @@ const DecisionBlock = () => {
         }
     }
 
+    // Fade the image out after a second, so it's not jarringly quick.
     const nextPhase = () => {
-        // setTimeout(() => {
-        //     setEnemyBlockFade("fadeOut")
-        // }, 1000)
+        setTimeout(() => {
+            setEnemyBlockFade("fadeOut")
+        }, 1000)
+        // Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
         setTimeout(() => {
             setEnemyBlockFade("hidden");
             setImageDisplay("none");
