@@ -47,6 +47,34 @@ export default {
             'Authorization': `Bearer ${jwtToken}`}
         })
     },
+
+    updateCharacter: (health, strength, defense, wisdom, luck, weapon, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id) => {
+        jwtToken = window.sessionStorage.getItem("jwtToken");
+
+        return axios.put(`/api/characters/${id}`, {
+            health,
+            strength,
+            defense,
+            wisdom,
+            luck,
+            weapon,
+            head, 
+            chest, 
+            legs, 
+            hands, 
+            feet, 
+            torch, 
+            amulet, 
+            healthPotions, 
+            gold, 
+            level, 
+            time,
+            id
+        }, {
+            headers: {
+            'Authorization': `Bearer ${jwtToken}`}
+        })
+    },
     
     deleteCharacter: (characterId) => {
         jwtToken = window.sessionStorage.getItem("jwtToken");

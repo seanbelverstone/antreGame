@@ -14,7 +14,7 @@ export default function(app) {
     app.route("/api/characters/")
         .post(CharactersController.create);
 
-    app.route("/api/characters/")
+    app.route("/api/characters/:id")
         .put(CharactersController.update);
 
 }
