@@ -7,12 +7,13 @@
     text-align: center;
 }
 
-#text {
+.Typewriter {
     margin-top: 50px;
     border: 2px solid black;
     width: 60vh;
     text-align: left;
     padding: 50px;
+    min-height: 15vh;
 }
 
 #optionArea {
@@ -25,6 +26,7 @@
 
 .options {
     padding: 20px;
+    visibility: hidden;
 }
 
 .options button {
@@ -38,4 +40,53 @@
     flex-direction: column;
     justify-content: center;
     width: 80vh;
+}
+
+.fadeIn {
+    animation: fadeIn 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#enemyBlock {
+    max-width: 280px;
+    margin: 0 25% 0 25%;
+}
+
+.healthArea {
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 20px;
+    position: relative;
+}
+
+#enemyBar, #userBar {
+    height: 20px;
+    position: absolute;
+    bottom: 0%;
+}
+
+#enemyBar {
+    background-color: darkred;
+}
+
+#userBar {
+    background-color: darkgreen;
+}
+
+.healthText {
+    position: absolute;
+    bottom: 0%;
+    left: 43%;
+    z-index: 2;
+}
+
+#charName {
+    margin-top: 50px;
 }

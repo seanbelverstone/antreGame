@@ -1,7 +1,7 @@
 [
     {
         "level": "01-Start",
-        "text": "You wake up, cold and alone. || How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
+        "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
         "modifier": [
             {
                 "weapon": {
@@ -150,7 +150,7 @@
             }
         ],
         "enemy": {
-            "name": "Goblin",
+            "name": "GOBLIN",
             "health": 40,
             "strength": 2,
             "defense": 2,
@@ -195,10 +195,12 @@
                 "gold": 3
             }
         ],
-        "options": {
-            "label": "Return to the task at hand",
-            "target": "01-Start"
-        }
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "01-Start"
+            }
+        ]
     },
     {
         "level": "02a-Locked",
@@ -217,14 +219,14 @@
     },
     {
         "level": "02aa-Open Door",
-        "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon heading the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
+        "text": "Shrugging to no-one in particular, you turn the key in the lock. The door swings open wide, and inside you discover a small chamber. The walls are mostly made from shaped stone, and there's a broken chair in one corner. In an opposite corner, stands a fleshless skeleton, facing away from you. Upon hearing the door creak open, it turns around. It's hollow eyes shine blue, it's mouth hangs open, and it charges at you with its axe held high.",
         "modifier": [
             {
                 "fight": 1
             }
         ],
         "enemy": {
-            "name": "Skeleton",
+            "name": "SKELETON",
             "health": 40,
             "strength": 1,
             "defense": 2,
@@ -233,6 +235,7 @@
             "weapon": {
                 "name": "dagger",
                 "dmg": 4
+            }
         },
         "options": [
             {
@@ -251,8 +254,7 @@
             "victory": {
                 "target": "02aaa-Skeleton Victory"
             }
-        }
-    },
+        },
     {
         "level": "02aaa-Skeleton Victory",
         "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties and leave the room.",
@@ -265,10 +267,12 @@
                 }
             }
         ],
-        "options": {
-            "label": "Return to the room",
-            "target": "02-Tunnel"
-        }
+        "options": [
+            {
+                "label": "Return to the room",
+                "target": "02-Tunnel"
+            }
+        ]
     }
 
 ]
