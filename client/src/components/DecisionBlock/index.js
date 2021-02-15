@@ -56,6 +56,7 @@ const DecisionBlock = () => {
     useEffect(() => {
         handleLevel(currentCharacter.level);
         handleText(currentCharacter.level);
+        handleStats(currentCharacter);
     }, [currentCharacter])
 
     useEffect(() => {
@@ -65,6 +66,23 @@ const DecisionBlock = () => {
     useEffect(() => {
         setHealthWidth();
     })
+
+    const handleStats = (c) => {
+        setStrength(c.strength);
+        setDefense(c.defense);
+        setWisdom(c.wisdom);
+        setLuck(c.luck);
+        setWeapon(c.weapon);
+        setHead(c.head);
+        setChest(c.chest);
+        setLegs(c.legs);
+        setHands(c.hands);
+        setFeet(c.feet);
+        setTorch(c.torch);
+        setAmulet(c.amulet);
+        setHealthPotions(c.healthPotions);
+        setGold(c.gold);
+    };
 
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
@@ -143,9 +161,20 @@ const DecisionBlock = () => {
         }
         setTimeout(() => {
             setOptionFade("fadeIn")
+            checkModifier();
             displayEnemy();
         }, (storyText.length * 30 + 2000))
 
+    }
+
+    const checkModifier = () => {
+        // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
+        modifier.forEach(mod => {
+            if(mod.weapon) {
+                setWeapon(mod.weapon.name)
+                console.log(mod.weapon.name)
+            }
+        }) 
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -233,6 +262,7 @@ const DecisionBlock = () => {
         setUserHealthWidth(`${userNewWidth}%`);
 
         // if user is dead, hide all images and just render "you are dead"
+        // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
         if (userNewWidth <= 0) {
             console.log("You are dead.")
             setEnemyBlockFade("hidden");
