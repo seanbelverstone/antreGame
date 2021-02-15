@@ -170,10 +170,39 @@ const DecisionBlock = () => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         modifier.forEach(mod => {
-            if(mod.weapon) {
+
+            // FYI, i hate using an if statement like this.
+            // tried to use a switch case but that didnt work for some reason
+            if (mod.weapon) {
                 setWeapon(mod.weapon.name)
-                console.log(mod.weapon.name)
+            } else if (mod.strength) {
+                setStrength(mod.strength)
+            } else if (mod.defense) {
+                setDefense(mod.defense)
+            } else if (mod.wisdom) {
+                setWisdom(mod.wisdom)
+            } else if (mod.luck) {
+                setLuck(mod.luck)
+            } else if (mod.head) {
+                setHead(mod.head)
+            } else if (mod.chest) {
+                setChest(mod.chest)
+            } else if (mod.legs) {
+                setLegs(mod.legs)
+            } else if (mod.hands) {
+                setHands(mod.hands)
+            } else if (mod.feet) {
+                setFeet(mod.feet)
+            } else if (mod.torch) {
+                setTorch(mod.torch)
+            } else if (mod.amulet) {
+                setAmulet(mod.amulet)
+            } else if (mod.healthPotions) {
+                setHealthPotions(mod.healthPotions)
+            } else if (mod.gold) {
+                setGold(mod.gold)
             }
+            console.log(mod)
         }) 
     }
 
