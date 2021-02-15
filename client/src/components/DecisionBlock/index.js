@@ -165,7 +165,8 @@ const DecisionBlock = () => {
     }
 
     const decideTurn = () => {
-        // Begin each battle with a dice roll, to see who goes first
+        // Begin each battle with a dice roll, to see who goes first.
+        // if the enemy goes first, disable all the buttons
         let diceRoll = (Math.floor(Math.random() * 6) + 1);
         if (diceRoll >= 1 || diceRoll <= 3) {
             console.log("Your turn")
@@ -180,6 +181,7 @@ const DecisionBlock = () => {
 
     const enemyTurn = () => {
         attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
+        // enable buttons after attack
         setButtonDisabled(false);
     }
 
@@ -229,8 +231,14 @@ const DecisionBlock = () => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
+
+        // if user is dead, hide all images and just render "you are dead"
         if (userNewWidth <= 0) {
             console.log("You are dead.")
+            setEnemyBlockFade("hidden");
+            setImageDisplay("none");
+            setCurrentEnemy({});
+            setEnemyImage("");
             setModifier([
                 {
                     "death": 1
