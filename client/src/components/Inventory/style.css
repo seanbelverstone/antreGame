@@ -1,0 +1,13 @@
+#transition-modal-title, #statsTitle {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#all {
+    display: flex;
+    flex-direction: column;
+}
+
+.section1, .section2 {
+    padding: 10px;
+}

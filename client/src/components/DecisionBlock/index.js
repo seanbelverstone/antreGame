@@ -4,6 +4,7 @@ import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
+import Inventory from "../Inventory";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
@@ -393,8 +394,28 @@ const DecisionBlock = () => {
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
-                <Button variant="contained" disabled={buttonDisabled}>Inventory</Button>
-                <Button variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+                <Inventory
+                    id="inventory"
+                    disabled={buttonDisabled}
+                    health={currentUserHealth}
+                    strength={strength}
+                    defense={defense}
+                    wisdom={wisdom}
+                    luck={luck}
+                    weapon={weapon}
+                    head={head}
+                    chest={chest}
+                    legs={legs}
+                    hands={hands}
+                    feet={feet}
+                    torch={torch}
+                    amulet={amulet}
+                    healthPotions={healthPotions}
+                    gold={healthPotions}
+                    />
+                <div>
+                    <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+                </div>
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </footer>
