@@ -5,6 +5,9 @@ import hands from "./gauntlet.svg";
 import head from "./helmet.svg";
 import amulet from "./necklace.svg"
 import sword from "./sword.svg";
+import legs from "./legs.svg";
+import feet from "./feet.svg";
+import torch from "./torch.svg";
 
 export default {
     chest,
@@ -13,5 +16,8 @@ export default {
     hands,
     head,
     amulet,
-    sword
+    sword,
+    legs,
+    feet,
+    torch
 }

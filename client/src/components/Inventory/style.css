@@ -6,8 +6,27 @@
 #all {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 50vh;
 }
 
 .section1, .section2 {
     padding: 10px;
+}
+
+.icon {
+    max-width: 4vh;
+}
+
+#weapon, #head, #chest, #legs, #hands, #feet, #torch, #amulet, #healthPotion, #gold {
+    display: flex;
+}
+
+#all section div div {
+    margin-left: 10px;
+}
+
+#torch .icon {
+    max-width: 3vh;
+    margin-right: 5px;
 }

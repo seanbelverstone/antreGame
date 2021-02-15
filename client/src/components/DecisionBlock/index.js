@@ -83,6 +83,7 @@ const DecisionBlock = () => {
         setAmulet(c.amulet);
         setHealthPotions(c.healthPotions);
         setGold(c.gold);
+
     };
 
     const handleLevel = (choice) => {
@@ -111,6 +112,7 @@ const DecisionBlock = () => {
             
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
+                console.log(storylines[i].modifier)
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -276,7 +278,7 @@ const DecisionBlock = () => {
             default: return;
         }
 
-        if (currentEnemyHealth > 0) {
+        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
             enemyTurn();
         }
     }
