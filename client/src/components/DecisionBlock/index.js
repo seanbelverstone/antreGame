@@ -209,6 +209,8 @@ const DecisionBlock = () => {
                     setHealthPotions(healthPotions + mod.healthPotions)
                 } else if (mod.gold) {
                     setGold(gold + mod.gold)
+                } else if (mod.luckCheck) {
+                    attacks.campaignLuckCheck();
                 }
             })
         } else {

@@ -115,6 +115,24 @@ export default {
         console.log(`You used ${skill}, which did... something`)
     },
 
+    campaignLuckCheck: () => {
+
+        let myRoll = diceRoll();
+
+        const death = "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end.";
+        const badLuck = "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.";
+        const bestLuck = "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.";
+
+        if(myRoll = 1) {
+            return death;
+        } else if (myRoll > 1 && myRoll < 6) {
+            return badLuck;
+        } else {
+            return bestLuck;
+        }
+    
+    },
+
     // ENEMY ATTACKS
     enemyNormalAttack: (enemyWeapon, strength, myDef, userHealth, setUserHealth) => {
         const initialRoll = diceRoll();

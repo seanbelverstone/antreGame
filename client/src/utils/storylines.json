@@ -290,7 +290,7 @@
         },
     {
         "level": "02aaa-Skeleton Victory",
-        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties and leave the room.",
+        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties, and leave the room.",
         "modifier": [
             {
                 "weapon": {
@@ -305,9 +305,162 @@
         "options": [
             {
                 "label": "Return to the room",
-                "target": "02-Tunnel"
+                "target": "02-Tunnel Victory Variant"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Victory Variant",
+        "text": "Closing the door behind you, you return to the small room. The remains of the fire and a the adventurer that lies decomposing beside it are now in front of you. There is also a path to your left that continues north.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+    {
+        "level": "03-Three Paths",
+        "text": "Leaving the small room behind, you follow the path to the north. After a short walk, your path meets a crossroads. The road is split in three ways: The path to the west is dark, the one to the east smells like ash, and the path ahead to the north is a single door.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go Back",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Go West",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Go North",
+                "target": "?-Single Door"
+            },
+            {
+                "label": "Go East",
+                "target": "?-Ash Path"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Return Variant",
+        "text": "Feeling undecisive, you return to the small room with the dead adventurer.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+    {
+        "level": "04-Dark Path",
+        "text": "You opt for the darker path to the North. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Torch Obtained",
+                "target": "04a-Torch Obtained"
+            },
+            {
+                "label": "No Torch",
+                "target": "04b-No Torch"
+            }
+        ]
+    },
+    {
+        "level": "04a-Torch Obtained",
+        "text": "Raising the torch above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that of some of the cobbled stone floor is raised in parts. From a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. You make it through the traps unscathed, but unfortunately your torch uses all of its fuel and splutters out of life.",
+        "modifier": [
+            {
+                "torch": 0
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "04b-No Torch",
+        "text": "Blindly continuing through the pitch black corridor, you step on something and hear a click, followed by a whoosh. You scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. Who knows how many more traps there are?",
+        "modifier": [
+            {
+                "health": -10
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "04ba-Continue"
+            },
+            {
+                "label": "Go Back",
+                "target": "03-Three Paths Dark Variant"
+            }
+        ]
+    },
+    {
+        "level": "03-Three Paths Dark Variant",
+        "text": "Leaving the dark way and part of your pride behind you, you return to the crossroads. The road is split in three ways: The path to the west behind you is dark, the one to the east smells like ash, and the path ahead to the north is a single door. Or you could return to the small room before.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Small Room",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Go West",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Go North",
+                "target": "?-Single Door"
+            },
+            {
+                "label": "Go East",
+                "target": "?-Ash Path"
+            }
+        ]
+    },
+    {
+        "level": "04ba-Continue",
+        "text": "By either incredible courage or plain stupidity, you decide to continue down the dark, trap-ridden path.",
+        "modifier": [
+            {
+                "luckCheck": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "04baa-Check Luck"
             }
         ]
     }
+    
 
 ]
