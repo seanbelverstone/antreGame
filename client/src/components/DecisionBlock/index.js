@@ -210,7 +210,7 @@ const DecisionBlock = () => {
                 } else if (mod.gold) {
                     setGold(gold + mod.gold)
                 } else if (mod.luckCheck) {
-                    attacks.campaignLuckCheck();
+                    console.log(attacks.campaignLuckCheck(luck));
                 }
             })
         } else {

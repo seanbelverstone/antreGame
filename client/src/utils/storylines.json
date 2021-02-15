@@ -352,6 +352,36 @@
         ]
     },
     {
+        "level": "02b-Relight Fire",
+        "text": "You bend down to relight the fire with your torch. It is illuminated now, and you sit beside the dead adventurer to rest awhile. You end up talking out some of your problems with him, and feel healthier.",
+        "modifier": [
+            {
+                "health": 10
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "02-Tunnel"
+            }
+        ]
+    },
+    {
+        "level": "02c-Dead Adventurer",
+        "text": "Deciding to see if the adventurer had any good items, you rifle through his belongings. He doesn't seem to have much and his food has long since rotten away, but you do find a health potion and add it to your inventory.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "02-Tunnel"
+            }
+        ]
+    },
+    {
         "level": "02-Tunnel Return Variant",
         "text": "Feeling undecisive, you return to the small room with the dead adventurer.",
         "modifier": 0,
