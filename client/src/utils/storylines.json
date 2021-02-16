@@ -869,7 +869,7 @@
         "modifier": 0,
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "08a-Axes"
             },
@@ -884,7 +884,7 @@
                 "target": "08c-Helmet"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -916,12 +916,12 @@
                 "target": "08ab-Axe and Helmet"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "08ac-Axe and HP"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Continue"
             }
 
@@ -943,7 +943,7 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "08ba-Greaves and Axe"
             },
@@ -953,12 +953,12 @@
                 "target": "08bb-Greaves and Helmet"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "08bc-Greaves and HP"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -983,7 +983,7 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "08ba-Helmet and Greaves"
             },
@@ -993,12 +993,12 @@
                 "target": "08aa-Helmet and Axe"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "08bc-Helmet and HP"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1025,12 +1025,12 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1038,7 +1038,7 @@
     },
     {
         "level": "08ab-Axe and Helmet",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1060,12 +1060,12 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1073,7 +1073,7 @@
     },
     {
         "level": "08ac-Axe and HP",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotions": 1
@@ -1094,7 +1094,7 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1102,7 +1102,7 @@
     },
     {
         "level": "08ba-Greaves and Axe",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1121,12 +1121,12 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1134,7 +1134,7 @@
     },
     {
         "level": "08bb-Greaves and Helmet",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1151,17 +1151,17 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1169,7 +1169,7 @@
     },
     {
         "level": "08bc-Greaves and HP",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotions": 1
@@ -1180,7 +1180,7 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "09-Time"
             },
@@ -1190,7 +1190,7 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1198,7 +1198,7 @@
     },
     {
         "level": "08ba-Helmet and Greaves",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1212,17 +1212,17 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1230,7 +1230,7 @@
     },
     {
         "level": "08aa-Helmet and Axe",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1249,12 +1249,12 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Health Potion - 2 Gold",
+                "label": "Health Potion - 2 Gold",
                 "value": 2,
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 
@@ -1262,7 +1262,7 @@
     },
     {
         "level": "08bc-Helmet and HP",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotions": 1
@@ -1273,7 +1273,7 @@
         ],
         "options": [
             {
-                "label": "Buy Obsidian Axes - 11 Gold",
+                "label": "Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "09-Time"
             },
@@ -1283,7 +1283,7 @@
                 "target": "09-Time"
             },
             {
-                "label": "Buy Nothing",
+                "label": "Nothing",
                 "target": "08d-Nothing"
             }
 

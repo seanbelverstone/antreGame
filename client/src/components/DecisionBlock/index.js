@@ -146,7 +146,7 @@ const DecisionBlock = () => {
             // Otherwise, show the option page
             return options.map(option => {
                 return(
-                    <div className={`options ${optionFade}`} key={option.target}>
+                    <div className={`options ${optionFade}`} key={option.label}>
                         <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
