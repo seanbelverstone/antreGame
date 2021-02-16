@@ -30,6 +30,8 @@ const checkUserWeapon = (weapon) => {
         case "black iron sword":
             weaponDamage = 11;
             break;
+        case "obsidian axes":
+            weaponDamage = 12;
         case "warhammer":
             weaponDamage = 14;
     }

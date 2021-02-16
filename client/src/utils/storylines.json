@@ -869,17 +869,17 @@
         "modifier": 0,
         "options": [
             {
-                "label": "Buy Obsidian Axes",
+                "label": "Buy Obsidian Axes - 11 Gold",
                 "value": 11,
                 "target": "08a-Axes"
             },
             {
-                "label": "Plate Greaves",
+                "label": "Plate Greaves - 6 Gold",
                 "value": 6,
                 "target": "08b-Greaves"
             },
             {
-                "label": "Black Iron Helmet",
+                "label": "Black Iron Helmet - 20 Gold",
                 "value": 20,
                 "target": "08c-Helmet"
             },
@@ -895,25 +895,431 @@
         "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
         "modifier": [
             {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
                 "gold": -11
             }
         ],
         "options": [
             {
-                "label": "Plate Greaves",
-                "target": "08b-Greaves"
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "08aa-Axe and Greaves"
             },
             {
-                "label": "Black Iron Helmet",
-                "target": "08c-Helmet"
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "08ab-Axe and Helmet"
             },
             {
-                "label": "Buy Health Potion",
-                "target": "08a-Axes"
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08ac-Axe and HP"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Continue"
+            }
+
+        ]
+    },
+    {
+        "level": "08b-Greaves",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "08ba-Greaves and Axe"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "08bb-Greaves and Helmet"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08bc-Greaves and HP"
             },
             {
                 "label": "Buy Nothing",
                 "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08c-Helmet",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "08ba-Helmet and Greaves"
+            },
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "08aa-Helmet and Axe"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08bc-Helmet and HP"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08aa-Axe and Greaves",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ab-Axe and Helmet",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ac-Axe and HP",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotions": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ba-Greaves and Axe",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bb-Greaves and Helmet",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bc-Greaves and HP",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotions": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ba-Helmet and Greaves",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08aa-Helmet and Axe",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bc-Helmet and HP",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotions": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Buy Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08d-Nothing",
+        "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. The goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. The entire room is now shaking and glass vials and old tomes cascade to the ground.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave",
+                "target": "09-Time"
+            }
+        ]
+    },
+    {
+        "level": "09-Time",
+        "text": "Suddenly, the entire room gets torn away from its foundations. You are thrown to left wall, and pinned there momentarily as you realise that the room is now moving at an incredibly fast pace. The wall opposite you starts to break apart, unable to remain intact due to this unnatural force being exerted upon it, and as the bricks break apart, and narrowly miss your face -- you see it. You are inside the mouth of a colossal worm. You see its ring of massive jagged teeth biting down on the walls and ceiling of the room you're in, and as it burrows through the ground at an incredible rate you realize that it's both picked you up on its journey underground, and it's now very pissed off. By looking at the size of its mouth, you judge that the worm must be at least 400 feet long, and you wonder how you could be this unforutnate. As your body gets acclimatized to the force that's pinning you to the wall, you manage to push yourself up and into a hunched over position. Standing inside a slowly deteriorating room, in the mouth of a colossal worm, you rapidly begin formulating a plan.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Give up",
+                "target": "09a-Give Up"
+            },
+            {
+                "label": "Call out",
+                "target": "09b-Call Out"
+            },
+            {
+                "label": "Climb out",
+                "target": "09c-Climb"
+            },
+            {
+                "label": "Attack",
+                "target": "09d-Attack"
             }
 
         ]
