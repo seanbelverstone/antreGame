@@ -232,7 +232,7 @@ const DecisionBlock = () => {
 
     // For some reason this is running after an enemy has been killed... not sure how to fix that
     const displayEnemy = () => {
-        if (modifier[0] != undefined && modifier[0].fight) {
+        if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
             let enemyName = enemies[currentEnemy.name.replace(" ", "_")]

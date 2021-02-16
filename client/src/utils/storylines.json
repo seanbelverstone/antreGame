@@ -757,6 +757,9 @@
         "text": "Although the light is fading fast, you decide to take your time looting the room. You uncover a number of great items, however, before long you hear another screech, followed by a thump. Another lizard has arrived.",
         "modifier": [
             {
+                "fight": 1
+            },
+            {
                 "weapon": {
                     "name": "Steel shortsword",
                     "dmg": 7
@@ -770,9 +773,6 @@
             },
             {
                 "gold": 20
-            },
-            {
-                "fight": 1
             }
         ],
         "enemy": {
