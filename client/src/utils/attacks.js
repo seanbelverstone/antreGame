@@ -117,7 +117,7 @@ export default {
         console.log(`You used ${skill}, which did... something`)
     },
 
-    campaignLuckCheck: (luck) => {
+    campaignLuckCheck: (luck, story) => {
         let userLuckModifier = luck / 2;
 
         let myRoll = diceRoll();
@@ -126,13 +126,25 @@ export default {
         const badLuckLevel = "04bac-Bad Luck";
         const bestLuckLevel = "04bad-Best Luck";
 
+        const wormDeath = "09caa-Worm Death";
+        const wormSuccess = "09cab-Worm Success"
+
         let options;
-        if(updatedNumber <= 1) {
-            options = deathLevel
-        } else if (myRoll > 1 && myRoll < 6) {
-            options = badLuckLevel;
-        } else {
-            options = bestLuckLevel;
+        // 
+        if (story === 1) {
+            if(updatedNumber <= 1) {
+                options = deathLevel
+            } else if (myRoll > 1 && myRoll < 6) {
+                options = badLuckLevel;
+            } else {
+                options = bestLuckLevel;
+            }
+        } else if (story === 2) {
+            if (updatedNumber <= 2) {
+                options = wormDeath
+            } else {
+                options = wormSuccess
+            }
         }
         return [
             {

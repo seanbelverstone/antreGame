@@ -530,7 +530,8 @@
         "text": "Checking luck...",
         "modifier": [
             {
-                "luckCheck": true
+                "luckCheck": true,
+                "event": 1
             }
         ],
         "options": [
@@ -1322,6 +1323,62 @@
                 "target": "09d-Attack"
             }
 
+        ]
+    },
+    {
+        "level": "09a-Give Up",
+        "text": "Realizing that there's probably no way out of this insane situation, you close your eyes and accept your fate. You think of a spring meadow, filled with new flowers and joyful bees. The air is cool, and you feel utterly at peace. As the wall behind you crumbles away, you fall into the gullet of the colossal worm. Although your body will soon be consumed by the beast, you manage one last smile before the end.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "09b-Call Out",
+        "text": "Muted by the noise generated from the worm's burrowing, calling out has no effect. The walls continue to crumble.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Give up",
+                "target": "09a-Give Up"
+            },
+            {
+                "label": "Climb out",
+                "target": "09c-Climb"
+            },
+            {
+                "label": "Attack",
+                "target": "09d-Attack"
+            }
+
+        ]
+    },
+    {
+        "level": "09c-Climb",
+        "text": "Half walking, half crawling, you make your way across the collapsing room and climb towards the tooth filled opening. As you place a hand between the huge teeth, you feel a shiver run through the gums of the worm. Agitated, it shakes its head violently, causing you to be thrown back to the room's back wall. The stones behind you give way and for a moment, you are freefalling. With the creature's dark gullet behind you, you desperately reach for your weapon.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "09ca-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "09ca-Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 2
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "none"
+            }
         ]
     }
     

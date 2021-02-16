@@ -214,7 +214,7 @@ const DecisionBlock = () => {
                 } else if (mod.gold) {
                     setGold(gold + mod.gold)
                 } else if (mod.luckCheck) {
-                    const checkingLuck = attacks.campaignLuckCheck(luck);
+                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.luckCheck.event);
                     console.log(checkingLuck[0]);
                     setOptions([
                         {
