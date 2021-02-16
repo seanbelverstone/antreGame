@@ -270,6 +270,7 @@ const DecisionBlock = () => {
         attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
         // enable buttons after attack
         console.log(currentUserHealth)
+        setCurrentUserHealth(currentUserHealth)
         setButtonDisabled(false);
     }
 

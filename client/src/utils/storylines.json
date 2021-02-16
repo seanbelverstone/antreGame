@@ -1494,25 +1494,124 @@
 
     {
         "level": "13-Single Door",
-        "text": "Muted by the noise generated from the worm's burrowing, calling out has no effect. The walls continue to crumble.",
+        "text": "Continuing your journey north, you open the single door. Inside, you see a square room with 4 identical wooden doors on the far side. The room is quite empty, apart from a metal sundial in the center of the room which is facing straight at you, to the south. You wonder why someone would have a sundial this far underground.",
         "modifier": 0,
         "options": [
             {
-                "label": "Give up",
-                "target": "09a-Give Up"
+                "label": "Door 1",
+                "target": "13a-Wrong room"
             },
             {
-                "label": "Climb out",
-                "target": "09c-Climb"
+                "label": "Door 2",
+                "target": "13a-Wrong room"
             },
             {
-                "label": "Attack",
-                "target": "09cab-Worm Success"
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
             }
 
         ]
     },
-    
+    {
+        "level": "13a-Wrong room",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13aa-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13aa-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13aa-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13aa-Wrong room",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one again?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13b-Correct room",
+        "text": "You select a door, and enter it. This room seems to be slightly different from the last one. There are the same number of doors, however, the sundial now points to the west.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13bb-Correct room"
+            }
+
+        ]
+    },
+    {
+        "level": "13bb-Correct room",
+        "text": "You select a door, and enter it. Now you're making some progress! Excitedly you notice that the sundial is pointing to the north. Hoping this is the last one, begin to decide which door to choose.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "?-Prison"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
+            }
+
+        ]
+    }
     
 
 ]
