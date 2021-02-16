@@ -827,30 +827,6 @@
         ]
     },
     {
-        "level": "06-Lizard Victory",
-        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
-        "modifier": 0,
-        "options": [
-            {
-                "label": "Relight fire",
-                "target": "06a-Relight Fire"
-            },
-            {
-                "label": "Continue down corridor",
-                "target": "06b-Corridor"
-            },
-            {
-                "label": "Long Room Search",
-                "target": "06c-Long Search"
-            },
-            {
-                "label": "Quick room search",
-                "target": "06d-Quick Search"
-            }
-
-        ]
-    },
-    {
         "level": "06ca-Second Lizard Victory",
         "text": "Gasping for air, you strike another lizard down. Keen not to fight another one, you quickly gather your loot and continue down the well lit hallway.",
         "modifier": 0,
@@ -859,6 +835,87 @@
                 "label": "Continue",
                 "target": "07-Mahogany Door"
             }
+        ]
+    },
+    {
+        "level": "07-Mahogany Door",
+        "text": "After journeying down the corridor for some time, you reach a door. It's a heavy mahogany door, much taller than you are and it has a variety of engravings all over it. The doorhandle is shaped like a bony green fist. You can almost hear a distant rumble, that is gradually getting louder.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Knock",
+                "target": "07a-Knock"
+            },
+            {
+                "label": "Open Door",
+                "target": "08-Gobin Merchant"
+            }
+        ]
+    },
+    {
+        "level": "07a-Knock",
+        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped doorhandle, you wait for a response. None comes. Perhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open Door",
+                "target": "08-Gobin Merchant"
+            }
+        ]
+    },
+    {
+        "level": "08-Gobin Merchant",
+        "text": "Turning the doorhandle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sat at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. 'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' The rumbling grows steadily louder.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Buy Obsidian Axes",
+                "value": 11,
+                "target": "08a-Axes"
+            },
+            {
+                "label": "Plate Greaves",
+                "value": 6,
+                "target": "08b-Greaves"
+            },
+            {
+                "label": "Black Iron Helmet",
+                "value": 20,
+                "target": "08c-Helmet"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08a-Axes",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves",
+                "target": "08b-Greaves"
+            },
+            {
+                "label": "Black Iron Helmet",
+                "target": "08c-Helmet"
+            },
+            {
+                "label": "Buy Health Potion",
+                "target": "08a-Axes"
+            },
+            {
+                "label": "Buy Nothing",
+                "target": "08d-Nothing"
+            }
+
         ]
     }
     
