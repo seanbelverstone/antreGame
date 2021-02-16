@@ -347,7 +347,7 @@
             },
             {
                 "label": "Go East",
-                "target": "?-Ash Path"
+                "target": "14-Ash Path"
             }
         ]
     },
@@ -1611,8 +1611,85 @@
             }
 
         ]
+    },
+    {
+        "level": "14-Ash Path",
+        "text": "Deciding to take the path that smells like ash, you head east. The stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so plesant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. You pick it up and put it on, hopefully it will bring you more protection that it did for them...",
+        "modifier": [
+            {
+                "chest": "chainmail"
+            },
+            {
+                "defense": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "15-Dragon Fight"
+            }
+        ]
+    },
+    {
+        "level": "15-Dragon Fight",
+        "text": "During your journey down this path, you notice a pulsating light eminating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. A juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. You ready for attack.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "JUVENILE DRAGON",
+            "health": 70,
+            "strength": 3,
+            "defense": 3,
+            "wisdom": 4,
+            "luck": 2,
+            "weapon": {
+                "name": "claws",
+                "dmg": 8
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "15a-Dragon Victory"
+        }
+    },
+    {
+        "level": "15-Dragon Victory",
+        "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding ",
+        "modifier": [
+            {
+                "amulet": 1
+            },
+            {
+                "luck": 2
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "15-Dragon Fight"
+            }
+        ]
     }
-    
 
 ]
 
