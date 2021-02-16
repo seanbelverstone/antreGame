@@ -685,7 +685,7 @@
             }
         ],
         "victory": {
-            "target": "05baaa-Lizard Victory"
+            "target": "06-Lizard Victory"
         }
     },
     {
@@ -695,6 +695,54 @@
             {
                 "death": 1
             }
+        ]
+    },
+    {
+        "level": "06-Lizard Victory",
+        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Relight fire",
+                "target": "06a-Relight Fire"
+            },
+            {
+                "label": "Continue down corridor",
+                "target": "06b-Corridor"
+            },
+            {
+                "label": "Long Room Search",
+                "target": "06c-Long Search"
+            },
+            {
+                "label": "Quick room search",
+                "target": "06d-Quick Search"
+            }
+
+        ]
+    },
+    {
+        "level": "06a-Relight Fire",
+        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Relight fire",
+                "target": "06a-Relight Fire"
+            },
+            {
+                "label": "Continue down corridor",
+                "target": "06b-Corridor"
+            },
+            {
+                "label": "Long Room Search",
+                "target": "06c-Long Search"
+            },
+            {
+                "label": "Quick room search",
+                "target": "06d-Quick Search"
+            }
+
         ]
     }
 
