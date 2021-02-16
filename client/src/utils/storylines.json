@@ -586,11 +586,11 @@
         "options": [
             {
                 "label": "Approach Goblins",
-                "target": "05a-Approach/Attack Goblins"
+                "target": "05a-Approach Goblins"
             },
             {
                 "label": "Attack Goblins",
-                "target": "05a-Approach/Attack Goblins"
+                "target": "05a-Attack Goblins"
             },
             {
                 "label": "Call Out",
@@ -603,8 +603,19 @@
         ]
     },
     {
-        "level": "05a-Approach/Attack Goblins",
+        "level": "05a-Approach Goblins",
         "text": "As begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05baa-Lizard Fight"
+            }
+        ]
+    }, 
+    {
+        "level": "05a-Attack Goblins",
+        "text": "As you begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
         "modifier": 0,
         "options": [
             {
@@ -723,6 +734,100 @@
     },
     {
         "level": "06a-Relight Fire",
+        "text": "You hunch over the fire, and look for something to relight it. You notice that the goblins were using flint and steel, so you snatch them up and strike them. The sound generated from the flint and steel is loud enough to attract another giant lizard, and also to mask its arrival. As you keep striking the flint and steel together, finally you get a spark and it ignites some small kindling in front of you. You look up. A drooling reptillian lower jaw is illuminated by your meagre fire. It licks its lips, and the drool from its mouth cascades down onto your kindling, extinguishing it. The light goes out.",
+        "modifier": [
+            {
+                "death": 0
+            }
+        ]
+    },
+    {
+        "level": "06b-Corridor",
+        "text": "You continue to walk down the well lit corridor, hoping that any more of those vile lizards will be disuaded by the light. You press on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "07-Mahogany Door"
+            }
+        ]
+    },
+    {
+        "level": "06c-Long Search",
+        "text": "Although the light is fading fast, you decide to take your time looting the room. You uncover a number of great items, however, before long you hear another screech, followed by a thump. Another lizard has arrived.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Steel shortsword",
+                    "dmg": 7
+                }
+            },
+            {
+                "chest": "Leather armor"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": 20
+            },
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "BLIND LIZARD",
+            "health": 90,
+            "strength": 4,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "teeth",
+                "dmg": 8
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
+            },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
+        "victory": {
+            "target": "06ca-Second Lizard Victory"
+        }
+    },
+    {
+        "level": "06d-Quick Search",
+        "text": "You do a quick scour of the room and manage to find a few gold pieces, and one of the weapons that lay close to the goblins. Making sure not to stay for too long in the room, you dart out and continue down the well lit hallway.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Steel shortsword",
+                    "dmg": "7"
+                }
+            },
+            {
+                "gold": 3
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "06b-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "06-Lizard Victory",
         "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
         "modifier": 0,
         "options": [
@@ -744,9 +849,18 @@
             }
 
         ]
+    },
+    {
+        "level": "06ca-Second Lizard Victory",
+        "text": "Gasping for air, you strike another lizard down. Keen not to fight another one, you quickly gather your loot and continue down the well lit hallway.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "07-Mahogany Door"
+            }
+        ]
     }
-
-
     
     
 

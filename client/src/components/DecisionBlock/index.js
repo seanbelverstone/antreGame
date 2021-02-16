@@ -234,7 +234,10 @@ const DecisionBlock = () => {
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight) {
             console.log("displaying enemy")
-            setEnemyImage(enemies[currentEnemy.name])
+            // have to replace all spaces with underscores, in order to successfully grab the correct image
+            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            console.log(enemyName)
+            setEnemyImage(enemyName)
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
@@ -262,6 +265,7 @@ const DecisionBlock = () => {
     const enemyTurn = () => {
         attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
         // enable buttons after attack
+        console.log(currentUserHealth)
         setButtonDisabled(false);
     }
 
@@ -348,6 +352,30 @@ const DecisionBlock = () => {
     }
 
     const saveGame = () => {
+        // Update sessionStorage
+        window.sessionStorage.setItem("currentCharacter", JSON.stringify({
+            "id": currentCharacter.id,
+            "name": currentCharacter.name,
+            "race": currentCharacter.race,
+            "charClass": currentCharacter.charClass,
+            "health": currentUserHealth,
+            "strength": strength,
+            "defense": defense,
+            "wisdom": wisdom,
+            "luck": luck,
+            "weapon": weapon,
+            "head": head,
+            "chest": chest,
+            "legs": legs,
+            "hands": hands,
+            "feet": feet,
+            "torch": torch,
+            "amulet": amulet,
+            "healthPotions": healthPotions,
+            "gold": gold,
+            "level": currentLevel,
+            "time": time
+        }))
         API.updateCharacter(
             currentUserHealth,
             strength,
@@ -401,7 +429,7 @@ const DecisionBlock = () => {
                     <div id="enemyBar" style={{width: enemyHealthWidth}}></div>
                 </div>
 
-                <img src={enemyImage} />
+                <img src={enemyImage} id="enemyImage"/>
                 
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
@@ -419,6 +447,7 @@ const DecisionBlock = () => {
                     id="inventory"
                     disabled={buttonDisabled}
                     health={currentUserHealth}
+                    maxHealth={maxHealth}
                     strength={strength}
                     defense={defense}
                     wisdom={wisdom}
