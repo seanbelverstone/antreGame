@@ -343,7 +343,7 @@
             },
             {
                 "label": "Go North",
-                "target": "?-Single Door"
+                "target": "13-Single Door"
             },
             {
                 "label": "Go East",
@@ -442,6 +442,23 @@
             }
         ]
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {
         "level": "04-Dark Path",
         "text": "You opt for the darker path to the North. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
@@ -1349,7 +1366,7 @@
             },
             {
                 "label": "Attack",
-                "target": "09d-Attack"
+                "target": "09cab-Worm Success"
             }
 
         ]
@@ -1464,7 +1481,37 @@
                 "end": 1
             }
         ]
-    }
+    },
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "13-Single Door",
+        "text": "Muted by the noise generated from the worm's burrowing, calling out has no effect. The walls continue to crumble.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Give up",
+                "target": "09a-Give Up"
+            },
+            {
+                "label": "Climb out",
+                "target": "09c-Climb"
+            },
+            {
+                "label": "Attack",
+                "target": "09cab-Worm Success"
+            }
+
+        ]
+    },
     
     
 
