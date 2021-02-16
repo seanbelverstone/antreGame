@@ -235,9 +235,13 @@ const DecisionBlock = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-            console.log(enemyName)
-            setEnemyImage(enemyName)
+            if (!enemies[currentEnemy.name]) {
+                return;
+            } else {
+                let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+                console.log(enemyName)
+                setEnemyImage(enemyName)
+            }
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
