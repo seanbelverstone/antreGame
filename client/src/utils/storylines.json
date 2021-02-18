@@ -1094,7 +1094,7 @@
         "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotions": 1
+                "healthPotion": 1
             },
             {
                 "gold": -2
@@ -1190,7 +1190,7 @@
         "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotions": 1
+                "healthPotion": 1
             },
             {
                 "gold": -2
@@ -1283,7 +1283,7 @@
         "text": "'Hurry!!' The rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotions": 1
+                "healthPotion": 1
             },
             {
                 "gold": -2
@@ -2127,7 +2127,7 @@
         "options": [
             {
                 "label": "Continue",
-                "target": "?-Corridor"
+                "target": "23-Corridor"
             }
         ]
     },
@@ -2282,7 +2282,7 @@
         "options": [
             {
                 "label": "Continue",
-                "target": "?-Corridor"
+                "target": "23-Corridor"
             }
         ]
     },
@@ -2455,12 +2455,577 @@
             },
             {
                 "label": "Nothing",
+                "target": "20bb-Refuse"
+            }
+
+        ]
+    },
+    {
+        "level": "21a-Helmet",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21aa-Health and Helmet"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21c-Longsword and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aa-Health and Helmet",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21aaa-Longsword, Health and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21c-Longsword and Helmet",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21aaa-Health Potion, Longsword and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aaa-Longsword, Health and Helmet",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aaa-Health Potion, Longsword and Helmet",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21b-Health Potion",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21ba-Helmet and Health"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21bb-Longsword and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21ba-Helmet and Health",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21baa-Longsword, Helmet and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21bb-Longsword and Health",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21bba-Helmet, Longsword and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21baa-Longsword, Helmet and Health",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21baa-Longsword, Helmet and Health",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21c-Longsword",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21ca-Helmet and Longsword"
+            },
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21cb-Health and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21ca-Helmet and Longsword",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21cba-Health, Helmet and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21cb-Health and Longsword",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21caa-Helmet, Health and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21cba-Health, Helmet and Longsword",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21caa-Helmet, Health and Longsword",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
                 "target": "21d-Nothing"
             }
 
         ]
     },
 
-{"next path is goblin merchant": "will work up until that path joins with ?-Corridor"}
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "20bb-Refuse",
+        "text": "'Well 'aint that a shame. I thought we were gonna strike a deal there.' the goblin complains. 'Ah well. Come on Gormush, lets leave this sorry soul to their own fortune.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Two Paths"
+            }
+        ]
+    },
+    {
+        "level": "21d-Nothing",
+        "text": "The goblin winks one saffron eye at you and says 'Great doin' business wit' ya. Oh and one more thing, if you see it - you'll know. Just make sure to place a hand on it. Sounds weird, I know, but just do it. That's all I'm allowed to tell ya.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Two Paths"
+            }
+        ]
+    },
+    {
+        "level": "22-Two Paths",
+        "text": "The goblin snaps its long, green fingers, and both it and it's companion disappear in a puff of orange smoke. The way is clear. You are about to step into the blast hole and go down the corridor, however, you notice a small path that was previously hidden behind the goblin. It's smaller than the one you were about to take, and it seems to descend aggressively somewhat.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Small Path",
+                "target": "?-Small Path"
+            },
+            {
+                "label": "Continue On",
+                "target": "23-Corridor"
+            }
+        ]
+    },
+
+
+
+
+
+
+
+    {
+        "level": "23-Corridor",
+        "text": "Venturing into the corridor, you notice that the quality of air seems to have improved somewhat. Also, the ground seems to be steadily inclining. Could this be the way out? Your pace quickens with anticipation. As you begin to jog, the incline continues to increase dramatically. After a few minutes, you have to resort to crawling on your hands and knees to stay on the path, which is becoming steeper with every step. Your determination to escape strengthens your resolve, and you push on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue Climbing",
+                "target": "24-Skeletal Knight"
+            }
+        ]
+    },
+    {
+        "level": "24-Skeletal Knight",
+        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. Sunlight. You've made it. You finally escaped from the cave. But before you can celebrate your escape, you hear a raspy voice from in front of you. 'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Question the Knight",
+                "target": "24a-Question"
+            },
+            {
+                "label": "Flee",
+                "target": "24b-Flee"
+            },
+            {
+                "label": "Say Nothing",
+                "target": "24d-Skeletal Knight Fight"
+            },
+            {
+                "label": "Attack",
+                "target": "24d-Skeletal Knight Fight"
+            }
+        ]
+    },
+    {
+        "level": "24a-Question",
+        "text": "'I do not have time to answer your foolish questions, mortal', the skeleton croaks. 'Prepare to die.' The knight locks its spear to its side with both bony hands, and charges.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Skeletal Knight",
+            "health": 140,
+            "strength": 6,
+            "defense": 5,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "War Spear",
+                "dmg": 10
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "25-Skeletal Knight End"
+        }
+    },
+    {
+        "level": "24b-Flee",
+        "text": "You attempt to flee from the skeleton knight by turning around and jumping down the cliff you previously scaled. Sliding down the stone floor, your speed continues to increase and all hope of controlling your descent evaporates. Both your clothing and skin are ripped from underneath you, causing agnoizing pain. Your body collides with a wall, killing you instantly.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "24d-Skeletal Knight Fight",
+        "text": "Gripping your weapon tightly, you stare at the knight with detemination in your eyes. You've made it this far, and this is just one last hurdle in your way. 'It appears that you understand the gravity of your situation. Very well.' The skeleton steps forward. 'You will die here, and no-one will remember you.' The knight charges.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Skeletal Knight",
+            "health": 140,
+            "strength": 6,
+            "defense": 5,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "War Spear",
+                "dmg": 10
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "25-Skeletal Knight End"
+        }
+    },
+    {
+        "level": "25-Skeletal Knight End",
+        "text": "Exhausted, you strike the final blow against the skeletal knight. The etheral glow from deep inside its eye sockets extinguish, and it erupts into an arcane explosion. You collapse on the floor. It's over. You've won. Breathing in the cool, fresh air, you allow yourself a few moments of respite. Collecting yourself and standing victorious once more, you begin your trek towards the horizon in search of civilization. Maybe someone is out there.",
+        "modifier": [
+            {
+                "end": 1
+            }
+        ]
+    }
+
 ]
 
