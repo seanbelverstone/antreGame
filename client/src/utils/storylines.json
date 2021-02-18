@@ -201,7 +201,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "Dagger",
+                    "name": "dagger",
                     "dmg": 3
                 }
             },
@@ -1595,7 +1595,7 @@
         "options": [
             {
                 "label": "Door 1",
-                "target": "?-Prison"
+                "target": "13bba-Success"
             },
             {
                 "label": "Door 2",
@@ -1610,6 +1610,17 @@
                 "target": "13a-Wrong room"
             }
 
+        ]
+    },
+    {
+        "level": "13bba-Success",
+        "text": "After the last door is opened, finally you're in a room that is completely unlike the last ones. It appears to be some kind of prison, although it has been a long time since it has had any occupants. At least you made it out of those enchanted rooms in one piece.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "18-Prison"
+            }
         ]
     },
     {
@@ -1674,7 +1685,7 @@
     },
     {
         "level": "15-Dragon Victory",
-        "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding ",
+        "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding some kind of relic. You add it to your inventory for safe-keeping and you feel slightly luckier after that encounter.",
         "modifier": [
             {
                 "amulet": 1
@@ -1686,10 +1697,608 @@
         "options": [
             {
                 "label": "Continue",
-                "target": "15-Dragon Fight"
+                "target": "16-Dragon Room"
+            }
+        ]
+    },
+    {
+        "level": "16-Dragon Room",
+        "text": "After collecting the relic and inspecting the room, you notice a crawlspace in the back of the room. Maybe the dragon was using this to get around? The tunnel you entered through is still collapsed, and it seems like this might be the only way out.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Dig tunnel",
+                "target": "16a-Dig"
+            },
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Make fire",
+                "target": "16c-Make Fire"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16a-Dig",
+        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. You manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
+        "modifier": [
+            {
+                "health": -15
+            },
+            {
+                "strength": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Make fire",
+                "target": "16c-Make Fire"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16b-Crawlspace",
+        "text": "You squeeze your way into the crawlspace. It's just as warm as the room you left, and you see many shredded scales stuck to the edges of the stone. As you make your way through, you notice a few small alcoves filled with coins that the dragon must have been hiding. You pocket them and emerge on the other side.",
+        "modifier": [
+            {
+                "gold": 10
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "17-Chests"
+            }
+        ]
+    },
+    {
+        "level": "16c-Make Fire",
+        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of your torch. Your fire burns bright and makes the room smell pleasant, as there were some herbs hidden in the book leaves. You feel fully reinvigorated.",
+        "modifier": [
+            {
+                "health": 50
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Dig tunnel",
+                "target": "16a-Dig"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16d-Rest",
+        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. You never wake up.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "17-Chests",
+        "text": "You emerge from the crawlspace, slightly dustier than you already were. You discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17a-Gilded Chest",
+        "text": "Cracking the gilded chest open with a nearby rock, the only item inside is a fairly nondescript leather bound book. Curious, you start to leaf through it and words rush onto its pages that don't seem to make any sense.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Keep reading",
+                "target": "17aa-Gilded Continue"
+            },
+            {
+                "label": "Put down the book",
+                "target": "17ab-Chests Variant"
+            }
+        ]
+    },
+    {
+        "level": "17aa-Gilded Continue",
+        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. The words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Keep reading",
+                "target": "17aaa-Gilded Continue"
+            },
+            {
+                "label": "Put down the book",
+                "target": "17ab-Chests Variant"
+            }
+        ]
+    },
+    {
+        "level": "17aaa-Gilded Continue",
+        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. You take a few minutes to recover from the experience, and place the book back down in the chest.",
+        "modifier": [
+            {
+                "wisdom": 4
+            },
+            {
+                "health": -10
+            },
+            {
+                "strength": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "17aaaa-Gilded Variant"
+            }
+        ]
+    },
+    {
+        "level": "17ab-Chests Variant",
+        "text": "Figuring that this book may be more trouble than it's worth, you drop it back into the gilded chest and slam it shut.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17aaaa-Gilded Variant",
+        "text": "You return to the present moment and consider whether to open any more chests, or to leave through the iron door.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17b-Skull Chest",
+        "text": "Approach the skull chest and crack if open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "halberd",
+                    "dmg": 8
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "Open Tiny Chest",
+        "text": "Popping open the tiny chest with ease, you find a small health potion and a few gold pieces inside.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": 4
+            }
+        ],
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            }
+        ]
+    },
+    {
+        "level": "17d-Iron Door",
+        "text": "You exit through the iron door and as it closes behind you, you realise that it was a hidden doorway that leads into some kind of prison. The door seals shut behind you with no way to open it again.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "18-Prison"
+            }
+        ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "18-Prison",
+        "text": "The only way out of this prison is past some iron bars at the end of the room. They extend from the floor to the ceiling and are too close together for you to squeeze through. There is a tapestry hung to the left of the bars, and a small colony of mushrooms growing in a corner. You hear a slow, steady breathing coming from behind the bars, as if something is sleeping behind them.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Inspect Tapestry",
+                "target": "19-Tapestry"
+            },
+            {
+                "label": "Call out",
+                "target": "18a-Call Out"
+            },
+            {
+                "label": "Attack the bars",
+                "target": "18b-Attack"
+            },
+            {
+                "label": "Pick Mushrooms",
+                "target": "20-Mushrooms"
+            }
+        ]
+    },
+    {
+        "level": "19-Tapestry",
+        "text": "The tapestry is extremely detailed, seeming to depict a battle from ancient times. It occasionally puffs out from the wall, as if there is an air current blowing into it from behind.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Tear It Down",
+                "target": "19a-Tear Down"
+            },
+            {
+                "label": "Burn Tapestry",
+                "target": "19b-Burn Tapestry"
+            },
+            {
+                "label": "Inspect Tapestry",
+                "target": "19c-Inspect"
+            },
+            {
+                "label": "Ignore it",
+                "target": "18-Prison"
+            }
+        ]
+    },
+    {
+        "level": "18a-Call Out",
+        "text": "As you inhale to call out for help, the large creature behind the bars makes an audible grunt. You rethink your choice.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Inspect Tapestry",
+                "target": "19-Tapestry"
+            },
+            {
+                "label": "Attack the bars",
+                "target": "18b-Attack"
+            },
+            {
+                "label": "Pick Mushrooms",
+                "target": "20-Mushrooms"
+            }
+        ]
+    },
+    {
+        "level": "18b-Attack",
+        "text": "Do you have a weapon equipped?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Yes",
+                "target": "18ba-Weapon"
+            },
+            {
+                "label": "No",
+                "target": "18bb-No Weapon"
+            }
+        ]
+    },
+    {
+        "level": "18ba-Weapon",
+        "text": "Raising your weapon over the top of your head, you smash it against the bars of the prison. The bars, clearly more durable than you expected, cause your weapon to shatter into a thousand fragments. Perhaps this wasn't the best idea.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "No weapon",
+                    "dmg": 1
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Continue"
+            }
+        ]
+    },
+    {
+        "level": "18ba-Weapon",
+        "text": "Without actually owning a weapon, attacking some iron bars seems folly. However, you proceed to strike the bars with all your might. You hear an audible snap, and know that you have done some irreprable damage to your hand.",
+        "modifier": [
+            {
+                "health": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Continue"
+            }
+        ]
+    },
+    {
+        "level": "20-Continue",
+        "text": "A low growl fills the chamber. The ground shakes as something gets to its feet, clearly annoyed by being rudely awoken. A massive fist plows through the iron bars, and catches you completely off guard. Catapulted across the room, your head bounces off the wall and you pass out. Darkness.",
+        "modifier": [
+            {
+                "health": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "21-Continue"
+            }
+        ]
+    },
+    {
+        "level": "21-Continue",
+        "text": "You regain consciousness, some time later. The hole created by the fist is directly facing you, the rubble from the wall scattered all around. Why did the creature not eat or kill you? It was clearly powerful enough to do so. As you wonder how something so large could get inside the cave, you gather yourself up from the prison floor. Although you are injured, you must continue. The way is clear. You walk through the hole and enter the next corridor.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "?-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "20-Mushrooms",
+        "text": "You bend down and pick a handful of the pungent mushrooms. As you pop a couple in your mouth and begin to chew, you question the myriad of flavors that are assaulting your mouth. The room melts away. You find yourself stood in the shadow of an impossibly large castle, wreathed in flame. The city is on fire. This is the War of Deceit. You and your friends fought in this battle, fighting for the honor of your King. Many of your friends died during this battle... yet you still can't seem to recall any of their names.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20a-Knight Fight"
+            }
+        ]
+    },
+    {
+        "level": "20a-Knight Fight",
+        "text": "You hear a whistling grow louder, and an arrow flies towards you. Before you can react, the arrow flies past your greatsword and hits you square in the chest, but it bounces harmlessly off your full plate armor. You realize that you are wearing the armor and wielding the weapon that you once owned, when this battle was not just a memory. You're really here, defending the King's honor once more. Another arrow streaks towards you, but you are ready this time. You deflect it easily, and move forward to an enemy knight.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "KNIGHT",
+            "health": 90,
+            "strength": 3,
+            "defense": 3,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "longsword",
+                "dmg": 7
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aa-Knight Second Fight"
+        }
+    },
+    {
+        "level": "20aa-Knight Second Fight",
+        "text": "Victorious, you step towards your next target. You see your fellow soldiers fighting alongside you, doing their best to keep the enemies away from the city gates. You spy an old friend, who dismantles enemy cavalry with his thrusting spear. You try to call out to him, but no sound comes out of your mouth. An enemy pikeman charges towards you before you can call out again.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "PIKEMAN",
+            "health": 90,
+            "strength": 4,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 4,
+            "weapon": {
+                "name": "pike",
+                "dmg": 7
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aaa-Pikeman Victory"
+        }
+    },
+    {
+        "level": "20aaa-Pikeman Victory",
+        "text": "Another enemy of the King lay slain at your feet. 'Take this!' yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. You're floating in darkness for what seems an eternity. You wake up.",
+        "modifier": [
+            {
+                "health": 50
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Home"
+            }
+        ]
+    },
+    {
+        "level": "22-Home",
+        "text": "What greets you is a confusing, but all too familiar sight. Your partner is sleeping in bed next to you, their chest rising and falling steadily with each breath. You stroke the soft skin of their back and wonder. Birds chirp outside, and a light breeze carries the smell of freshly baked bread. All is still. You're home, finally.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Get out of bed",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Wake your partner",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Check on kids",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Go back to sleep",
+                "target": "22a-Nightmares"
+            }
+        ]
+    },
+    {
+        "level": "22a-Nightmares",
+        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. Burning eyes. A skinless face. A mouth contorted in pain. A howling screams erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. You wake up.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22aa-Awoken"
+            }
+        ]
+    },
+    {
+        "level": "22aa-Awoken",
+        "text": "Laying in a pool of your own mushroom smelling vomit, you open your eyes once more. You're back in the prison. Was any of that real? Are these memories your own? Whatever it was, your mind feels the effects. The way ahead of you is now clear. Whatever was blocking it before you took the mushrooms must have cleared a path for you. Shaking your head and attemtping to supress your painful memories, you continue on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "?-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "19a-Tear Down",
+        "text": "The tapestry cascades to the ground, its images, forgotten. All that remains in its place is a small crack, out of which a slight breeze is blowing through. You decide to use the hilt of your weapon to smash it against the crack. Something stirs. You hit it again. There's a snort, followed by a grunt, then the sound of something sitting up. Something big. You decide to step back and ready yourself for whatever is on the other side of this wall. Suddenly the wall disintegrates in an explosion, and you're knocked off your feet. A shrouded figure steps through the hole.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Dark Figure"
             }
         ]
     }
 
+{ "need to finish burn tapestry and peer closer. Peer closer finishes on 19a-Tear Down"
+"next path is goblin merchant, will work up until that path joins with ?-Corridor"}
 ]
 

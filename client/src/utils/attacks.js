@@ -21,11 +21,11 @@ const checkUserWeapon = (weapon) => {
         case "steel dagger":
             weaponDamage = 5;
             break;
-        case "halberd":
-            weaponDamage = 6;
-            break;
         case "steel shortsword":
             weaponDamage = 7;
+            break;
+        case "halberd":
+            weaponDamage = 8;
             break;
         case "black iron sword":
             weaponDamage = 11;

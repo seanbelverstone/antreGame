@@ -1,7 +1,7 @@
 import GIANT_RAT from "./giantRat.png";
 import GOBLIN from "./goblin.svg"
 import SKELETON from "./skeleton.svg";
-import DRAGON from "./dragon.svg";
+import JUVENILE_DRAGON from "./dragon.svg";
 import KNIGHT from "./knight.svg";
 import PIKEMAN from "./pikeman.svg";
 import BLIND_LIZARD from "./lizard.svg";
@@ -14,7 +14,7 @@ export default {
     GIANT_RAT,
     GOBLIN,
     SKELETON,
-    DRAGON,
+    JUVENILE_DRAGON,
     KNIGHT,
     PIKEMAN,
     BLIND_LIZARD,
