@@ -147,7 +147,8 @@ Health potions heal (roll * roll + 15) health.
 - Steel dagger - 4 damage
 - Halberd - 6 damage
 - Steel shortsword - 7 damage
-- Black iron sword - 11 damage
+- Obsidian Axes - 11 damage
+- Black iron longsword - 12 damage
 - Warhammer - 14 damage
 
 ### Armor

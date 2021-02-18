@@ -2296,9 +2296,171 @@
                 "target": "20-Dark Figure"
             }
         ]
-    }
+    },
+    {
+        "level": "19b-Burn Tapestry",
+        "text": "Using the torch, you light the corner of the tapestry on fire. The fire quickly spreads up the images, but too fast. It engulfs the tapestry and catches on the wooden ceiling beams, spreading through the entire room. Before you can react, you are surrounded by flames and begin to burn alive. A figure appears from behind the bars, and its bright saffron eyes are the last things you see before you perish.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "19c-Inspect",
+        "text": "As you look closer at the tapestry, you notice that all of the figures fighting in the battle are... Wait a second. You know this battle. You were there. Memories rush back into your mind as you recall the tapestry's battle, The War of Deceit, in which the King was assassinated by his Royal Lords. You can almost hear the sound of swords clashing on armor. You can hear the screams of your friends, who died for the King's honor. You smell blood. You smell fire. You smell fear.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Tear it down",
+                "target": "19ca-Continue"
+            }
+        ]
+    },
+    {
+        "level": "19ca-Continue",
+        "text": "In a sudden burst of rage, you rip the tapestry from its hangings and retreat, panting and covered in a slick sweat. Some memories are best left lost to time.",
+        "modifier": [
+            {
+                "defense": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "19a-Tear Down"
+            }
+        ]
+    },
+    {
+        "level": "20-Dark Figure",
+        "text": "You get to your feet, brushing rubble off your clothes. A tattered looking goblin steps through the opening, its piercing saffron eyes gazing at you. It has two sheathed daggers on its waist, and seems to whisper something as it stares at you. Something big looms behind it, blocking out your view of the exit.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Cry",
+                "target": "20b-Cry"
+            },
+            {
+                "label": "Ask for help",
+                "target": "20c-Help"
+            },
+            {
+                "label": "Say Nothing",
+                "target": "20d-Nothing"
+            }
+        ]
+    },
+    {
+        "level": "20a-Fight Goblin",
+        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from the it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. 'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "20b-Cry",
+        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. 'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "20c-Help",
+        "text": "You begin to ask the goblin for help, but it holds up a small wrinkled hand in a signal for you to stop. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "20d-Nothing",
+        "text": "'Not a talker eh?' sneers the goblin. 'Perfect. You don't need to say nothin, and please don't ail me with your woes.' Jabbing a thumb towards the huge grey giant behind him, the goblin continues. 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "21-Goblin Merchant",
+        "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. Peering inside, you discover that the goblin actually has some decent items that may help.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leather Helmet - 5 Gold",
+                "value": 5,
+                "target": "21a-Helmet"
+            },
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21b-Health Potion"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21c-Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
 
-{ "need to finish burn tapestry and peer closer. Peer closer finishes on 19a-Tear Down"
-"next path is goblin merchant, will work up until that path joins with ?-Corridor"}
+        ]
+    },
+
+{"next path is goblin merchant": "will work up until that path joins with ?-Corridor"}
 ]
 
