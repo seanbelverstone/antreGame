@@ -196,7 +196,7 @@ Dragon (young)
 - Weapon: Claws (8 damage)
 
 Memory Knight
-- Health: 90,
+- Health: 50,
 - Strength: 3,
 - Defense: 3,
 - Wisdom: 3,
@@ -204,9 +204,9 @@ Memory Knight
 - Weapon: Longsword (7 damage)
 
 Memory Pikeman
-- Health: 90,
+- Health: 50,
 - Strength: 2,
-- Defense: 4,
+- Defense: 2,
 - Wisdom: 2,
 - Luck: 3
 - Weapon: Pike (7 damage)

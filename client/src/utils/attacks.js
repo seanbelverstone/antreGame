@@ -13,27 +13,27 @@ const checkUserWeapon = (weapon) => {
             weaponDamage = 2;
             break;
         case "dagger":
-            weaponDamage = 3;
-            break;
-        case "iron axe":
-            weaponDamage = 4;
-            break;
-        case "steel dagger":
             weaponDamage = 5;
             break;
-        case "steel shortsword":
+        case "iron axe":
             weaponDamage = 7;
             break;
-        case "halberd":
+        case "steel dagger":
             weaponDamage = 8;
             break;
-        case "black iron longsword":
+        case "steel shortsword":
+            weaponDamage = 10;
+            break;
+        case "halberd":
             weaponDamage = 12;
             break;
-        case "obsidian axes":
-            weaponDamage = 12;
-        case "warhammer":
+        case "black iron longsword":
             weaponDamage = 14;
+            break;
+        case "obsidian axes":
+            weaponDamage = 16;
+        case "warhammer":
+            weaponDamage = 18;
     }
 };
 
