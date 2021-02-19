@@ -2152,7 +2152,7 @@
         ],
         "enemy": {
             "name": "KNIGHT",
-            "health": 90,
+            "health": 50,
             "strength": 3,
             "defense": 3,
             "wisdom": 3,
@@ -2194,7 +2194,7 @@
         ],
         "enemy": {
             "name": "PIKEMAN",
-            "health": 90,
+            "health": 50,
             "strength": 4,
             "defense": 1,
             "wisdom": 1,
