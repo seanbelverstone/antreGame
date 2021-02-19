@@ -10,7 +10,7 @@ const checkUserWeapon = (weapon) => {
             weaponDamage = 1;
             break;
         case "rusty shortsword":
-            weaponDamage = 2;
+            weaponDamage = 3;
             break;
         case "dagger":
             weaponDamage = 5;
@@ -51,11 +51,10 @@ const luckCheck = (luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth) =>
 
     if (myRoll + luck >= enemyRoll + enemyLuck) {
         console.log(`Your special attack lands, and does ${finalDamage}!`)
+        setEnemyHealth(enemyHealth - finalDamage)
     } else {
         console.log("You miss")
     }
-
-    setEnemyHealth(enemyHealth - finalDamage)
 
 };
 
@@ -94,8 +93,26 @@ export default {
         luckCheck(luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth);  
     },
 
-    useHealthPotion: () => {
-        console.log(`You drink a health potion, restoring ${diceRoll() * diceRoll() + 15} health.`)
+    useHealthPotion: (potionCount, setPotionCount, userHealth, setUserHealth, maxHealth) => {
+        const initalRoll = diceRoll();
+        const secondRoll = diceRoll();
+
+        // checks that the user has potions. If they don't, return a message
+        if (potionCount > 0) {
+            // perfect roll (6 x 6) + 15 = 51 health increased
+            let healthIncrease = (initalRoll * secondRoll) + 15
+            // if the total health after the increase is more than max, just set it to max
+            if ((userHealth + healthIncrease) > maxHealth) {
+                setUserHealth(maxHealth)
+            } else {
+                setUserHealth(userHealth + healthIncrease)
+            }
+            setPotionCount(potionCount--)
+            console.log(`You drink a health potion, restoring ${initalRoll * secondRoll + 15} health.`)
+        } else {
+            console.log("You're out of potions!")
+        }
+        
     },
 
     useSkill: (charClass) => {

@@ -69,6 +69,7 @@ const DecisionBlock = () => {
     })
 
     const handleStats = (c) => {
+        setCurrentUserHealth(c.health)
         setStrength(c.strength);
         setDefense(c.defense);
         setWisdom(c.wisdom);
@@ -267,10 +268,8 @@ const DecisionBlock = () => {
     }
 
     const enemyTurn = () => {
-        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
+        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentUserHealth, setCurrentUserHealth)
         // enable buttons after attack
-        console.log(currentUserHealth)
-        // setCurrentUserHealth(currentUserHealth)
         setButtonDisabled(false);
     }
 
@@ -293,7 +292,7 @@ const DecisionBlock = () => {
                 attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Use health potion":
-                attacks.useHealthPotion();
+                attacks.useHealthPotion(healthPotions, setHealthPotions, currentUserHealth, setCurrentUserHealth, maxHealth);
                 break;
             case "Use skill":
                 attacks.useSkill(currentCharacter.charClass);
@@ -301,8 +300,15 @@ const DecisionBlock = () => {
             default: return;
         }
 
+        setTimeout(() => {
+            saveGame();
+        }, 1000)
+        
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-            enemyTurn();
+            setTimeout(function() {
+
+                enemyTurn();
+            }, 3000)
         }
     }
 
