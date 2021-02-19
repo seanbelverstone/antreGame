@@ -101,8 +101,9 @@ export default {
         if (potionCount > 0) {
             // perfect roll (6 x 6) + 15 = 51 health increased
             let healthIncrease = (initalRoll * secondRoll) + 15
+            let newHealth = userHealth + healthIncrease
             // if the total health after the increase is more than max, just set it to max
-            if ((userHealth + healthIncrease) > maxHealth) {
+            if (newHealth > maxHealth) {
                 setUserHealth(maxHealth)
             } else {
                 setUserHealth(userHealth + healthIncrease)

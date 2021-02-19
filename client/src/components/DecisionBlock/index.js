@@ -225,8 +225,9 @@ const DecisionBlock = () => {
                     ]);
                 }
             })
-            saveGame();
         } 
+        updateCharacter();
+
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -247,25 +248,24 @@ const DecisionBlock = () => {
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
             setCurrentEnemyHealth(currentEnemy.health);
-            decideTurn();
         }
         return;
     }
 
-    const decideTurn = () => {
-        // Begin each battle with a dice roll, to see who goes first.
-        // if the enemy goes first, disable all the buttons
-        let diceRoll = (Math.floor(Math.random() * 6) + 1);
-        if (diceRoll >= 1 || diceRoll <= 3) {
-            console.log("Your turn")
-            setButtonDisabled(false);
-        } else {
-            console.log("Enemy turn")
-            setButtonDisabled(true);
-            enemyTurn();
-        }
+    // const decideTurn = () => {
+    //     // Begin each battle with a dice roll, to see who goes first.
+    //     // if the enemy goes first, disable all the buttons
+    //     let diceRoll = (Math.floor(Math.random() * 6) + 1);
+    //     if (diceRoll >= 1 || diceRoll <= 3) {
+    //         console.log("Your turn")
+    //         setButtonDisabled(false);
+    //     } else {
+    //         console.log("Enemy turn")
+    //         setButtonDisabled(true);
+    //         enemyTurn();
+    //     }
         
-    }
+    // }
 
     const enemyTurn = () => {
         attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentUserHealth, setCurrentUserHealth)
@@ -301,15 +301,17 @@ const DecisionBlock = () => {
         }
 
         setTimeout(() => {
-            saveGame();
-        }, 1000)
-        
-        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-            setTimeout(function() {
 
-                enemyTurn();
-            }, 3000)
-        }
+        }, 1000)
+
+        // updateCharacter();
+        
+        // if (currentEnemyHealth > 0 && currentUserHealth > 0) {
+        //     setTimeout(function() {
+
+        //         enemyTurn();
+        //     }, 3000)
+        // }
     }
 
     const setHealthWidth = () => {
@@ -357,12 +359,12 @@ const DecisionBlock = () => {
             setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
-            // After fights are complete, save game
-            saveGame();
+            // After fights are complete, update the character in sessionStorage
+            updateCharacter();
         }, 2000)
     }
 
-    const saveGame = () => {
+    const updateCharacter = () => {
         // Update sessionStorage
         window.sessionStorage.setItem("currentCharacter", JSON.stringify({
             "id": currentCharacter.id,
@@ -387,6 +389,10 @@ const DecisionBlock = () => {
             "level": currentLevel,
             "time": time
         }))
+    }
+
+    const saveGame = () => {
+        updateCharacter();
         API.updateCharacter(
             currentUserHealth,
             strength,
