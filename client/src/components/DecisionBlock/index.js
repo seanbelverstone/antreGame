@@ -109,7 +109,7 @@ const DecisionBlock = () => {
     const handleText = (choice) => {
         // loops through the storylines array, and matches the character's level with the corresponding object
         for(let i = 0; i < storylines.length; i++) {
-            
+
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
                 console.log(storylines[i].modifier)
@@ -146,7 +146,7 @@ const DecisionBlock = () => {
             // Otherwise, show the option page
             return options.map(option => {
                 return(
-                    <div className={`options ${optionFade}`} key={option.target}>
+                    <div className={`options ${optionFade}`} key={option.label}>
                         <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
@@ -181,6 +181,12 @@ const DecisionBlock = () => {
                 // tried to use a switch case but that didnt work for some reason
                 if (mod.weapon) {
                     setWeapon(mod.weapon.name)
+                } else if (mod.health) {
+                    if (currentUserHealth + mod.health > maxHealth) {
+                        setCurrentUserHealth(maxHealth)
+                    } else {
+                        setCurrentUserHealth(currentUserHealth + mod.health)
+                    }
                 } else if (mod.strength) {
                     setStrength(strength + mod.strength)
                 } else if (mod.defense) {
@@ -203,24 +209,39 @@ const DecisionBlock = () => {
                     setTorch(mod.torch)
                 } else if (mod.amulet) {
                     setAmulet(mod.amulet)
-                } else if (mod.healthPotions) {
-                    setHealthPotions(healthPotions + mod.healthPotions)
+                } else if (mod.healthPotion) {
+                    setHealthPotions(healthPotions + mod.healthPotion)
                 } else if (mod.gold) {
                     setGold(gold + mod.gold)
+                } else if (mod.luckCheck) {
+                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.luckCheck.event);
+                    console.log(checkingLuck[0]);
+                    setOptions([
+                        {
+                        "label": checkingLuck[0].label,
+                        "target": checkingLuck[0].target
+                        }
+                    ]);
                 }
             })
-        } else {
-            return;
-        }
+            saveGame();
+        } 
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
 
     // For some reason this is running after an enemy has been killed... not sure how to fix that
     const displayEnemy = () => {
-        if (modifier[0] != undefined && modifier[0].fight) {
+        if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
-            setEnemyImage(enemies[currentEnemy.name])
+            // have to replace all spaces with underscores, in order to successfully grab the correct image
+            if (!enemies[currentEnemy.name]) {
+                return;
+            } else {
+                let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+                console.log(enemyName)
+                setEnemyImage(enemyName)
+            }
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
@@ -248,6 +269,8 @@ const DecisionBlock = () => {
     const enemyTurn = () => {
         attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
         // enable buttons after attack
+        console.log(currentUserHealth)
+        // setCurrentUserHealth(currentUserHealth)
         setButtonDisabled(false);
     }
 
@@ -334,6 +357,30 @@ const DecisionBlock = () => {
     }
 
     const saveGame = () => {
+        // Update sessionStorage
+        window.sessionStorage.setItem("currentCharacter", JSON.stringify({
+            "id": currentCharacter.id,
+            "name": currentCharacter.name,
+            "race": currentCharacter.race,
+            "charClass": currentCharacter.charClass,
+            "health": currentUserHealth,
+            "strength": strength,
+            "defense": defense,
+            "wisdom": wisdom,
+            "luck": luck,
+            "weapon": weapon,
+            "head": head,
+            "chest": chest,
+            "legs": legs,
+            "hands": hands,
+            "feet": feet,
+            "torch": torch,
+            "amulet": amulet,
+            "healthPotions": healthPotions,
+            "gold": gold,
+            "level": currentLevel,
+            "time": time
+        }))
         API.updateCharacter(
             currentUserHealth,
             strength,
@@ -387,7 +434,7 @@ const DecisionBlock = () => {
                     <div id="enemyBar" style={{width: enemyHealthWidth}}></div>
                 </div>
 
-                <img src={enemyImage} />
+                <img src={enemyImage} id="enemyImage"/>
                 
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
@@ -405,6 +452,7 @@ const DecisionBlock = () => {
                     id="inventory"
                     disabled={buttonDisabled}
                     health={currentUserHealth}
+                    maxHealth={maxHealth}
                     strength={strength}
                     defense={defense}
                     wisdom={wisdom}

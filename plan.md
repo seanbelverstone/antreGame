@@ -147,7 +147,8 @@ Health potions heal (roll * roll + 15) health.
 - Steel dagger - 4 damage
 - Halberd - 6 damage
 - Steel shortsword - 7 damage
-- Black iron sword - 11 damage
+- Obsidian Axes - 11 damage
+- Black iron longsword - 12 damage
 - Warhammer - 14 damage
 
 ### Armor
@@ -195,7 +196,7 @@ Dragon (young)
 - Weapon: Claws (8 damage)
 
 Memory Knight
-- Health: 90,
+- Health: 50,
 - Strength: 3,
 - Defense: 3,
 - Wisdom: 3,
@@ -203,9 +204,9 @@ Memory Knight
 - Weapon: Longsword (7 damage)
 
 Memory Pikeman
-- Health: 90,
+- Health: 50,
 - Strength: 2,
-- Defense: 4,
+- Defense: 2,
 - Wisdom: 2,
 - Luck: 3
 - Weapon: Pike (7 damage)

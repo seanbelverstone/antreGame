@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Inventory(
     {health,
+    maxHealth,
     strength,
     defense,
     wisdom,
@@ -124,7 +125,7 @@ export default function Inventory(
                 </section>
                 <section className="section2">
                     <h2 id="statsTitle">Stats</h2>
-                    <div id="health">HP: {health}</div>
+                    <div id="health">HP: {health}/{maxHealth}</div>
                     <div id="strength">Strength: {strength}</div>
                     <div id="defense">Defense: {defense}</div>
                     <div id="wisdom">Wisdom: {wisdom}</div>

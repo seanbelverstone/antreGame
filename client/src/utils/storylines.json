@@ -130,13 +130,32 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "01-Start"
+                "target": "01-Start Bargain Variant"
+            }
+        ]
+    },
+    {
+        "level": "01-Start Bargain Variant",
+        "text": "After the goblins leave, you reevaluate your choices. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "01a-Cry"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "01c-Torch"
             }
         ]
     },
     {
         "level": "01bd-Goblin Battle",
-        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself. The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
+        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. 'This one looks feisty!', the uglier one cackles. The goblin murmors something to its partner, who runs off down the tunnel from which they entered. 'Don't worry sunshine, I'll deal with you myself.' The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
         "modifier": [
             {
                 "fight": 1
@@ -182,7 +201,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "Dagger",
+                    "name": "dagger",
                     "dmg": 3
                 }
             },
@@ -193,7 +212,26 @@
         "options": [
             {
                 "label": "Return to the task at hand",
-                "target": "01-Start"
+                "target": "01-Start Victory Variant"
+            }
+        ]
+    },
+    {
+        "level": "01-Start Victory Variant",
+        "text": "Giving the dead goblin one last kick to make sure he's dead, and decide to move on. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet. The other goblin that ran away is nowhere to be seen.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "01a-Cry"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "01c-Torch"
             }
         ]
     },
@@ -228,7 +266,7 @@
             "wisdom": 1,
             "luck": 1,
             "weapon": {
-                "name": "dagger",
+                "name": "iron axe",
                 "dmg": 4
             }
         },
@@ -246,13 +284,13 @@
                 "label": "Use skill"
             }
         ],
-            "victory": {
-                "target": "02aaa-Skeleton Victory"
-            }
-        },
+        "victory": {
+            "target": "02aaa-Skeleton Victory"
+        }
+    },
     {
         "level": "02aaa-Skeleton Victory",
-        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties and leave the room.",
+        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties, and leave the room.",
         "modifier": [
             {
                 "weapon": {
@@ -267,9 +305,2727 @@
         "options": [
             {
                 "label": "Return to the room",
-                "target": "02-Tunnel"
+                "target": "02-Tunnel Victory Variant"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Victory Variant",
+        "text": "Closing the door behind you, you return to the small room. The remains of the fire and the adventurer that lies decomposing beside it are now in front of you. There is also a path to your left that continues north.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+    {
+        "level": "03-Three Paths",
+        "text": "Leaving the small room behind, you follow the path to the north. After a short walk, your path meets a crossroads. The road is split in three ways: The path to the west is dark, the one to the east smells like ash, and the path ahead to the north is a single door.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Go Back",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Go West",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Go North",
+                "target": "13-Single Door"
+            },
+            {
+                "label": "Go East",
+                "target": "14-Ash Path"
+            }
+        ]
+    },
+    {
+        "level": "02b-Relight Fire",
+        "text": "You bend down to relight the fire with your torch. It is illuminated now, and you sit beside the dead adventurer to rest awhile. You end up talking out some of your problems with him, and feel healthier.",
+        "modifier": [
+            {
+                "health": 10
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "02-Tunnel Fire Variant"
+            }
+        ]
+    },
+    {
+        "level": "02c-Dead Adventurer",
+        "text": "Deciding to see if the adventurer had any good items, you rifle through his belongings. He doesn't seem to have much and his food has long since rotten away, but you do find a health potion and add it to your inventory.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Return to the task at hand",
+                "target": "02-Tunnel Adventurer Variant"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Fire Variant",
+        "text": "Feeling somewhat refreshed, you return to your decision.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Adventurer Variant",
+        "text": "You stand up from the adventurer, leaving them looking slightly more disheveled than before. The same options remain.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            }
+        ]
+    },
+    {
+        "level": "02-Tunnel Return Variant",
+        "text": "Feeling undecisive, you return to the small room with the dead adventurer.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open door",
+                "target": "02a-Locked"
+            },
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
+            }
+        ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "04-Dark Path",
+        "text": "You opt for the darker path to the North. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Torch Obtained",
+                "target": "04a-Torch Obtained"
+            },
+            {
+                "label": "No Torch",
+                "target": "04b-No Torch"
+            }
+        ]
+    },
+    {
+        "level": "04a-Torch Obtained",
+        "text": "Raising the torch above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that of some of the cobbled stone floor is raised in parts. From a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. You make it through the traps unscathed, but unfortunately your torch uses all of its fuel and splutters out of life.",
+        "modifier": [
+            {
+                "torch": 0
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "04b-No Torch",
+        "text": "Blindly continuing through the pitch black corridor, you step on something and hear a click, followed by a whoosh. You scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. Who knows how many more traps there are?",
+        "modifier": [
+            {
+                "health": -10
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "04ba-Continue"
+            },
+            {
+                "label": "Go Back",
+                "target": "03-Three Paths Dark Variant"
+            }
+        ]
+    },
+    {
+        "level": "03-Three Paths Dark Variant",
+        "text": "Leaving the dark way and part of your pride behind you, you return to the crossroads. The road is split in three ways: The path to the west behind you is dark, the one to the east smells like ash, and the path ahead to the north is a single door. Or you could return to the small room before.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Small Room",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Go West",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Go North",
+                "target": "?-Single Door"
+            },
+            {
+                "label": "Go East",
+                "target": "?-Ash Path"
+            }
+        ]
+    },
+    {
+        "level": "04ba-Continue",
+        "text": "By either incredible courage or plain stupidity, you decide to continue down the dark, trap-ridden path.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "04baa-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "04baa-Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "none"
+            }
+        ]
+    },
+    {
+      "level": "04bab-Death",
+      "text": "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end.",
+      "modifier": [
+          {
+              "death": 1
+          }
+      ]
+    },
+    {
+        "level": "04bac-Bad Luck",
+        "text": "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.",
+        "modifier": [
+            {
+                "health": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "04bad-Best Luck",
+        "text": "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.",
+        "modifier": [
+            {
+                "strength": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05-Sleeping Goblins"
+            }
+        ]
+    },
+    {
+        "level": "05-Sleeping Goblins",
+        "text": "Reaching the end of the trap-filled hallway, you reach the corner where the light was eminating from. Slowly easing your head around the corner to see the source from the light, you see a couple of goblins sleeping by the remains of a fire. The fire looks like it has only been out for a short while. The only noise you can hear is a quiet snuffling, although you're unsure to where it's coming from.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Approach Goblins",
+                "target": "05a-Approach Goblins"
+            },
+            {
+                "label": "Attack Goblins",
+                "target": "05a-Attack Goblins"
+            },
+            {
+                "label": "Call Out",
+                "target": "05b-Call Out"
+            },
+            {
+                "label": "Throw a rock",
+                "target": "05c-Throw Rock"
+            }
+        ]
+    },
+    {
+        "level": "05a-Approach Goblins",
+        "text": "As begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05baa-Lizard Fight"
+            }
+        ]
+    }, 
+    {
+        "level": "05a-Attack Goblins",
+        "text": "As you begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05baa-Lizard Fight"
+            }
+        ]
+    }, 
+    {
+        "level": "05b-Call Out",
+        "text": "You call out to the goblins, hoping that maybe they'll not immediately resort to violence, and perhaps you could come to some kind of agreement. As soon as you call out, there's a loud screech and a thud from directly in front of you.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05ba-Lizard Continue"
+            }
+        ]
+    },
+    {
+        "level": "05c-Throw Rock",
+        "text": "Finding a rock by your feet, you cast it towards the goblins. It's a good throw, and it cracks one of them in the back of the head. The rock loudly clatters to the ground. Either these goblins are heavy sleepers, or more likely, they've been dead for a while. No-one could sleep off a hit like tha- You're broken off mid-thought as you hear a loud screech, followed by a thud.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "05ba-Lizard Continue"
+            }
+        ]
+    },
+    {
+        "level": "05ba-Lizard Continue",
+        "text": "A giant cave lizard leaps into view, attracted by all the noise you created. Illuminated by the remains of the fire, you can see its monstrous claws and sharp fangs which must have easily torn apart those poor goblins. You also notice that this particular lizard seems to be blind, its milky-white eyes frantically moving from side to side, searching restlessly for the source of the noise. Its loud sniffing resumes, in an attempt to track your scent.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Attack Lizard",
+                "target": "05baa-Lizard Fight"
+            },
+            {
+                "label": "Keep Hiding",
+                "target": "05bab-Lizard Death"
+            }
+        ]
+    },
+    {
+        "level": "05baa-Lizard Fight",
+        "text": "Wheeling around, you see a giant cave lizard now blocking the way you came in. Its big claws and sharp fangs are menacing enough, although its milky-white eyes let you know that this creature has been down here for so long that it has been rendered blind. It looks like it now relies on smell and sound to find its prey, which explains the snuffling sound. These goblins never knew what was coming. Smelling your tasty skin, it lunges to attack you.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "BLIND LIZARD",
+            "health": 90,
+            "strength": 4,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "teeth",
+                "dmg": 8
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
+            },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
+        "victory": {
+            "target": "06-Lizard Victory"
+        }
+    },
+    {
+        "level": "05bab-Lizard Death",
+        "text": "You quickly whip your body around the corner, in an attempt to hide from the lizard, but you have no such luck. It easily tracks you down by your scent and speeds round the corner, pouncing on you and clamping its jaws on your throat. Knocking you down, the giant lizard bites down with crushing jaws. The last thing you hear before you die is your own gurgling screams.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "06-Lizard Victory",
+        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Relight fire",
+                "target": "06a-Relight Fire"
+            },
+            {
+                "label": "Continue down corridor",
+                "target": "06b-Corridor"
+            },
+            {
+                "label": "Long Room Search",
+                "target": "06c-Long Search"
+            },
+            {
+                "label": "Quick room search",
+                "target": "06d-Quick Search"
+            }
+
+        ]
+    },
+    {
+        "level": "06a-Relight Fire",
+        "text": "You hunch over the fire, and look for something to relight it. You notice that the goblins were using flint and steel, so you snatch them up and strike them. The sound generated from the flint and steel is loud enough to attract another giant lizard, and also to mask its arrival. As you keep striking the flint and steel together, finally you get a spark and it ignites some small kindling in front of you. You look up. A drooling reptillian lower jaw is illuminated by your meagre fire. It licks its lips, and the drool from its mouth cascades down onto your kindling, extinguishing it. The light goes out.",
+        "modifier": [
+            {
+                "death": 0
+            }
+        ]
+    },
+    {
+        "level": "06b-Corridor",
+        "text": "You continue to walk down the well lit corridor, hoping that any more of those vile lizards will be disuaded by the light. You press on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "07-Mahogany Door"
+            }
+        ]
+    },
+    {
+        "level": "06c-Long Search",
+        "text": "Although the light is fading fast, you decide to take your time looting the room. You uncover a number of great items, however, before long you hear another screech, followed by a thump. Another lizard has arrived.",
+        "modifier": [
+            {
+                "fight": 1
+            },
+            {
+                "weapon": {
+                    "name": "Steel shortsword",
+                    "dmg": 7
+                }
+            },
+            {
+                "chest": "Leather armor"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": 20
+            }
+        ],
+        "enemy": {
+            "name": "BLIND LIZARD",
+            "health": 90,
+            "strength": 4,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "teeth",
+                "dmg": 8
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
+            },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
+        "victory": {
+            "target": "06ca-Second Lizard Victory"
+        }
+    },
+    {
+        "level": "06d-Quick Search",
+        "text": "You do a quick scour of the room and manage to find a few gold pieces, and one of the weapons that lay close to the goblins. Making sure not to stay for too long in the room, you dart out and continue down the well lit hallway.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Steel shortsword",
+                    "dmg": "7"
+                }
+            },
+            {
+                "gold": 3
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "06b-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "06ca-Second Lizard Victory",
+        "text": "Gasping for air, you strike another lizard down. Keen not to fight another one, you quickly gather your loot and continue down the well lit hallway.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "07-Mahogany Door"
+            }
+        ]
+    },
+    {
+        "level": "07-Mahogany Door",
+        "text": "After journeying down the corridor for some time, you reach a door. It's a heavy mahogany door, much taller than you are and it has a variety of engravings all over it. The doorhandle is shaped like a bony green fist. You can almost hear a distant rumble, that is gradually getting louder.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Knock",
+                "target": "07a-Knock"
+            },
+            {
+                "label": "Open Door",
+                "target": "08-Gobin Merchant"
+            }
+        ]
+    },
+    {
+        "level": "07a-Knock",
+        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped doorhandle, you wait for a response. None comes. Perhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Open Door",
+                "target": "08-Gobin Merchant"
+            }
+        ]
+    },
+    {
+        "level": "08-Gobin Merchant",
+        "text": "Turning the doorhandle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sat at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. 'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' The rumbling grows steadily louder.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "08a-Axes"
+            },
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "08b-Greaves"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "08c-Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08a-Axes",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "08aa-Axe and Greaves"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "08ab-Axe and Helmet"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08ac-Axe and HP"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Continue"
+            }
+
+        ]
+    },
+    {
+        "level": "08b-Greaves",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "08ba-Greaves and Axe"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "08bb-Greaves and Helmet"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08bc-Greaves and HP"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08c-Helmet",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "08ba-Helmet and Greaves"
+            },
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "08aa-Helmet and Axe"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "08bc-Helmet and HP"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08aa-Axe and Greaves",
+        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ab-Axe and Helmet",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ac-Axe and HP",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ba-Greaves and Axe",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bb-Greaves and Helmet",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "head": "Black Iron Helmet"
+            },
+            {
+                "defense": 4
+            },
+            {
+                "strength": 4
+            },
+            {
+                "gold": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bc-Greaves and HP",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Black Iron Helmet - 20 Gold",
+                "value": 20,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08ba-Helmet and Greaves",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "hands": "Plate Greaves"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -6
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08aa-Helmet and Axe",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Obsidian Axes",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -11
+            }
+        ],
+        "options": [
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Health Potion - 2 Gold",
+                "value": 2,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08bc-Helmet and HP",
+        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Obsidian Axes - 11 Gold",
+                "value": 11,
+                "target": "09-Time"
+            },
+            {
+                "label": "Plate Greaves - 6 Gold",
+                "value": 6,
+                "target": "09-Time"
+            },
+            {
+                "label": "Nothing",
+                "target": "08d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "08d-Nothing",
+        "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. The goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. The entire room is now shaking and glass vials and old tomes cascade to the ground.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave",
+                "target": "09-Time"
+            }
+        ]
+    },
+    {
+        "level": "09-Time",
+        "text": "Suddenly, the entire room gets torn away from its foundations. You are thrown to left wall, and pinned there momentarily as you realise that the room is now moving at an incredibly fast pace. The wall opposite you starts to break apart, unable to remain intact due to this unnatural force being exerted upon it, and as the bricks break apart, and narrowly miss your face -- you see it. You are inside the mouth of a colossal worm. You see its ring of massive jagged teeth biting down on the walls and ceiling of the room you're in, and as it burrows through the ground at an incredible rate you realize that it's both picked you up on its journey underground, and it's now very pissed off. By looking at the size of its mouth, you judge that the worm must be at least 400 feet long, and you wonder how you could be this unforutnate. As your body gets acclimatized to the force that's pinning you to the wall, you manage to push yourself up and into a hunched over position. Standing inside a slowly deteriorating room, in the mouth of a colossal worm, you rapidly begin formulating a plan.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Give up",
+                "target": "09a-Give Up"
+            },
+            {
+                "label": "Call out",
+                "target": "09b-Call Out"
+            },
+            {
+                "label": "Climb out",
+                "target": "09c-Climb"
+            },
+            {
+                "label": "Attack",
+                "target": "09d-Attack"
+            }
+
+        ]
+    },
+    {
+        "level": "09a-Give Up",
+        "text": "Realizing that there's probably no way out of this insane situation, you close your eyes and accept your fate. You think of a spring meadow, filled with new flowers and joyful bees. The air is cool, and you feel utterly at peace. As the wall behind you crumbles away, you fall into the gullet of the colossal worm. Although your body will soon be consumed by the beast, you manage one last smile before the end.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "09b-Call Out",
+        "text": "Muted by the noise generated from the worm's burrowing, calling out has no effect. The walls continue to crumble.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Give up",
+                "target": "09a-Give Up"
+            },
+            {
+                "label": "Climb out",
+                "target": "09c-Climb"
+            },
+            {
+                "label": "Attack",
+                "target": "09cab-Worm Success"
+            }
+
+        ]
+    },
+    {
+        "level": "09c-Climb",
+        "text": "Half walking, half crawling, you make your way across the collapsing room and climb towards the tooth filled opening. As you place a hand between the huge teeth, you feel a shiver run through the gums of the worm. Agitated, it shakes its head violently, causing you to be thrown back to the room's back wall. The stones behind you give way and for a moment, you are freefalling. With the creature's dark gullet behind you, you desperately reach for your weapon.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "09ca-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "09ca-Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 2
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "none"
+            }
+        ]
+    },
+    {
+        "level": "09caa-Worm Death",
+        "text": "You reach for your weapon, but your fingers slip past it. You continue fumbling in a panic, but it is too late. You fall back into the gullet of the colossal worm, screaming. Its intense stomach acid dissolves your armor first, then the rest of you follows along with it.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "09cab-Worm Success",
+        "text": "You manage to grasp your weapon and plunge it into the creature's flesh. You hear a deafening roar, and everything around you convulses. The beast stops digging, and you feel its throat tense up and the sound of liquid rushing towards you. You are vomited out of the creature's mouth.",
+        "modifier": [
+            {
+                "health": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "10-Worm Fight"
+            }
+
+        ]
+    },
+    {
+        "level": "10-Worm Fight",
+        "text": "Coughing, spluttering, and burning from the colossal worm's intense stomach acid, you stand up. You are in an vast chasm, created by the creature that looms in front of you. Most of it is obscured by the darkness, although ceiling is so high up that some sunlight breaks through, illuminating its face. An eyeless monstrosity faces you, with a massive circular mouth. The teeth were so sharp and strong, that it must have burrowed for miles. Holding your weapon at the ready, you stand and face this impossibly large beast, trying not to think about your chances of survival.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "COLOSSAL WORM",
+            "health": 180,
+            "strength": 8,
+            "defense": 5,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "teeth",
+                "dmg": 14
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack"
+            },
+            {
+                "label": "Special Attack"
+            },
+            {
+                "label": "Use health potion"
+            },
+            {
+                "label": "Use skill"
+            }
+        ],
+        "victory": {
+            "target": "11-Worm Victory"
+        }
+    },
+    {
+        "level": "11-Worm Victory",
+        "text": "After skillfully dodging many of the colossal worm's attacks, and landing some incredible blows to its face and body, the beast shrieks in horror at its inevitable demise. In a last ditch attempt to get away from its assailant, it writhes towards the ceiling, towards the light. Smashing through the ceiling and bathing the area in light, the worm reaches the top and stops comes to a complete stop. It's done. The worm is dead.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "12-Worm End"
+            }
+
+        ]
+    },
+    {
+        "level": "12-Worm End",
+        "text": "Wounded and exhausted, you realize that in its defeat, the worm has created a way out of this hellhole. Using your weapon as an grapple of sorts, you hoist yourself up the creature's back. You climb up and up, until you reach the top and collapse from exhaustion. The fresh air washes over you, dousing you in newly found freedom. The grass around you breathes and sighs with each gust of wind, and the sun caresses your face like an old partner. Grinning from ear to ear, you ease into the best sleep you've had since you can remember.",
+        "modifier": [
+            {
+                "end": 1
+            }
+        ]
+    },
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "13-Single Door",
+        "text": "Continuing your journey north, you open the single door. Inside, you see a square room with 4 identical wooden doors on the far side. The room is quite empty, apart from a metal sundial in the center of the room which is facing straight at you, to the south. You wonder why someone would have a sundial this far underground.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13a-Wrong room",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13aa-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13aa-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13aa-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13aa-Wrong room",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one again?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13b-Correct room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13b-Correct room",
+        "text": "You select a door, and enter it. This room seems to be slightly different from the last one. There are the same number of doors, however, the sundial now points to the west.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13bb-Correct room"
+            }
+
+        ]
+    },
+    {
+        "level": "13bb-Correct room",
+        "text": "You select a door, and enter it. Now you're making some progress! Excitedly you notice that the sundial is pointing to the north. Hoping this is the last one, begin to decide which door to choose.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Door 1",
+                "target": "13bba-Success"
+            },
+            {
+                "label": "Door 2",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 3",
+                "target": "13a-Wrong room"
+            },
+            {
+                "label": "Door 4",
+                "target": "13a-Wrong room"
+            }
+
+        ]
+    },
+    {
+        "level": "13bba-Success",
+        "text": "After the last door is opened, finally you're in a room that is completely unlike the last ones. It appears to be some kind of prison, although it has been a long time since it has had any occupants. At least you made it out of those enchanted rooms in one piece.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "18-Prison"
+            }
+        ]
+    },
+    {
+        "level": "14-Ash Path",
+        "text": "Deciding to take the path that smells like ash, you head east. The stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so plesant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. You pick it up and put it on, hopefully it will bring you more protection that it did for them...",
+        "modifier": [
+            {
+                "chest": "chainmail"
+            },
+            {
+                "defense": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "15-Dragon Fight"
+            }
+        ]
+    },
+    {
+        "level": "15-Dragon Fight",
+        "text": "During your journey down this path, you notice a pulsating light eminating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. A juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. You ready for attack.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "JUVENILE DRAGON",
+            "health": 70,
+            "strength": 3,
+            "defense": 3,
+            "wisdom": 4,
+            "luck": 2,
+            "weapon": {
+                "name": "claws",
+                "dmg": 8
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "15a-Dragon Victory"
+        }
+    },
+    {
+        "level": "15-Dragon Victory",
+        "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding some kind of relic. You add it to your inventory for safe-keeping and you feel slightly luckier after that encounter.",
+        "modifier": [
+            {
+                "amulet": 1
+            },
+            {
+                "luck": 2
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "16-Dragon Room"
+            }
+        ]
+    },
+    {
+        "level": "16-Dragon Room",
+        "text": "After collecting the relic and inspecting the room, you notice a crawlspace in the back of the room. Maybe the dragon was using this to get around? The tunnel you entered through is still collapsed, and it seems like this might be the only way out.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Dig tunnel",
+                "target": "16a-Dig"
+            },
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Make fire",
+                "target": "16c-Make Fire"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16a-Dig",
+        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. You manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
+        "modifier": [
+            {
+                "health": -15
+            },
+            {
+                "strength": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Make fire",
+                "target": "16c-Make Fire"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16b-Crawlspace",
+        "text": "You squeeze your way into the crawlspace. It's just as warm as the room you left, and you see many shredded scales stuck to the edges of the stone. As you make your way through, you notice a few small alcoves filled with coins that the dragon must have been hiding. You pocket them and emerge on the other side.",
+        "modifier": [
+            {
+                "gold": 10
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "17-Chests"
+            }
+        ]
+    },
+    {
+        "level": "16c-Make Fire",
+        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of your torch. Your fire burns bright and makes the room smell pleasant, as there were some herbs hidden in the book leaves. You feel fully reinvigorated.",
+        "modifier": [
+            {
+                "health": 50
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into crawlspace",
+                "target": "16b-Crawlspace"
+            },
+            {
+                "label": "Dig tunnel",
+                "target": "16a-Dig"
+            },
+            {
+                "label": "Rest",
+                "target": "16d-Rest"
+            }
+        ]
+    },
+    {
+        "level": "16d-Rest",
+        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. You never wake up.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "17-Chests",
+        "text": "You emerge from the crawlspace, slightly dustier than you already were. You discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17a-Gilded Chest",
+        "text": "Cracking the gilded chest open with a nearby rock, the only item inside is a fairly nondescript leather bound book. Curious, you start to leaf through it and words rush onto its pages that don't seem to make any sense.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Keep reading",
+                "target": "17aa-Gilded Continue"
+            },
+            {
+                "label": "Put down the book",
+                "target": "17ab-Chests Variant"
+            }
+        ]
+    },
+    {
+        "level": "17aa-Gilded Continue",
+        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. The words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Keep reading",
+                "target": "17aaa-Gilded Continue"
+            },
+            {
+                "label": "Put down the book",
+                "target": "17ab-Chests Variant"
+            }
+        ]
+    },
+    {
+        "level": "17aaa-Gilded Continue",
+        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. You take a few minutes to recover from the experience, and place the book back down in the chest.",
+        "modifier": [
+            {
+                "wisdom": 4
+            },
+            {
+                "health": -10
+            },
+            {
+                "strength": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "17aaaa-Gilded Variant"
+            }
+        ]
+    },
+    {
+        "level": "17ab-Chests Variant",
+        "text": "Figuring that this book may be more trouble than it's worth, you drop it back into the gilded chest and slam it shut.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17aaaa-Gilded Variant",
+        "text": "You return to the present moment and consider whether to open any more chests, or to leave through the iron door.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "17b-Skull Chest",
+        "text": "Approach the skull chest and crack if open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "halberd",
+                    "dmg": 8
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Tiny Chest",
+                "target": "17c-Tiny Chest"
+            }
+        ]
+    },
+    {
+        "level": "Open Tiny Chest",
+        "text": "Popping open the tiny chest with ease, you find a small health potion and a few gold pieces inside.",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": 4
+            }
+        ],
+        "options": [
+            {
+                "label": "Leave through iron door",
+                "target": "17d-Iron Door"
+            },
+            {
+                "label": "Open Gilded Chest",
+                "target": "17a-Gilded Chest"
+            },
+            {
+                "label": "Open Skull Chest",
+                "target": "17b-Skull Chest"
+            }
+        ]
+    },
+    {
+        "level": "17d-Iron Door",
+        "text": "You exit through the iron door and as it closes behind you, you realise that it was a hidden doorway that leads into some kind of prison. The door seals shut behind you with no way to open it again.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "18-Prison"
+            }
+        ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "18-Prison",
+        "text": "The only way out of this prison is past some iron bars at the end of the room. They extend from the floor to the ceiling and are too close together for you to squeeze through. There is a tapestry hung to the left of the bars, and a small colony of mushrooms growing in a corner. You hear a slow, steady breathing coming from behind the bars, as if something is sleeping behind them.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Inspect Tapestry",
+                "target": "19-Tapestry"
+            },
+            {
+                "label": "Call out",
+                "target": "18a-Call Out"
+            },
+            {
+                "label": "Attack the bars",
+                "target": "18b-Attack"
+            },
+            {
+                "label": "Pick Mushrooms",
+                "target": "20-Mushrooms"
+            }
+        ]
+    },
+    {
+        "level": "19-Tapestry",
+        "text": "The tapestry is extremely detailed, seeming to depict a battle from ancient times. It occasionally puffs out from the wall, as if there is an air current blowing into it from behind.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Tear It Down",
+                "target": "19a-Tear Down"
+            },
+            {
+                "label": "Burn Tapestry",
+                "target": "19b-Burn Tapestry"
+            },
+            {
+                "label": "Inspect Tapestry",
+                "target": "19c-Inspect"
+            },
+            {
+                "label": "Ignore it",
+                "target": "18-Prison"
+            }
+        ]
+    },
+    {
+        "level": "18a-Call Out",
+        "text": "As you inhale to call out for help, the large creature behind the bars makes an audible grunt. You rethink your choice.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Inspect Tapestry",
+                "target": "19-Tapestry"
+            },
+            {
+                "label": "Attack the bars",
+                "target": "18b-Attack"
+            },
+            {
+                "label": "Pick Mushrooms",
+                "target": "20-Mushrooms"
+            }
+        ]
+    },
+    {
+        "level": "18b-Attack",
+        "text": "Do you have a weapon equipped?",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Yes",
+                "target": "18ba-Weapon"
+            },
+            {
+                "label": "No",
+                "target": "18bb-No Weapon"
+            }
+        ]
+    },
+    {
+        "level": "18ba-Weapon",
+        "text": "Raising your weapon over the top of your head, you smash it against the bars of the prison. The bars, clearly more durable than you expected, cause your weapon to shatter into a thousand fragments. Perhaps this wasn't the best idea.",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "No weapon",
+                    "dmg": 1
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Continue"
+            }
+        ]
+    },
+    {
+        "level": "18ba-Weapon",
+        "text": "Without actually owning a weapon, attacking some iron bars seems folly. However, you proceed to strike the bars with all your might. You hear an audible snap, and know that you have done some irreprable damage to your hand.",
+        "modifier": [
+            {
+                "health": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Continue"
+            }
+        ]
+    },
+    {
+        "level": "20-Continue",
+        "text": "A low growl fills the chamber. The ground shakes as something gets to its feet, clearly annoyed by being rudely awoken. A massive fist plows through the iron bars, and catches you completely off guard. Catapulted across the room, your head bounces off the wall and you pass out. Darkness.",
+        "modifier": [
+            {
+                "health": -20
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "21-Continue"
+            }
+        ]
+    },
+    {
+        "level": "21-Continue",
+        "text": "You regain consciousness, some time later. The hole created by the fist is directly facing you, the rubble from the wall scattered all around. Why did the creature not eat or kill you? It was clearly powerful enough to do so. As you wonder how something so large could get inside the cave, you gather yourself up from the prison floor. Although you are injured, you must continue. The way is clear. You walk through the hole and enter the next corridor.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "23-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "20-Mushrooms",
+        "text": "You bend down and pick a handful of the pungent mushrooms. As you pop a couple in your mouth and begin to chew, you question the myriad of flavors that are assaulting your mouth. The room melts away. You find yourself stood in the shadow of an impossibly large castle, wreathed in flame. The city is on fire. This is the War of Deceit. You and your friends fought in this battle, fighting for the honor of your King. Many of your friends died during this battle... yet you still can't seem to recall any of their names.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20a-Knight Fight"
+            }
+        ]
+    },
+    {
+        "level": "20a-Knight Fight",
+        "text": "You hear a whistling grow louder, and an arrow flies towards you. Before you can react, the arrow flies past your greatsword and hits you square in the chest, but it bounces harmlessly off your full plate armor. You realize that you are wearing the armor and wielding the weapon that you once owned, when this battle was not just a memory. You're really here, defending the King's honor once more. Another arrow streaks towards you, but you are ready this time. You deflect it easily, and move forward to an enemy knight.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "KNIGHT",
+            "health": 50,
+            "strength": 3,
+            "defense": 3,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "longsword",
+                "dmg": 7
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aa-Knight Second Fight"
+        }
+    },
+    {
+        "level": "20aa-Knight Second Fight",
+        "text": "Victorious, you step towards your next target. You see your fellow soldiers fighting alongside you, doing their best to keep the enemies away from the city gates. You spy an old friend, who dismantles enemy cavalry with his thrusting spear. You try to call out to him, but no sound comes out of your mouth. An enemy pikeman charges towards you before you can call out again.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "PIKEMAN",
+            "health": 50,
+            "strength": 4,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 4,
+            "weapon": {
+                "name": "pike",
+                "dmg": 7
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aaa-Pikeman Victory"
+        }
+    },
+    {
+        "level": "20aaa-Pikeman Victory",
+        "text": "Another enemy of the King lay slain at your feet. 'Take this!' yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. You're floating in darkness for what seems an eternity. You wake up.",
+        "modifier": [
+            {
+                "health": 50
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Home"
+            }
+        ]
+    },
+    {
+        "level": "22-Home",
+        "text": "What greets you is a confusing, but all too familiar sight. Your partner is sleeping in bed next to you, their chest rising and falling steadily with each breath. You stroke the soft skin of their back and wonder. Birds chirp outside, and a light breeze carries the smell of freshly baked bread. All is still. You're home, finally.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Get out of bed",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Wake your partner",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Check on kids",
+                "target": "22a-Nightmares"
+            },
+            {
+                "label": "Go back to sleep",
+                "target": "22a-Nightmares"
+            }
+        ]
+    },
+    {
+        "level": "22a-Nightmares",
+        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. Burning eyes. A skinless face. A mouth contorted in pain. A howling screams erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. You wake up.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22aa-Awoken"
+            }
+        ]
+    },
+    {
+        "level": "22aa-Awoken",
+        "text": "Laying in a pool of your own mushroom smelling vomit, you open your eyes once more. You're back in the prison. Was any of that real? Are these memories your own? Whatever it was, your mind feels the effects. The way ahead of you is now clear. Whatever was blocking it before you took the mushrooms must have cleared a path for you. Shaking your head and attemtping to supress your painful memories, you continue on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "23-Corridor"
+            }
+        ]
+    },
+    {
+        "level": "19a-Tear Down",
+        "text": "The tapestry cascades to the ground, its images, forgotten. All that remains in its place is a small crack, out of which a slight breeze is blowing through. You decide to use the hilt of your weapon to smash it against the crack. Something stirs. You hit it again. There's a snort, followed by a grunt, then the sound of something sitting up. Something big. You decide to step back and ready yourself for whatever is on the other side of this wall. Suddenly the wall disintegrates in an explosion, and you're knocked off your feet. A shrouded figure steps through the hole.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "20-Dark Figure"
+            }
+        ]
+    },
+    {
+        "level": "19b-Burn Tapestry",
+        "text": "Using the torch, you light the corner of the tapestry on fire. The fire quickly spreads up the images, but too fast. It engulfs the tapestry and catches on the wooden ceiling beams, spreading through the entire room. Before you can react, you are surrounded by flames and begin to burn alive. A figure appears from behind the bars, and its bright saffron eyes are the last things you see before you perish.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "19c-Inspect",
+        "text": "As you look closer at the tapestry, you notice that all of the figures fighting in the battle are... Wait a second. You know this battle. You were there. Memories rush back into your mind as you recall the tapestry's battle, The War of Deceit, in which the King was assassinated by his Royal Lords. You can almost hear the sound of swords clashing on armor. You can hear the screams of your friends, who died for the King's honor. You smell blood. You smell fire. You smell fear.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Tear it down",
+                "target": "19ca-Continue"
+            }
+        ]
+    },
+    {
+        "level": "19ca-Continue",
+        "text": "In a sudden burst of rage, you rip the tapestry from its hangings and retreat, panting and covered in a slick sweat. Some memories are best left lost to time.",
+        "modifier": [
+            {
+                "defense": -1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "19a-Tear Down"
+            }
+        ]
+    },
+    {
+        "level": "20-Dark Figure",
+        "text": "You get to your feet, brushing rubble off your clothes. A tattered looking goblin steps through the opening, its piercing saffron eyes gazing at you. It has two sheathed daggers on its waist, and seems to whisper something as it stares at you. Something big looms behind it, blocking out your view of the exit.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Cry",
+                "target": "20b-Cry"
+            },
+            {
+                "label": "Ask for help",
+                "target": "20c-Help"
+            },
+            {
+                "label": "Say Nothing",
+                "target": "20d-Nothing"
+            }
+        ]
+    },
+    {
+        "level": "20a-Fight Goblin",
+        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from the it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. 'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "20b-Cry",
+        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. 'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "20c-Help",
+        "text": "You begin to ask the goblin for help, but it holds up a small wrinkled hand in a signal for you to stop. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "20d-Nothing",
+        "text": "'Not a talker eh?' sneers the goblin. 'Perfect. You don't need to say nothin, and please don't ail me with your woes.' Jabbing a thumb towards the huge grey giant behind him, the goblin continues. 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Fight",
+                "target": "20a-Fight Goblin"
+            },
+            {
+                "label": "Barter",
+                "target": "21-Goblin Merchant"
+            },
+            {
+                "label": "Ask for passage",
+                "target": "20ba-Passage"
+            },
+            {
+                "label": "Refuse",
+                "target": "20bb-Refuse"
+            }
+        ]
+    },
+    {
+        "level": "21-Goblin Merchant",
+        "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. Peering inside, you discover that the goblin actually has some decent items that may help.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Leather Helmet - 5 Gold",
+                "value": 5,
+                "target": "21a-Helmet"
+            },
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21b-Health Potion"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21c-Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "20bb-Refuse"
+            }
+
+        ]
+    },
+    {
+        "level": "21a-Helmet",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21aa-Health and Helmet"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21c-Longsword and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aa-Health and Helmet",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21aaa-Longsword, Health and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21c-Longsword and Helmet",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21aaa-Health Potion, Longsword and Helmet"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aaa-Longsword, Health and Helmet",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21aaa-Health Potion, Longsword and Helmet",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21b-Health Potion",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21ba-Helmet and Health"
+            },
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21bb-Longsword and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21ba-Helmet and Health",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Black Iron Longsword - 12 Gold",
+                "value": 12,
+                "target": "21baa-Longsword, Helmet and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21bb-Longsword and Health",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21bba-Helmet, Longsword and Health"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21baa-Longsword, Helmet and Health",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21baa-Longsword, Helmet and Health",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21c-Longsword",
+        "text": "'Anything else?'",
+        "modifier": [
+            {
+                "weapon": {
+                    "name": "Black Iron Longsword",
+                    "dmg": 12
+                }
+            },
+            {
+                "gold": -12
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21ca-Helmet and Longsword"
+            },
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21cb-Health and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21ca-Helmet and Longsword",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Health Potion - 2 gold",
+                "value": 2,
+                "target": "21cba-Health, Helmet and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21cb-Health and Longsword",
+        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -2
+            }
+        ],
+        "options": [
+            {
+                "label": "Helmet - 5 gold",
+                "value": 5,
+                "target": "21caa-Helmet, Health and Longsword"
+            },
+            {
+                "label": "Nothing",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21cba-Health, Helmet and Longsword",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "healthPotion": 1
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+    {
+        "level": "21caa-Helmet, Health and Longsword",
+        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "modifier": [
+            {
+                "head": "Leather Helmet"
+            },
+            {
+                "defense": 2
+            },
+            {
+                "gold": -5
+            }
+        ],
+        "options": [
+            {
+                "label": "Finish Bartering",
+                "target": "21d-Nothing"
+            }
+
+        ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "level": "20bb-Refuse",
+        "text": "'Well 'aint that a shame. I thought we were gonna strike a deal there.' the goblin complains. 'Ah well. Come on Gormush, lets leave this sorry soul to their own fortune.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Two Paths"
+            }
+        ]
+    },
+    {
+        "level": "21d-Nothing",
+        "text": "The goblin winks one saffron eye at you and says 'Great doin' business wit' ya. Oh and one more thing, if you see it - you'll know. Just make sure to place a hand on it. Sounds weird, I know, but just do it. That's all I'm allowed to tell ya.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue",
+                "target": "22-Two Paths"
+            }
+        ]
+    },
+    {
+        "level": "22-Two Paths",
+        "text": "The goblin snaps its long, green fingers, and both it and it's companion disappear in a puff of orange smoke. The way is clear. You are about to step into the blast hole and go down the corridor, however, you notice a small path that was previously hidden behind the goblin. It's smaller than the one you were about to take, and it seems to descend aggressively somewhat.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Small Path",
+                "target": "?-Small Path"
+            },
+            {
+                "label": "Continue On",
+                "target": "23-Corridor"
+            }
+        ]
+    },
+
+
+
+
+
+
+
+    {
+        "level": "23-Corridor",
+        "text": "Venturing into the corridor, you notice that the quality of air seems to have improved somewhat. Also, the ground seems to be steadily inclining. Could this be the way out? Your pace quickens with anticipation. As you begin to jog, the incline continues to increase dramatically. After a few minutes, you have to resort to crawling on your hands and knees to stay on the path, which is becoming steeper with every step. Your determination to escape strengthens your resolve, and you push on.",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Continue Climbing",
+                "target": "24-Skeletal Knight"
+            }
+        ]
+    },
+    {
+        "level": "24-Skeletal Knight",
+        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. Sunlight. You've made it. You finally escaped from the cave. But before you can celebrate your escape, you hear a raspy voice from in front of you. 'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
+        "modifier": 0,
+        "options": [
+            {
+                "label": "Question the Knight",
+                "target": "24a-Question"
+            },
+            {
+                "label": "Flee",
+                "target": "24b-Flee"
+            },
+            {
+                "label": "Say Nothing",
+                "target": "24d-Skeletal Knight Fight"
+            },
+            {
+                "label": "Attack",
+                "target": "24d-Skeletal Knight Fight"
+            }
+        ]
+    },
+    {
+        "level": "24a-Question",
+        "text": "'I do not have time to answer your foolish questions, mortal', the skeleton croaks. 'Prepare to die.' The knight locks its spear to its side with both bony hands, and charges.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Skeletal Knight",
+            "health": 140,
+            "strength": 6,
+            "defense": 5,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "War Spear",
+                "dmg": 10
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "25-Skeletal Knight End"
+        }
+    },
+    {
+        "level": "24b-Flee",
+        "text": "You attempt to flee from the skeleton knight by turning around and jumping down the cliff you previously scaled. Sliding down the stone floor, your speed continues to increase and all hope of controlling your descent evaporates. Both your clothing and skin are ripped from underneath you, causing agnoizing pain. Your body collides with a wall, killing you instantly.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "24d-Skeletal Knight Fight",
+        "text": "Gripping your weapon tightly, you stare at the knight with detemination in your eyes. You've made it this far, and this is just one last hurdle in your way. 'It appears that you understand the gravity of your situation. Very well.' The skeleton steps forward. 'You will die here, and no-one will remember you.' The knight charges.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Skeletal Knight",
+            "health": 140,
+            "strength": 6,
+            "defense": 5,
+            "wisdom": 3,
+            "luck": 3,
+            "weapon": {
+                "name": "War Spear",
+                "dmg": 10
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "25-Skeletal Knight End"
+        }
+    },
+    {
+        "level": "25-Skeletal Knight End",
+        "text": "Exhausted, you strike the final blow against the skeletal knight. The etheral glow from deep inside its eye sockets extinguish, and it erupts into an arcane explosion. You collapse on the floor. It's over. You've won. Breathing in the cool, fresh air, you allow yourself a few moments of respite. Collecting yourself and standing victorious once more, you begin your trek towards the horizon in search of civilization. Maybe someone is out there.",
+        "modifier": [
+            {
+                "end": 1
             }
         ]
     }
 
 ]
+

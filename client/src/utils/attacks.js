@@ -13,25 +13,27 @@ const checkUserWeapon = (weapon) => {
             weaponDamage = 2;
             break;
         case "dagger":
-            weaponDamage = 3;
-            break;
-        case "iron axe":
-            weaponDamage = 4;
-            break;
-        case "steel dagger":
             weaponDamage = 5;
             break;
-        case "halberd":
-            weaponDamage = 6;
-            break;
-        case "steel shortsword":
+        case "iron axe":
             weaponDamage = 7;
             break;
-        case "black iron sword":
-            weaponDamage = 11;
+        case "steel dagger":
+            weaponDamage = 8;
             break;
-        case "warhammer":
+        case "steel shortsword":
+            weaponDamage = 10;
+            break;
+        case "halberd":
+            weaponDamage = 12;
+            break;
+        case "black iron longsword":
             weaponDamage = 14;
+            break;
+        case "obsidian axes":
+            weaponDamage = 16;
+        case "warhammer":
+            weaponDamage = 18;
     }
 };
 
@@ -113,6 +115,44 @@ export default {
         }
 
         console.log(`You used ${skill}, which did... something`)
+    },
+
+    campaignLuckCheck: (luck, story) => {
+        let userLuckModifier = luck / 2;
+
+        let myRoll = diceRoll();
+        let updatedNumber = Math.floor(myRoll + userLuckModifier);
+        const deathLevel = "04bab-Death";
+        const badLuckLevel = "04bac-Bad Luck";
+        const bestLuckLevel = "04bad-Best Luck";
+
+        const wormDeath = "09caa-Worm Death";
+        const wormSuccess = "09cab-Worm Success"
+
+        let options;
+        // 
+        if (story === 1) {
+            if(updatedNumber <= 1) {
+                options = deathLevel
+            } else if (myRoll > 1 && myRoll < 6) {
+                options = badLuckLevel;
+            } else {
+                options = bestLuckLevel;
+            }
+        } else if (story === 2) {
+            if (updatedNumber <= 2) {
+                options = wormDeath
+            } else {
+                options = wormSuccess
+            }
+        }
+        return [
+            {
+                label: "Continue",
+                target: options
+            }
+        ]
+    
     },
 
     // ENEMY ATTACKS
