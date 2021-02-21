@@ -38,6 +38,7 @@ const DecisionBlock = () => {
     const [wisdom, setWisdom] = useState();
     const [luck, setLuck] = useState();
     const [weapon, setWeapon] = useState();
+    const [weaponDmg, setWeaponDmg] = useState();
     const [head, setHead] = useState();
     const [chest, setChest] = useState();
     const [legs, setLegs] = useState();
@@ -182,6 +183,7 @@ const DecisionBlock = () => {
                 // tried to use a switch case but that didnt work for some reason
                 if (mod.weapon) {
                     setWeapon(mod.weapon.name)
+                    setWeaponDmg(mod.weapon.dmg)
                 } else if (mod.health) {
                     if (currentUserHealth + mod.health > maxHealth) {
                         setCurrentUserHealth(maxHealth)
@@ -282,10 +284,10 @@ const DecisionBlock = () => {
         
         switch (option.label) {
             case "Normal Attack":
-                attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
+                attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Special Attack":
-                attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
+                attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Use health potion":
                 attacks.useHealthPotion(healthPotions, setHealthPotions, currentUserHealth, setCurrentUserHealth, maxHealth);
@@ -300,14 +302,14 @@ const DecisionBlock = () => {
 
         }, 1000)
 
-        // updateCharacter();
+        updateCharacter();
         
-        // if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-        //     setTimeout(function() {
+        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
+            setTimeout(() => {
 
-        //         enemyTurn();
-        //     }, 3000)
-        // }
+                enemyTurn();
+            }, 3000)
+        }
     }
 
     const setHealthWidth = () => {
