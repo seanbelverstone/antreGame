@@ -163,9 +163,9 @@ const DecisionBlock = () => {
         if (storyText.length === 0) {
             return;
         }
+        checkModifier();
         setTimeout(() => {
             setOptionFade("fadeIn")
-            checkModifier();
             displayEnemy();
         }, (storyText.length * 30 + 2000))
 
