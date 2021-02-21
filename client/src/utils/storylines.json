@@ -1836,7 +1836,7 @@
         }
     },
     {
-        "level": "15-Dragon Victory",
+        "level": "15a-Dragon Victory",
         "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding some kind of relic. You add it to your inventory for safe-keeping and you feel slightly luckier after that encounter.",
         "modifier": [
             {
@@ -2112,7 +2112,7 @@
         ]
     },
     {
-        "level": "Open Tiny Chest",
+        "level": "17c-Tiny Chest",
         "text": "Popping open the tiny chest with ease, you find a small health potion and a few gold pieces inside.",
         "modifier": [
             {

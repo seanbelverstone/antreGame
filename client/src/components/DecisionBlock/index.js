@@ -231,19 +231,15 @@ const DecisionBlock = () => {
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
-
-    // For some reason this is running after an enemy has been killed... not sure how to fix that
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            if (!enemies[currentEnemy.name]) {
-                return;
-            } else {
-                let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-                console.log(enemyName)
-                setEnemyImage(enemyName)
-            }
+
+            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            console.log(enemyName)
+            setEnemyImage(enemyName)
+        
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
@@ -319,7 +315,7 @@ const DecisionBlock = () => {
         let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
         setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
-        if (enemyNewWidth <= 0) {
+        if (currentEnemyHealth <= 0) {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
@@ -478,7 +474,7 @@ const DecisionBlock = () => {
                     torch={torch}
                     amulet={amulet}
                     healthPotions={healthPotions}
-                    gold={healthPotions}
+                    gold={gold}
                     />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
