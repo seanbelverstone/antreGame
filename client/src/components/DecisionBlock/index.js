@@ -113,7 +113,6 @@ const DecisionBlock = () => {
 
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
-                console.log(storylines[i].modifier)
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -127,35 +126,37 @@ const DecisionBlock = () => {
     
     // maps through the options array and creates divs for them
     const renderOptions = () => {
-        if (modifier[0] != undefined && modifier[0].death) {
-            return(
-                <p className={`options ${optionFade}`}>You died.</p>
-            )
-        } else if (modifier[0] != undefined && modifier[0].fight) {
-            // If fight: true appears in the decision block, render the fight screen instead.
-            return(options.map(fightOption => {
-                return(
-                    <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
-                            {fightOption.label}
-                        </Button>
-                    </div>
-                    // Need to replace the direction for "RETURN TO THE TASK AT HAND", where it still goes back to the previous section but written slightly different.
-                )
-            }))
-        } else {
-            // Otherwise, show the option page
-            return options.map(option => {
-                return(
-                    <div className={`options ${optionFade}`} key={option.label}>
-                        <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
-                            {option.label}
-                        </Button>
-                    </div>
-                )
-            })
+        // have to put this if statement 
+        if (!modifier) {
+            return;
         }
-
+        switch(true) {
+            case modifier[0].death:
+                return(
+                    <p className={`options ${optionFade}`}>You died.</p>
+                )
+            case modifier[0].fight:
+                return(options.map(fightOption => {
+                    return(
+                        <div className={`options ${optionFade}`} key={fightOption.label}>
+                            <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
+                                {fightOption.label}
+                            </Button>
+                        </div>
+                    )
+                }))
+            case modifier === "none":
+                return options.map(option => {
+                    return(
+                        <div className={`options ${optionFade}`} key={option.label}>
+                            <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
+                                {option.label}
+                            </Button>
+                        </div>
+                    )
+                })
+            default: return;
+        }
     }
 
     // This function renders the decision buttons based on how long it takes to write the story text.
