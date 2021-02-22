@@ -123,8 +123,13 @@ export default {
         const wormDeath = "09caa-Worm Death";
         const wormSuccess = "09cab-Worm Success"
 
+        const slipToHang = "28baa-Gap Slip";
+        const pullUpSlip = "28baaa-Gap Death";
+        const hangPullUp = "28baab-Pull up"
+        const gapSuccess = "28bab-Gap Success";
+
         let options;
-        // 
+        // Story 1 is Dark path traps
         if (story === 1) {
             if(updatedNumber <= 1) {
                 options = deathLevel
@@ -134,10 +139,32 @@ export default {
                 options = bestLuckLevel;
             }
         } else if (story === 2) {
+            // Story 2 is Worm Attack
             if (updatedNumber <= 2) {
                 options = wormDeath
             } else {
                 options = wormSuccess
+            }
+        } else if (story === 3) {
+            // Story 3 is Gap cross, with weapon
+            if (updatedNumber <= 4) {
+                options = slipToHang
+            } else {
+                options = gapSuccess
+            }
+        } else if (story === 4) {
+            // Story 4 is Gap cross, but after slipping first
+            if (updatedNumber <= 3) {
+                options = pullUpSlip
+            } else {
+                options = hangPullUp
+            }
+        } else if (story === 5) {
+            // Story 5 is Gap cross, but after throwing weapon over. Luck chances are increased
+            if (updatedNumber <= 2) {
+                options = slipToHang;
+            } else {
+                options = gapSuccess;
             }
         }
         return [

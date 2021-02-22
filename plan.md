@@ -228,15 +228,15 @@ Skeletal Knight
 - Weapon: War Spear (10 damage)
 
 Runed Manticore
-- Health: 160,
+- Health: 120,
 - Strength: 6,
 - Defense: 4,
 - Wisdom: 5,
 - Luck: 4
 - Weapon: Rune Strike (11 damage)
 
-Necro Beast-master
-- Health: 170,
+Necro Beastmaster
+- Health: 160 (if NBM has rez'd Manticore, reduce health to 110),
 - Strength: 5,
 - Defense: 3,
 - Wisdom: 6,
