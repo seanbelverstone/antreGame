@@ -3131,7 +3131,7 @@
         "options": [
             {
                 "label": "Small Path",
-                "target": "?-Small Path"
+                "target": "26-Small Path"
             },
             {
                 "label": "Continue On",
@@ -3287,6 +3287,42 @@
         "modifier": [
             {
                 "end": 1
+            }
+        ]
+    },
+
+
+
+
+
+
+
+
+
+    {
+        "level": "26-Small Path",
+        "text": "Deciding to venture down the smaller path, you crouch down to pass through the opening. Shifting your weight to your front food, you take a step through the gap but your foot finds nothing. Screaming, you plummet into darkness.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Question the Knight",
+                "target": "24a-Question"
+            },
+            {
+                "label": "Flee",
+                "target": "24b-Flee"
+            },
+            {
+                "label": "Say Nothing",
+                "target": "24d-Skeletal Knight Fight"
+            },
+            {
+                "label": "Attack",
+                "target": "24d-Skeletal Knight Fight"
             }
         ]
     }

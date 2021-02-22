@@ -214,7 +214,11 @@ const DecisionBlock = () => {
                 } else if (mod.healthPotion) {
                     setHealthPotions(healthPotions + mod.healthPotion)
                 } else if (mod.gold) {
-                    setGold(gold + mod.gold)
+                    if (gold + mod.gold < 0) {
+                        setGold(0)
+                    } else {
+                        setGold(gold + mod.gold)
+                    }
                 } else if (mod.luckCheck) {
                     const checkingLuck = attacks.campaignLuckCheck(luck, mod.luckCheck.event);
                     console.log(checkingLuck[0]);
