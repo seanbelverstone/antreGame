@@ -3842,7 +3842,7 @@
         ],
         "enemy": {
             "name": "NECRO BEASTMASTER",
-            "health": 150,
+            "health": 160,
             "strength": 5,
             "defense": 3,
             "wisdom": 6,

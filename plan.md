@@ -236,7 +236,7 @@ Runed Manticore
 - Weapon: Rune Strike (11 damage)
 
 Necro Beastmaster
-- Health: 160,
+- Health: 160 (if NBM has rez'd Manticore, reduce health to 110),
 - Strength: 5,
 - Defense: 3,
 - Wisdom: 6,
