@@ -217,7 +217,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "dagger",
+                    "name": "Dagger",
                     "dmg": 3
                 }
             },
@@ -2091,7 +2091,7 @@
         "modifier": [
             {
                 "weapon": {
-                    "name": "halberd",
+                    "name": "Halberd",
                     "dmg": 8
                 }
             }
@@ -3309,23 +3309,581 @@
         ],
         "options": [
             {
-                "label": "Question the Knight",
-                "target": "24a-Question"
+                "label": "Continue",
+                "target": "26a-Falling"
+            }
+        ]
+    },
+    {
+        "level": "26a-Falling",
+        "text": "After falling for a few seconds, you splash land into a deep body of water. Frantically swimming to the surface, you realize that this must be an old sewage system that was hidden behind the walls of the prison. Cursing the goblin for not imparting this knowledge unto you, you swim to a platform and lift yourself out of the water. Incredibly, you are unscathed, although any coin you had left must have slipped out of your pocket during your unexpected descent.",
+        "modifier": [
+            {
+                "gold": -50
+            }
+        ],
+        "options": [
+            {
+                "label": "Get out of the water",
+                "target": "27-Sewers"
+            }
+        ]
+    },
+    {
+        "level": "27-Sewers",
+        "text": "Cursing the goblin once more for your misfortune, you suddenly become very aware of the putrid stench that is assaulting your nostrils. Clearly these sewers haven't been maintained in years. You try not to imagine what diseases you may have picked up from swimming in the water. A distant growl fills the chamber, and reverberates all around you. Whatever made that noise must have heard you fall in. Although you're unsure to what direction it came from, you can only assume it lies beyond, through one of the many tunnels around you. There are several large sewage pipes around you, however, the only one not blocked by a gate is to your left.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into open tunnel",
+                "target": "28-Gap"
             },
             {
-                "label": "Flee",
-                "target": "24b-Flee"
+                "label": "Search in the water",
+                "target": "27a-Search"
             },
             {
-                "label": "Say Nothing",
-                "target": "24d-Skeletal Knight Fight"
+                "label": "Inspect the room",
+                "target": "27b-Inspect"
             },
             {
-                "label": "Attack",
-                "target": "24d-Skeletal Knight Fight"
+                "label": "Pry open the gates",
+                "target": "27c-Pry Gates"
+            }
+        ]
+    },
+    {
+        "level": "27a-Search",
+        "text": "You dive head first into the water and swim to the bottom, in the hopes that there might be something of value at the bottom. You swim deeper and finally reach the bottom. Blindly grabbing at anything that you can carry, you swim back to the surface and over to the platform. You're holding what looks like an elven femur, and also a round, metal disc. It appears that this disc is some kind of talisman, and while you continue to stare at it in wonder it begins to glow. A brilliant light emits from it, and some form of energy rushes out and into your body. Convulsing, you are lifted into the air. Then, the light dims, and the flow of energy stops. You are gently lowered to the ground and something feels different. You feel stronger. You slip the talisman of strength in your pocket as a keepsake, and leave the room behind with courage coursing through you.",
+        "modifier": [
+            {
+                "amulet": 1
+            },
+            {
+                "strength": 4
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into open tunnel",
+                "target": "28-Gap"
+            }
+        ]
+    },
+    {
+        "level": "27b-Inspect",
+        "text": "Holding your nose, you decide to inspect the room that you find yourself in. The water and waste has long since stopped running, and the ground is heavily soiled. You swallow, and decide to dig through a pile of unidentified material that has piled up in front of a sewage gate. Your fingers brush against something hard, and you grab at it, thinking it may be some gold or other loot. You're wrong. The teeth of a giant rat embed themselves in your forearm, and you recoil back in horror as it leaps out of its hiding place. As you regain your balance, it lunges at you with gnashing teeth.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "Giant Rat",
+            "health": 60,
+            "strength": 4,
+            "defense": 2,
+            "wisdom": 1,
+            "luck": 3,
+            "weapon": {
+                "name": "Teeth",
+                "dmg": 6
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "27ba-Giant Rat Victory"
+        }
+    },
+    {
+        "level": "27ba-Giant Rat Victory",
+        "text": "The rat slumps to the ground, black ooze dripping out of its mouth. You have killed it, but who knows what disease you now carry. Furious at your own stupidity, you break apart the hiding place from which the rat emerged in the possibility that something else might lurk there. Although there are no more creatures to be found, it looks as though the rat was collecting items that had fallen into these sewers. You snatch them up and decide to carry on your journey.",
+        "modifier": [
+            {
+                "head": "Lucky cap"
+            },
+            {
+                "luck": 1
+            },
+            {
+                "gold": 7
+            },
+            {
+                "weapon": {
+                    "name": "Warhammer",
+                    "dmg": 14
+                }
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into open tunnel",
+                "target": "28-Gap"
+            }
+        ]
+    },
+    {
+        "level": "27c-Pry Gates",
+        "text": "Although the gates are old, the ancient grime covering them has fossilized over the hinges and no amount of brute force will pry them open. You reevaluate your options.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Go into open tunnel",
+                "target": "28-Gap"
+            },
+            {
+                "label": "Search in the water",
+                "target": "27a-Search"
+            },
+            {
+                "label": "Inspect the room",
+                "target": "27b-Inspect"
+            }
+        ]
+    },
+    {
+        "level": "28-Gap",
+        "text": "Leaving the foul smelling room behind you, you step into the open tunnel, hoping you don't cross paths with whatever made that growl earlier. The tunnel continues winding on, until you come to a fairly wide gap, separating you from the next section of the sewer. It's too far to jump, however, the remains of a narrow pipe juts out in front of you, which looks like it could support your weight.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Go back",
+                "target": "27-Sewers"
+            },
+            {
+                "label": "Jump the gap",
+                "target": "28a-Death"
+            },
+            {
+                "label": "Cross the pipe",
+                "target": "28b-Pipe Cross"
+            },
+            {
+                "label": "Throw weapon over first",
+                "target": "28c-Throw weapon"
+            }
+        ]
+    },
+    {
+        "level": "28a-Death",
+        "text": "Although the gap is too far to jump across, you attempt it anyway. With a running start, you leap from your side of the tunnel, arms outstretched. You miss the other side by several feet and fall into the darkness below.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "28b-Pipe Cross",
+        "text": "Taking a deep breath before you place a foot on the narrow pipe, you prepare to cross the gap. The darkness looms below you, and you hope that luck is on your side.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "28ba-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "28ba-Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 3
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": [
+                    "none"
+                ]
+            }
+        ]
+    },
+    {
+        "level": "28baa-Gap Slip",
+        "text": "You slip during your attempt but somehow manage to catch yourself on the pipe. Hanging with nothing below you but uncertain darkness, you try to hoist yourself up.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "28baaa-Gap Slip Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "28baaa-Gap Slip Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 4
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": [
+                    "none"
+                ]
+            }
+        ]
+    },
+    {
+        "level": "28baaa-Gap Death",
+        "text": "With all your might, you pull yourself up halfway, but your sweaty palms betray you, and your hands slip from the pipe. You plummet into darkness, and all light fades away.",
+        "modifier": [
+            {
+                "death": 1
+            }
+        ]
+    },
+    {
+        "level": "28baab-Pull up",
+        "text": "Mustering all your strength, you pull yourself up onto the pipe and stand up to cross once more. You are now shaking from the physical exertion, and crossing will be noticably harder.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "28ba-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "28bab-Gap Success",
+        "text": "With balance and precision, you nimbly cross the pipe and make it to the other side. You glance over your shoulder at the imposing darkness from which you just crossed, and thank the Gods for your luck. You continue on.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "29-Manticore"
+            }
+        ]
+    },
+    {
+        "level": "28c-Throw weapon",
+        "text": "Removing your armor makes you considerably lighter, and you feel much more confident about balancing on this narrow pipe. You attempt to cross it.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Check Your Luck",
+                "target": "28ca-Check Luck"
+            }
+        ]
+    },
+    {
+        "level": "28ca-Check Luck",
+        "text": "Checking luck...",
+        "modifier": [
+            {
+                "luckCheck": true,
+                "event": 5
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": [
+                    "none"
+                ]
+            }
+        ]
+    },
+    {
+        "level": "29-Manticore",
+        "text": "You resume your journey through the tunnel and it finally reaches a large circular room. Luckily, the bars that would have normally blocked your exit look like they had been torn from their hinges, and now lay to the side. This room is much warmer than the rest of the sewer. Looking around, you see mounds of something, obscured by the low light, tucked towards the edges of the room. In the gloomy distance, you hear an all too familiar growl. Suddenly, sconces hung on the walls all ignite with a magical flame, illuminating the beast before you. Amanticore glares at you with its fierce yellow eyes. You had only heard about these in stories told to children, and wonder if you are dreaming. With a hideously human-looking face, it almost looks like it is grinning at you. It steps forward, putting one paw in front of the other, and flexes its bat-like wings. You also catch a glimpse of a scaly tail, tipped with a enormous barb. The manticore shakes its mane and stops a few feet from you, bearing its large fangs. White hot runes glow underneath the fur of the manticore's body, and you realize that it must have used magic to illuminate the room. A magic manticore. Surely you must be dreaming.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "RUNED MANTICORE",
+            "health": 120,
+            "strength": 6,
+            "defense": 4,
+            "wisdom": 5,
+            "luck": 4,
+            "weapon": {
+                "name": "Rune Strike",
+                "dmg": 11
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "30-Manticore Victory"
+        }
+    },
+    {
+        "level": "30-Manticore Victory",
+        "text": "WIth one last roar, the manticore falls to the floor, dead. Your mind is still swimming from the realization that you just defeated a creature previously thought to be a myth. The sconces remain lit, as do the runes covering the body of the manticore.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Find an exit",
+                "target": "31-Undead Beastmaster Fight"
+            },
+            {
+                "label": "Make fire and rest",
+                "target": "30a-Rest"
+            },
+            {
+                "label": "Touch Manticore",
+                "target": "30b-Rune Upgrade"
+            },
+            {
+                "label": "Take a trophy",
+                "target": "30c-Manticore Trophy"
+            }
+        ]
+    },
+    {
+        "level": "30a-Rest",
+        "text": "You craft a fire using some clothing scraps and wood that you found nearby. Lighting it with one of the wall sconces, you sit down and bask in the fire's warm glow. After a short while, you doze off and wake up some time later feeling refreshed. The embers in the fire are still glowing, so you suppose that you couldn't have slept for longer than a few hours. Standing up, you survey your surroundings once more. The manticore's body is gone. You hear a hoarse laugh from up ahead.",
+        "modifier": [
+            {
+                "health": 100
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "32-Undead Manticore Fight"
+            }
+        ]
+    },
+    {
+        "level": "32-Undead Manticore Fight",
+        "text": "'So, you're finally awake,' laughs the voice. 'I could have killed you while you slept, but where's the honor in that?' Looking up you see that the voice belongs to a skeletal figure, who has some kind of beast fur draped over its shoulders. It wields a jagged whip at its waist, and stood next to it is... the manticore you killed. You can clearly see the wounds that you inflicted upon its human face and its fur is soaked in its own blood, however, its eyes are now glowing with a blue fire. 'I don't appreciate people murdering my children,' the necro-beastmaster barks, its face now stern. 'It is always such a pain to bring them back.' The skeleton holds its whip, and gives it an almighty crack. 'Attack', it commands. The undead manticore leaps towards you.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "UNDEAD MANTICORE",
+            "health": 80,
+            "strength": 4,
+            "defense": 3,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "Rune Strike",
+                "dmg": 11
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "32a-Undead Manticore Victory"
+        }
+    },
+    {
+        "level": "32a-Undead Manticore Victory",
+        "text": "You strike the manticore down once more, but this time you make sure to obliterate its head with a firm stomp of your boot. Hopefully that should stop it from coming back again. 'MY CHILD!' screeches the beastmaster. 'I am going to make you suffer, adventurer. Your journey ends here!'",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "NECRO BEASTMASTER",
+            "health": 110,
+            "strength": 5,
+            "defense": 3,
+            "wisdom": 6,
+            "luck": 2,
+            "weapon": {
+                "name": "Bladed Whip",
+                "dmg": 12
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "33-Beastmaster End"
+        }
+    },
+    {
+        "level": "30b-Rune Upgrade",
+        "text": "Whether as a sign of respect or just to brace yourself, you kneel down and place a hand on the beast's body. The runes covering its body begin to emit a slow pulsating light. The runes now begin to slide off the body of the dead beast and climb their way up your arm. You recoil in terror, but it is already too late. The runes now circle your entire body like an elaborate tattoo. They shine brightly and your fear quickly dissapates. No wonder the beast was so difficult to kill, these runes were granting it extra special power! You breathe in as this new-found power courses through your veins. Gripping your weapon tightly, you look around the room for an exit.",
+        "modifier": [
+            {
+                "health": 100
+            },
+            {
+                "strength": 3
+            },
+            {
+                "defense": 2
+            },
+            {
+                "wisdom": 1
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue",
+                "target": "31-Undead Beastmaster Fight"
+            }
+        ]
+    },
+    {
+        "level": "31-Undead Beastmaster Fight",
+        "text": "Looking around, it doesn't seem like there is an exit in this room. Surely it couldn't be a dead end? A bright white light, much like the ones that covered the now deceased manticore, emits from the end of the room. A skeletal figure steps through, a beast's fur draped over its shoulders and a jagged whip hanging by its side. 'You foul beast!' cries the skeleton as it steps through the portal. 'You have killed one of my most favorite children. Once I have dispatched of you, I will make sure that it's resurrected form will feast on your corpse!' The necro-beastmaster uncoils its whip, and unleashes an almighty crack. 'You will suffer before the end.' The skeleton attacks.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "NECRO BEASTMASTER",
+            "health": 150,
+            "strength": 5,
+            "defense": 3,
+            "wisdom": 6,
+            "luck": 2,
+            "weapon": {
+                "name": "Bladed Whip",
+                "dmg": 12
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "33-Beastmaster End"
+        }
+    },
+    {
+        "level": "33-Beastmaster End",
+        "text": "Striking hard and true, you land the final blow on the beastmaster. Its undead corpse falls to the ground, defeated. A small roll of parchment, previously hidden under its fur cloak, falls to the ground at your feet. You unroll it and see that it is an incantation for a portal out of here. You recite the words on the parchment, and a portal opens up behind you. Taking one look back at the beastmaster and its manticore, you can't help but feel a pang of sorrow for their cursed existances. Hopefully you brought their souls some peace. You step through the portal.",
+        "modifier": [
+            {
+                "end": 1
             }
         ]
     }
+    
 
 ]
 
