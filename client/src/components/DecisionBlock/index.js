@@ -38,7 +38,7 @@ const DecisionBlock = () => {
     const [wisdom, setWisdom] = useState();
     const [luck, setLuck] = useState();
     const [weapon, setWeapon] = useState();
-    const [weaponDmg, setWeaponDmg] = useState();
+    const [weaponDmg, setWeaponDmg] = useState(3);
     const [head, setHead] = useState();
     const [chest, setChest] = useState();
     const [legs, setLegs] = useState();
@@ -70,6 +70,7 @@ const DecisionBlock = () => {
     })
 
     const handleStats = (c) => {
+        console.log("updating stats")
         setCurrentUserHealth(c.health)
         setStrength(c.strength);
         setDefense(c.defense);
@@ -104,8 +105,6 @@ const DecisionBlock = () => {
                 break;
             default: return
         }
-        // sets the character health
-        setCurrentUserHealth(currentCharacter.health)
     }
 
     const handleText = (choice) => {
@@ -297,16 +296,13 @@ const DecisionBlock = () => {
                 break;
             default: return;
         }
+        setButtonDisabled(true);
+        console.log(currentUserHealth)
 
-        setTimeout(() => {
-
-        }, 1000)
-
-        updateCharacter();
+       
         
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
             setTimeout(() => {
-
                 enemyTurn();
             }, 3000)
         }
@@ -364,6 +360,7 @@ const DecisionBlock = () => {
 
     const updateCharacter = () => {
         // Update sessionStorage
+        console.log("Updating character")
         window.sessionStorage.setItem("currentCharacter", JSON.stringify({
             "id": currentCharacter.id,
             "name": currentCharacter.name,
@@ -468,6 +465,7 @@ const DecisionBlock = () => {
                     wisdom={wisdom}
                     luck={luck}
                     weapon={weapon}
+                    weaponDmg={weaponDmg}
                     head={head}
                     chest={chest}
                     legs={legs}

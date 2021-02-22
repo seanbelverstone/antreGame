@@ -30,6 +30,7 @@ export default function Inventory(
     wisdom,
     luck,
     weapon,
+    weaponDmg,
     head,
     chest,
     legs,
@@ -74,7 +75,7 @@ export default function Inventory(
                 <section className="section1">
                     <div id="weapon">
                         <img className="icon" src={invImages.sword} />
-                        <div>Weapon: {weapon}</div>
+                        <div>Weapon: {weapon} - {weaponDmg} dmg</div>
                     </div>
 
                     <div id="head">
