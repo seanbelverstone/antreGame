@@ -2,7 +2,11 @@
     {
         "level": "01-Start",
         "text": "You wake up, cold and alone. How long have you been in this cave? How did you get here? Questions flood your mind as you pick yourself up off the stone floor, but answers are nowhere to be found. A rusty sword lies next to you. Not knowing what may lay ahead, you pick it up. You are in a dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both seem eerily quiet.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Go North",
@@ -25,7 +29,11 @@
     {
         "level": "02-Tunnel",
         "text": "Deciding to to leave the cave behind you and find some answers to why you're here, you head north. Ahead of you is a short tunnel, that leads to a door that is slightly ajar. Opening it, you are faced with a small room. To your left is a closed door and to your right is the remains of both a fire and a poor adventurer that lies decomposing beside it. There is also a path that continues north.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open door",
@@ -63,7 +71,11 @@
     {
         "level": "01b-Goblins",
         "text": "You decide to remain right where you are, and resign into a state of bewildered depression. After all, you didn't ask to be here. Before you can start to brood over the circumstances that led to your arrival, you hear some voices up ahead. It sounds like goblins!",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Flee",
@@ -137,7 +149,11 @@
     {
         "level": "01-Start Bargain Variant",
         "text": "After the goblins leave, you reevaluate your choices. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Go North",
@@ -219,7 +235,11 @@
     {
         "level": "01-Start Victory Variant",
         "text": "Giving the dead goblin one last kick to make sure he's dead, and decide to move on. You are still in the dark, dank cave and the only light is a single torch on the west wall. There is a path to the north and a path to the south. Both still seem eerily quiet. The other goblin that ran away is nowhere to be seen.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Go North",
@@ -238,7 +258,11 @@
     {
         "level": "02a-Locked",
         "text": "Walking towards the door on your left, you try the handle. It's locked. Looking around for a key, you manage to spot one just poking out from beneath the door. You pick it up, wipe some dust off it, and place it in the keyhole.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open door",
@@ -312,7 +336,11 @@
     {
         "level": "02-Tunnel Victory Variant",
         "text": "Closing the door behind you, you return to the small room. The remains of the fire and the adventurer that lies decomposing beside it are now in front of you. There is also a path to your left that continues north.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue North",
@@ -331,7 +359,11 @@
     {
         "level": "03-Three Paths",
         "text": "Leaving the small room behind, you follow the path to the north. After a short walk, your path meets a crossroads. The road is split in three ways: The path to the west is dark, the one to the east smells like ash, and the path ahead to the north is a single door.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Go Back",
@@ -384,7 +416,11 @@
     {
         "level": "02-Tunnel Fire Variant",
         "text": "Feeling somewhat refreshed, you return to your decision.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open door",
@@ -403,7 +439,11 @@
     {
         "level": "02-Tunnel Adventurer Variant",
         "text": "You stand up from the adventurer, leaving them looking slightly more disheveled than before. The same options remain.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open door",
@@ -422,7 +462,11 @@
     {
         "level": "02-Tunnel Return Variant",
         "text": "Feeling undecisive, you return to the small room with the dead adventurer.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open door",
@@ -462,7 +506,11 @@
     {
         "level": "04-Dark Path",
         "text": "You opt for the darker path to the North. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Torch Obtained",
@@ -511,7 +559,11 @@
     {
         "level": "03-Three Paths Dark Variant",
         "text": "Leaving the dark way and part of your pride behind you, you return to the crossroads. The road is split in three ways: The path to the west behind you is dark, the one to the east smells like ash, and the path ahead to the north is a single door. Or you could return to the small room before.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Small Room",
@@ -534,7 +586,11 @@
     {
         "level": "04ba-Continue",
         "text": "By either incredible courage or plain stupidity, you decide to continue down the dark, trap-ridden path.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Check Your Luck",
@@ -554,7 +610,9 @@
         "options": [
             {
                 "label": "Continue",
-                "target": "none"
+                "target": [
+                    "none"
+                ]
             }
         ]
     },
@@ -600,7 +658,11 @@
     {
         "level": "05-Sleeping Goblins",
         "text": "Reaching the end of the trap-filled hallway, you reach the corner where the light was eminating from. Slowly easing your head around the corner to see the source from the light, you see a couple of goblins sleeping by the remains of a fire. The fire looks like it has only been out for a short while. The only noise you can hear is a quiet snuffling, although you're unsure to where it's coming from.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Approach Goblins",
@@ -623,7 +685,11 @@
     {
         "level": "05a-Approach Goblins",
         "text": "As begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -634,7 +700,11 @@
     {
         "level": "05a-Attack Goblins",
         "text": "As you begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -645,7 +715,11 @@
     {
         "level": "05b-Call Out",
         "text": "You call out to the goblins, hoping that maybe they'll not immediately resort to violence, and perhaps you could come to some kind of agreement. As soon as you call out, there's a loud screech and a thud from directly in front of you.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -656,7 +730,11 @@
     {
         "level": "05c-Throw Rock",
         "text": "Finding a rock by your feet, you cast it towards the goblins. It's a good throw, and it cracks one of them in the back of the head. The rock loudly clatters to the ground. Either these goblins are heavy sleepers, or more likely, they've been dead for a while. No-one could sleep off a hit like tha- You're broken off mid-thought as you hear a loud screech, followed by a thud.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -667,7 +745,11 @@
     {
         "level": "05ba-Lizard Continue",
         "text": "A giant cave lizard leaps into view, attracted by all the noise you created. Illuminated by the remains of the fire, you can see its monstrous claws and sharp fangs which must have easily torn apart those poor goblins. You also notice that this particular lizard seems to be blind, its milky-white eyes frantically moving from side to side, searching restlessly for the source of the noise. Its loud sniffing resumes, in an attempt to track your scent.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Attack Lizard",
@@ -729,7 +811,11 @@
     {
         "level": "06-Lizard Victory",
         "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Relight fire",
@@ -762,7 +848,11 @@
     {
         "level": "06b-Corridor",
         "text": "You continue to walk down the well lit corridor, hoping that any more of those vile lizards will be disuaded by the light. You press on.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -847,7 +937,11 @@
     {
         "level": "06ca-Second Lizard Victory",
         "text": "Gasping for air, you strike another lizard down. Keen not to fight another one, you quickly gather your loot and continue down the well lit hallway.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -858,7 +952,11 @@
     {
         "level": "07-Mahogany Door",
         "text": "After journeying down the corridor for some time, you reach a door. It's a heavy mahogany door, much taller than you are and it has a variety of engravings all over it. The doorhandle is shaped like a bony green fist. You can almost hear a distant rumble, that is gradually getting louder.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Knock",
@@ -873,7 +971,11 @@
     {
         "level": "07a-Knock",
         "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped doorhandle, you wait for a response. None comes. Perhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Open Door",
@@ -884,7 +986,11 @@
     {
         "level": "08-Gobin Merchant",
         "text": "Turning the doorhandle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sat at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. 'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' The rumbling grows steadily louder.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Obsidian Axes - 11 Gold",
@@ -1310,7 +1416,11 @@
     {
         "level": "08d-Nothing",
         "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. The goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. The entire room is now shaking and glass vials and old tomes cascade to the ground.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Leave",
@@ -1321,7 +1431,11 @@
     {
         "level": "09-Time",
         "text": "Suddenly, the entire room gets torn away from its foundations. You are thrown to left wall, and pinned there momentarily as you realise that the room is now moving at an incredibly fast pace. The wall opposite you starts to break apart, unable to remain intact due to this unnatural force being exerted upon it, and as the bricks break apart, and narrowly miss your face -- you see it. You are inside the mouth of a colossal worm. You see its ring of massive jagged teeth biting down on the walls and ceiling of the room you're in, and as it burrows through the ground at an incredible rate you realize that it's both picked you up on its journey underground, and it's now very pissed off. By looking at the size of its mouth, you judge that the worm must be at least 400 feet long, and you wonder how you could be this unforutnate. As your body gets acclimatized to the force that's pinning you to the wall, you manage to push yourself up and into a hunched over position. Standing inside a slowly deteriorating room, in the mouth of a colossal worm, you rapidly begin formulating a plan.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Give up",
@@ -1354,7 +1468,11 @@
     {
         "level": "09b-Call Out",
         "text": "Muted by the noise generated from the worm's burrowing, calling out has no effect. The walls continue to crumble.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Give up",
@@ -1374,7 +1492,11 @@
     {
         "level": "09c-Climb",
         "text": "Half walking, half crawling, you make your way across the collapsing room and climb towards the tooth filled opening. As you place a hand between the huge teeth, you feel a shiver run through the gums of the worm. Agitated, it shakes its head violently, causing you to be thrown back to the room's back wall. The stones behind you give way and for a moment, you are freefalling. With the creature's dark gullet behind you, you desperately reach for your weapon.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Check Your Luck",
@@ -1394,7 +1516,9 @@
         "options": [
             {
                 "label": "Continue",
-                "target": "none"
+                "target": [
+                    "none"
+                ]
             }
         ]
     },
@@ -1464,7 +1588,11 @@
     {
         "level": "11-Worm Victory",
         "text": "After skillfully dodging many of the colossal worm's attacks, and landing some incredible blows to its face and body, the beast shrieks in horror at its inevitable demise. In a last ditch attempt to get away from its assailant, it writhes towards the ceiling, towards the light. Smashing through the ceiling and bathing the area in light, the worm reaches the top and stops comes to a complete stop. It's done. The worm is dead.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -1495,7 +1623,11 @@
     {
         "level": "13-Single Door",
         "text": "Continuing your journey north, you open the single door. Inside, you see a square room with 4 identical wooden doors on the far side. The room is quite empty, apart from a metal sundial in the center of the room which is facing straight at you, to the south. You wonder why someone would have a sundial this far underground.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Door 1",
@@ -1519,7 +1651,11 @@
     {
         "level": "13a-Wrong room",
         "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one?",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Door 1",
@@ -1543,7 +1679,11 @@
     {
         "level": "13aa-Wrong room",
         "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one again?",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Door 1",
@@ -1567,7 +1707,11 @@
     {
         "level": "13b-Correct room",
         "text": "You select a door, and enter it. This room seems to be slightly different from the last one. There are the same number of doors, however, the sundial now points to the west.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Door 1",
@@ -1591,7 +1735,11 @@
     {
         "level": "13bb-Correct room",
         "text": "You select a door, and enter it. Now you're making some progress! Excitedly you notice that the sundial is pointing to the north. Hoping this is the last one, begin to decide which door to choose.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Door 1",
@@ -1615,7 +1763,11 @@
     {
         "level": "13bba-Success",
         "text": "After the last door is opened, finally you're in a room that is completely unlike the last ones. It appears to be some kind of prison, although it has been a long time since it has had any occupants. At least you made it out of those enchanted rooms in one piece.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -1684,7 +1836,7 @@
         }
     },
     {
-        "level": "15-Dragon Victory",
+        "level": "15a-Dragon Victory",
         "text": "You strike the dragon down, and its flames are finally extinguished. Looking past its now corpse, you notice a glint hiding in the nest behind it. It appears that the dragon was guarding some kind of relic. You add it to your inventory for safe-keeping and you feel slightly luckier after that encounter.",
         "modifier": [
             {
@@ -1704,7 +1856,11 @@
     {
         "level": "16-Dragon Room",
         "text": "After collecting the relic and inspecting the room, you notice a crawlspace in the back of the room. Maybe the dragon was using this to get around? The tunnel you entered through is still collapsed, and it seems like this might be the only way out.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Dig tunnel",
@@ -1800,7 +1956,11 @@
     {
         "level": "17-Chests",
         "text": "You emerge from the crawlspace, slightly dustier than you already were. You discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Leave through iron door",
@@ -1823,7 +1983,11 @@
     {
         "level": "17a-Gilded Chest",
         "text": "Cracking the gilded chest open with a nearby rock, the only item inside is a fairly nondescript leather bound book. Curious, you start to leaf through it and words rush onto its pages that don't seem to make any sense.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Keep reading",
@@ -1838,7 +2002,11 @@
     {
         "level": "17aa-Gilded Continue",
         "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. The words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Keep reading",
@@ -1874,7 +2042,11 @@
     {
         "level": "17ab-Chests Variant",
         "text": "Figuring that this book may be more trouble than it's worth, you drop it back into the gilded chest and slam it shut.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Leave through iron door",
@@ -1893,7 +2065,11 @@
     {
         "level": "17aaaa-Gilded Variant",
         "text": "You return to the present moment and consider whether to open any more chests, or to leave through the iron door.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Leave through iron door",
@@ -1936,7 +2112,7 @@
         ]
     },
     {
-        "level": "Open Tiny Chest",
+        "level": "17c-Tiny Chest",
         "text": "Popping open the tiny chest with ease, you find a small health potion and a few gold pieces inside.",
         "modifier": [
             {
@@ -1964,7 +2140,11 @@
     {
         "level": "17d-Iron Door",
         "text": "You exit through the iron door and as it closes behind you, you realise that it was a hidden doorway that leads into some kind of prison. The door seals shut behind you with no way to open it again.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -1995,7 +2175,11 @@
     {
         "level": "18-Prison",
         "text": "The only way out of this prison is past some iron bars at the end of the room. They extend from the floor to the ceiling and are too close together for you to squeeze through. There is a tapestry hung to the left of the bars, and a small colony of mushrooms growing in a corner. You hear a slow, steady breathing coming from behind the bars, as if something is sleeping behind them.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Inspect Tapestry",
@@ -2018,7 +2202,11 @@
     {
         "level": "19-Tapestry",
         "text": "The tapestry is extremely detailed, seeming to depict a battle from ancient times. It occasionally puffs out from the wall, as if there is an air current blowing into it from behind.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Tear It Down",
@@ -2041,7 +2229,11 @@
     {
         "level": "18a-Call Out",
         "text": "As you inhale to call out for help, the large creature behind the bars makes an audible grunt. You rethink your choice.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Inspect Tapestry",
@@ -2060,7 +2252,11 @@
     {
         "level": "18b-Attack",
         "text": "Do you have a weapon equipped?",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Yes",
@@ -2123,7 +2319,11 @@
     {
         "level": "21-Continue",
         "text": "You regain consciousness, some time later. The hole created by the fist is directly facing you, the rubble from the wall scattered all around. Why did the creature not eat or kill you? It was clearly powerful enough to do so. As you wonder how something so large could get inside the cave, you gather yourself up from the prison floor. Although you are injured, you must continue. The way is clear. You walk through the hole and enter the next corridor.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2134,7 +2334,11 @@
     {
         "level": "20-Mushrooms",
         "text": "You bend down and pick a handful of the pungent mushrooms. As you pop a couple in your mouth and begin to chew, you question the myriad of flavors that are assaulting your mouth. The room melts away. You find yourself stood in the shadow of an impossibly large castle, wreathed in flame. The city is on fire. This is the War of Deceit. You and your friends fought in this battle, fighting for the honor of your King. Many of your friends died during this battle... yet you still can't seem to recall any of their names.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2244,7 +2448,11 @@
     {
         "level": "22-Home",
         "text": "What greets you is a confusing, but all too familiar sight. Your partner is sleeping in bed next to you, their chest rising and falling steadily with each breath. You stroke the soft skin of their back and wonder. Birds chirp outside, and a light breeze carries the smell of freshly baked bread. All is still. You're home, finally.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Get out of bed",
@@ -2267,7 +2475,11 @@
     {
         "level": "22a-Nightmares",
         "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. Burning eyes. A skinless face. A mouth contorted in pain. A howling screams erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. You wake up.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2278,7 +2490,11 @@
     {
         "level": "22aa-Awoken",
         "text": "Laying in a pool of your own mushroom smelling vomit, you open your eyes once more. You're back in the prison. Was any of that real? Are these memories your own? Whatever it was, your mind feels the effects. The way ahead of you is now clear. Whatever was blocking it before you took the mushrooms must have cleared a path for you. Shaking your head and attemtping to supress your painful memories, you continue on.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2289,7 +2505,11 @@
     {
         "level": "19a-Tear Down",
         "text": "The tapestry cascades to the ground, its images, forgotten. All that remains in its place is a small crack, out of which a slight breeze is blowing through. You decide to use the hilt of your weapon to smash it against the crack. Something stirs. You hit it again. There's a snort, followed by a grunt, then the sound of something sitting up. Something big. You decide to step back and ready yourself for whatever is on the other side of this wall. Suddenly the wall disintegrates in an explosion, and you're knocked off your feet. A shrouded figure steps through the hole.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2309,7 +2529,11 @@
     {
         "level": "19c-Inspect",
         "text": "As you look closer at the tapestry, you notice that all of the figures fighting in the battle are... Wait a second. You know this battle. You were there. Memories rush back into your mind as you recall the tapestry's battle, The War of Deceit, in which the King was assassinated by his Royal Lords. You can almost hear the sound of swords clashing on armor. You can hear the screams of your friends, who died for the King's honor. You smell blood. You smell fire. You smell fear.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Tear it down",
@@ -2335,7 +2559,11 @@
     {
         "level": "20-Dark Figure",
         "text": "You get to your feet, brushing rubble off your clothes. A tattered looking goblin steps through the opening, its piercing saffron eyes gazing at you. It has two sheathed daggers on its waist, and seems to whisper something as it stares at you. Something big looms behind it, blocking out your view of the exit.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Fight",
@@ -2367,7 +2595,11 @@
     {
         "level": "20b-Cry",
         "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. 'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Fight",
@@ -2390,7 +2622,11 @@
     {
         "level": "20c-Help",
         "text": "You begin to ask the goblin for help, but it holds up a small wrinkled hand in a signal for you to stop. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Fight",
@@ -2413,7 +2649,11 @@
     {
         "level": "20d-Nothing",
         "text": "'Not a talker eh?' sneers the goblin. 'Perfect. You don't need to say nothin, and please don't ail me with your woes.' Jabbing a thumb towards the huge grey giant behind him, the goblin continues. 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Fight",
@@ -2436,7 +2676,11 @@
     {
         "level": "21-Goblin Merchant",
         "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. Peering inside, you discover that the goblin actually has some decent items that may help.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Leather Helmet - 5 Gold",
@@ -2849,7 +3093,11 @@
     {
         "level": "20bb-Refuse",
         "text": "'Well 'aint that a shame. I thought we were gonna strike a deal there.' the goblin complains. 'Ah well. Come on Gormush, lets leave this sorry soul to their own fortune.'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2860,7 +3108,11 @@
     {
         "level": "21d-Nothing",
         "text": "The goblin winks one saffron eye at you and says 'Great doin' business wit' ya. Oh and one more thing, if you see it - you'll know. Just make sure to place a hand on it. Sounds weird, I know, but just do it. That's all I'm allowed to tell ya.'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue",
@@ -2871,7 +3123,11 @@
     {
         "level": "22-Two Paths",
         "text": "The goblin snaps its long, green fingers, and both it and it's companion disappear in a puff of orange smoke. The way is clear. You are about to step into the blast hole and go down the corridor, however, you notice a small path that was previously hidden behind the goblin. It's smaller than the one you were about to take, and it seems to descend aggressively somewhat.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Small Path",
@@ -2893,7 +3149,11 @@
     {
         "level": "23-Corridor",
         "text": "Venturing into the corridor, you notice that the quality of air seems to have improved somewhat. Also, the ground seems to be steadily inclining. Could this be the way out? Your pace quickens with anticipation. As you begin to jog, the incline continues to increase dramatically. After a few minutes, you have to resort to crawling on your hands and knees to stay on the path, which is becoming steeper with every step. Your determination to escape strengthens your resolve, and you push on.",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Continue Climbing",
@@ -2904,7 +3164,11 @@
     {
         "level": "24-Skeletal Knight",
         "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. Sunlight. You've made it. You finally escaped from the cave. But before you can celebrate your escape, you hear a raspy voice from in front of you. 'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
-        "modifier": 0,
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
         "options": [
             {
                 "label": "Question the Knight",

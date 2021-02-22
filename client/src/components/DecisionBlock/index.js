@@ -38,6 +38,7 @@ const DecisionBlock = () => {
     const [wisdom, setWisdom] = useState();
     const [luck, setLuck] = useState();
     const [weapon, setWeapon] = useState();
+    const [weaponDmg, setWeaponDmg] = useState(3);
     const [head, setHead] = useState();
     const [chest, setChest] = useState();
     const [legs, setLegs] = useState();
@@ -69,6 +70,8 @@ const DecisionBlock = () => {
     })
 
     const handleStats = (c) => {
+        console.log("updating stats")
+        setCurrentUserHealth(c.health)
         setStrength(c.strength);
         setDefense(c.defense);
         setWisdom(c.wisdom);
@@ -102,8 +105,6 @@ const DecisionBlock = () => {
                 break;
             default: return
         }
-        // sets the character health
-        setCurrentUserHealth(currentCharacter.health)
     }
 
     const handleText = (choice) => {
@@ -162,9 +163,9 @@ const DecisionBlock = () => {
         if (storyText.length === 0) {
             return;
         }
+        checkModifier();
         setTimeout(() => {
             setOptionFade("fadeIn")
-            checkModifier();
             displayEnemy();
         }, (storyText.length * 30 + 2000))
 
@@ -181,6 +182,7 @@ const DecisionBlock = () => {
                 // tried to use a switch case but that didnt work for some reason
                 if (mod.weapon) {
                     setWeapon(mod.weapon.name)
+                    setWeaponDmg(mod.weapon.dmg)
                 } else if (mod.health) {
                     if (currentUserHealth + mod.health > maxHealth) {
                         setCurrentUserHealth(maxHealth)
@@ -224,53 +226,47 @@ const DecisionBlock = () => {
                     ]);
                 }
             })
-            saveGame();
         } 
+        updateCharacter();
+
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
-
-    // For some reason this is running after an enemy has been killed... not sure how to fix that
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            if (!enemies[currentEnemy.name]) {
-                return;
-            } else {
-                let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-                console.log(enemyName)
-                setEnemyImage(enemyName)
-            }
+
+            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            console.log(enemyName)
+            setEnemyImage(enemyName)
+        
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
             setCurrentEnemyHealth(currentEnemy.health);
-            decideTurn();
         }
         return;
     }
 
-    const decideTurn = () => {
-        // Begin each battle with a dice roll, to see who goes first.
-        // if the enemy goes first, disable all the buttons
-        let diceRoll = (Math.floor(Math.random() * 6) + 1);
-        if (diceRoll >= 1 || diceRoll <= 3) {
-            console.log("Your turn")
-            setButtonDisabled(false);
-        } else {
-            console.log("Enemy turn")
-            setButtonDisabled(true);
-            enemyTurn();
-        }
+    // const decideTurn = () => {
+    //     // Begin each battle with a dice roll, to see who goes first.
+    //     // if the enemy goes first, disable all the buttons
+    //     let diceRoll = (Math.floor(Math.random() * 6) + 1);
+    //     if (diceRoll >= 1 || diceRoll <= 3) {
+    //         console.log("Your turn")
+    //         setButtonDisabled(false);
+    //     } else {
+    //         console.log("Enemy turn")
+    //         setButtonDisabled(true);
+    //         enemyTurn();
+    //     }
         
-    }
+    // }
 
     const enemyTurn = () => {
-        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, currentCharacter.defense, currentUserHealth, setCurrentUserHealth)
+        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentUserHealth, setCurrentUserHealth)
         // enable buttons after attack
-        console.log(currentUserHealth)
-        // setCurrentUserHealth(currentUserHealth)
         setButtonDisabled(false);
     }
 
@@ -287,22 +283,28 @@ const DecisionBlock = () => {
         
         switch (option.label) {
             case "Normal Attack":
-                attacks.normalAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
+                attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Special Attack":
-                attacks.specialAttack(currentCharacter.weapon, currentCharacter.strength, currentEnemy.defense, currentCharacter.luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
+                attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
                 break;
             case "Use health potion":
-                attacks.useHealthPotion();
+                attacks.useHealthPotion(healthPotions, setHealthPotions, currentUserHealth, setCurrentUserHealth, maxHealth);
                 break;
             case "Use skill":
                 attacks.useSkill(currentCharacter.charClass);
                 break;
             default: return;
         }
+        setButtonDisabled(true);
+        console.log(currentUserHealth)
 
+       
+        
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-            enemyTurn();
+            setTimeout(() => {
+                enemyTurn();
+            }, 3000)
         }
     }
 
@@ -311,7 +313,7 @@ const DecisionBlock = () => {
         let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
         setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
-        if (enemyNewWidth <= 0) {
+        if (currentEnemyHealth <= 0) {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
@@ -351,13 +353,14 @@ const DecisionBlock = () => {
             setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
-            // After fights are complete, save game
-            saveGame();
+            // After fights are complete, update the character in sessionStorage
+            updateCharacter();
         }, 2000)
     }
 
-    const saveGame = () => {
+    const updateCharacter = () => {
         // Update sessionStorage
+        console.log("Updating character")
         window.sessionStorage.setItem("currentCharacter", JSON.stringify({
             "id": currentCharacter.id,
             "name": currentCharacter.name,
@@ -381,6 +384,10 @@ const DecisionBlock = () => {
             "level": currentLevel,
             "time": time
         }))
+    }
+
+    const saveGame = () => {
+        updateCharacter();
         API.updateCharacter(
             currentUserHealth,
             strength,
@@ -458,6 +465,7 @@ const DecisionBlock = () => {
                     wisdom={wisdom}
                     luck={luck}
                     weapon={weapon}
+                    weaponDmg={weaponDmg}
                     head={head}
                     chest={chest}
                     legs={legs}
@@ -466,7 +474,7 @@ const DecisionBlock = () => {
                     torch={torch}
                     amulet={amulet}
                     healthPotions={healthPotions}
-                    gold={healthPotions}
+                    gold={gold}
                     />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>

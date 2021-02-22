@@ -2,41 +2,6 @@ const diceRoll = () => {
     return(Math.floor(Math.random() * 6) + 1);
 }
 
-let weaponDamage;
-
-const checkUserWeapon = (weapon) => {
-    switch(weapon.toLowerCase()) {
-        case "no weapon":
-            weaponDamage = 1;
-            break;
-        case "rusty shortsword":
-            weaponDamage = 2;
-            break;
-        case "dagger":
-            weaponDamage = 5;
-            break;
-        case "iron axe":
-            weaponDamage = 7;
-            break;
-        case "steel dagger":
-            weaponDamage = 8;
-            break;
-        case "steel shortsword":
-            weaponDamage = 10;
-            break;
-        case "halberd":
-            weaponDamage = 12;
-            break;
-        case "black iron longsword":
-            weaponDamage = 14;
-            break;
-        case "obsidian axes":
-            weaponDamage = 16;
-        case "warhammer":
-            weaponDamage = 18;
-    }
-};
-
 
 // Luck check compares users and enemy luck rolls
 const luckCheck = (luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth) => {
@@ -51,11 +16,10 @@ const luckCheck = (luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth) =>
 
     if (myRoll + luck >= enemyRoll + enemyLuck) {
         console.log(`Your special attack lands, and does ${finalDamage}!`)
+        setEnemyHealth(enemyHealth - finalDamage)
     } else {
         console.log("You miss")
     }
-
-    setEnemyHealth(enemyHealth - finalDamage)
 
 };
 
@@ -64,8 +28,7 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weapon, strength, enemyDef, enemyHealth, setEnemyHealth) => {
-        checkUserWeapon(weapon);
+    normalAttack: (weaponDamage, strength, enemyDef, enemyHealth, setEnemyHealth) => {
         const initialRoll = diceRoll();
     
         console.log(`You rolled a ${initialRoll}`);
@@ -77,9 +40,8 @@ export default {
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
-    specialAttack: (weapon, strength, enemyDef, luck, enemyLuck, enemyHealth, setEnemyHealth) => {
+    specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck, enemyHealth, setEnemyHealth) => {
         const initalRoll = diceRoll();
-        checkUserWeapon(weapon);
     
         console.log(`You go for a special attack!`)
         console.log(`You roll a ${initalRoll}.`);
@@ -94,8 +56,27 @@ export default {
         luckCheck(luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth);  
     },
 
-    useHealthPotion: () => {
-        console.log(`You drink a health potion, restoring ${diceRoll() * diceRoll() + 15} health.`)
+    useHealthPotion: (potionCount, setPotionCount, userHealth, setUserHealth, maxHealth) => {
+        const initalRoll = diceRoll();
+        const secondRoll = diceRoll();
+
+        // checks that the user has potions. If they don't, return a message
+        if (potionCount > 0) {
+            // perfect roll (6 x 6) + 15 = 51 health increased
+            const healthIncrease = (initalRoll * secondRoll) + 15
+            const newHealth = userHealth + healthIncrease
+            // if the total health after the increase is more than max, just set it to max
+            if (newHealth > maxHealth) {
+                setUserHealth(maxHealth)
+            } else {
+                setUserHealth(userHealth + healthIncrease)
+            }
+            setPotionCount(potionCount--)
+            console.log(`You drink a health potion, restoring ${initalRoll * secondRoll + 15} health.`)
+        } else {
+            console.log("You're out of potions!")
+        }
+        
     },
 
     useSkill: (charClass) => {
@@ -115,6 +96,19 @@ export default {
         }
 
         console.log(`You used ${skill}, which did... something`)
+    },
+
+    // ENEMY ATTACKS
+    enemyNormalAttack: (enemyWeapon, strength, myDef, userHealth, setUserHealth) => {
+        const initialRoll = diceRoll();
+
+        console.log(`The enemy rolled a ${initialRoll}`);
+        console.log(`Their weapon does ${enemyWeapon} damage, and they have ${strength} strength points.`);
+        console.log(`You have ${myDef} defence points`)
+        const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
+        console.log(`The enemy hits you for ${finalDamage}!`)
+
+        setUserHealth(userHealth - finalDamage)
     },
 
     campaignLuckCheck: (luck, story) => {
@@ -153,19 +147,6 @@ export default {
             }
         ]
     
-    },
-
-    // ENEMY ATTACKS
-    enemyNormalAttack: (enemyWeapon, strength, myDef, userHealth, setUserHealth) => {
-        const initialRoll = diceRoll();
-
-        console.log(`The enemy rolled a ${initialRoll}`);
-        console.log(`Their weapon does ${enemyWeapon} damage, and they have ${strength} strength points.`);
-        console.log(`You have ${myDef} defence points`)
-        const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
-        console.log(`The enemy hits you for ${finalDamage}!`)
-
-        setUserHealth(userHealth - finalDamage)
     }
 
 }
