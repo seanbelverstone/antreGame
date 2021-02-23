@@ -14,12 +14,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+routes(app);
+
 // Middleware
 app.use(express.json())
 app.use(passport.initialize());
 app.use(passport.session());
-
-routes(app);
 
 passport.use(LocalStrategy);
 passport.use(JWTStrategy);
