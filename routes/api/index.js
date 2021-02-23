@@ -4,8 +4,8 @@ import characterRoute from "./characters";
 import passport from "passport";
 
 export default function(app) {
-	userRoute(app);
 	authRoute(app);
+	userRoute(app);
 	app.use(passport.authenticate("jwt", {session: false}));
 	characterRoute(app);
 }
