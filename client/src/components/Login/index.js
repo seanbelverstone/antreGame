@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
@@ -29,7 +28,7 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                 window.sessionStorage.setItem("jwtToken", results.data.token);
             })
             .then(() => {
-                navigate("/select");
+                location.href = "/";
             })
             .catch(error => {
                 console.log(error);

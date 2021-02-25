@@ -12,6 +12,8 @@ module.exports = {
   },
    
   create: (request, response) => {
+    console.log(request.body)
+
     db.User
       .create(request.body)
       .then(dbModel => response.json(dbModel))

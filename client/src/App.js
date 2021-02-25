@@ -21,16 +21,16 @@ const App = () => {
                 <Route exact path="/">
                     <Login />
                 </Route>
-                <Route path="/account">
+                <Route exact path="/account">
                     <CreateAccount />
                 </Route>
-                <Route path="/select">
+                <Route exact path="/select">
                     <SelectCharacter />
                 </Route>
-                <Route path="/create">
+                <Route exact path="/create">
                     <CreateCharacter />
                 </Route>
-                <Route path="/play">
+                <Route exact path="/play">
                     <DecisionBlock />
                 </Route>
                 </Switch>
