@@ -1,40 +1,15 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-import Login from "./components/Login";
-import CreateAccount from "./components/CreateAccount";
-import SelectCharacter from "./components/SelectCharacter";
-import CreateCharacter from "./components/CreateCharacter";
-import DecisionBlock from "./components/DecisionBlock";
+import { useRoutes } from "hookrouter";
+import routes from "./utils/router";
 import "./App.css";
 
 const App = () => {
 
+    const routeResult = useRoutes(routes);
+
     return (
         <div className="appWrapper">
-            <Router>
-                <Switch>
-                <Route exact path="/">
-                    <Login />
-                </Route>
-                <Route exact path="/account">
-                    <CreateAccount />
-                </Route>
-                <Route exact path="/select">
-                    <SelectCharacter />
-                </Route>
-                <Route exact path="/create">
-                    <CreateCharacter />
-                </Route>
-                <Route exact path="/play">
-                    <DecisionBlock />
-                </Route>
-                </Switch>
-            </Router>
+            {routeResult}
         </div>
     )
 // PSUEDOCODE
