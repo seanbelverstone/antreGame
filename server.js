@@ -19,10 +19,10 @@ app.use(express.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-routes(app);
-
 passport.use(LocalStrategy);
 passport.use(JWTStrategy);
+
+routes(app);
 
 // Send every request to the React app
 // Define any API routes before this runs
