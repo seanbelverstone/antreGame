@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Inventory from "../Inventory";
+import InventoryPopup from "../InventoryPopup";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
@@ -13,10 +14,12 @@ import "./style.css";
 const DecisionBlock = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [snackbarDisplay, setSnackbarDisplay] = useState(false);
+
     const [currentCharacter, setCurrentCharacter] = useState({})
     const [currentLevel, setCurrentLevel] = useState("")
     const [storyText, setStoryText] = useState("");
-    const [modifier, setModifier] = useState("");
+    const [modifier, setModifier] = useState([]);
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
     const [currentEnemy, setCurrentEnemy] = useState({});
@@ -91,7 +94,7 @@ const DecisionBlock = () => {
 
     const handleLevel = (choice) => {
         setCurrentLevel(choice)
-        
+
         // sets max health based on the character's class
         switch (currentCharacter.charClass) {
             case "Warrior":
@@ -109,11 +112,10 @@ const DecisionBlock = () => {
 
     const handleText = (choice) => {
         // loops through the storylines array, and matches the character's level with the corresponding object
-        for(let i = 0; i < storylines.length; i++) {
+        for (let i = 0; i < storylines.length; i++) {
 
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
-                console.log(storylines[i].modifier)
                 setModifier(storylines[i].modifier);
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
@@ -124,17 +126,17 @@ const DecisionBlock = () => {
             }
         }
     }
-    
+
     // maps through the options array and creates divs for them
     const renderOptions = () => {
         if (modifier[0] != undefined && modifier[0].death) {
-            return(
+            return (
                 <p className={`options ${optionFade}`}>You died.</p>
             )
         } else if (modifier[0] != undefined && modifier[0].fight) {
             // If fight: true appears in the decision block, render the fight screen instead.
-            return(options.map(fightOption => {
-                return(
+            return (options.map(fightOption => {
+                return (
                     <div className={`options ${optionFade}`} key={fightOption.label}>
                         <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
                             {fightOption.label}
@@ -146,7 +148,7 @@ const DecisionBlock = () => {
         } else {
             // Otherwise, show the option page
             return options.map(option => {
-                return(
+                return (
                     <div className={`options ${optionFade}`} key={option.label}>
                         <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
                             {option.label}
@@ -224,13 +226,14 @@ const DecisionBlock = () => {
                     console.log(checkingLuck[0]);
                     setOptions([
                         {
-                        "label": checkingLuck[0].label,
-                        "target": checkingLuck[0].target
+                            "label": checkingLuck[0].label,
+                            "target": checkingLuck[0].target
                         }
                     ]);
                 }
             })
-        } 
+        }
+        setSnackbarDisplay(true);
         updateCharacter();
 
     }
@@ -244,7 +247,7 @@ const DecisionBlock = () => {
             let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
             console.log(enemyName)
             setEnemyImage(enemyName)
-        
+
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
@@ -265,7 +268,7 @@ const DecisionBlock = () => {
     //         setButtonDisabled(true);
     //         enemyTurn();
     //     }
-        
+
     // }
 
     const enemyTurn = () => {
@@ -284,7 +287,7 @@ const DecisionBlock = () => {
     }
 
     const handleFight = (option) => {
-        
+
         switch (option.label) {
             case "Normal Attack":
                 attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
@@ -303,8 +306,8 @@ const DecisionBlock = () => {
         setButtonDisabled(true);
         console.log(currentUserHealth)
 
-       
-        
+
+
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
             setTimeout(() => {
                 enemyTurn();
@@ -411,10 +414,10 @@ const DecisionBlock = () => {
             currentLevel,
             time,
             currentCharacter.id
-            )
+        )
             .then((results) => {
                 console.log(results);
-            }) 
+            })
     }
 
     const logout = () => {
@@ -422,10 +425,10 @@ const DecisionBlock = () => {
         navigate("/")
     }
 
-    return(
+    return (
         <div className="decisionWrapper">
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
-            
+
             <Typewriter
                 id="text"
                 options={{
@@ -436,26 +439,26 @@ const DecisionBlock = () => {
                 }}
 
             />
-            <div style={{display: imageDisplay}} className={enemyBlockFade} id="enemyBlock">
+            <div style={{ display: imageDisplay }} className={enemyBlockFade} id="enemyBlock">
                 <div>{currentEnemy.name}</div>
                 <div className="healthArea">
                     <div className="healthText">
                         {currentEnemyHealth}/{currentEnemy.health}
                     </div>
-                    <div id="enemyBar" style={{width: enemyHealthWidth}}></div>
+                    <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
                 </div>
 
-                <img src={enemyImage} id="enemyImage"/>
-                
+                <img src={enemyImage} id="enemyImage" />
+
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
                     <div className="healthText">
                         {currentUserHealth}/{maxHealth}
                     </div>
-                    <div id="userBar" style={{width: userHealthWidth}}></div>
+                    <div id="userBar" style={{ width: userHealthWidth }}></div>
                 </div>
             </div>
-            
+
             <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
@@ -479,15 +482,16 @@ const DecisionBlock = () => {
                     amulet={amulet}
                     healthPotions={healthPotions}
                     gold={gold}
-                    />
+                />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
                 </div>
 
-                <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+                <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
+            <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
         </div>
-                    
+
     )
 }
 

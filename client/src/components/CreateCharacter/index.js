@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
-import Snackbar from "../Snackbar";
+import CreationPopup from "../CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -194,7 +194,7 @@ const CreateCharacter = () => {
                         Create
                     </Button>
             </form>
-            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
+            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </div>
                     
