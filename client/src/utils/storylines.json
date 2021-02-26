@@ -370,15 +370,15 @@
                 "target": "02-Tunnel Return Variant"
             },
             {
-                "label": "Go West",
+                "label": "Go West - Dark",
                 "target": "04-Dark Path"
             },
             {
-                "label": "Go North",
+                "label": "Go North - Door",
                 "target": "13-Single Door"
             },
             {
-                "label": "Go East",
+                "label": "Go East - Ash",
                 "target": "14-Ash Path"
             }
         ]
@@ -505,7 +505,7 @@
 
     {
         "level": "04-Dark Path",
-        "text": "You opt for the darker path to the North. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
+        "text": "You opt for the darker path to the West. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
         "modifier": [
             {
                 "none": true
@@ -865,9 +865,6 @@
         "text": "Although the light is fading fast, you decide to take your time looting the room. You uncover a number of great items, however, before long you hear another screech, followed by a thump. Another lizard has arrived.",
         "modifier": [
             {
-                "fight": 1
-            },
-            {
                 "weapon": {
                     "name": "Steel shortsword",
                     "dmg": 7
@@ -881,6 +878,21 @@
             },
             {
                 "gold": 20
+            }
+        ],
+        "options": [
+            {
+                "label": "Attack",
+                "target": "06ca-Second Lizard Fight"
+            }
+        ]
+    },
+    {
+        "level": "06ca-Second Lizard Fight",
+        "text": "Gritting your teeth and wishing you'd left sooner, you ready to attack your new foe.",
+        "modifier": [
+            {
+                "fight": 1
             }
         ],
         "enemy": {
@@ -1780,7 +1792,7 @@
         "text": "Deciding to take the path that smells like ash, you head east. The stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so plesant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. You pick it up and put it on, hopefully it will bring you more protection that it did for them...",
         "modifier": [
             {
-                "chest": "chainmail"
+                "chest": "Chainmail"
             },
             {
                 "defense": 1
