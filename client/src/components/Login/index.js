@@ -66,7 +66,7 @@ const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
                     >
                     Login
                 </Button>
-                <a id="create" href="/account">CREATE AN ACCOUNT</a>
+                <a id="create" onClick={() => navigate("/account")}>CREATE AN ACCOUNT</a>
             </form>
         </div>
                     
