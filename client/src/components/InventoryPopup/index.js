@@ -28,7 +28,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
         }
     }, [display])
 
-    const addToArray = (note) => {
+    const addIfUnique = (note) => {
         if (messages.indexOf(note) === -1) {
             messages.push(note)
         } else {
@@ -48,34 +48,31 @@ export default function InventoryPopup({ display, setDisplay, items }) {
             console.log(item)
             if(item.none) {
                 // if no modifier is present, just return.
+                setDisplay(false);
                 return;
-            } else if (Math.sign(Object.values(item)) === 1 || Object.values(item.weapon.dmg > 1)) {
-                // if the value returns as positive, or it's relating to a weapon that deals more damage than (no weapon)
-                // set the message to a positive one.
-                if (item.weapon) {
-                    note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
-                    addToArray(note)
-                } else {
-                    note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
-                    addToArray(note);
-                }
-            } else if (Math.sign(Object.values(item)) === -1 || Object.values(item.weapon.dmg = 1)) {
-                if (item.weapon) {
-                    note = `You lost your weapon. Your damage has been reduced to 1 `;
-                    addToArray(note)
-                } else {
-                    note = `You lost ${Object.values(item)} ${Object.keys(item)} `
-                    addToArray(note)
-                }
-                console.log(messages)
+            } else if (Math.sign(Object.values(item)) === 1) {
+                // if the modifier returns as positive, user gains an item
+                note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
+                addIfUnique(note);
+            } else if (item.weapon && Object.values(item.weapon.dmg > 1)) {
+            // if the weapon has more than 1 damage (not no weapon)
+                note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
+                addIfUnique(note)
+            } else if (Math.sign(Object.values(item)) === -1) {
+                // if the modifier is negative, set the note to say you lost an item
+                note = `You lost ${Object.values(item)} ${Object.keys(item)}. `
+                addIfUnique(note)
+            } else if (item.weapon && Object.values(item.weapon.dmg = 1)) {
+                note = `You lost your weapon. Your damage has been reduced to 1. `;
+                addIfUnique(note)
             } else {
                 // if the item is neither negative nor positive (0), just say that they lost the item. This relates to things like the torch
                 note = `You lost ${Object.keys(item)} `;
-                addToArray(note)
+                addIfUnique(note)
             }
 
             console.log(Math.sign(Object.values(item)))
-        })
+            })
     }    
 
     const handleClose = (event, reason) => {
