@@ -127,7 +127,7 @@ const SelectCharacter = () => {
 
             <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
-                <IconButton variant="contained" color="primary" href="/create">
+                <IconButton variant="contained" color="primary" onClick={() => navigate("/create")}>
                     <AddIcon />
                 </IconButton>
             </div>
