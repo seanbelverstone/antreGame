@@ -243,12 +243,7 @@ const DecisionBlock = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct imag
-            let enemyName;
-            if (!enemyName) {
-                return
-            } else {
-                enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-            }
+            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
             console.log(enemyName)
             setEnemyImage(enemyName)
 
