@@ -66,7 +66,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                 } else if (item.weapon && Object.values((item.weapon.dmg = 1))) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
                     addIfUnique(note);
-                } else if (Object.values(item.head || item.chest || item.legs || item.feet)) {
+                } else if (Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {
                     note = `You equipped the ${Object.values(item)}. `
                     addIfUnique(note);
                 } else {
