@@ -89,7 +89,7 @@ const CreateAccount = () => {
 
     return(
         <div className="createWrapper">
-            <a id="back" href="/">BACK</a>
+            <a id="back" onClick={() => navigate("/")}>BACK</a>
             <div id="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccount" onSubmit={handleSubmit}>
 
