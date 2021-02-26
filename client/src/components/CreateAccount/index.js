@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
-import Snackbar from "../Snackbar";
+import AccountConfirmation from "../CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
 import "../../App.css";
@@ -89,7 +89,7 @@ const CreateAccount = () => {
 
     return(
         <div className="createWrapper">
-            <a id="back" href="/">BACK</a>
+            <a id="back" onClick={() => navigate("/")}>BACK</a>
             <div id="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccount" onSubmit={handleSubmit}>
 
@@ -140,7 +140,7 @@ const CreateAccount = () => {
                 </Button>
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
-            <Snackbar display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Account created. Welcome, ${username}`} destination="/"/>
+            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Account created. Welcome, ${username}`} destination="/"/>
         </div>
     )
 }

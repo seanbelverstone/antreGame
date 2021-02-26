@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CustomizedSnackbars({ display, setDisplay, message, destination }) {
+  export default function CreationPopup({ display, setDisplay, message, destination }) {
     const classes = useStyles();
     console.log(display)
   
