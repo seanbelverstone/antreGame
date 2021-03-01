@@ -60,8 +60,8 @@
 }
 
 #enemyImage {
-    max-width: 50vh;
-    max-height: 50vh;
+    max-width: 25vh;
+    max-height: 25vh;
     margin-top: 10%;
 }
 
@@ -95,6 +95,11 @@
 
 #charName {
     margin-top: 50px;
+}
+
+#attackText {
+    max-width: 40vh;
+    flex-wrap: wrap;
 }
 
 #inventory, #save {

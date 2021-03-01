@@ -2,26 +2,7 @@ const diceRoll = () => {
     return(Math.floor(Math.random() * 6) + 1);
 }
 
-
-// Luck check compares users and enemy luck rolls
-const luckCheck = (luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth) => {
-
-    let myRoll = diceRoll();
-    let enemyRoll = diceRoll();
-
-    console.log(`You roll a ${myRoll} and the enemy rolls a ${enemyRoll}`)
-    console.log(`With your luck values added, the final results are:`)
-    console.log(`Your Luck: ${myRoll + luck}`)
-    console.log(`Enemy Luck: ${enemyRoll + enemyLuck}`)
-
-    if (myRoll + luck >= enemyRoll + enemyLuck) {
-        console.log(`Your special attack lands, and does ${finalDamage}!`)
-        setEnemyHealth(enemyHealth - finalDamage)
-    } else {
-        console.log("You miss")
-    }
-
-};
+let battleText;
 
 export default {
 
@@ -30,51 +11,62 @@ export default {
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
     normalAttack: (weaponDamage, strength, enemyDef, enemyHealth, setEnemyHealth) => {
         const initialRoll = diceRoll();
-    
-        console.log(`You rolled a ${initialRoll}`);
-        console.log(`Your weapon does ${weaponDamage} damage, and you have ${strength} strength points.`);
-        console.log(`The enemy has ${enemyDef} defence points`)
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
-        console.log(`Your hit the enemy for ${finalDamage} !`)
-        setEnemyHealth(enemyHealth - finalDamage)
+
+        let battleText = `You rolled a ${initialRoll}! Your normal attack does ${finalDamage}.`
+
+        return {
+            battleText,
+            finalDamage
+        };
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
-    specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck, enemyHealth, setEnemyHealth) => {
-        const initalRoll = diceRoll();
-    
-        console.log(`You go for a special attack!`)
-        console.log(`You roll a ${initalRoll}.`);
-        console.log(`Your weapon does ${weaponDamage} damage, and you have ${strength} strength points.`);
-        console.log(`The enemy has ${enemyDef} defence points`)
-    
-        const finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
-    
-        console.log(`You roll again for a luck check. \n`)
+    specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
+        const initalRoll = diceRoll();    
+        let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
     
     
-        luckCheck(luck, enemyLuck, finalDamage, enemyHealth, setEnemyHealth);  
+        // checks luck
+        let myLuckRoll = diceRoll();
+        let enemyLuckRoll = diceRoll();
+
+        if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
+            battleText = `You roll for a special attack. You compare luck values with the enemy and your roll is higher! Your special attack does ${finalDamage}!`;
+            return {
+                battleText,
+                finalDamage
+            };
+        } else {
+            battleText =  `You roll for a special attack. You compare luck values with the enemy and your roll is lower. Your attack misses!`;
+            finalDamage = 0;
+            return {
+                battleText,
+                finalDamage
+            };
+        }
     },
 
-    useHealthPotion: (potionCount, setPotionCount, userHealth, setUserHealth, maxHealth) => {
+    useHealthPotion: (potionCount) => {
         const initalRoll = diceRoll();
         const secondRoll = diceRoll();
+        // perfect roll (6 x 6) + 15 = 51 health increased
+        let healthIncrease = (initalRoll * secondRoll) + 15
 
-        // checks that the user has potions. If they don't, return a message
+        // checks that the user has potions.
         if (potionCount > 0) {
-            // perfect roll (6 x 6) + 15 = 51 health increased
-            const healthIncrease = (initalRoll * secondRoll) + 15
-            const newHealth = userHealth + healthIncrease
-            // if the total health after the increase is more than max, just set it to max
-            if (newHealth > maxHealth) {
-                setUserHealth(maxHealth)
-            } else {
-                setUserHealth(userHealth + healthIncrease)
+            battleText = `You drink a health potion, restoring ${healthIncrease}.`
+            return {
+                battleText,
+                healthIncrease
             }
-            setPotionCount(potionCount--)
-            console.log(`You drink a health potion, restoring ${initalRoll * secondRoll + 15} health.`)
         } else {
-            console.log("You're out of potions!")
+            battleText = `You're out of potions!`;
+            healthIncrease = 0
+            return {
+                battleText,
+                healthIncrease
+            }
         }
         
     },
@@ -99,16 +91,15 @@ export default {
     },
 
     // ENEMY ATTACKS
-    enemyNormalAttack: (enemyWeapon, strength, myDef, userHealth, setUserHealth) => {
+    enemyNormalAttack: (enemyWeapon, strength, myDef) => {
         const initialRoll = diceRoll();
-
-        console.log(`The enemy rolled a ${initialRoll}`);
-        console.log(`Their weapon does ${enemyWeapon} damage, and they have ${strength} strength points.`);
-        console.log(`You have ${myDef} defence points`)
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
-        console.log(`The enemy hits you for ${finalDamage}!`)
 
-        setUserHealth(userHealth - finalDamage)
+        battleText = `The enemy rolled a ${initialRoll}! Their attack does ${finalDamage}.`
+        return {
+            battleText,
+            finalDamage
+        }
     },
 
     campaignLuckCheck: (luck, story) => {

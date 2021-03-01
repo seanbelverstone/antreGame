@@ -19,6 +19,7 @@ const DecisionBlock = () => {
     const [currentCharacter, setCurrentCharacter] = useState({})
     const [currentLevel, setCurrentLevel] = useState("")
     const [storyText, setStoryText] = useState("");
+    const [attackText, setAttackText] = useState("");
     const [modifier, setModifier] = useState([]);
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
@@ -28,7 +29,8 @@ const DecisionBlock = () => {
     const [imageDisplay, setImageDisplay] = useState("none");
     const [optionFade, setOptionFade] = useState("hidden");
     const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
-    // this determines the width of the health. Will change based on damage done
+
+    // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
     const [currentUserHealth, setCurrentUserHealth] = useState(1);
@@ -242,7 +244,7 @@ const DecisionBlock = () => {
     const displayEnemy = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
-            // have to replace all spaces with underscores, in order to successfully grab the correct imag
+            // have to replace all spaces with underscores, in order to successfully grab the correct image
             let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
             console.log(enemyName)
             setEnemyImage(enemyName)
@@ -251,6 +253,7 @@ const DecisionBlock = () => {
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
             setCurrentEnemyHealth(currentEnemy.health);
+            
         }
         return;
     }
@@ -270,8 +273,24 @@ const DecisionBlock = () => {
 
     // }
 
+    const checkHealth = () => {
+        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
+            setTimeout(() => {
+                enemyTurn();
+            }, 3000)
+        }
+    }
+
     const enemyTurn = () => {
-        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentUserHealth, setCurrentUserHealth)
+        const enemyAttack = new Promise ((resolve, reject) => {
+            resolve(attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense));
+        });
+
+        enemyAttack.then((results) => {
+            console.log(results);
+            setCurrentUserHealth(currentUserHealth - results.finalDamage);
+            setAttackText(results.battleText);
+        })
         // enable buttons after attack
         setButtonDisabled(false);
     }
@@ -289,29 +308,47 @@ const DecisionBlock = () => {
 
         switch (option.label) {
             case "Normal Attack":
-                attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, currentEnemyHealth, setCurrentEnemyHealth);
+                const normalAttack = new Promise((resolve, reject) => {
+                    resolve(attacks.normalAttack(weaponDmg, strength, currentEnemy.defense));
+                });
+                normalAttack.then(results => {
+                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                    setAttackText(results.battleText)
+                });
                 break;
             case "Special Attack":
-                attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth);
+                const specialAttack = new Promise((resolve, reject) => {
+                    resolve(attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck));
+                });
+                specialAttack.then(results => {
+                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                    setAttackText(results.battleText)
+                })
                 break;
             case "Use health potion":
-                attacks.useHealthPotion(healthPotions, setHealthPotions, currentUserHealth, setCurrentUserHealth, maxHealth);
+                const heal = new Promise((resolve, reject) => {
+                    resolve(attacks.useHealthPotion(healthPotions))
+                });
+                heal.then(results => {
+                    if (results.healthIncrease > 0) {
+                        setHealthPotions(healthPotions - 1)
+                        if (currentUserHealth + results.healthIncrease > maxHealth) {
+                            setCurrentUserHealth(maxHealth);
+                        } else {
+                            setCurrentUserHealth(currentCharacter.health + results.healthIncrease)
+                        }
+                    }
+                    setAttackText(results.battleText)
+                })
                 break;
             case "Use skill":
-                attacks.useSkill(currentCharacter.charClass);
+                attacks.useSkill(currentCharacter.charClass, setStoryText);
                 break;
             default: return;
         }
         setButtonDisabled(true);
+        checkHealth();
         console.log(currentUserHealth)
-
-
-
-        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-            setTimeout(() => {
-                enemyTurn();
-            }, 3000)
-        }
     }
 
     const setHealthWidth = () => {
@@ -456,6 +493,11 @@ const DecisionBlock = () => {
                     </div>
                     <div id="userBar" style={{ width: userHealthWidth }}></div>
                 </div>
+            </div>
+
+            {/* MAYBE RENDER TEXT HERE? */}
+            <div>
+                {attackText}
             </div>
 
             <div id="optionArea">{renderOptions()}</div>
