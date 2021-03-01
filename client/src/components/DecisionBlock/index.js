@@ -273,6 +273,14 @@ const DecisionBlock = () => {
 
     // }
 
+    const checkHealth = () => {
+        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
+            setTimeout(() => {
+                enemyTurn();
+            }, 3000)
+        }
+    }
+
     const enemyTurn = () => {
         const enemyAttack = new Promise ((resolve, reject) => {
             resolve(attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense));
@@ -303,7 +311,7 @@ const DecisionBlock = () => {
                 const normalAttack = new Promise((resolve, reject) => {
                     resolve(attacks.normalAttack(weaponDmg, strength, currentEnemy.defense));
                 });
-                normalAttack.then((results) => {
+                normalAttack.then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 });
@@ -312,7 +320,7 @@ const DecisionBlock = () => {
                 const specialAttack = new Promise((resolve, reject) => {
                     resolve(attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck));
                 });
-                specialAttack.then((results) => {
+                specialAttack.then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 })
@@ -339,16 +347,8 @@ const DecisionBlock = () => {
             default: return;
         }
         setButtonDisabled(true);
+        checkHealth();
         console.log(currentUserHealth)
-        
-
-
-
-        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
-            setTimeout(() => {
-                enemyTurn();
-            }, 3000)
-        }
     }
 
     const setHealthWidth = () => {
