@@ -31,12 +31,19 @@ export default {
     normalAttack: (weaponDamage, strength, enemyDef, enemyHealth, setEnemyHealth) => {
         const initialRoll = diceRoll();
     
-        console.log(`You rolled a ${initialRoll}`);
-        console.log(`Your weapon does ${weaponDamage} damage, and you have ${strength} strength points.`);
-        console.log(`The enemy has ${enemyDef} defence points`)
+        // console.log(`You rolled a ${initialRoll}`);
+        // console.log(`Your weapon does ${weaponDamage} damage, and you have ${strength} strength points.`);
+        // console.log(`The enemy has ${enemyDef} defence points`)
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
-        console.log(`Your hit the enemy for ${finalDamage} !`)
-        setEnemyHealth(enemyHealth - finalDamage)
+        // console.log(`Your hit the enemy for ${finalDamage} !`)
+        // setEnemyHealth(enemyHealth - finalDamage)
+        let battleText = `You rolled a ${initialRoll}! Your normal attack does ${finalDamage}.`
+
+        // setEnemyHealth(enemyHealth - finalDamage);
+        return {
+            battleText,
+            finalDamage
+        };
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
