@@ -335,7 +335,7 @@ const DecisionBlock = () => {
                         if (currentUserHealth + results.healthIncrease > maxHealth) {
                             setCurrentUserHealth(maxHealth);
                         } else {
-                            setCurrentUserHealth(currentUserHealth + results.healthIncrease)
+                            setCurrentUserHealth(currentCharacter.health + results.healthIncrease)
                         }
                     }
                     setAttackText(results.battleText)
