@@ -274,7 +274,15 @@ const DecisionBlock = () => {
     // }
 
     const enemyTurn = () => {
-        attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentUserHealth, setCurrentUserHealth)
+        const enemyAttack = new Promise ((resolve, reject) => {
+            resolve(attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense));
+        });
+
+        enemyAttack.then((results) => {
+            console.log(results);
+            setCurrentUserHealth(currentUserHealth - results.finalDamage);
+            setAttackText(results.battleText);
+        })
         // enable buttons after attack
         setButtonDisabled(false);
     }
@@ -301,10 +309,29 @@ const DecisionBlock = () => {
                 });
                 break;
             case "Special Attack":
-                attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck, currentEnemyHealth, setCurrentEnemyHealth, setStoryText);
+                const specialAttack = new Promise((resolve, reject) => {
+                    resolve(attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck));
+                });
+                specialAttack.then((results) => {
+                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                    setAttackText(results.battleText)
+                })
                 break;
             case "Use health potion":
-                attacks.useHealthPotion(healthPotions, setHealthPotions, maxHealth, currentUserHealth, setCurrentUserHealth, setStoryText);
+                const heal = new Promise((resolve, reject) => {
+                    resolve(attacks.useHealthPotion(healthPotions))
+                });
+                heal.then(results => {
+                    if (results.healthIncrease > 0) {
+                        setHealthPotions(healthPotions - 1)
+                        if (currentUserHealth + results.healthIncrease > maxHealth) {
+                            setCurrentUserHealth(maxHealth);
+                        } else {
+                            setCurrentUserHealth(currentUserHealth + results.healthIncrease)
+                        }
+                    }
+                    setAttackText(results.battleText)
+                })
                 break;
             case "Use skill":
                 attacks.useSkill(currentCharacter.charClass, setStoryText);

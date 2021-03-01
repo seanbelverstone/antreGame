@@ -97,6 +97,11 @@
     margin-top: 50px;
 }
 
+#attackText {
+    max-width: 40vh;
+    flex-wrap: wrap;
+}
+
 #inventory, #save {
     width: 200px;
     align-items: center;
