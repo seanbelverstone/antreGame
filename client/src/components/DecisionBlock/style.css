@@ -111,3 +111,7 @@
     justify-content: center;
     margin: 5px;
 }
+
+body {
+    white-space: pre-line;
+}
