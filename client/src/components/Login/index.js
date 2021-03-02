@@ -5,7 +5,7 @@ import logo from "../../assets/images/AntreLarge.png";
 import { TextField, Button } from "@material-ui/core";
 import "./style.css";
 
-const Login = ({ changeToCharacter, changeToLogin, changeToCreate }) => {
+const Login = () => {
 
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState(false);

@@ -29,6 +29,7 @@ const DecisionBlock = () => {
     const [imageDisplay, setImageDisplay] = useState("none");
     const [optionFade, setOptionFade] = useState("hidden");
     const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
+    const [attackDisplay, setAttackDisplay] = useState("none");
 
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
@@ -249,6 +250,7 @@ const DecisionBlock = () => {
             console.log(enemyName)
             setEnemyImage(enemyName)
 
+            setAttackDisplay("flex");
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
             setCurrentUserHealth(currentCharacter.health);
@@ -385,6 +387,7 @@ const DecisionBlock = () => {
     // Fade the image out after a second, so it's not jarringly quick.
     const nextPhase = () => {
         setTimeout(() => {
+            setAttackDisplay("none");
             setEnemyBlockFade("fadeOut")
         }, 1000)
         // Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
@@ -496,7 +499,7 @@ const DecisionBlock = () => {
             </div>
 
             {/* MAYBE RENDER TEXT HERE? */}
-            <div>
+            <div id="attackText" className={optionFade} style={{display: attackDisplay}}>
                 {attackText}
             </div>
 
