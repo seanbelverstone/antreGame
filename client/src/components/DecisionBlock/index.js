@@ -334,6 +334,7 @@ const DecisionBlock = () => {
                 heal.then(results => {
                     if (results.healthIncrease > 0) {
                         setHealthPotions(healthPotions - 1)
+                        // if the user's health with the increase added is MORE than their max, just set it to max.
                         if (currentUserHealth + results.healthIncrease > maxHealth) {
                             setCurrentUserHealth(maxHealth);
                         } else {
@@ -469,12 +470,12 @@ const DecisionBlock = () => {
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
 
             <Typewriter
-                id="text"
                 options={{
                     strings: storyText,
                     autoStart: true,
                     loop: false,
                     delay: 20,
+                    wrapperClassName: "text"
                 }}
 
             />
