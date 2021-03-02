@@ -358,7 +358,7 @@
     },
     {
         "level": "03-Three Paths",
-        "text": "Leaving the small room behind, you follow the path to the north. After a short walk, your path meets a crossroads. The road is split in three ways: The path to the west is dark, the one to the east smells like ash, and the path ahead to the north is a single door.",
+        "text": "Leaving the small room behind, you follow the path to the north. \n\nAfter a short walk, your path meets a crossroads. The road is split in three ways: The path to the west is dark, the one to the east smells like ash, and the path ahead to the north is a single door.",
         "modifier": [
             {
                 "none": true
@@ -385,7 +385,7 @@
     },
     {
         "level": "02b-Relight Fire",
-        "text": "You bend down to relight the fire with your torch. It is illuminated now, and you sit beside the dead adventurer to rest awhile. You end up talking out some of your problems with him, and feel healthier.",
+        "text": "You bend down to relight the fire with your torch. It is illuminated now, and you sit beside the dead adventurer to rest awhile. \n\nYou end up talking out some of your problems with him, and feel better for it.",
         "modifier": [
             {
                 "health": 10
@@ -524,7 +524,7 @@
     },
     {
         "level": "04a-Torch Obtained",
-        "text": "Raising the torch above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that of some of the cobbled stone floor is raised in parts. From a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. You make it through the traps unscathed, but unfortunately your torch uses all of its fuel and splutters out of life.",
+        "text": "Raising the torch above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that of some of the cobbled stone floor is raised in parts. \n\nFrom a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. \n\nYou make it through the traps unscathed, but unfortunately your torch uses all of its fuel and splutters out of life.",
         "modifier": [
             {
                 "torch": 0
@@ -539,7 +539,7 @@
     },
     {
         "level": "04b-No Torch",
-        "text": "Blindly continuing through the pitch black corridor, you step on something and hear a click, followed by a whoosh. You scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. Who knows how many more traps there are?",
+        "text": "Blindly continuing through the pitch black corridor, you step on something and hear a click, followed by a whoosh. \n\nYou scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. \n\nWho knows how many more traps there are?",
         "modifier": [
             {
                 "health": -10
@@ -558,7 +558,7 @@
     },
     {
         "level": "03-Three Paths Dark Variant",
-        "text": "Leaving the dark way and part of your pride behind you, you return to the crossroads. The road is split in three ways: The path to the west behind you is dark, the one to the east smells like ash, and the path ahead to the north is a single door. Or you could return to the small room before.",
+        "text": "Leaving the dark way and part of your pride behind you, you return to the crossroads. \n\nThe road is split in three ways: The path to the west behind you is dark, the one to the east smells like ash, and the path ahead to the north is a single door. Or you could return to the small room before.",
         "modifier": [
             {
                 "none": true
@@ -575,11 +575,11 @@
             },
             {
                 "label": "Go North",
-                "target": "?-Single Door"
+                "target": "13-Single Door"
             },
             {
                 "label": "Go East",
-                "target": "?-Ash Path"
+                "target": "14-Ash Path"
             }
         ]
     },
@@ -627,7 +627,7 @@
     },
     {
         "level": "04bac-Bad Luck",
-        "text": "Either you're cursed or the luckiest bastard that ever existed. During your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.",
+        "text": "Either you're cursed or the luckiest bastard that ever existed. \n\nDuring your time stumbling in the dark, you managed to activate nearly every single trap that was in the corridor, yet miraculously you are still breathing. Exhausted and in pain, you can't help but be somewhat thankful the traps are behind you.",
         "modifier": [
             {
                 "health": -20
@@ -642,7 +642,7 @@
     },
     {
         "level": "04bad-Best Luck",
-        "text": "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. Your confidence increases and you step forward.",
+        "text": "You are insanely blessed, as you get through the trap filled corridor, in the dark, without setting off a single trap. \n\nYour confidence increases and you step forward.",
         "modifier": [
             {
                 "strength": 1
@@ -657,7 +657,7 @@
     },
     {
         "level": "05-Sleeping Goblins",
-        "text": "Reaching the end of the trap-filled hallway, you reach the corner where the light was eminating from. Slowly easing your head around the corner to see the source from the light, you see a couple of goblins sleeping by the remains of a fire. The fire looks like it has only been out for a short while. The only noise you can hear is a quiet snuffling, although you're unsure to where it's coming from.",
+        "text": "Reaching the end of the trap-filled hallway, you reach the corner where the light was eminating from. \n\nSlowly easing your head around the corner to see the source from the light, you see a couple of goblins sleeping by the remains of a fire. The fire looks like it has only been out for a short while. \n\nThe only noise you can hear is a quiet snuffling, although you're unsure to where it's coming from.",
         "modifier": [
             {
                 "none": true
@@ -684,7 +684,7 @@
     },
     {
         "level": "05a-Approach Goblins",
-        "text": "As begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
+        "text": "As begin moving towards the goblins, the snuffling noise stops. \n\nYour hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. \n\nThe snuffling resumes, now directly behind you.",
         "modifier": [
             {
                 "none": true
@@ -699,7 +699,7 @@
     }, 
     {
         "level": "05a-Attack Goblins",
-        "text": "As you begin moving towards the goblins, the snuffling noise stops. The room is now eerily quiet. Your hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. The snuffling resumes, now directly behind you.",
+        "text": "As you begin moving towards the goblins, the snuffling noise stops. \n\nYour hand clenches and you move closer to the goblins. As you get closer, you discover that they aren't sleeping, well, not anymore. Their entire front sides that were obscured from your view during your approach, have been completely devoured by... something. \n\nThe snuffling resumes, now directly behind you.",
         "modifier": [
             {
                 "none": true
@@ -729,7 +729,7 @@
     },
     {
         "level": "05c-Throw Rock",
-        "text": "Finding a rock by your feet, you cast it towards the goblins. It's a good throw, and it cracks one of them in the back of the head. The rock loudly clatters to the ground. Either these goblins are heavy sleepers, or more likely, they've been dead for a while. No-one could sleep off a hit like tha- You're broken off mid-thought as you hear a loud screech, followed by a thud.",
+        "text": "Finding a rock by your feet, you cast it towards the goblins. \n\nIt's a good throw, and it cracks one of them in the back of the head. The rock loudly clatters to the ground. Either these goblins are heavy sleepers, or more likely, they've been dead for a while. No-one could sleep off a hit like tha- \n\nYou're broken off mid-thought as you hear a loud screech, followed by a thud.",
         "modifier": [
             {
                 "none": true
@@ -744,7 +744,7 @@
     },
     {
         "level": "05ba-Lizard Continue",
-        "text": "A giant cave lizard leaps into view, attracted by all the noise you created. Illuminated by the remains of the fire, you can see its monstrous claws and sharp fangs which must have easily torn apart those poor goblins. You also notice that this particular lizard seems to be blind, its milky-white eyes frantically moving from side to side, searching restlessly for the source of the noise. Its loud sniffing resumes, in an attempt to track your scent.",
+        "text": "A giant cave lizard leaps into view, attracted by all the noise you created. Illuminated by the remains of the fire, you can see its monstrous claws and sharp fangs which must have easily torn apart those poor goblins. You also notice that this particular lizard seems to be blind, its milky-white eyes frantically moving from side to side, searching restlessly for the source of the noise. \n\nIts loud sniffing resumes, in an attempt to track your scent.",
         "modifier": [
             {
                 "none": true
@@ -763,7 +763,7 @@
     },
     {
         "level": "05baa-Lizard Fight",
-        "text": "Wheeling around, you see a giant cave lizard now blocking the way you came in. Its big claws and sharp fangs are menacing enough, although its milky-white eyes let you know that this creature has been down here for so long that it has been rendered blind. It looks like it now relies on smell and sound to find its prey, which explains the snuffling sound. These goblins never knew what was coming. Smelling your tasty skin, it lunges to attack you.",
+        "text": "Wheeling around, you see a giant cave lizard now blocking the way you came in. \n\nIts big claws and sharp fangs are menacing enough, although its milky-white eyes let you know that this creature has been down here for so long that it has been rendered blind. It looks like it now relies on smell and sound to find its prey, which explains the snuffling sound. These goblins never knew what was coming. \n\nSmelling your tasty skin, it lunges to attack you.",
         "modifier": [
             {
                 "fight": 1
@@ -801,7 +801,7 @@
     },
     {
         "level": "05bab-Lizard Death",
-        "text": "You quickly whip your body around the corner, in an attempt to hide from the lizard, but you have no such luck. It easily tracks you down by your scent and speeds round the corner, pouncing on you and clamping its jaws on your throat. Knocking you down, the giant lizard bites down with crushing jaws. The last thing you hear before you die is your own gurgling screams.",
+        "text": "You quickly whip your body around the corner, in an attempt to hide from the lizard, but you have no such luck. It easily tracks you down by your scent and speeds round the corner, pouncing on you and clamping its jaws on your throat. \n\nKnocking you down, the giant lizard bites down with crushing jaws. The last thing you hear before you die is your own gurgling screams.",
         "modifier": [
             {
                 "death": 1
@@ -810,7 +810,7 @@
     },
     {
         "level": "06-Lizard Victory",
-        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. The light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
+        "text": "Blood oozes from the giant lizard's wounds, and it slumps over dead. \n\nThe light in this room is rapidly going out due to the fire's close proximity during your fight, however the corridor adjacent to you is relatively well lit.",
         "modifier": [
             {
                 "none": true
@@ -838,7 +838,7 @@
     },
     {
         "level": "06a-Relight Fire",
-        "text": "You hunch over the fire, and look for something to relight it. You notice that the goblins were using flint and steel, so you snatch them up and strike them. The sound generated from the flint and steel is loud enough to attract another giant lizard, and also to mask its arrival. As you keep striking the flint and steel together, finally you get a spark and it ignites some small kindling in front of you. You look up. A drooling reptillian lower jaw is illuminated by your meagre fire. It licks its lips, and the drool from its mouth cascades down onto your kindling, extinguishing it. The light goes out.",
+        "text": "You hunch over the fire, and look for something to relight it. You notice that the goblins were using flint and steel, so you snatch them up and strike them. \n\nThe sound generated from the flint and steel is loud enough to attract another giant lizard, and also to mask its arrival. As you keep striking the flint and steel together, finally you get a spark and it ignites some small kindling in front of you. You look up. \n\nA drooling reptillian lower jaw is illuminated by your meagre fire. It licks its lips, and the drool from its mouth cascades down onto your kindling, extinguishing it. \n\nThe light goes out.",
         "modifier": [
             {
                 "death": 0
@@ -862,7 +862,7 @@
     },
     {
         "level": "06c-Long Search",
-        "text": "Although the light is fading fast, you decide to take your time looting the room. You uncover a number of great items, however, before long you hear another screech, followed by a thump. Another lizard has arrived.",
+        "text": "Although the light is fading fast, you decide to take your time looting the room. \n\nYou uncover a number of great items, however, before long you hear another screech, followed by a thump. \n\nOh great. Another lizard has arrived.",
         "modifier": [
             {
                 "weapon": {
@@ -927,7 +927,7 @@
     },
     {
         "level": "06d-Quick Search",
-        "text": "You do a quick scour of the room and manage to find a few gold pieces, and one of the weapons that lay close to the goblins. Making sure not to stay for too long in the room, you dart out and continue down the well lit hallway.",
+        "text": "You do a quick scour of the room and manage to find a few gold pieces, and one of the weapons that lay close to the goblins. \n\nMaking sure not to stay for too long in the room, you dart out and continue down the well lit hallway.",
         "modifier": [
             {
                 "weapon": {
@@ -963,7 +963,7 @@
     },
     {
         "level": "07-Mahogany Door",
-        "text": "After journeying down the corridor for some time, you reach a door. It's a heavy mahogany door, much taller than you are and it has a variety of engravings all over it. The doorhandle is shaped like a bony green fist. You can almost hear a distant rumble, that is gradually getting louder.",
+        "text": "After journeying down the corridor for some time, you reach a door. It's a heavy mahogany door, much taller than you are and it has a variety of engravings all over it. The doorhandle is shaped like a bony green fist. \n\nYou can almost hear a distant rumble, that is gradually getting louder.",
         "modifier": [
             {
                 "none": true
@@ -982,7 +982,7 @@
     },
     {
         "level": "07a-Knock",
-        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped doorhandle, you wait for a response. None comes. Perhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
+        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped doorhandle, you wait for a response. \n\nNone comes. \n\nPerhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
         "modifier": [
             {
                 "none": true
@@ -997,7 +997,7 @@
     },
     {
         "level": "08-Gobin Merchant",
-        "text": "Turning the doorhandle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sat at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. 'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' The rumbling grows steadily louder.",
+        "text": "Turning the doorhandle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sat at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. \n\n'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' \n\nThe rumbling grows steadily louder.",
         "modifier": [
             {
                 "none": true
@@ -1028,7 +1028,7 @@
     },
     {
         "level": "08a-Axes",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1065,7 +1065,7 @@
     },
     {
         "level": "08b-Greaves",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1102,7 +1102,7 @@
     },
     {
         "level": "08c-Helmet",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1142,7 +1142,7 @@
     },
     {
         "level": "08aa-Axe and Greaves",
-        "text": "'Anything else? We're running out of time!' The rumbling gets ever louder.",
+        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1174,7 +1174,7 @@
     },
     {
         "level": "08ab-Axe and Helmet",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1209,7 +1209,7 @@
     },
     {
         "level": "08ac-Axe and HP",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1238,7 +1238,7 @@
     },
     {
         "level": "08ba-Greaves and Axe",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1270,7 +1270,7 @@
     },
     {
         "level": "08bb-Greaves and Helmet",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1305,7 +1305,7 @@
     },
     {
         "level": "08bc-Greaves and HP",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1334,7 +1334,7 @@
     },
     {
         "level": "08ba-Helmet and Greaves",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1366,7 +1366,7 @@
     },
     {
         "level": "08aa-Helmet and Axe",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1398,7 +1398,7 @@
     },
     {
         "level": "08bc-Helmet and HP",
-        "text": "'Hurry!!' The rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1427,7 +1427,7 @@
     },
     {
         "level": "08d-Nothing",
-        "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. The goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. The entire room is now shaking and glass vials and old tomes cascade to the ground.",
+        "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. \n\nThe goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. \n\nThe entire room is now shaking and glass vials and old tomes cascade to the ground.",
         "modifier": [
             {
                 "none": true
@@ -1442,7 +1442,7 @@
     },
     {
         "level": "09-Time",
-        "text": "Suddenly, the entire room gets torn away from its foundations. You are thrown to left wall, and pinned there momentarily as you realise that the room is now moving at an incredibly fast pace. The wall opposite you starts to break apart, unable to remain intact due to this unnatural force being exerted upon it, and as the bricks break apart, and narrowly miss your face -- you see it. You are inside the mouth of a colossal worm. You see its ring of massive jagged teeth biting down on the walls and ceiling of the room you're in, and as it burrows through the ground at an incredible rate you realize that it's both picked you up on its journey underground, and it's now very pissed off. By looking at the size of its mouth, you judge that the worm must be at least 400 feet long, and you wonder how you could be this unforutnate. As your body gets acclimatized to the force that's pinning you to the wall, you manage to push yourself up and into a hunched over position. Standing inside a slowly deteriorating room, in the mouth of a colossal worm, you rapidly begin formulating a plan.",
+        "text": "Suddenly, the entire room gets torn away from its foundations. \n\nYou are thrown to left wall, and pinned there momentarily as you realise that the room is now moving at an incredibly fast pace. The wall opposite you starts to break apart, unable to remain intact due to this unnatural force being exerted upon it, and as the bricks break apart, and narrowly miss your face -- you see it. \n\nYou are inside the mouth of a colossal worm. You see its ring of massive jagged teeth biting down on the walls and ceiling of the room you're in, and as it burrows through the ground at an incredible rate you realize that it's both picked you up on its journey underground, and it's now very pissed off. By looking at the size of its mouth, you judge that the worm must be at least 400 feet long, and you wonder how you could be this unforutnate. As your body gets acclimatized to the force that's pinning you to the wall, you manage to push yourself up and into a hunched over position. Standing inside a slowly deteriorating room, in the mouth of a colossal worm, you rapidly begin formulating a plan.",
         "modifier": [
             {
                 "none": true
@@ -1470,7 +1470,7 @@
     },
     {
         "level": "09a-Give Up",
-        "text": "Realizing that there's probably no way out of this insane situation, you close your eyes and accept your fate. You think of a spring meadow, filled with new flowers and joyful bees. The air is cool, and you feel utterly at peace. As the wall behind you crumbles away, you fall into the gullet of the colossal worm. Although your body will soon be consumed by the beast, you manage one last smile before the end.",
+        "text": "Realizing that there's probably no way out of this insane situation, you close your eyes and accept your fate. \n\nYou think of a spring meadow, filled with new flowers and joyful bees. The air is cool, and you feel utterly at peace. As the wall behind you crumbles away, you fall into the gullet of the colossal worm. Although your body will soon be consumed by the beast, you manage one last smile before the end.",
         "modifier": [
             {
                 "death": 1
@@ -1503,7 +1503,7 @@
     },
     {
         "level": "09c-Climb",
-        "text": "Half walking, half crawling, you make your way across the collapsing room and climb towards the tooth filled opening. As you place a hand between the huge teeth, you feel a shiver run through the gums of the worm. Agitated, it shakes its head violently, causing you to be thrown back to the room's back wall. The stones behind you give way and for a moment, you are freefalling. With the creature's dark gullet behind you, you desperately reach for your weapon.",
+        "text": "Half walking, half crawling, you make your way across the collapsing room and climb towards the tooth filled opening. As you place a hand between the huge teeth, you feel a shiver run through the gums of the worm. \n\nAgitated, it shakes its head violently, causing you to be thrown back to the room's back wall. The stones behind you give way and for a moment, you are freefalling. \n\nWith the creature's dark gullet behind you, you desperately reach for your weapon.",
         "modifier": [
             {
                 "none": true
@@ -1536,7 +1536,7 @@
     },
     {
         "level": "09caa-Worm Death",
-        "text": "You reach for your weapon, but your fingers slip past it. You continue fumbling in a panic, but it is too late. You fall back into the gullet of the colossal worm, screaming. Its intense stomach acid dissolves your armor first, then the rest of you follows along with it.",
+        "text": "You reach for your weapon, but your fingers slip past it. You continue fumbling in a panic, but it is too late. You fall back into the gullet of the colossal worm, screaming. \n\nIts intense stomach acid dissolves your armor first, then the rest of you follows along with it.",
         "modifier": [
             {
                 "death": 1

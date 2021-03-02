@@ -73,7 +73,7 @@ const DecisionBlock = () => {
 
     useEffect(() => {
         setHealthWidth();
-    })
+    }, [])
 
     const handleStats = (c) => {
         console.log("updating stats")
@@ -246,7 +246,11 @@ const DecisionBlock = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            let enemyName = enemies[currentEnemy.name];
+
+            if (enemyName.includes(" ") && enemyName) {
+                enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            }
             console.log(enemyName)
             setEnemyImage(enemyName)
 
@@ -364,6 +368,7 @@ const DecisionBlock = () => {
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             nextPhase();
+            return;
         }
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
