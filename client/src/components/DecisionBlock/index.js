@@ -246,7 +246,11 @@ const DecisionBlock = () => {
         if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            let enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            let enemyName = enemies[currentEnemy.name];
+
+            if (enemyName.includes(" ") && enemyName) {
+                enemyName = enemies[currentEnemy.name.replace(" ", "_")]
+            }
             console.log(enemyName)
             setEnemyImage(enemyName)
 
@@ -290,7 +294,8 @@ const DecisionBlock = () => {
 
         enemyAttack.then((results) => {
             console.log(results);
-            setCurrentUserHealth(currentUserHealth - results.finalDamage);
+            // needed to look at the previous state in order for the enemy to take the correct health into account
+            setCurrentUserHealth(current => [current - results.finalDamage]);
             setAttackText(results.battleText);
         })
         // enable buttons after attack
@@ -334,10 +339,11 @@ const DecisionBlock = () => {
                 heal.then(results => {
                     if (results.healthIncrease > 0) {
                         setHealthPotions(healthPotions - 1)
+                        // if the user's health with the increase added is MORE than their max, just set it to max.
                         if (currentUserHealth + results.healthIncrease > maxHealth) {
                             setCurrentUserHealth(maxHealth);
                         } else {
-                            setCurrentUserHealth(currentCharacter.health + results.healthIncrease)
+                            setCurrentUserHealth(currentUserHealth + results.healthIncrease)
                         }
                     }
                     setAttackText(results.battleText)
@@ -350,7 +356,7 @@ const DecisionBlock = () => {
         }
         setButtonDisabled(true);
         checkHealth();
-        console.log(currentUserHealth)
+        
     }
 
     const setHealthWidth = () => {
@@ -363,6 +369,7 @@ const DecisionBlock = () => {
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             nextPhase();
+            return;
         }
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
@@ -469,12 +476,12 @@ const DecisionBlock = () => {
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
 
             <Typewriter
-                id="text"
                 options={{
                     strings: storyText,
                     autoStart: true,
                     loop: false,
                     delay: 20,
+                    wrapperClassName: "text"
                 }}
 
             />

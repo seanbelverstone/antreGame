@@ -13,7 +13,7 @@ export default {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
 
-        let battleText = `You rolled a ${initialRoll}! Your normal attack does ${finalDamage}.`
+        let battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
 
         return {
             battleText,
@@ -32,13 +32,13 @@ export default {
         let enemyLuckRoll = diceRoll();
 
         if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
-            battleText = `You roll for a special attack. You compare luck values with the enemy and your roll is higher! Your special attack does ${finalDamage}!`;
+            battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is higher! \n Your special attack does ${finalDamage} damage!`;
             return {
                 battleText,
                 finalDamage
             };
         } else {
-            battleText =  `You roll for a special attack. You compare luck values with the enemy and your roll is lower. Your attack misses!`;
+            battleText =  `You roll for a special attack. \n You compare luck values with the enemy and your roll is lower. \n Your attack misses!`;
             finalDamage = 0;
             return {
                 battleText,
@@ -55,7 +55,7 @@ export default {
 
         // checks that the user has potions.
         if (potionCount > 0) {
-            battleText = `You drink a health potion, restoring ${healthIncrease}.`
+            battleText = `You drink a health potion, restoring ${healthIncrease} HP.`
             return {
                 battleText,
                 healthIncrease
@@ -95,7 +95,7 @@ export default {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
 
-        battleText = `The enemy rolled a ${initialRoll}! Their attack does ${finalDamage}.`
+        battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
         return {
             battleText,
             finalDamage
