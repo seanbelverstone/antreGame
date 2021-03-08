@@ -73,7 +73,7 @@ const DecisionBlock = () => {
 
     useEffect(() => {
         setHealthWidth();
-    }, [])
+    })
 
     const handleStats = (c) => {
         console.log("updating stats")
@@ -294,7 +294,8 @@ const DecisionBlock = () => {
 
         enemyAttack.then((results) => {
             console.log(results);
-            setCurrentUserHealth(currentUserHealth - results.finalDamage);
+            // needed to look at the previous state in order for the enemy to take the correct health into account
+            setCurrentUserHealth(current => [current - results.finalDamage]);
             setAttackText(results.battleText);
         })
         // enable buttons after attack
@@ -342,7 +343,7 @@ const DecisionBlock = () => {
                         if (currentUserHealth + results.healthIncrease > maxHealth) {
                             setCurrentUserHealth(maxHealth);
                         } else {
-                            setCurrentUserHealth(currentCharacter.health + results.healthIncrease)
+                            setCurrentUserHealth(currentUserHealth + results.healthIncrease)
                         }
                     }
                     setAttackText(results.battleText)
@@ -355,7 +356,7 @@ const DecisionBlock = () => {
         }
         setButtonDisabled(true);
         checkHealth();
-        console.log(currentUserHealth)
+        
     }
 
     const setHealthWidth = () => {
