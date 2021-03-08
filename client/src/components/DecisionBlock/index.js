@@ -248,7 +248,7 @@ const DecisionBlock = () => {
             // have to replace all spaces with underscores, in order to successfully grab the correct image
             let enemyName = enemies[currentEnemy.name];
 
-            if (enemyName.includes(" ") && enemyName) {
+            if (enemyName && enemyName.includes(" ")) {
                 enemyName = enemies[currentEnemy.name.replace(" ", "_")]
             }
             console.log(enemyName)
