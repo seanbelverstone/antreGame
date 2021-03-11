@@ -24,6 +24,7 @@ const DecisionBlock = () => {
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
     const [currentEnemy, setCurrentEnemy] = useState({});
+    const [enemyName, setEnemyName] = useState("");
     const [victoryTarget, setVictoryTarget] = useState({});
     const [enemyImage, setEnemyImage] = useState("");
     const [imageDisplay, setImageDisplay] = useState("none");
@@ -123,6 +124,7 @@ const DecisionBlock = () => {
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
                     setCurrentEnemy(storylines[i].enemy)
+                    setEnemyName(storylines[i].enemy.name.replace(" ", "_"))
                     setVictoryTarget(storylines[i].victory)
                 }
                 renderOptions();
@@ -243,14 +245,13 @@ const DecisionBlock = () => {
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
-        if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
+        if (modifier[0] && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
             // have to replace all spaces with underscores, in order to successfully grab the correct image
-            let enemyName = enemies[currentEnemy.name];
 
-            if (enemyName && enemyName.includes(" ")) {
-                enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-            }
+            // if (enemyName && enemyName.includes(" ")) {
+            //     setEnemyName(enemyName.replace(" ", "_"))
+            // }
             console.log(enemyName)
             setEnemyImage(enemyName)
 
@@ -494,7 +495,7 @@ const DecisionBlock = () => {
                     <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
                 </div>
 
-                <img src={enemyImage} id="enemyImage" />
+                <img src={enemies[enemyImage]} id="enemyImage" />
 
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
