@@ -47,7 +47,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
             let note;
 
             items.forEach((item) => {
-                if (item.none || item.fight) {
+                if (item.none || item.fight || item.luckCheck) {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;

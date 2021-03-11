@@ -225,7 +225,7 @@ const DecisionBlock = () => {
                         setGold(gold + mod.gold)
                     }
                 } else if (mod.luckCheck) {
-                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.luckCheck.event);
+                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.event);
                     console.log(checkingLuck[0]);
                     setOptions([
                         {
@@ -295,7 +295,7 @@ const DecisionBlock = () => {
         enemyAttack.then((results) => {
             console.log(results);
             // needed to look at the previous state in order for the enemy to take the correct health into account
-            setCurrentUserHealth(current => [current - results.finalDamage]);
+            setCurrentUserHealth(current => current - results.finalDamage);
             setAttackText(results.battleText);
         })
         // enable buttons after attack

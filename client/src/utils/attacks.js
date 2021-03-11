@@ -121,6 +121,7 @@ export default {
 
         let options;
         // Story 1 is Dark path traps
+        console.log(story)
         if (story === 1) {
             if(updatedNumber <= 1) {
                 options = deathLevel
@@ -130,12 +131,16 @@ export default {
                 options = bestLuckLevel;
             }
         } else if (story === 2) {
+            console.log(story);
+            console.log(updatedNumber)
             // Story 2 is Worm Attack
             if (updatedNumber <= 2) {
                 options = wormDeath
             } else {
                 options = wormSuccess
             }
+            console.log(options)
+
         } else if (story === 3) {
             // Story 3 is Gap cross, with weapon
             if (updatedNumber <= 4) {
