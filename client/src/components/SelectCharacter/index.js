@@ -36,6 +36,7 @@ const SelectCharacter = () => {
 
     const playThisCharacter = (character) => {
         window.sessionStorage.setItem("currentCharacter", JSON.stringify(character));
+        navigate("/play");
     }
 
     const renderCharacters = () => {
@@ -88,7 +89,7 @@ const SelectCharacter = () => {
                         </section>
                     </div>
                     <section className="charButtons">
-                            <Button variant="contained" color="primary" id="play" href="/play" onClick={() => playThisCharacter(character)}>
+                            <Button variant="contained" color="primary" id="play" onClick={() => playThisCharacter(character)}>
                                 PLAY
                             </Button>
 

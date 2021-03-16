@@ -9,7 +9,7 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weaponDamage, strength, enemyDef, enemyHealth, setEnemyHealth) => {
+    normalAttack: (weaponDamage, strength, enemyDef) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
 
@@ -50,8 +50,8 @@ export default {
     useHealthPotion: (potionCount) => {
         const initalRoll = diceRoll();
         const secondRoll = diceRoll();
-        // perfect roll (6 x 6) + 15 = 51 health increased
-        let healthIncrease = (initalRoll * secondRoll) + 15
+        // perfect roll (6 x 6) + 25 = 61 health increased
+        let healthIncrease = (initalRoll * secondRoll) + 35
 
         // checks that the user has potions.
         if (potionCount > 0) {
@@ -73,6 +73,16 @@ export default {
 
     useSkill: (charClass) => {
         console.log(`You are a ${charClass}`)
+
+        // PSUEDOCODE
+        // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
+        // Maybe we need a turn counter? Almost definitely.
+        // For rogue, do the same as special attack but increase weapon damage by a lot (max?) and remove
+        // the luck constraints.
+        // For paladin, heal health completely.
+
+        // Once skill has completed, based on Wisdom number - disable the button for that many turns
+        // (for warrior, make it come into effect AFTER the 3 turns have expired)
         let skill;
         switch(charClass) {
             case "Warrior":
@@ -121,6 +131,7 @@ export default {
 
         let options;
         // Story 1 is Dark path traps
+        console.log(story)
         if (story === 1) {
             if(updatedNumber <= 1) {
                 options = deathLevel
@@ -130,12 +141,16 @@ export default {
                 options = bestLuckLevel;
             }
         } else if (story === 2) {
+            console.log(story);
+            console.log(updatedNumber)
             // Story 2 is Worm Attack
             if (updatedNumber <= 2) {
                 options = wormDeath
             } else {
                 options = wormSuccess
             }
+            console.log(options)
+
         } else if (story === 3) {
             // Story 3 is Gap cross, with weapon
             if (updatedNumber <= 4) {

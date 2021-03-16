@@ -24,6 +24,7 @@ const DecisionBlock = () => {
     const [options, setOptions] = useState([]);
     const [clicked, setClicked] = useState("");
     const [currentEnemy, setCurrentEnemy] = useState({});
+    const [enemyName, setEnemyName] = useState("");
     const [victoryTarget, setVictoryTarget] = useState({});
     const [enemyImage, setEnemyImage] = useState("");
     const [imageDisplay, setImageDisplay] = useState("none");
@@ -55,6 +56,7 @@ const DecisionBlock = () => {
     const [healthPotions, setHealthPotions] = useState();
     const [gold, setGold] = useState();
     const [time, setTime] = useState();
+    const [roundCount, setRoundCount] = useState(1);
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -123,6 +125,8 @@ const DecisionBlock = () => {
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
                     setCurrentEnemy(storylines[i].enemy)
+                    // if the enemy has two words in its name, it replaces the space with an underscore for importing
+                    setEnemyName(storylines[i].enemy.name.replace(" ", "_"))
                     setVictoryTarget(storylines[i].victory)
                 }
                 renderOptions();
@@ -225,7 +229,7 @@ const DecisionBlock = () => {
                         setGold(gold + mod.gold)
                     }
                 } else if (mod.luckCheck) {
-                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.luckCheck.event);
+                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.event);
                     console.log(checkingLuck[0]);
                     setOptions([
                         {
@@ -243,14 +247,8 @@ const DecisionBlock = () => {
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
-        if (modifier[0] != undefined && modifier[0].fight && modifier !== 0) {
+        if (modifier[0] && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
-            // have to replace all spaces with underscores, in order to successfully grab the correct image
-            let enemyName = enemies[currentEnemy.name];
-
-            if (enemyName && enemyName.includes(" ")) {
-                enemyName = enemies[currentEnemy.name.replace(" ", "_")]
-            }
             console.log(enemyName)
             setEnemyImage(enemyName)
 
@@ -263,21 +261,6 @@ const DecisionBlock = () => {
         }
         return;
     }
-
-    // const decideTurn = () => {
-    //     // Begin each battle with a dice roll, to see who goes first.
-    //     // if the enemy goes first, disable all the buttons
-    //     let diceRoll = (Math.floor(Math.random() * 6) + 1);
-    //     if (diceRoll >= 1 || diceRoll <= 3) {
-    //         console.log("Your turn")
-    //         setButtonDisabled(false);
-    //     } else {
-    //         console.log("Enemy turn")
-    //         setButtonDisabled(true);
-    //         enemyTurn();
-    //     }
-
-    // }
 
     const checkHealth = () => {
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
@@ -295,7 +278,7 @@ const DecisionBlock = () => {
         enemyAttack.then((results) => {
             console.log(results);
             // needed to look at the previous state in order for the enemy to take the correct health into account
-            setCurrentUserHealth(current => [current - results.finalDamage]);
+            setCurrentUserHealth(current => current - results.finalDamage);
             setAttackText(results.battleText);
         })
         // enable buttons after attack
@@ -350,11 +333,19 @@ const DecisionBlock = () => {
                 })
                 break;
             case "Use skill":
-                attacks.useSkill(currentCharacter.charClass, setStoryText);
+                const skill = new Promise((resolve, reject) => {
+                    resolve(attacks.useSkill(currentCharacter.charClass, roundCount))
+                });
+                skill.then(results => {
+                    console.log(results)
+                })
                 break;
             default: return;
         }
+        // Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
+        // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
+        setRoundCount(current => current +1)
         checkHealth();
         
     }
@@ -403,6 +394,7 @@ const DecisionBlock = () => {
             setImageDisplay("none");
             setCurrentEnemy({});
             setEnemyImage("");
+            setRoundCount(1);
             setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
@@ -494,7 +486,7 @@ const DecisionBlock = () => {
                     <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
                 </div>
 
-                <img src={enemyImage} id="enemyImage" />
+                <img src={enemies[enemyImage]} id="enemyImage" />
 
                 <div id="charName">{currentCharacter.name}</div>
                 <div className="healthArea" id="userHealthArea">
