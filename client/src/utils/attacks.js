@@ -71,8 +71,10 @@ export default {
         
     },
 
-    useSkill: (charClass) => {
+    useSkill: (charClass, wisdom) => {
         console.log(`You are a ${charClass}`)
+        let cooldownLength;
+        let skill;
 
         // PSUEDOCODE
         // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
@@ -83,7 +85,22 @@ export default {
 
         // Once skill has completed, based on Wisdom number - disable the button for that many turns
         // (for warrior, make it come into effect AFTER the 3 turns have expired)
-        let skill;
+        // sets the number of rounds a player will have to wait until they can 
+        // use their skill again, based on the amount of wisdom their character has
+        if (wisdom <= 2) {
+            cooldownLength = 5
+        } else if (wisdom > 2 && wisdom <= 4) {
+            cooldownLength = 4
+        } else if (wisdom > 4 && wisdom <= 6) {
+            cooldownLength = 3
+        } else if (wisdom > 6 && wisdom <= 8) {
+            cooldownLength = 2
+        } else if (wisdom > 8 && wisdom <= 10) {
+            cooldownLength = 1;
+        } else {
+            cooldownLength = 0;
+        }
+
         switch(charClass) {
             case "Warrior":
                 skill = "Stalwart defense";
@@ -96,8 +113,11 @@ export default {
                 break;
             default: return;
         }
-
         console.log(`You used ${skill}, which did... something`)
+
+        return {
+            cooldownLength
+        }
     },
 
     // ENEMY ATTACKS

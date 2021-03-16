@@ -57,6 +57,8 @@ const DecisionBlock = () => {
     const [gold, setGold] = useState();
     const [time, setTime] = useState();
     const [roundCount, setRoundCount] = useState(1);
+    const [skillUsed, setSkillUsed] = useState(false);
+    const [cooldownRound, setCooldownRound] = useState(0);
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -145,7 +147,7 @@ const DecisionBlock = () => {
             return (options.map(fightOption => {
                 return (
                     <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
+                        <Button className="optionText" variant="contained" color="secondary" id={fightOption.label} onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
                             {fightOption.label}
                         </Button>
                     </div>
@@ -334,10 +336,15 @@ const DecisionBlock = () => {
                 break;
             case "Use skill":
                 const skill = new Promise((resolve, reject) => {
-                    resolve(attacks.useSkill(currentCharacter.charClass, roundCount))
+                    resolve(attacks.useSkill(currentCharacter.charClass, wisdom))
                 });
                 skill.then(results => {
                     console.log(results)
+                    let skillButton = document.getElementById("Use skill");
+                    skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
+                    setSkillUsed(true);
+                    setCooldownRound(roundCount + results.cooldownLength)
+
                 })
                 break;
             default: return;
@@ -465,7 +472,7 @@ const DecisionBlock = () => {
 
     return (
         <div className="decisionWrapper">
-            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
 
             <Typewriter
                 options={{
