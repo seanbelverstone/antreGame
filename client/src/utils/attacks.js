@@ -9,7 +9,7 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weaponDamage, strength, enemyDefh) => {
+    normalAttack: (weaponDamage, strength, enemyDef) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
 
@@ -73,6 +73,16 @@ export default {
 
     useSkill: (charClass) => {
         console.log(`You are a ${charClass}`)
+
+        // PSUEDOCODE
+        // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
+        // Maybe we need a turn counter? Almost definitely.
+        // For rogue, do the same as special attack but increase weapon damage by a lot (max?) and remove
+        // the luck constraints.
+        // For paladin, heal health completely.
+
+        // Once skill has completed, based on Wisdom number - disable the button for that many turns
+        // (for warrior, make it come into effect AFTER the 3 turns have expired)
         let skill;
         switch(charClass) {
             case "Warrior":

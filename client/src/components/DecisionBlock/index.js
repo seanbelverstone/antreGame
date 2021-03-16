@@ -332,7 +332,7 @@ const DecisionBlock = () => {
                 })
                 break;
             case "Use skill":
-                attacks.useSkill(currentCharacter.charClass, setStoryText);
+                attacks.useSkill(currentCharacter.charClass);
                 break;
             default: return;
         }
