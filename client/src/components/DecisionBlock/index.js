@@ -403,7 +403,7 @@ const DecisionBlock = () => {
             setEnemyBlockFade("hidden");
             setImageDisplay("none");
             setCurrentEnemy({});
-            setEnemyImage("");
+            // setEnemyImage("");
             setModifier([
                 {
                     "death": 1

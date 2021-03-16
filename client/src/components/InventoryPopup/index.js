@@ -90,7 +90,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
 
     return (
         <div className={classes.root}>
-            <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "center"}}>
+            <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "center"}} style={{height: "100%"}}>
                 <Alert onClose={handleClose} severity="info">
                     {messages}
                 </Alert>
