@@ -124,6 +124,7 @@ const DecisionBlock = () => {
                 setOptions(storylines[i].options);
                 if (storylines[i].enemy) {
                     setCurrentEnemy(storylines[i].enemy)
+                    // if the enemy has two words in its name, it replaces the space with an underscore for importing
                     setEnemyName(storylines[i].enemy.name.replace(" ", "_"))
                     setVictoryTarget(storylines[i].victory)
                 }
@@ -247,11 +248,6 @@ const DecisionBlock = () => {
     const displayEnemy = () => {
         if (modifier[0] && modifier[0].fight && modifier !== 0) {
             console.log("displaying enemy")
-            // have to replace all spaces with underscores, in order to successfully grab the correct image
-
-            // if (enemyName && enemyName.includes(" ")) {
-            //     setEnemyName(enemyName.replace(" ", "_"))
-            // }
             console.log(enemyName)
             setEnemyImage(enemyName)
 
