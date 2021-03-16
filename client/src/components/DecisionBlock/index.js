@@ -261,21 +261,6 @@ const DecisionBlock = () => {
         return;
     }
 
-    // const decideTurn = () => {
-    //     // Begin each battle with a dice roll, to see who goes first.
-    //     // if the enemy goes first, disable all the buttons
-    //     let diceRoll = (Math.floor(Math.random() * 6) + 1);
-    //     if (diceRoll >= 1 || diceRoll <= 3) {
-    //         console.log("Your turn")
-    //         setButtonDisabled(false);
-    //     } else {
-    //         console.log("Enemy turn")
-    //         setButtonDisabled(true);
-    //         enemyTurn();
-    //     }
-
-    // }
-
     const checkHealth = () => {
         if (currentEnemyHealth > 0 && currentUserHealth > 0) {
             setTimeout(() => {
