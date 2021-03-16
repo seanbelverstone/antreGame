@@ -56,6 +56,7 @@ const DecisionBlock = () => {
     const [healthPotions, setHealthPotions] = useState();
     const [gold, setGold] = useState();
     const [time, setTime] = useState();
+    const [roundCount, setRoundCount] = useState(1);
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -332,11 +333,19 @@ const DecisionBlock = () => {
                 })
                 break;
             case "Use skill":
-                attacks.useSkill(currentCharacter.charClass);
+                const skill = new Promise((resolve, reject) => {
+                    resolve(attacks.useSkill(currentCharacter.charClass, roundCount))
+                });
+                skill.then(results => {
+                    console.log(results)
+                })
                 break;
             default: return;
         }
+        // Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
+        // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
+        setRoundCount(current => current +1)
         checkHealth();
         
     }
@@ -385,6 +394,7 @@ const DecisionBlock = () => {
             setImageDisplay("none");
             setCurrentEnemy({});
             setEnemyImage("");
+            setRoundCount(1);
             setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
