@@ -71,10 +71,11 @@ export default {
         
     },
 
-    useSkill: (charClass, wisdom) => {
+    useSkill: (charClass, wisdom, enemyDef) => {
         console.log(`You are a ${charClass}`)
         let cooldownLength;
         let skill;
+        let skillResult;
 
         // PSUEDOCODE
         // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
@@ -104,19 +105,26 @@ export default {
         switch(charClass) {
             case "Warrior":
                 skill = "Stalwart defense";
+                battleText = "You used Stalwart Defense. Your defense has been temporarily increased!"
+                skillResult = 20;
                 break;
             case "Rogue":
                 skill = "Rapid attack";
+                const initalRoll = diceRoll();    
+                skillResult = Math.ceil(((3 * 9) * initalRoll) / enemyDef);
+                battleText = `You used Rapid Attack. Fast as lightning, you strike the enemy for ${skillResult} damage!`
                 break;
             case "Paladin":
                 skill = "Holy remedy";
+                battleText = "You used Holy Remedy. All your health has been restored!"
                 break;
             default: return;
         }
-        console.log(`You used ${skill}, which did... something`)
 
         return {
-            cooldownLength
+            cooldownLength,
+            battleText,
+            skillResult
         }
     },
 
