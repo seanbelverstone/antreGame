@@ -57,6 +57,10 @@ const DecisionBlock = () => {
     const [gold, setGold] = useState();
     const [time, setTime] = useState();
     const [roundCount, setRoundCount] = useState(1);
+    const [skillUsed, setSkillUsed] = useState(false);
+    const [cooldownRound, setCooldownRound] = useState(0);
+    const [warriorDefenseRound, setWarriorDefenseRound] = useState(0);
+    const [tempDefense, setTempDefense] = useState(0);
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -128,6 +132,8 @@ const DecisionBlock = () => {
                     // if the enemy has two words in its name, it replaces the space with an underscore for importing
                     setEnemyName(storylines[i].enemy.name.replace(" ", "_"))
                     setVictoryTarget(storylines[i].victory)
+                    setCooldownRound(0);
+                    setSkillUsed(false);
                 }
                 renderOptions();
             }
@@ -145,7 +151,7 @@ const DecisionBlock = () => {
             return (options.map(fightOption => {
                 return (
                     <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
+                        <Button className="optionText" variant="contained" color="secondary" id={fightOption.label} onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
                             {fightOption.label}
                         </Button>
                     </div>
@@ -296,6 +302,8 @@ const DecisionBlock = () => {
 
     const handleFight = (option) => {
 
+        let skillButton = document.getElementById("Use skill");
+
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = new Promise((resolve, reject) => {
@@ -334,10 +342,23 @@ const DecisionBlock = () => {
                 break;
             case "Use skill":
                 const skill = new Promise((resolve, reject) => {
-                    resolve(attacks.useSkill(currentCharacter.charClass, roundCount))
+                    resolve(attacks.useSkill(currentCharacter.charClass, wisdom, currentEnemy.defense))
                 });
                 skill.then(results => {
-                    console.log(results)
+                    // sets a style to the skill button to make it the only one that continues being disabled.
+                    skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
+                    setSkillUsed(true);
+                    setCooldownRound(roundCount + results.cooldownLength)
+                    setAttackText(results.battleText)
+                    if (currentCharacter.charClass === "Warrior") {
+                        setTempDefense(defense);
+                        setDefense(defense + results.skillResult);
+                        setWarriorDefenseRound(roundCount + 3)
+                    } else if (currentCharacter.charClass === "Rogue") {
+                        setCurrentEnemyHealth(currentEnemyHealth - results.skillResult)
+                    } else {
+                        setCurrentUserHealth(maxHealth)
+                    }
                 })
                 break;
             default: return;
@@ -347,7 +368,16 @@ const DecisionBlock = () => {
         setButtonDisabled(true);
         setRoundCount(current => current +1)
         checkHealth();
-        
+
+        if (currentCharacter.charClass === "Warrior" && roundCount === warriorDefenseRound) {
+            // returns the warrior's defense to it's regular level
+            setDefense(tempDefense);
+        }
+
+        // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
+        if(cooldownRound === roundCount && skillUsed) {
+            skillButton.removeAttribute("style");
+        }
     }
 
     const setHealthWidth = () => {
@@ -373,7 +403,7 @@ const DecisionBlock = () => {
             setEnemyBlockFade("hidden");
             setImageDisplay("none");
             setCurrentEnemy({});
-            setEnemyImage("");
+            // setEnemyImage("");
             setModifier([
                 {
                     "death": 1
@@ -465,7 +495,7 @@ const DecisionBlock = () => {
 
     return (
         <div className="decisionWrapper">
-            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
 
             <Typewriter
                 options={{

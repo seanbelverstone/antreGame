@@ -314,7 +314,7 @@
     },
     {
         "level": "02aaa-Skeleton Victory",
-        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. You take its weapon, which also has some magical properties, and leave the room.",
+        "text": "Upon your last attack, the skeleton falls apart and its bones clatter to the ground. Noticing that the skeleton had a superior weapon, you pick up the axe that it was wielding and leave the room behind you.",
         "modifier": [
             {
                 "weapon": {
@@ -1545,7 +1545,7 @@
     },
     {
         "level": "09cab-Worm Success",
-        "text": "You manage to grasp your weapon and plunge it into the creature's flesh. You hear a deafening roar, and everything around you convulses. The beast stops digging, and you feel its throat tense up and the sound of liquid rushing towards you. You are vomited out of the creature's mouth.",
+        "text": "You manage to grasp your weapon and plunge it into the creature's flesh. You hear a deafening roar, and everything around you convulses. The beast stops digging, and you feel its throat tense up and the sound of liquid rushing towards you. \n\nYou are vomited out of the creature's mouth.",
         "modifier": [
             {
                 "health": -5
@@ -1561,7 +1561,7 @@
     },
     {
         "level": "10-Worm Fight",
-        "text": "Coughing, spluttering, and burning from the colossal worm's intense stomach acid, you stand up. You are in an vast chasm, created by the creature that looms in front of you. Most of it is obscured by the darkness, although ceiling is so high up that some sunlight breaks through, illuminating its face. An eyeless monstrosity faces you, with a massive circular mouth. The teeth were so sharp and strong, that it must have burrowed for miles. Holding your weapon at the ready, you stand and face this impossibly large beast, trying not to think about your chances of survival.",
+        "text": "Coughing, spluttering, and burning from the colossal worm's intense stomach acid, you stand up. \n\nYou are in an vast chasm, created by the creature that looms in front of you. Most of it is obscured by the darkness, although ceiling is so high up that some sunlight breaks through, illuminating its face. An eyeless monstrosity faces you, with a massive circular mouth. The teeth were so sharp and strong, that it must have burrowed for miles. \n\nHolding your weapon at the ready, you stand and face this impossibly large beast, trying not to think about your chances of survival.",
         "modifier": [
             {
                 "fight": 1
@@ -1599,7 +1599,7 @@
     },
     {
         "level": "11-Worm Victory",
-        "text": "After skillfully dodging many of the colossal worm's attacks, and landing some incredible blows to its face and body, the beast shrieks in horror at its inevitable demise. In a last ditch attempt to get away from its assailant, it writhes towards the ceiling, towards the light. Smashing through the ceiling and bathing the area in light, the worm reaches the top and stops comes to a complete stop. It's done. The worm is dead.",
+        "text": "After skillfully dodging many of the colossal worm's attacks, and landing some incredible blows to its face and body, the beast shrieks in horror at its inevitable demise. \n\nIn a last ditch attempt to get away from its assailant, it writhes towards the ceiling, towards the light. Smashing through the roof and bathing the area in light, the worm reaches the top and stops comes to a complete stop. It's done. The worm is dead.",
         "modifier": [
             {
                 "none": true
@@ -1615,7 +1615,7 @@
     },
     {
         "level": "12-Worm End",
-        "text": "Wounded and exhausted, you realize that in its defeat, the worm has created a way out of this hellhole. Using your weapon as an grapple of sorts, you hoist yourself up the creature's back. You climb up and up, until you reach the top and collapse from exhaustion. The fresh air washes over you, dousing you in newly found freedom. The grass around you breathes and sighs with each gust of wind, and the sun caresses your face like an old partner. Grinning from ear to ear, you ease into the best sleep you've had since you can remember.",
+        "text": "Wounded and exhausted, you realize that in its defeat, the worm has created a way out of this hellhole. Using your weapon as an grapple of sorts, you hoist yourself up the creature's back. \n\nYou climb up and up, until you reach the top and collapse from exhaustion. The fresh air washes over you, dousing you in newly found freedom. The grass around you breathes and sighs with each gust of wind, and the sun caresses your face like an old partner. \n\nGrinning from ear to ear, you ease into the best sleep you've had since you can remember.",
         "modifier": [
             {
                 "end": 1
@@ -3621,7 +3621,7 @@
     },
     {
         "level": "28c-Throw weapon",
-        "text": "Removing your armor makes you considerably lighter, and you feel much more confident about balancing on this narrow pipe. You attempt to cross it.",
+        "text": "Deciding you'll have a much easier time crossing the pipe the lighter you are, you throw your weapon across. It lands easily on the other side, and you feel much more confident about balancing due to the decreased weight. You step forward and attempt to cross the pipe.",
         "modifier": [
             {
                 "none": true
@@ -3654,7 +3654,7 @@
     },
     {
         "level": "29-Manticore",
-        "text": "You resume your journey through the tunnel and it finally reaches a large circular room. Luckily, the bars that would have normally blocked your exit look like they had been torn from their hinges, and now lay to the side. This room is much warmer than the rest of the sewer. Looking around, you see mounds of something, obscured by the low light, tucked towards the edges of the room. In the gloomy distance, you hear an all too familiar growl. Suddenly, sconces hung on the walls all ignite with a magical flame, illuminating the beast before you. Amanticore glares at you with its fierce yellow eyes. You had only heard about these in stories told to children, and wonder if you are dreaming. With a hideously human-looking face, it almost looks like it is grinning at you. It steps forward, putting one paw in front of the other, and flexes its bat-like wings. You also catch a glimpse of a scaly tail, tipped with a enormous barb. The manticore shakes its mane and stops a few feet from you, bearing its large fangs. White hot runes glow underneath the fur of the manticore's body, and you realize that it must have used magic to illuminate the room. A magic manticore. Surely you must be dreaming.",
+        "text": "You resume your journey through the tunnel and it finally reaches a large circular room. Luckily, the bars that would have normally blocked your exit look like they had been torn from their hinges, and now lay to the side. This room is much warmer than the rest of the sewer. Looking around, you see mounds of something, obscured by the low light, tucked towards the edges of the room. In the gloomy distance, you hear an all too familiar growl. Suddenly, sconces hung on the walls all ignite with a magical flame, illuminating the beast before you. A manticore glares at you with its fierce yellow eyes. You had only heard about these in stories told to children, and wonder if you are dreaming. With a hideously human-looking face, it almost looks like it is grinning at you. It steps forward, putting one paw in front of the other, and flexes its bat-like wings. You also catch a glimpse of a scaly tail, tipped with a enormous barb. The manticore shakes its mane and stops a few feet from you, bearing its large fangs. White hot runes glow underneath the fur of the manticore's body, and you realize that it must have used magic to illuminate the room. A magic manticore. Surely you must be dreaming.",
         "modifier": [
             {
                 "fight": 1
