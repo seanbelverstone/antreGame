@@ -773,7 +773,7 @@
             "name": "BLIND LIZARD",
             "health": 90,
             "strength": 4,
-            "defense": 1,
+            "defense": 2,
             "wisdom": 1,
             "luck": 2,
             "weapon": {
@@ -899,7 +899,7 @@
             "name": "BLIND LIZARD",
             "health": 90,
             "strength": 4,
-            "defense": 1,
+            "defense": 2,
             "wisdom": 1,
             "luck": 2,
             "weapon": {
@@ -1142,7 +1142,7 @@
     },
     {
         "level": "08aa-Axe and Greaves",
-        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
+        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1620,6 +1620,13 @@
             {
                 "end": 1
             }
+        ],
+        "options": [
+            {
+                "label": "Return to the main menu",
+                "target": "Main Menu"
+            }
+
         ]
     },
 
@@ -2412,7 +2419,7 @@
             "name": "PIKEMAN",
             "health": 50,
             "strength": 4,
-            "defense": 1,
+            "defense": 2,
             "wisdom": 1,
             "luck": 4,
             "weapon": {
@@ -3398,7 +3405,7 @@
             "name": "Giant Rat",
             "health": 60,
             "strength": 4,
-            "defense": 2,
+            "defense": 3,
             "wisdom": 1,
             "luck": 3,
             "weapon": {

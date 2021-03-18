@@ -78,8 +78,9 @@ const DecisionBlock = () => {
     }, [storyText])
 
     useEffect(() => {
+        // Health bars now update based on the enemy and user's health
         setHealthWidth();
-    })
+    }, [currentEnemyHealth, currentUserHealth])
 
     const handleStats = (c) => {
         console.log("updating stats")
@@ -527,7 +528,6 @@ const DecisionBlock = () => {
                 </div>
             </div>
 
-            {/* MAYBE RENDER TEXT HERE? */}
             <div id="attackText" className={optionFade} style={{display: attackDisplay}}>
                 {attackText}
             </div>
