@@ -278,11 +278,11 @@ const DecisionBlock = () => {
     }
 
     const enemyTurn = () => {
-        const enemyAttack = new Promise ((resolve, reject) => {
-            resolve(attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense));
-        });
+        const enemyAttack = async () => {
+            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense);
+        };
 
-        enemyAttack.then((results) => {
+        enemyAttack().then((results) => {
             console.log(results);
             // needed to look at the previous state in order for the enemy to take the correct health into account
             setCurrentUserHealth(current => current - results.finalDamage);
@@ -299,6 +299,10 @@ const DecisionBlock = () => {
         handleText(option.target);
         setOptionFade("none");
         setImageDisplay("none")
+        if (option.target === "Main Menu") {
+            saveGame().then(() => navigate("/select"));
+
+        }
     }
 
     const handleFight = (option) => {
@@ -307,28 +311,28 @@ const DecisionBlock = () => {
 
         switch (option.label) {
             case "Normal Attack":
-                const normalAttack = new Promise((resolve, reject) => {
-                    resolve(attacks.normalAttack(weaponDmg, strength, currentEnemy.defense));
-                });
-                normalAttack.then(results => {
+                const normalAttack = async () => {
+                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense);
+                };
+                normalAttack().then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 });
                 break;
             case "Special Attack":
-                const specialAttack = new Promise((resolve, reject) => {
-                    resolve(attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck));
-                });
-                specialAttack.then(results => {
+                const specialAttack = async () => {
+                    return attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck);
+                };
+                specialAttack().then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 })
                 break;
             case "Use health potion":
-                const heal = new Promise((resolve, reject) => {
-                    resolve(attacks.useHealthPotion(healthPotions))
-                });
-                heal.then(results => {
+                const heal = async () => {
+                    return attacks.useHealthPotion(healthPotions)
+                };
+                heal().then(results => {
                     if (results.healthIncrease > 0) {
                         setHealthPotions(healthPotions - 1)
                         // if the user's health with the increase added is MORE than their max, just set it to max.
@@ -342,10 +346,10 @@ const DecisionBlock = () => {
                 })
                 break;
             case "Use skill":
-                const skill = new Promise((resolve, reject) => {
-                    resolve(attacks.useSkill(currentCharacter.charClass, wisdom, currentEnemy.defense))
-                });
-                skill.then(results => {
+                const skill = async () => {
+                    return attacks.useSkill(currentCharacter.charClass, wisdom, currentEnemy.defense)
+                };
+                skill().then(results => {
                     // sets a style to the skill button to make it the only one that continues being disabled.
                     skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
                     setSkillUsed(true);
@@ -462,7 +466,7 @@ const DecisionBlock = () => {
         }))
     }
 
-    const saveGame = () => {
+    const saveGame = async () => {
         updateCharacter();
         API.updateCharacter(
             currentUserHealth,
