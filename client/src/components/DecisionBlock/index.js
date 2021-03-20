@@ -75,6 +75,7 @@ const DecisionBlock = () => {
 
     useEffect(() => {
         setButtonTimes();
+        disableIfClicked();
     }, [storyText])
 
     useEffect(() => {
@@ -301,7 +302,7 @@ const DecisionBlock = () => {
 
     // This takes the value from the option, and sets the level and text based on its target
     const handleClick = (option) => {
-        updateClickedArray(option.target);
+        updateClickedArray(option);
         handleLevel(option.target);
         handleText(option.target);
         setOptionFade("none");
@@ -314,22 +315,24 @@ const DecisionBlock = () => {
 
     const updateClickedArray = (option) => {
         // prevents the option from being added to the array twice.
-        if (clicked.includes(option)) {
-            disableIfClicked();
+        if (clicked.includes(option.target)) {
+            disableIfClicked(option);
             return;
         } else {
-            setClicked([...clicked, option])
+            setClicked([...clicked, option.target])
         }
     }
 
-    // const disableIfClicked = (option) => {
-    //     for(let item of clicked) {
-    //         if (options.includes(item)) {
-    //             let disabledElement = document.getElementById(item);
-    //             disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
-    //         }
-    //     }
-    // };
+    const disableIfClicked = () => {
+        for(let item of options) {
+            if (clicked.includes(item.target)) {
+                let disabledElement = document.getElementById(item.label);
+                disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
+            }
+        }
+    // PSUEDOCODE
+    // For each of the options on screen, if it exists in the "clicked array", give it some disabled styling
+    };
 
 
     const handleFight = (option) => {
