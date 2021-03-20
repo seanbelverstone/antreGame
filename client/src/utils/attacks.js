@@ -139,6 +139,9 @@ export default {
     enemyNormalAttack: (enemyWeapon, strength, myDef) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
+        console.log(`Enemy weapon ${enemyWeapon}`)
+        console.log(`My defense ${myDef}`)
+        console.log(`Total damage before divison ${finalDamage * myDef}`)
 
         battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
         return {
