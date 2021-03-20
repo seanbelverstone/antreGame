@@ -145,7 +145,13 @@ const DecisionBlock = () => {
     const renderOptions = () => {
         if (modifier[0] != undefined && modifier[0].death) {
             return (
-                <p className={`options ${optionFade}`}>You died.</p>
+                <div>
+                    <p className={`options ${optionFade}`}>You died.</p>
+                    <Button className="optionText" variant="contained" color="primary" onClick={setCurrentLevel("01-Start")}>
+                        START AGAIN
+                    </Button>
+                </div>
+
             )
         } else if (modifier[0] != undefined && modifier[0].fight) {
             // If fight: true appears in the decision block, render the fight screen instead.
@@ -254,7 +260,7 @@ const DecisionBlock = () => {
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
-        if (modifier[0] && modifier[0].fight && modifier !== 0) {
+        if (modifier[0].fight && modifier.length < 2) {
             console.log("displaying enemy")
             console.log(enemyName)
             setEnemyImage(enemyName)
@@ -274,6 +280,8 @@ const DecisionBlock = () => {
             setTimeout(() => {
                 enemyTurn();
             }, 3000)
+        } else {
+            return;
         }
     }
 
@@ -428,6 +436,7 @@ const DecisionBlock = () => {
             setEnemyBlockFade("hidden");
             setImageDisplay("none");
             setCurrentEnemy({});
+            setAttackText("")
             setEnemyImage("");
             setRoundCount(1);
             setClicked(victoryTarget.target)
@@ -452,6 +461,7 @@ const DecisionBlock = () => {
             "wisdom": wisdom,
             "luck": luck,
             "weapon": weapon,
+            "weaponDamage": weaponDmg,
             "head": head,
             "chest": chest,
             "legs": legs,
@@ -475,6 +485,7 @@ const DecisionBlock = () => {
             wisdom,
             luck,
             weapon,
+            weaponDmg,
             head,
             chest,
             legs,

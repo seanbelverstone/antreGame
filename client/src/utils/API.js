@@ -49,7 +49,7 @@ export default {
         })
     },
 
-    updateCharacter: (health, strength, defense, wisdom, luck, weapon, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id) => {
+    updateCharacter: (health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id) => {
         jwtToken = window.sessionStorage.getItem("jwtToken");
 
         return axios.put(`/api/characters/${id}`, {
@@ -59,6 +59,7 @@ export default {
             wisdom,
             luck,
             weapon,
+            weaponDamage,
             head, 
             chest, 
             legs, 
