@@ -26,7 +26,14 @@ export default {
         const initalRoll = diceRoll();    
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
     
-    
+        
+        console.log(`Dice roll: ${initalRoll}`);
+        console.log(`Weapon Damage: ${weaponDamage}`);
+        console.log(`Str: ${strength}`);
+        console.log(`Enemy defence ${enemyDef}`);
+        console.log(`Luck: ${luck}`);
+        console.log(`Enemy luck: ${enemyLuck}`);
+        console.log(`Final damage ${finalDamage}`);
         // checks luck
         let myLuckRoll = diceRoll();
         let enemyLuckRoll = diceRoll();
@@ -132,6 +139,9 @@ export default {
     enemyNormalAttack: (enemyWeapon, strength, myDef) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
+        console.log(`Enemy weapon ${enemyWeapon}`)
+        console.log(`My defense ${myDef}`)
+        console.log(`Total damage before divison ${finalDamage * myDef}`)
 
         battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
         return {
