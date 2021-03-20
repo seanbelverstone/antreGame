@@ -22,7 +22,7 @@ const DecisionBlock = () => {
     const [attackText, setAttackText] = useState("");
     const [modifier, setModifier] = useState([]);
     const [options, setOptions] = useState([]);
-    const [clicked, setClicked] = useState("");
+    const [clicked, setClicked] = useState([]);
     const [currentEnemy, setCurrentEnemy] = useState({});
     const [enemyName, setEnemyName] = useState("");
     const [victoryTarget, setVictoryTarget] = useState({});
@@ -170,14 +170,13 @@ const DecisionBlock = () => {
             return options.map(option => {
                 return (
                     <div className={`options ${optionFade}`} key={option.label}>
-                        <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
+                        <Button className="optionText" variant="contained" color="primary" id={option.label} onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
                     </div>
                 )
             })
         }
-
     }
 
     // This function renders the decision buttons based on how long it takes to write the story text.
@@ -302,7 +301,7 @@ const DecisionBlock = () => {
 
     // This takes the value from the option, and sets the level and text based on its target
     const handleClick = (option) => {
-        setClicked(option.target);
+        updateClickedArray(option.target);
         handleLevel(option.target);
         handleText(option.target);
         setOptionFade("none");
@@ -312,6 +311,26 @@ const DecisionBlock = () => {
 
         }
     }
+
+    const updateClickedArray = (option) => {
+        // prevents the option from being added to the array twice.
+        if (clicked.includes(option)) {
+            disableIfClicked();
+            return;
+        } else {
+            setClicked([...clicked, option])
+        }
+    }
+
+    // const disableIfClicked = (option) => {
+    //     for(let item of clicked) {
+    //         if (options.includes(item)) {
+    //             let disabledElement = document.getElementById(item);
+    //             disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
+    //         }
+    //     }
+    // };
+
 
     const handleFight = (option) => {
 
@@ -439,7 +458,6 @@ const DecisionBlock = () => {
             setAttackText("")
             setEnemyImage("");
             setRoundCount(1);
-            setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
             // After fights are complete, update the character in sessionStorage
