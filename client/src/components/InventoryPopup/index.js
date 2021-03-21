@@ -81,9 +81,9 @@ export default function InventoryPopup({ display, setDisplay, items }) {
     const handleClose = (event, reason) => {
         setMessages([]);
 
-        if (reason === "clickaway") {
-            return;
-        }
+        // if (reason === "clickaway") {
+        //     return;
+        // }
 
         setDisplay(false);
     };

@@ -316,6 +316,7 @@ const DecisionBlock = () => {
     const updateClickedArray = (option) => {
         // prevents the option from being added to the array twice.
         if ( option.target === "01-Start"
+         || option.target === "02-Tunnel"
          || option.target === "13a-Wrong room"
          || option.target === "13aa-Wrong room" 
          || option.target === "13b-Correct room" 
