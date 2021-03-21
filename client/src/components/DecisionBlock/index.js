@@ -22,7 +22,7 @@ const DecisionBlock = () => {
     const [attackText, setAttackText] = useState("");
     const [modifier, setModifier] = useState([]);
     const [options, setOptions] = useState([]);
-    const [clicked, setClicked] = useState("");
+    const [clicked, setClicked] = useState([]);
     const [currentEnemy, setCurrentEnemy] = useState({});
     const [enemyName, setEnemyName] = useState("");
     const [victoryTarget, setVictoryTarget] = useState({});
@@ -75,6 +75,7 @@ const DecisionBlock = () => {
 
     useEffect(() => {
         setButtonTimes();
+        disableIfClicked();
     }, [storyText])
 
     useEffect(() => {
@@ -170,14 +171,13 @@ const DecisionBlock = () => {
             return options.map(option => {
                 return (
                     <div className={`options ${optionFade}`} key={option.label}>
-                        <Button className="optionText" variant="contained" color="primary" onClick={() => handleClick(option)}>
+                        <Button className="optionText" variant="contained" color="primary" id={option.label} onClick={() => handleClick(option)}>
                             {option.label}
                         </Button>
                     </div>
                 )
             })
         }
-
     }
 
     // This function renders the decision buttons based on how long it takes to write the story text.
@@ -302,7 +302,7 @@ const DecisionBlock = () => {
 
     // This takes the value from the option, and sets the level and text based on its target
     const handleClick = (option) => {
-        setClicked(option.target);
+        updateClickedArray(option);
         handleLevel(option.target);
         handleText(option.target);
         setOptionFade("none");
@@ -312,6 +312,36 @@ const DecisionBlock = () => {
 
         }
     }
+
+    const updateClickedArray = (option) => {
+        // prevents the option from being added to the array twice.
+        if ( option.target === "01-Start"
+         || option.target === "02-Tunnel"
+         || option.target === "13a-Wrong room"
+         || option.target === "13aa-Wrong room" 
+         || option.target === "13b-Correct room" 
+         || option.target === "13bb-Correct room") {
+            // For the random room puzzle, don't deactivate anything
+            return;
+        } else if (clicked.includes(option.target)) {
+            disableIfClicked(option);
+            return;
+        } else {
+            setClicked([...clicked, option.target])
+        }
+    }
+
+    const disableIfClicked = () => {
+        for(let item of options) {
+            if (clicked.includes(item.target)) {
+                let disabledElement = document.getElementById(item.label);
+                disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
+            }
+        }
+    // PSUEDOCODE
+    // For each of the options on screen, if it exists in the "clicked array", give it some disabled styling
+    };
+
 
     const handleFight = (option) => {
 
@@ -439,7 +469,6 @@ const DecisionBlock = () => {
             setAttackText("")
             setEnemyImage("");
             setRoundCount(1);
-            setClicked(victoryTarget.target)
             handleLevel(victoryTarget.target);
             handleText(victoryTarget.target);
             // After fights are complete, update the character in sessionStorage
