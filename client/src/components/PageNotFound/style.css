@@ -1,0 +1,7 @@
+#notFound {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    z-index: 2;
+}

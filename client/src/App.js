@@ -1,6 +1,7 @@
 import React from "react";
 import { useRoutes } from "hookrouter";
 import routes from "./utils/router";
+import PageNotFound from "./components/PageNotFound";
 import "./App.css";
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
 
     return (
         <div className="appWrapper">
-            {routeResult}
+            {routeResult || <PageNotFound />}
         </div>
     )
 // PSUEDOCODE
