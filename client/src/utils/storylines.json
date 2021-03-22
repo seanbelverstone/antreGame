@@ -55,7 +55,7 @@
     },
     {
         "level": "01a-Cry",
-        "text": "Tears run down your cheeks, as you feel completely lost. How did you get here? Whatever the case, that crying did make you feel a little better.",
+        "text": "Tears run down your cheeks, and you fall to your knees. Whatever has placed you here in this cave must surely be a creature of malevolence. You think about the life that you left behind, although your memory of it is rapidly fading. \n\nAfter your many tears have dried and you once again get to your feet, you find that you have accepted whatever fate may lay before you. Be it monsters or traps, you will fight until the very end. Your epiphany makes you feel much wiser and imbues you with confidence.",
         "modifier": [
             {
                 "wisdom": 1
@@ -63,8 +63,16 @@
         ],
         "options": [
             {
-                "label": "Return to the task at hand",
-                "target": "01-Start"
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Do nothing",
+                "target": "01b-Goblins"
+            },
+            {
+                "label": "Inspect Torch",
+                "target": "01c-Torch"
             }
         ]
     },
@@ -97,7 +105,7 @@
     },
     {
         "level": "01c-Torch",
-        "text": "You approach the torch and take a closer look. You notice that this sconce is no typical one, as it can be removed from the wall. Additionally it appears to have some kind of flint and steel type of switch, which will reignite it if its flame goes out. Amazing! \n\nYou extinguish the torch and add it to your inventory.",
+        "text": "You approach the torch and take a closer look. You notice that this sconce is no typical one, as it can be removed from the wall. Additionally it appears to have some kind of flint and steel type of switch, which will reignite it if its flame goes out. Amazing! You extinguish the torch and add it to your inventory. \n\nTurning away from the wall, you consider your remaining choices.",
         "modifier": [
             {
                 "torch": 1
@@ -105,8 +113,16 @@
         ],
         "options": [
             {
-                "label": "Return to the task at hand",
-                "target": "01-Start"
+                "label": "Go North",
+                "target": "02-Tunnel"
+            },
+            {
+                "label": "Cry",
+                "target": "01a-Cry"
+            },
+            {
+                "label": "Do nothing",
+                "target": "01b-Goblins"
             }
         ]
     },
@@ -270,7 +286,30 @@
             },
             {
                 "label": "Leave the door alone",
-                "target": "02-Tunnel"
+                "target": "02ab-Leave Door"
+            }
+        ]
+    },
+    {
+        "level": "02ab-Leave Door",
+        "text": "Deciding that whatever is inside that door should probably stay there, you step back.\n\n The key rattles in the lock, and clatters to the ground. A fleshless, bony finger retreats from the keyhole and is replaced by a blue flame that watches you intently. A cold chill washes over you as you turn around from the door and you think that you probably made the correct choice. Shuddering, you decide to move on.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Continue North",
+                "target": "03-Three Paths"
+            },
+            {
+                "label": "Relight fire",
+                "target": "02b-Relight Fire"
+            },
+            {
+                "label": "Inspect the adventurer",
+                "target": "02c-Dead Adventurer"
             }
         ]
     },
@@ -400,10 +439,10 @@
     },
     {
         "level": "02c-Dead Adventurer",
-        "text": "Deciding to see if the adventurer had any good items, you rifle through his belongings. He doesn't seem to have much and his food has long since rotten away, but you do find a health potion and add it to your inventory.",
+        "text": "Deciding to see if the adventurer had any good items, you rifle through his belongings. He doesn't seem to have much and his food has long since rotten away, but you do find a couple health potions and add them to your inventory.",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotion": 2
             }
         ],
         "options": [
