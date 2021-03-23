@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { navigate } from "hookrouter";
 import API from "../../utils/API";
-import logo from "../../assets/images/AntreLarge.png";
+import logo from "../../assets/images/Antre.png";
 import { TextField, Button } from "@material-ui/core";
 import "./style.css";
 
