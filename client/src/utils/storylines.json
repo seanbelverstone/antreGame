@@ -547,17 +547,15 @@
         "text": "You opt for the darker path to the West. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
         "modifier": [
             {
-                "none": true
+                "torchCheck": true
             }
         ],
         "options": [
             {
-                "label": "Torch Obtained",
-                "target": "04a-Torch Obtained"
-            },
-            {
-                "label": "No Torch",
-                "target": "04b-No Torch"
+                "label": "Searching for Torch...",
+                "target": [
+                    "none"
+                ]
             }
         ]
     },
