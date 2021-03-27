@@ -131,7 +131,7 @@
         "text": "Terrified of what goblins might do if they see you, you attempt to run away. \n\nSprinting to the back of the cave, you are only met with a cold, hard wall. You grope around in the darkness for some kind of opening, some escape from this hellhole. \n\n'Well, what do we have here then?' a voice cackles behind you. You spin around to see your foe, but a goblin quickly dashes forward, plunging its dagger into your stomach and slashing it to the side, spilling your innards all over the floor. \n\nDarkness consumes everything.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -140,7 +140,7 @@
         "text": "Realizing your only option may be to hide, you frantically search the room for a suitable hiding place, coming upon a boulder that might just be big enough to conceal you from your approaching doom. \n\nWiping sweat from your brow, you wait. The voices have stopped. Maybe they've turned around and gone the other way? After a few moments, your curiosity gets the better of you and you shuffle around to peer over the boulder. \n\nThere is a flash of steel, and you realize that the goblins were waiting for you. You hear their laughing and feel their blades as you die before them.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -702,7 +702,7 @@
       "text": "You somehow manage to hit each and every one of the traps. You bleed out before reaching the end.",
       "modifier": [
           {
-              "death": 1
+              "death": true
           }
       ]
     },
@@ -885,7 +885,7 @@
         "text": "You quickly whip your body around the corner, in an attempt to hide from the lizard, but you have no such luck. It easily tracks you down by your scent and speeds round the corner, pouncing on you and clamping its jaws on your throat. \n\nKnocking you down, the giant lizard bites down with crushing jaws. The last thing you hear before you die is your own gurgling screams.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -922,7 +922,7 @@
         "text": "You hunch over the fire, and look for something to relight it. You notice that the goblins were using flint and steel, so you snatch them up and strike them. \n\nThe sound generated from the flint and steel is loud enough to attract another giant lizard, and also to mask its arrival. As you keep striking the flint and steel together, finally you get a spark and it ignites some small kindling in front of you. You look up. \n\nA drooling reptilian lower jaw is illuminated by your meagre fire. It licks its lips, and the drool from its mouth cascades down onto your kindling, extinguishing it. \n\nThe light goes out.",
         "modifier": [
             {
-                "death": 0
+                "death": true
             }
         ]
     },
@@ -1554,7 +1554,7 @@
         "text": "Realizing that there's probably no way out of this insane situation, you close your eyes and accept your fate. \n\nYou think of a spring meadow, filled with new flowers and joyful bees. The air is cool, and you feel utterly at peace. As the wall behind you crumbles away, you fall into the gullet of the colossal worm. Although your body will soon be consumed by the beast, you manage one last smile before the end.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -1620,7 +1620,7 @@
         "text": "You reach for your weapon, but your fingers slip past it. You continue fumbling in a panic, but it is too late. You fall back into the gullet of the colossal worm, screaming. \n\nIts intense stomach acid dissolves your armor first, then the rest of you follows along with it.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -2049,7 +2049,7 @@
         "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. You never wake up.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -2622,7 +2622,7 @@
         "text": "Using the torch, you light the corner of the tapestry on fire. The fire quickly spreads up the images, but too fast. It engulfs the tapestry and catches on the wooden ceiling beams, spreading through the entire room. Before you can react, you are surrounded by flames and begin to burn alive. A figure appears from behind the bars, and its bright saffron eyes are the last things you see before you perish.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -2688,7 +2688,7 @@
         "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. 'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -3335,7 +3335,7 @@
         "text": "You attempt to flee from the skeleton knight by turning around and jumping down the cliff you previously scaled. Sliding down the stone floor, your speed continues to increase and all hope of controlling your descent evaporates. Both your clothing and skin are ripped from underneath you, causing agonizing pain. Your body collides with a wall, killing you instantly.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -3605,7 +3605,7 @@
         "text": "Although the gap is too far to jump across, you attempt it anyway. With a running start, you leap from your side of the tunnel, arms outstretched. You miss the other side by several feet and fall into the darkness below.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },
@@ -3680,7 +3680,7 @@
         "text": "With all your might, you pull yourself up halfway, but your sweaty palms betray you, and your hands slip from the pipe. You plummet into darkness, and all light fades away.",
         "modifier": [
             {
-                "death": 1
+                "death": true
             }
         ]
     },

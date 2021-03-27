@@ -139,14 +139,15 @@ const DecisionBlock = () => {
                     setCooldownRound(0);
                     setSkillUsed(false);
                 }
-                renderOptions();
+                
             }
         }
     }
 
     // maps through the options array and creates divs for them
     const renderOptions = () => {
-        if (modifier[0] != undefined && modifier[0].death) {
+        if (modifier[0] !== undefined && modifier[0].death) {
+            console.log(modifier[0])
             return (
                 <div>
                     <p className={`options ${optionFade}`}>You died.</p>
@@ -154,7 +155,6 @@ const DecisionBlock = () => {
                         START AGAIN
                     </Button>
                 </div>
-
             )
         } else if (modifier[0] != undefined && modifier[0].fight) {
             // If fight: true appears in the decision block, render the fight screen instead.
@@ -234,7 +234,6 @@ const DecisionBlock = () => {
                 } else if (mod.feet) {
                     setFeet(mod.feet)
                 } else if (mod.torch || mod.torch === 0) {
-                    console.log("torcheeee")
                     setTorch(mod.torch)
                 } else if (mod.amulet) {
                     setAmulet(mod.amulet)
@@ -474,7 +473,7 @@ const DecisionBlock = () => {
             // setEnemyImage("");
             setModifier([
                 {
-                    "death": 1
+                    "death": true
                 }
             ])
         }
