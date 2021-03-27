@@ -48,7 +48,8 @@ export default function InventoryPopup({ display, setDisplay, items }) {
             let note;
 
             items.forEach((item) => {
-                if (item.none || item.fight || item.luckCheck || item.end) {
+                console.log(Object.values(item))
+                if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end) {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;
@@ -56,7 +57,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (item.weapon && Object.values(item.weapon.dmg > 1)) {
+                } else if (item.weapon !== undefined && Object.values(item.weapon.dmg) > 1) {
                     // if the weapon has more than 1 damage (not no weapon)
                     note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
                     addIfUnique(note);
@@ -64,15 +65,15 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier is negative, set the note to say you lost an item
                     note = `You lost ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (item.weapon && Object.values((item.weapon.dmg = 1))) {
+                } else if (item.weapon !== undefined && Object.values(item.weapon.dmg) === 1) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
                     addIfUnique(note);
-                } else if (Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {
+                } else if (item.length && Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {
                     note = `You equipped the ${Object.values(item)}. `
                     addIfUnique(note);
                 } else {
                     // if the item is neither negative nor positive (0), just say that they lost the item. This relates to things like the torch
-                    note = `You lost ${Object.keys(item)}. `;
+                    note = `You lost your ${Object.keys(item)}. `;
                     addIfUnique(note);
                 }
             });

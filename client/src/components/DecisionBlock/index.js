@@ -199,7 +199,7 @@ const DecisionBlock = () => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
-        if (modifier && currentCharacter.level !== currentLevel) {
+        if (modifier.length && currentCharacter.level !== currentLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 console.log(mod)
@@ -233,7 +233,8 @@ const DecisionBlock = () => {
                     setHands(mod.hands)
                 } else if (mod.feet) {
                     setFeet(mod.feet)
-                } else if (mod.torch) {
+                } else if (mod.torch || mod.torch === 0) {
+                    console.log("torcheeee")
                     setTorch(mod.torch)
                 } else if (mod.amulet) {
                     setAmulet(mod.amulet)
