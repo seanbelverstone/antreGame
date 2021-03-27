@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 export default function InventoryPopup({ display, setDisplay, items }) {
     const classes = useStyles();
     const [messages, setMessages] = useState([]);
-    const [currentItems, setCurrentItems] = useState(items)
 
     useEffect(() => {
         if (!display) {
@@ -64,7 +63,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier is negative, set the note to say you lost an item
                     note = `You lost ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (item.weapon && Object.values((item.weapon.dmg = 1))) {
+                } else if (Object.values((item.weapon.dmg = 1))) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
                     addIfUnique(note);
                 } else if (Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {
