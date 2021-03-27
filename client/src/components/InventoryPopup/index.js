@@ -28,7 +28,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
 
     useEffect(() => {
         checkItems();
-    })
+    }, [items])
 
     const addIfUnique = (note) => {
         if (messages.indexOf(note) === -1) {
@@ -39,6 +39,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
 
         setTimeout(() => {
             setMessages([]);
+            setDisplay(false);
         }, 6000);
     };
 
