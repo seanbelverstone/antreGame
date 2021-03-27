@@ -39,6 +39,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
 
         setTimeout(() => {
             setMessages([]);
+            setDisplay(false);
         }, 6000);
     };
 
@@ -55,7 +56,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (Object.values(item.weapon.dmg > 1)) {
+                } else if (item.weapon && Object.values(item.weapon.dmg > 1)) {
                     // if the weapon has more than 1 damage (not no weapon)
                     note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
                     addIfUnique(note);
@@ -63,7 +64,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier is negative, set the note to say you lost an item
                     note = `You lost ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (Object.values((item.weapon.dmg = 1))) {
+                } else if (item.weapon && Object.values((item.weapon.dmg = 1))) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
                     addIfUnique(note);
                 } else if (Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {

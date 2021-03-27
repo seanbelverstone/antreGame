@@ -3388,6 +3388,13 @@
             {
                 "end": 1
             }
+        ],
+        "options": [
+            {
+                "label": "Return to the main menu",
+                "target": "Main Menu"
+            }
+
         ]
     },
 
@@ -3981,6 +3988,13 @@
             {
                 "end": 1
             }
+        ],
+        "options": [
+            {
+                "label": "Return to the main menu",
+                "target": "Main Menu"
+            }
+
         ]
     }
     
