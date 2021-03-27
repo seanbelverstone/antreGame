@@ -547,21 +547,65 @@
         "text": "You opt for the darker path to the West. It's hard to see exactly how far it stretches, all there is before you is inky blackness. There is a faint light at the end, which looks like it could be light from around a corner.",
         "modifier": [
             {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Search Inventory For Torch",
+                "target": "04c-Torch Check"
+            },
+            {
+                "label": "Go Back",
+                "target": "03-Three Paths Variant"
+            }
+        ]
+    },
+    {
+        "level": "04c-Torch Check",
+        "text": "Searching through inventory...",
+        "modifier": [
+            {
                 "torchCheck": true
             }
         ],
         "options": [
             {
-                "label": "Searching for Torch...",
-                "target": [
-                    "none"
-                ]
+                "label": "Continue",
+                "target": "none"
+            }
+        ]
+    },
+    {
+        "level": "03-Three Paths Variant",
+        "text": "Thinking that maybe this path isn't the right choice, you return to the previous paths that faced you. The same choices remain.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Go Back",
+                "target": "02-Tunnel Return Variant"
+            },
+            {
+                "label": "Go West - Dark",
+                "target": "04-Dark Path"
+            },
+            {
+                "label": "Go North - Door",
+                "target": "13-Single Door"
+            },
+            {
+                "label": "Go East - Ash",
+                "target": "14-Ash Path"
             }
         ]
     },
     {
         "level": "04a-Torch Obtained",
-        "text": "Raising the torch above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that some of the cobbled stone floor is raised in parts. \n\nFrom a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. \n\nYou make it through the traps unscathed, but unfortunately your torch uses all of its fuel and sputters out of life.",
+        "text": "Igniting the torch you grabbed earlier and raising it above your head, you see that this path looks similar to the one you'd followed previously. The only difference is that some of the cobbled stone floor is raised in parts. \n\nFrom a short distance, you lightly press a toe against one raised stone and a flurry of arrows shoot out of the wall beside you, narrowly missing your nose. Recognizing a trap when you see one and blessing your good fortune for taking the torch, you step through the corridor being careful to avoid the raised stones. \n\nYou make it through the traps unscathed, but unfortunately your torch uses all of its fuel and sputters out of life.",
         "modifier": [
             {
                 "torch": 0
@@ -576,7 +620,7 @@
     },
     {
         "level": "04b-No Torch",
-        "text": "Blindly continuing through the pitch black corridor, you step on something and hear a click, followed by a whoosh. \n\nYou scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. \n\nWho knows how many more traps there are?",
+        "text": "You rummage fruitlessly through your bag in search for a light source. Wishing you'd grabbed a torch earlier, you decide to enter the pitch black corridor anyway. Your foot steps on something and you hear a soft click, followed by a whoosh. \n\nYou scream in pain as an arrow embeds itself in your calf. You yank the arrow out and consider whether you should continue going down this path. \n\nWho knows how many more traps there are?",
         "modifier": [
             {
                 "health": -10
@@ -2143,7 +2187,7 @@
     },
     {
         "level": "17b-Skull Chest",
-        "text": "Approach the skull chest and crack if open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
+        "text": "You approach the skull chest and crack it open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
         "modifier": [
             {
                 "weapon": {

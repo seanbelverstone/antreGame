@@ -197,6 +197,7 @@ const DecisionBlock = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
         if (modifier && currentCharacter.level !== currentLevel) {
+            setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 console.log(mod)
 
@@ -242,27 +243,38 @@ const DecisionBlock = () => {
                         setGold(gold + mod.gold)
                     }
                 } else if (mod.luckCheck) {
-                    const checkingLuck = attacks.campaignLuckCheck(luck, mod.event);
-                    console.log(checkingLuck[0]);
-                    setOptions([
-                        {
-                            "label": checkingLuck[0].label,
-                            "target": checkingLuck[0].target
-                        }
-                    ]);
-                } else if(mod.torchCheck) {
-                    const checkingTorch = attacks.torchCheck(torch);
-                    console.log(checkingTorch[0]);
-                    setOptions([
-                        {
-                            "label": checkingTorch[0].label,
-                            "target": checkingTorch[0].target
-                        }
-                    ]);
+                    setSnackbarDisplay(false);
+                    const checkingLuck = async () => {
+                        return attacks.campaignLuckCheck(luck, mod.event);
+                    }
+                    checkingLuck().then((results) => {
+                        setOptions([
+                            {
+                                "label": results.label,
+                                "target": results.target
+                            }
+                        ]);
+                    })
+                } else if (mod.torchCheck) {
+                    setSnackbarDisplay(false);
+                    console.log("here")
+                    const checkingTorch = async () => {
+                        return attacks.torchCheck(torch);
+                    }
+                    checkingTorch().then((results) => {
+                        setOptions([
+                            {
+                                "label": results.label,
+                                "target": results.target
+                            }
+                        ]);
+                    })
+                } else {
+                    setSnackbarDisplay(false);
                 }
             })
         }
-        setSnackbarDisplay(true);
+        // setSnackbarDisplay(true);
         updateCharacter();
 
     }

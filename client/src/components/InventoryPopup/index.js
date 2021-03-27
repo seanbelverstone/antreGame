@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InventoryPopup({ display, setDisplay, items }) {
     const classes = useStyles();
     const [messages, setMessages] = useState([]);
+    const [currentItems, setCurrentItems] = useState(items)
 
     useEffect(() => {
         if (!display) {
@@ -28,7 +29,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
 
     useEffect(() => {
         checkItems();
-    })
+    }, [items])
 
     const addIfUnique = (note) => {
         if (messages.indexOf(note) === -1) {
@@ -55,7 +56,7 @@ export default function InventoryPopup({ display, setDisplay, items }) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (item.weapon && Object.values(item.weapon.dmg > 1)) {
+                } else if (Object.values(item.weapon.dmg > 1)) {
                     // if the weapon has more than 1 damage (not no weapon)
                     note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
                     addIfUnique(note);
