@@ -76,6 +76,7 @@ const DecisionBlock = () => {
     useEffect(() => {
         setButtonTimes();
         disableIfClicked();
+        checkModifier();
     }, [storyText])
 
     useEffect(() => {
@@ -104,6 +105,7 @@ const DecisionBlock = () => {
     };
 
     const handleLevel = (choice) => {
+        // once level has been chosen, look at the modifiers that are present
         setCurrentLevel(choice)
 
         // sets max health based on the character's class
@@ -185,10 +187,11 @@ const DecisionBlock = () => {
         if (storyText.length === 0) {
             return;
         }
-        checkModifier();
         setTimeout(() => {
             setOptionFade("fadeIn")
-            displayEnemy();
+            if (currentEnemy !== {} && currentEnemy.health > 0) {
+                displayEnemy();
+            }
         }, (storyText.length * 30 + 2000))
 
     }
@@ -453,7 +456,7 @@ const DecisionBlock = () => {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
-            nextPhase();
+            nextPhase().then(() => checkModifier());
             return;
         }
 
@@ -477,7 +480,7 @@ const DecisionBlock = () => {
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
-    const nextPhase = () => {
+    const nextPhase = async () => {
         setTimeout(() => {
             setAttackDisplay("none");
             setEnemyBlockFade("fadeOut")
