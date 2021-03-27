@@ -218,6 +218,22 @@ export default {
             }
         ]
     
+    },
+
+    torchCheck: (torch) => {
+        let options;
+        if (torch === 1) {
+            options = "04a-Torch Obtained"
+        } else {
+            options = "04b-No Torch"
+        }
+
+        return [
+            {
+                label: "Searching for Torch...",
+                target: options
+            }
+        ]
     }
 
 }

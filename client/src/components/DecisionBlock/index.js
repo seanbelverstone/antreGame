@@ -250,6 +250,15 @@ const DecisionBlock = () => {
                             "target": checkingLuck[0].target
                         }
                     ]);
+                } else if(mod.torchCheck) {
+                    const checkingTorch = attacks.torchCheck(torch);
+                    console.log(checkingTorch[0]);
+                    setOptions([
+                        {
+                            "label": checkingTorch[0].label,
+                            "target": checkingTorch[0].target
+                        }
+                    ]);
                 }
             })
         }
