@@ -92,6 +92,7 @@ const DecisionBlock = () => {
         setWisdom(c.wisdom);
         setLuck(c.luck);
         setWeapon(c.weapon);
+        setWeaponDmg(c.weaponDamage)
         setHead(c.head);
         setChest(c.chest);
         setLegs(c.legs);
