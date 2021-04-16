@@ -76,6 +76,7 @@ const DecisionBlock = () => {
     useEffect(() => {
         setButtonTimes();
         disableIfClicked();
+        checkModifier();
     }, [storyText])
 
     useEffect(() => {
@@ -91,6 +92,7 @@ const DecisionBlock = () => {
         setWisdom(c.wisdom);
         setLuck(c.luck);
         setWeapon(c.weapon);
+        setWeaponDmg(c.weaponDamage)
         setHead(c.head);
         setChest(c.chest);
         setLegs(c.legs);
@@ -104,6 +106,7 @@ const DecisionBlock = () => {
     };
 
     const handleLevel = (choice) => {
+        // once level has been chosen, look at the modifiers that are present
         setCurrentLevel(choice)
 
         // sets max health based on the character's class
@@ -137,14 +140,15 @@ const DecisionBlock = () => {
                     setCooldownRound(0);
                     setSkillUsed(false);
                 }
-                renderOptions();
+                
             }
         }
     }
 
     // maps through the options array and creates divs for them
     const renderOptions = () => {
-        if (modifier[0] != undefined && modifier[0].death) {
+        if (modifier[0] !== undefined && modifier[0].death) {
+            console.log(modifier[0])
             return (
                 <div>
                     <p className={`options ${optionFade}`}>You died.</p>
@@ -152,7 +156,6 @@ const DecisionBlock = () => {
                         START AGAIN
                     </Button>
                 </div>
-
             )
         } else if (modifier[0] != undefined && modifier[0].fight) {
             // If fight: true appears in the decision block, render the fight screen instead.
@@ -185,10 +188,11 @@ const DecisionBlock = () => {
         if (storyText.length === 0) {
             return;
         }
-        checkModifier();
         setTimeout(() => {
             setOptionFade("fadeIn")
-            displayEnemy();
+            if (currentEnemy !== {} && currentEnemy.health > 0) {
+                displayEnemy();
+            }
         }, (storyText.length * 30 + 2000))
 
     }
@@ -196,7 +200,7 @@ const DecisionBlock = () => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
-        if (modifier && currentCharacter.level !== currentLevel) {
+        if (modifier.length && currentCharacter.level !== currentLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 console.log(mod)
@@ -230,7 +234,7 @@ const DecisionBlock = () => {
                     setHands(mod.hands)
                 } else if (mod.feet) {
                     setFeet(mod.feet)
-                } else if (mod.torch) {
+                } else if (mod.torch || mod.torch === 0) {
                     setTorch(mod.torch)
                 } else if (mod.amulet) {
                     setAmulet(mod.amulet)
@@ -453,7 +457,7 @@ const DecisionBlock = () => {
             console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
-            nextPhase();
+            nextPhase().then(() => checkModifier());
             return;
         }
 
@@ -470,14 +474,14 @@ const DecisionBlock = () => {
             // setEnemyImage("");
             setModifier([
                 {
-                    "death": 1
+                    "death": true
                 }
             ])
         }
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
-    const nextPhase = () => {
+    const nextPhase = async () => {
         setTimeout(() => {
             setAttackDisplay("none");
             setEnemyBlockFade("fadeOut")
