@@ -1750,7 +1750,7 @@
     },
     {
         "level": "13a-Wrong room",
-        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one?",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. \n\nMaybe you selected the wrong one?",
         "modifier": [
             {
                 "none": true
@@ -1778,7 +1778,7 @@
     },
     {
         "level": "13aa-Wrong room",
-        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one again?",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. \n\nMaybe you selected the wrong one again?",
         "modifier": [
             {
                 "none": true
@@ -1877,7 +1877,7 @@
     },
     {
         "level": "14-Ash Path",
-        "text": "Deciding to take the path that smells like ash, you head east. The stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so pleasant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. You pick it up and put it on, hopefully it will bring you more protection that it did for them...",
+        "text": "Deciding to take the path that smells like ash, you head east. \n\nThe stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so pleasant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. \n\nYou pick it up and put it on, hopefully it will bring you more protection that it did for them...",
         "modifier": [
             {
                 "chest": "Chainmail"
@@ -1895,7 +1895,7 @@
     },
     {
         "level": "15-Dragon Fight",
-        "text": "During your journey down this path, you notice a pulsating light emanating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. A juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. You ready for attack.",
+        "text": "During your journey down this path, you notice a pulsating light emanating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. \n\nA juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. \n\nYou ready for attack.",
         "modifier": [
             {
                 "fight": 1
@@ -1982,7 +1982,7 @@
     },
     {
         "level": "16a-Dig",
-        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. You manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
+        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. \n\nYou manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
         "modifier": [
             {
                 "health": -15
@@ -2023,7 +2023,7 @@
     },
     {
         "level": "16c-Make Fire",
-        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of your torch. Your fire burns bright and makes the room smell pleasant, as there were some herbs hidden in the book leaves. You feel fully reinvigorated.",
+        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of some still smouldering furniture. Eventually, after some careful tending, the fire burns bright and makes the room smell pleasant as there were some herbs hidden in the book leaves. You feel fully rejuvenated.",
         "modifier": [
             {
                 "health": 50
@@ -2046,7 +2046,7 @@
     },
     {
         "level": "16d-Rest",
-        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. You never wake up.",
+        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. \n\nYou never wake up.",
         "modifier": [
             {
                 "death": 1
@@ -2055,7 +2055,7 @@
     },
     {
         "level": "17-Chests",
-        "text": "You emerge from the crawlspace, slightly dustier than you already were. You discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
+        "text": "You emerge from the crawlspace, slightly dustier than you already were. \n\nYou discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
         "modifier": [
             {
                 "none": true
@@ -2101,7 +2101,7 @@
     },
     {
         "level": "17aa-Gilded Continue",
-        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. The words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
+        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. \n\nThe words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
         "modifier": [
             {
                 "none": true
@@ -2120,7 +2120,7 @@
     },
     {
         "level": "17aaa-Gilded Continue",
-        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. You take a few minutes to recover from the experience, and place the book back down in the chest.",
+        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. \n\nYou take a few minutes to recover from the experience, and place the book back down in the chest.",
         "modifier": [
             {
                 "wisdom": 4
@@ -2187,7 +2187,7 @@
     },
     {
         "level": "17b-Skull Chest",
-        "text": "You approach the skull chest and crack it open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
+        "text": "You approach the skull chest and crack it open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you gladly pick it up and test its weight. There doesn't seem to be anything wrong with it, and breathe a sigh of relief as you were almost sure that this one would be cursed.",
         "modifier": [
             {
                 "weapon": {
