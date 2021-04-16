@@ -1750,7 +1750,7 @@
     },
     {
         "level": "13a-Wrong room",
-        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one?",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the first one, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. \n\nMaybe you selected the wrong one?",
         "modifier": [
             {
                 "none": true
@@ -1778,7 +1778,7 @@
     },
     {
         "level": "13aa-Wrong room",
-        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. Maybe you selected the wrong one again?",
+        "text": "You select a door, and enter it. The room you have just entered seems to be an exact copy of the one you just left, including the south-facing sundial. You realize that these rooms must be enchanted with some kind of magic, teleporting you back to the start if you choose incorrectly. \n\nMaybe you selected the wrong one again?",
         "modifier": [
             {
                 "none": true
@@ -1877,7 +1877,7 @@
     },
     {
         "level": "14-Ash Path",
-        "text": "Deciding to take the path that smells like ash, you head east. The stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so pleasant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. You pick it up and put it on, hopefully it will bring you more protection that it did for them...",
+        "text": "Deciding to take the path that smells like ash, you head east. \n\nThe stone around you is charred and blackened, and there are a number of burnt corpses littering the floor. You wonder what could have caused such devastation, and your thoughts immediately turn to something not so pleasant. Not all is doom and gloom however, as one of the corpses is still wearing some chainmail that is mostly intact. \n\nYou pick it up and put it on, hopefully it will bring you more protection that it did for them...",
         "modifier": [
             {
                 "chest": "Chainmail"
@@ -1895,7 +1895,7 @@
     },
     {
         "level": "15-Dragon Fight",
-        "text": "During your journey down this path, you notice a pulsating light emanating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. A juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. You ready for attack.",
+        "text": "During your journey down this path, you notice a pulsating light emanating from the end of the room. The closer you get, the warmer it becomes. It's a nice change from the chilly caves, however you are now producing a considerable amount of sweat. Finally, you reach the end of the path and enter into a swelteringly hot room. There, you see it. \n\nA juvenile dragon (arguably more dangerous than an adult, as it has no control of its flames), sits across from you waiting for its next prey to arrive. One eye flicks open, and the dragon lets out an almighty roar. The path behind you shudders, and collapses. No way out now. \n\nYou ready for attack.",
         "modifier": [
             {
                 "fight": 1
@@ -1982,7 +1982,7 @@
     },
     {
         "level": "16a-Dig",
-        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. You manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
+        "text": "Using your hands, you start trying to move the huge rocks blocking the exit behind you. \n\nYou manage to move some successfully, however you eventually crush your finger between two exceptionally heavy rocks. Howling in pain, your finger most definitely being broken, you step away from your fruitless attempt of digging and reconsider your options.",
         "modifier": [
             {
                 "health": -15
@@ -2023,7 +2023,7 @@
     },
     {
         "level": "16c-Make Fire",
-        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of your torch. Your fire burns bright and makes the room smell pleasant, as there were some herbs hidden in the book leaves. You feel fully reinvigorated.",
+        "text": "Using some old books from a nearby shelf that are somehow still intact, you make a fire with the aid of some still smouldering furniture. Eventually, after some careful tending, the fire burns bright and makes the room smell pleasant as there were some herbs hidden in the book leaves. You feel fully rejuvenated.",
         "modifier": [
             {
                 "health": 50
@@ -2046,7 +2046,7 @@
     },
     {
         "level": "16d-Rest",
-        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. You never wake up.",
+        "text": "The fumes from the dragonfire make you sleepy, so you decide to lie down and take a nap. It turns out that the dragon's flames contained a noxious fume, which is poisonous if inhaled for long periods of time. \n\nYou never wake up.",
         "modifier": [
             {
                 "death": true
@@ -2055,7 +2055,7 @@
     },
     {
         "level": "17-Chests",
-        "text": "You emerge from the crawlspace, slightly dustier than you already were. You discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
+        "text": "You emerge from the crawlspace, slightly dustier than you already were. \n\nYou discover yourself in a room containing a number of chests, with a large iron door towards the rear. There are a few that catch your eye; a gilded chest, with beautiful decorations lining the edges, a dark wooden chest with a humanoid skull placed on top, and for some reason you are also drawn to an unsuspecting box, one that couldn't be much bigger than your foot. ",
         "modifier": [
             {
                 "none": true
@@ -2101,7 +2101,7 @@
     },
     {
         "level": "17aa-Gilded Continue",
-        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. The words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
+        "text": "As you read, more words flood the pages and you struggle to keep up with them. All sense of time has gone, and although it seems like seconds since you picked up this book, you've been standing in the same spot for 4 hours. \n\nThe words do seem somewhat familiar now though, as your brain attempts to decipher the symbols that are unravelling before your eyes.",
         "modifier": [
             {
                 "none": true
@@ -2120,7 +2120,7 @@
     },
     {
         "level": "17aaa-Gilded Continue",
-        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. You take a few minutes to recover from the experience, and place the book back down in the chest.",
+        "text": "The words are now filling up the book faster than you can turn the pages. Suddenly, the book flies out of your hands and hovers in front of you. The words now make sense - they're magic runes! As the runes fill your mind you gain knowledge that you never knew existed. You also realise that you've been standing in the same spot now for over a day, and you collapse in exhaustion. \n\nYou take a few minutes to recover from the experience, and place the book back down in the chest.",
         "modifier": [
             {
                 "wisdom": 4
@@ -2187,7 +2187,7 @@
     },
     {
         "level": "17b-Skull Chest",
-        "text": "You approach the skull chest and crack it open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you take it gladly and breathe a sigh of relief as you were almost sure that this one would be cursed.",
+        "text": "You approach the skull chest and crack it open, coughing as your lungs are assailed by dust. Inside is a full length halberd, complete with grip and 6 foot long handle. How this managed to fit inside this chest is anyone's guess, but you gladly pick it up and test its weight. There doesn't seem to be anything wrong with it, and breathe a sigh of relief as you were almost sure that this one would be cursed.",
         "modifier": [
             {
                 "weapon": {
@@ -2274,7 +2274,7 @@
 
     {
         "level": "18-Prison",
-        "text": "The only way out of this prison is past some iron bars at the end of the room. They extend from the floor to the ceiling and are too close together for you to squeeze through. There is a tapestry hung to the left of the bars, and a small colony of mushrooms growing in a corner. You hear a slow, steady breathing coming from behind the bars, as if something is sleeping behind them.",
+        "text": "The only way out of this prison is past some iron bars at the end of the room. They extend from the floor to the ceiling and are too close together for you to squeeze through. There is a tapestry hung to the left of the bars, and a small colony of mushrooms growing in a corner. \n\nYou hear a slow, steady breathing coming from behind the bars, as if something is sleeping behind them.",
         "modifier": [
             {
                 "none": true
@@ -2328,7 +2328,7 @@
     },
     {
         "level": "18a-Call Out",
-        "text": "As you inhale to call out for help, the large creature behind the bars makes an audible grunt. You rethink your choice.",
+        "text": "As you inhale to call out for help, the large creature behind the bars makes an audible grunt. \n\nYou rethink your choice.",
         "modifier": [
             {
                 "none": true
@@ -2403,7 +2403,7 @@
     },
     {
         "level": "20-Continue",
-        "text": "A low growl fills the chamber. The ground shakes as something gets to its feet, clearly annoyed by being rudely awoken. A massive fist plows through the iron bars, and catches you completely off guard. Catapulted across the room, your head bounces off the wall and you pass out. Darkness.",
+        "text": "A low growl fills the chamber. The ground shakes as something gets to its feet, clearly annoyed by being rudely awoken. \n\nA massive fist plows through the iron bars, and catches you completely off guard. Catapulted across the room, your head bounces off the wall and you pass out. \n\nDarkness.",
         "modifier": [
             {
                 "health": -20
@@ -2418,7 +2418,7 @@
     },
     {
         "level": "21-Continue",
-        "text": "You regain consciousness, some time later. The hole created by the fist is directly facing you, the rubble from the wall scattered all around. Why did the creature not eat or kill you? It was clearly powerful enough to do so. As you wonder how something so large could get inside the cave, you gather yourself up from the prison floor. Although you are injured, you must continue. The way is clear. You walk through the hole and enter the next corridor.",
+        "text": "You regain consciousness, some time later. The hole created by the fist is directly facing you, the rubble from the wall scattered all around. Why did the creature not eat or kill you? It was clearly powerful enough to do so. As you wonder how something so large could get inside the cave, you gather yourself up from the prison floor. Although you are injured, you must continue. The way is clear. \n\nYou walk through the hole and enter the next corridor.",
         "modifier": [
             {
                 "none": true
@@ -2433,7 +2433,7 @@
     },
     {
         "level": "20-Mushrooms",
-        "text": "You bend down and pick a handful of the pungent mushrooms. As you pop a couple in your mouth and begin to chew, you question the myriad of flavors that are assaulting your mouth. The room melts away. You find yourself standing in the shadow of an impossibly large castle, wreathed in flame. The city is on fire. This is the War of Deceit. You and your friends fought in this battle, fighting for the honor of your King. Many of your friends died during this battle... yet you still can't seem to recall any of their names.",
+        "text": "You bend down and pick a handful of the pungent mushrooms. As you pop a couple in your mouth and begin to chew, you question the myriad of flavors that are assaulting your mouth. \n\nThe room melts away. \n\nYou find yourself standing in the shadow of an impossibly large castle, wreathed in flame. The city is on fire. This is the War of Deceit. You and your friends fought in this battle, fighting for the honor of your King. Many of your friends died during this battle... yet you still can't seem to recall any of their names.",
         "modifier": [
             {
                 "none": true
@@ -2448,7 +2448,7 @@
     },
     {
         "level": "20a-Knight Fight",
-        "text": "You hear a whistling grow louder, and an arrow flies towards you. Before you can react, the arrow flies past your greatsword and hits you square in the chest, but it bounces harmlessly off your full plate armor. You realize that you are wearing the armor and wielding the weapon that you once owned, when this battle was not just a memory. You're really here, defending the King's honor once more. Another arrow streaks towards you, but you are ready this time. You deflect it easily, and move forward to an enemy knight.",
+        "text": "You hear a whistling grow louder, and an arrow flies towards you. Before you can react, the arrow flies past your greatsword and hits you square in the chest, but it bounces harmlessly off your full plate armor. You realize that you are wearing the armor and wielding the weapon that you once owned, when this battle was not just a memory. You're really here, defending the King's honor once more. \n\nAnother arrow streaks towards you, but you are ready this time. You deflect it easily, and move forward to an enemy knight.",
         "modifier": [
             {
                 "fight": 1
@@ -2490,7 +2490,7 @@
     },
     {
         "level": "20aa-Knight Second Fight",
-        "text": "Victorious, you step towards your next target. You see your fellow soldiers fighting alongside you, doing their best to keep the enemies away from the city gates. You spy an old friend, who dismantles enemy cavalry with his thrusting spear. You try to call out to him, but no sound comes out of your mouth. An enemy pikeman charges towards you before you can call out again.",
+        "text": "Victorious, you step towards your next target. \n\nYou see your fellow soldiers fighting alongside you, doing their best to keep the enemies away from the city gates. You spy an old friend, who dismantles enemy cavalry with his thrusting spear. You try to call out to him, but no sound comes out of your mouth. An enemy pikeman charges towards you before you can call out again.",
         "modifier": [
             {
                 "fight": 1
@@ -2532,7 +2532,7 @@
     },
     {
         "level": "20aaa-Pikeman Victory",
-        "text": "Another enemy of the King lay slain at your feet. 'Take this!' yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. You're floating in darkness for what seems an eternity. You wake up.",
+        "text": "Another enemy of the King lay slain at your feet. 'Take this!' yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. \n\nYou're floating in darkness for what seems an eternity. \n\nYou wake up.",
         "modifier": [
             {
                 "health": 50
@@ -2547,7 +2547,7 @@
     },
     {
         "level": "22-Home",
-        "text": "What greets you is a confusing, but all too familiar sight. Your partner is sleeping in bed next to you, their chest rising and falling steadily with each breath. You stroke the soft skin of their back and wonder. Birds chirp outside, and a light breeze carries the smell of freshly baked bread. All is still. You're home, finally.",
+        "text": "What greets you is a confusing, but all too familiar sight. \n\nYour partner is sleeping in bed next to you, their chest rising and falling steadily with each breath. You stroke the soft skin of their back and wonder. Birds chirp outside, and a light breeze carries the smell of freshly baked bread. \n\nAll is still. You're home, finally.",
         "modifier": [
             {
                 "none": true
@@ -2574,7 +2574,7 @@
     },
     {
         "level": "22a-Nightmares",
-        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. Burning eyes. A skinless face. A mouth contorted in pain. A howling scream erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. You wake up.",
+        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. \n\nBurning eyes. \nA skinless face. \nA mouth contorted in pain. \n\nA howling scream erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. \n\nYou wake up.",
         "modifier": [
             {
                 "none": true
@@ -2589,7 +2589,7 @@
     },
     {
         "level": "22aa-Awoken",
-        "text": "Laying in a pool of your own mushroom smelling vomit, you open your eyes once more. You're back in the prison. Was any of that real? Are these memories your own? Whatever it was, your mind feels the effects. The way ahead of you is now clear. Whatever was blocking it before you took the mushrooms must have cleared a path for you. Shaking your head and attempting to suppress your painful memories, you continue on.",
+        "text": "Laying in a pool of your own mushroom smelling vomit, you open your eyes once more. You're back in the prison. \n\nWas any of that real? Are these memories your own? Whatever it was, your mind feels the effects. The way ahead of you is now clear. Whatever was blocking it before you took the mushrooms must have cleared a path for you. Shaking your head and attempting to suppress your painful memories, you continue on.",
         "modifier": [
             {
                 "none": true
@@ -2604,7 +2604,7 @@
     },
     {
         "level": "19a-Tear Down",
-        "text": "The tapestry cascades to the ground, its images, forgotten. All that remains in its place is a small crack, out of which a slight breeze is blowing through. You decide to use the hilt of your weapon to smash it against the crack. Something stirs. You hit it again. There's a snort, followed by a grunt, then the sound of something sitting up. Something big. You decide to step back and ready yourself for whatever is on the other side of this wall. Suddenly the wall disintegrates in an explosion, and you're knocked off your feet. A shrouded figure steps through the hole.",
+        "text": "The tapestry cascades to the ground, its images, forgotten. All that remains in its place is a small crack, out of which a slight breeze is blowing through. You decide to use the hilt of your weapon to smash it against the crack. \n\nSomething stirs. You hit it again. \n\nThere's a snort, followed by a grunt, then the sound of something sitting up. Something big. You decide to step back and ready yourself for whatever is on the other side of this wall. \n\nSuddenly the wall disintegrates in an explosion, and you're knocked off your feet. A shrouded figure steps through the hole.",
         "modifier": [
             {
                 "none": true
@@ -2619,7 +2619,7 @@
     },
     {
         "level": "19b-Burn Tapestry",
-        "text": "Using the torch, you light the corner of the tapestry on fire. The fire quickly spreads up the images, but too fast. It engulfs the tapestry and catches on the wooden ceiling beams, spreading through the entire room. Before you can react, you are surrounded by flames and begin to burn alive. A figure appears from behind the bars, and its bright saffron eyes are the last things you see before you perish.",
+        "text": "Using the torch, you light the corner of the tapestry on fire. The fire quickly spreads up the images, but too fast. It engulfs the tapestry and catches on the wooden ceiling beams, spreading through the entire room. Before you can react, you are surrounded by flames and begin to burn alive. \n\nA figure appears from behind the bars, and its bright saffron eyes are the last things you see before you perish.",
         "modifier": [
             {
                 "death": true
@@ -2628,7 +2628,7 @@
     },
     {
         "level": "19c-Inspect",
-        "text": "As you look closer at the tapestry, you notice that all of the figures fighting in the battle are... Wait a second. You know this battle. You were there. Memories rush back into your mind as you recall the tapestry's battle, The War of Deceit, in which the King was assassinated by his Royal Lords. You can almost hear the sound of swords clashing on armor. You can hear the screams of your friends, who died for the King's honor. You smell blood. You smell fire. You smell fear.",
+        "text": "As you look closer at the tapestry, you notice that all of the figures fighting in the battle are... Wait a second. You know this battle. You were there. Memories rush back into your mind as you recall the tapestry's battle, The War of Deceit, in which the King was assassinated by his Royal Lords. You can almost hear the sound of swords clashing on armor. You can hear the screams of your friends, who died for the King's honor. \nYou smell blood. \nYou smell fire. \nYou smell fear.",
         "modifier": [
             {
                 "none": true
@@ -2643,7 +2643,7 @@
     },
     {
         "level": "19ca-Continue",
-        "text": "In a sudden burst of rage, you rip the tapestry from its hangings and retreat, panting and covered in a slick sweat. Some memories are best left lost to time.",
+        "text": "In a sudden burst of rage, you rip the tapestry from its hangings and retreat, panting and covered in a slick sweat. \n\nSome memories are best left lost to time.",
         "modifier": [
             {
                 "defense": -1
@@ -2685,7 +2685,7 @@
     },
     {
         "level": "20a-Fight Goblin",
-        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. 'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
+        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. \n\n'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
         "modifier": [
             {
                 "death": true
@@ -2694,7 +2694,7 @@
     },
     {
         "level": "20b-Cry",
-        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. 'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. \n\n'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. \n\n'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
         "modifier": [
             {
                 "none": true
@@ -2775,7 +2775,7 @@
     },
     {
         "level": "21-Goblin Merchant",
-        "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. Peering inside, you discover that the goblin actually has some decent items that may help.",
+        "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. \n\nPeering inside, you discover that the goblin actually has some decent items that may help.",
         "modifier": [
             {
                 "none": true
@@ -3192,7 +3192,7 @@
 
     {
         "level": "20bb-Refuse",
-        "text": "'Well 'ain't that a shame. I thought we were gonna strike a deal there.' the goblin complains. 'Ah well. Come on Gormush, let's leave this sorry soul to their own fortune.'",
+        "text": "'Well 'ain't that a shame. I thought we were gonna strike a deal there.' the goblin complains. \n'Ah well. Come on Gormush, let's leave this sorry soul to their own fortune.'",
         "modifier": [
             {
                 "none": true
@@ -3222,7 +3222,7 @@
     },
     {
         "level": "22-Two Paths",
-        "text": "The goblin snaps its long, green fingers, and both it and it's companion disappear in a puff of orange smoke. The way is clear. You are about to step into the blast hole and go down the corridor, however, you notice a small path that was previously hidden behind the goblin. It's smaller than the one you were about to take, and it seems to descend aggressively somewhat.",
+        "text": "The goblin snaps its long, green fingers, and both it and it's companion disappear in a puff of orange smoke. The way is clear. \n\nYou are about to step into the blast hole and go down the corridor, however, you notice a small path that was previously hidden behind the goblin. It's smaller than the one you were about to take, and it seems to descend aggressively somewhat.",
         "modifier": [
             {
                 "none": true
@@ -3248,7 +3248,7 @@
 
     {
         "level": "23-Corridor",
-        "text": "Venturing into the corridor, you notice that the quality of air seems to have improved somewhat. Also, the ground seems to be steadily inclining. Could this be the way out? Your pace quickens with anticipation. As you begin to jog, the incline continues to increase dramatically. After a few minutes, you have to resort to crawling on your hands and knees to stay on the path, which is becoming steeper with every step. Your determination to escape strengthens your resolve, and you push on.",
+        "text": "Venturing into the corridor, you notice that the quality of air seems to have improved somewhat. Also, the ground seems to be steadily inclining. Could this be the way out? Your pace quickens with anticipation. \n\nAs you begin to jog, the incline continues to increase dramatically. After a few minutes, you have to resort to crawling on your hands and knees to stay on the path, which is becoming steeper with every step. Your determination to escape strengthens your resolve, and you push on.",
         "modifier": [
             {
                 "none": true
@@ -3263,7 +3263,7 @@
     },
     {
         "level": "24-Skeletal Knight",
-        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. Sunlight. You've made it. You finally escaped from the cave. But before you can celebrate your escape, you hear a raspy voice from in front of you. 'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
+        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. \n\nSunlight. You've made it! You finally escaped from the cave! \n\n... \n\nBut before you can celebrate your escape, you hear a raspy voice from in front of you. \n'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
         "modifier": [
             {
                 "none": true
@@ -3332,7 +3332,7 @@
     },
     {
         "level": "24b-Flee",
-        "text": "You attempt to flee from the skeleton knight by turning around and jumping down the cliff you previously scaled. Sliding down the stone floor, your speed continues to increase and all hope of controlling your descent evaporates. Both your clothing and skin are ripped from underneath you, causing agonizing pain. Your body collides with a wall, killing you instantly.",
+        "text": "You attempt to flee from the skeleton knight by turning around and jumping down the cliff-like path you previously scaled. Sliding down the stone floor, your speed continues to increase and all hope of controlling your descent evaporates. Both your clothing and skin are ripped from underneath you, causing agonizing pain. Your body collides with a wall, killing you instantly.",
         "modifier": [
             {
                 "death": true
@@ -3341,7 +3341,7 @@
     },
     {
         "level": "24d-Skeletal Knight Fight",
-        "text": "Gripping your weapon tightly, you stare at the knight with determination in your eyes. You've made it this far, and this is just one last hurdle in your way. 'It appears that you understand the gravity of your situation. Very well.' The skeleton steps forward. 'You will die here, and no-one will remember you.' The knight charges.",
+        "text": "Gripping your weapon tightly, you stare at the knight with determination in your eyes. You've made it this far, and this is just one last hurdle in your way. \n\n'It appears that you understand the gravity of your situation. Very well.' The skeleton steps forward. 'You will die here, and no-one will remember you.' \n\nThe knight charges.",
         "modifier": [
             {
                 "fight": 1
@@ -3383,7 +3383,7 @@
     },
     {
         "level": "25-Skeletal Knight End",
-        "text": "Exhausted, you strike the final blow against the skeletal knight. The ethereal glow from deep inside its eye sockets extinguish, and it erupts into an arcane explosion. You collapse on the floor. It's over. You've won. Breathing in the cool, fresh air, you allow yourself a few moments of respite. Collecting yourself and standing victorious once more, you begin your trek towards the horizon in search of civilization. Maybe someone is out there.",
+        "text": "Exhausted, you strike the final blow against the skeletal knight. The ethereal glow from deep inside its eye sockets extinguish, and it erupts into an arcane explosion. You collapse on the floor. \n\nIt's over. \nYou've won. \n\nBreathing in the cool, fresh air, you allow yourself a few moments of respite. \n\nCollecting yourself and standing victorious once more, you begin your trek towards the horizon in search of civilization. Maybe someone is out there.",
         "modifier": [
             {
                 "end": 1
@@ -3423,7 +3423,7 @@
     },
     {
         "level": "26a-Falling",
-        "text": "After falling for a few seconds, you splash land into a deep body of water. Frantically swimming to the surface, you realize that this must be an old sewage system that was hidden behind the walls of the prison. Cursing the goblin for not imparting this knowledge unto you, you swim to a platform and lift yourself out of the water. Incredibly, you are unscathed, although any coin you had left must have slipped out of your pocket during your unexpected descent.",
+        "text": "After falling for a few seconds, you splash land into a deep body of water. Frantically swimming to the surface, you realize that this must be an old sewage system that was hidden behind the walls of the prison. Cursing the goblin for not imparting this knowledge unto you, you swim to a platform and lift yourself out of the water. \n\nIncredibly, you are unscathed, although any coin you had left must have slipped out of your pocket during your unexpected descent.",
         "modifier": [
             {
                 "gold": -50
@@ -3438,7 +3438,7 @@
     },
     {
         "level": "27-Sewers",
-        "text": "Cursing the goblin once more for your misfortune, you suddenly become very aware of the putrid stench that is assaulting your nostrils. Clearly these sewers haven't been maintained in years. You try not to imagine what diseases you may have picked up from swimming in the water. A distant growl fills the chamber, and reverberates all around you. Whatever made that noise must have heard you fall in. Although you're unsure what direction it came from, you can only assume it lies beyond, through one of the many tunnels around you. There are several large sewage pipes around you, however, the only one not blocked by a gate is to your left.",
+        "text": "Cursing the goblin once more for your misfortune, you suddenly become very aware of the putrid stench that is assaulting your nostrils. Clearly these sewers haven't been maintained in years. You try not to imagine what diseases you may have picked up from swimming in the water. \n\nA distant growl fills the chamber, and reverberates all around you. Whatever made that noise must have heard you fall in. Although you're unsure what direction it came from, you can only assume it lies beyond, through one of the many tunnels around you. \n\nThere are several large sewage pipes around you, however, the only one not blocked by a gate is to your left.",
         "modifier": [
             {
                 "none": true
@@ -3465,7 +3465,7 @@
     },
     {
         "level": "27a-Search",
-        "text": "You dive head first into the water and swim to the bottom, in the hopes that there might be something of value at the bottom. You swim deeper and finally reach the bottom. Blindly grabbing at anything that you can carry, you swim back to the surface and over to the platform. You're holding what looks like an elven femur, and also a round, metal disc. It appears that this disc is some kind of talisman, and while you continue to stare at it in wonder it begins to glow. A brilliant light emits from it, and some form of energy rushes out and into your body. Convulsing, you are lifted into the air. Then, the light dims, and the flow of energy stops. You are gently lowered to the ground and something feels different. You feel stronger. You slip the talisman of strength in your pocket as a keepsake, and leave the room behind with courage coursing through you.",
+        "text": "You dive head first into the water and swim to the bottom, in the hopes that there might be something of value at the bottom. \n\nYou swim deeper and blindly grab at anything that you can carry. Your hands grab something solid, so you swim back to the surface and over to the platform. You're holding what looks like a large, round, metal disc. It appears that this disc is some kind of talisman, and while you continue to stare at it in wonder it begins to glow. \n\nA brilliant light emits from it, and some form of energy rushes out and into your body. Convulsing, you are lifted into the air. Then, the light dims, and the flow of energy stops. You are gently lowered to the ground and something feels different. \nYou feel stronger. \nYou slip the talisman of strength in your pocket as a keepsake, and leave the room behind with courage coursing through you.",
         "modifier": [
             {
                 "amulet": 1
@@ -3483,7 +3483,7 @@
     },
     {
         "level": "27b-Inspect",
-        "text": "Holding your nose, you decide to inspect the room that you find yourself in. The water and waste has long since stopped running, and the ground is heavily soiled. You swallow, and decide to dig through a pile of unidentified material that has piled up in front of a sewage gate. Your fingers brush against something hard, and you grab at it, thinking it may be some gold or other loot. You're wrong. The teeth of a giant rat embed themselves in your forearm, and you recoil back in horror as it leaps out of its hiding place. As you regain your balance, it lunges at you with gnashing teeth.",
+        "text": "Holding your nose, you decide to inspect the room that you find yourself in. The water and waste has long since stopped running, and the ground is heavily soiled. You swallow, and decide to dig through a pile of unidentified material that has piled up in front of a sewage gate. \n\nYour fingers brush against something hard, and you grab at it, thinking it may be some gold or other loot. \n\nYou're wrong. \nThe teeth of a giant rat embed themselves in your forearm, and you recoil back in horror as it leaps out of its hiding place. As you regain your balance, it lunges at you with gnashing teeth.",
         "modifier": [
             {
                 "fight": 1
@@ -3525,7 +3525,7 @@
     },
     {
         "level": "27ba-Giant Rat Victory",
-        "text": "The rat slumps to the ground, black ooze dripping out of its mouth. You have killed it, but who knows what disease you now carry. Furious at your own stupidity, you break apart the hiding place from which the rat emerged in the possibility that something else might lurk there. Although there are no more creatures to be found, it looks as though the rat was collecting items that had fallen into these sewers. You snatch them up and decide to carry on your journey.",
+        "text": "The rat slumps to the ground, black ooze dripping out of its mouth. You have killed it, but who knows what disease you now carry. \n\nFurious at your own stupidity, you break apart the hiding place from which the rat emerged in the possibility that something else might lurk there. Although there are no more creatures to be found, it looks as though the rat was collecting items that had fallen into these sewers. You snatch them up and decide to carry on your journey.",
         "modifier": [
             {
                 "head": "Lucky cap"
@@ -3602,7 +3602,7 @@
     },
     {
         "level": "28a-Death",
-        "text": "Although the gap is too far to jump across, you attempt it anyway. With a running start, you leap from your side of the tunnel, arms outstretched. You miss the other side by several feet and fall into the darkness below.",
+        "text": "Although the gap is too far to jump across, you attempt it anyway. With a running start, you leap from your side of the tunnel, arms outstretched. \n\nYou miss the other side by several feet and fall into the darkness below.",
         "modifier": [
             {
                 "death": true
@@ -3677,7 +3677,7 @@
     },
     {
         "level": "28baaa-Gap Death",
-        "text": "With all your might, you pull yourself up halfway, but your sweaty palms betray you, and your hands slip from the pipe. You plummet into darkness, and all light fades away.",
+        "text": "With all your might, you pull yourself up halfway, but your sweaty palms betray you, and your hands slip from the pipe. \n\nYou plummet into darkness, and all light fades away.",
         "modifier": [
             {
                 "death": true
@@ -3716,7 +3716,7 @@
     },
     {
         "level": "28c-Throw weapon",
-        "text": "Deciding you'll have a much easier time crossing the pipe the lighter you are, you throw your weapon across. It lands easily on the other side, and you feel much more confident about balancing due to the decreased weight. You step forward and attempt to cross the pipe.",
+        "text": "Deciding you'll have a much easier time crossing the pipe the lighter you are, you throw your weapon across. It lands easily on the other side, and you feel much more confident about balancing due to the decreased weight. \n\nYou step forward and attempt to cross the pipe.",
         "modifier": [
             {
                 "none": true
@@ -3749,7 +3749,7 @@
     },
     {
         "level": "29-Manticore",
-        "text": "You resume your journey through the tunnel and it finally reaches a large circular room. Luckily, the bars that would have normally blocked your exit look like they had been torn from their hinges, and now lay to the side. This room is much warmer than the rest of the sewer. Looking around, you see mounds of something, obscured by the low light, tucked towards the edges of the room. In the gloomy distance, you hear an all too familiar growl. Suddenly, the sconces on the walls ignite with a magical flame, illuminating the beast before you. A manticore glares at you with its fierce yellow eyes. You had only heard about these in stories told to children, and wonder if you are dreaming. With a hideously human-looking face, it almost looks like it is grinning at you. It steps forward, putting one paw in front of the other, and flexes its bat-like wings. You also catch a glimpse of a scaly tail, tipped with an enormous barb. The manticore shakes its mane and stops a few feet from you, bearing its large fangs. White hot runes glow underneath the fur of the manticore's body, and you realize that it must have used magic to illuminate the room. A magic manticore. Surely you must be dreaming.",
+        "text": "You resume your journey through the tunnel and it finally reaches a large circular room. Luckily, the bars that would have normally blocked your exit look like they had been torn from their hinges, and now lay to the side. This room is much warmer than the rest of the sewer. \n\nLooking around, you see mounds of something, obscured by the low light, tucked towards the edges of the room. In the gloomy distance, you hear an all too familiar growl. Suddenly, the sconces on the walls ignite with a magical flame, illuminating the beast before you. \n\nA manticore glares at you with its fierce yellow eyes. You had only heard about these in stories told to children, and wonder if you are dreaming. With a hideously human-looking face, it almost looks like it is grinning at you. It steps forward, putting one paw in front of the other, and flexes its bat-like wings. You also catch a glimpse of a scaly tail, tipped with an enormous barb. The manticore shakes its mane and stops a few feet from you, bearing its large fangs. White hot runes glow underneath the fur of the manticore's body, and you realize that it must have used magic to illuminate the room. \n\nA magic manticore. \n\nSurely you must be dreaming.",
         "modifier": [
             {
                 "fight": 1
@@ -3791,7 +3791,7 @@
     },
     {
         "level": "30-Manticore Victory",
-        "text": "WIth one last roar, the manticore falls to the floor, dead. Your mind is still swimming from the realization that you just defeated a creature previously thought to be a myth. The sconces remain lit, as do the runes covering the body of the manticore.",
+        "text": "WIth one last roar, the manticore falls to the floor, dead. \n\nYour mind is still swimming from the realization that you just defeated a creature previously thought to be a myth. The sconces remain lit, as do the runes covering the body of the manticore.",
         "modifier": [
             {
                 "none": true
@@ -3818,7 +3818,7 @@
     },
     {
         "level": "30a-Rest",
-        "text": "You craft a fire using some clothing scraps and wood that you found nearby. Lighting it with one of the wall sconces, you sit down and bask in the fire's warm glow. After a short while, you doze off and wake up some time later feeling refreshed. The embers in the fire are still glowing, so you suppose that you couldn't have slept for longer than a few hours. Standing up, you survey your surroundings once more. The manticore's body is gone. You hear a hoarse laugh from up ahead.",
+        "text": "You craft a fire using some clothing scraps and wood that you found nearby. Lighting it with one of the wall sconces, you sit down and bask in the fire's warm glow. After a short while, you doze off and wake up some time later feeling refreshed. The embers in the fire are still glowing, so you suppose that you couldn't have slept for longer than a few hours. Standing up, you survey your surroundings once more. \n\nThe manticore's body is gone. You hear a hoarse laugh from up ahead.",
         "modifier": [
             {
                 "health": 100
@@ -3833,7 +3833,7 @@
     },
     {
         "level": "32-Undead Manticore Fight",
-        "text": "'So, you're finally awake,' laughs the voice. 'I could have killed you while you slept, but where's the honor in that?' Looking up you see that the voice belongs to a skeletal figure, who has some kind of beast fur draped over its shoulders. It wields a jagged whip at its waist, and standing next to it is... the manticore you killed. You can clearly see the wounds that you inflicted upon its human face and its fur is soaked in its own blood, however, its eyes are now glowing with a blue fire. 'I don't appreciate people murdering my children,' the necro-beastmaster barks, its face now stern. 'It is always such a pain to bring them back.' The skeleton holds its whip, and gives it an almighty crack. 'Attack', it commands. The undead manticore leaps towards you.",
+        "text": "'So, you're finally awake,' laughs the voice. 'I could have killed you while you slept, but where's the honor in that?' \n\nLooking up you see that the voice belongs to a skeletal figure, who has some kind of animal fur draped over its shoulders. It wields a jagged whip at its waist, and standing next to it is... the manticore you killed. \n\nYou can clearly see the wounds that you inflicted upon its human face and its fur is soaked in its own blood, however, its eyes are now glowing with a blue fire. 'I don't appreciate people murdering my children,' the necro-beastmaster barks, its face now stern. 'It is always such a pain to bring them back.' The skeleton raises its whip, and gives it an almighty crack. \n\n'Attack', it commands. The undead manticore leaps towards you.",
         "modifier": [
             {
                 "fight": 1
@@ -3875,7 +3875,7 @@
     },
     {
         "level": "32a-Undead Manticore Victory",
-        "text": "You strike the manticore down once more, but this time you make sure to obliterate its head with a firm stomp of your boot. Hopefully that should stop it from coming back again. 'MY CHILD!' screeches the beastmaster. 'I am going to make you suffer, adventurer. Your journey ends here!'",
+        "text": "You strike the manticore down once more, but this time you make sure to obliterate its head with a firm stomp of your boot. Hopefully that should stop it from coming back again. \n\n'MY CHILD!' screeches the beastmaster. 'I am going to make you suffer, adventurer. Your journey ends here!'",
         "modifier": [
             {
                 "fight": 1
@@ -3917,7 +3917,7 @@
     },
     {
         "level": "30b-Rune Upgrade",
-        "text": "Whether as a sign of respect or just to brace yourself, you kneel down and place a hand on the beast's body. The runes covering its body begin to emit a slow pulsating light. The runes now begin to slide off the body of the dead beast and climb their way up your arm. You recoil in terror, but it is already too late. The runes now circle your entire body like an elaborate tattoo. They shine brightly and your fear quickly dissipates. No wonder the beast was so difficult to kill, these runes were granting it extra special power! You breathe in as this new-found power courses through your veins. Gripping your weapon tightly, you look around the room for an exit.",
+        "text": "Whether as a sign of respect or just to brace yourself, you kneel down and place a hand on the beast's body. \n\nThe runes covering its body begin to emit a slow pulsating light. The runes now begin to slide off the body of the dead beast and climb their way up your arm. You recoil in terror, but it is already too late. \n\nThe runes now circle your entire body like an elaborate tattoo. They shine brightly and your fear quickly dissipates. No wonder the beast was so difficult to kill, these runes were granting it extra special power! \n\nYou breathe in as this new-found power courses through your veins. Gripping your weapon tightly, you look around the room for an exit.",
         "modifier": [
             {
                 "health": 100
@@ -3941,7 +3941,7 @@
     },
     {
         "level": "31-Undead Beastmaster Fight",
-        "text": "Looking around, it doesn't seem like there is an exit in this room. Surely it couldn't be a dead end? A bright white light, much like the ones that covered the now deceased manticore, emits from the end of the room. A skeletal figure steps through, a beast's fur draped over its shoulders and a jagged whip hanging by its side. 'You foul beast!' cries the skeleton as it steps through the portal. 'You have killed one of my most favorite children. Once I have taken your life, I will make sure that its resurrected form will feast on your corpse!' The necro-beastmaster uncoils its whip, and unleashes an almighty crack. 'You will suffer before the end.' The skeleton attacks.",
+        "text": "Looking around, it doesn't seem like there is an exit in this room. Surely it couldn't be a dead end? A bright white light, much like the ones that covered the now deceased manticore, emits from the end of the room. A skeletal figure steps through, a beast's fur draped over its shoulders and a jagged whip hanging by its side. \n\n'You foul beast!' cries the skeleton as it steps through the portal. 'You have killed one of my most favorite children. Once I have taken your life, I will make sure that its resurrected form will feast on your corpse!' The necro-beastmaster uncoils its whip, and unleashes an almighty crack. 'You will suffer before the end.' \n\nThe skeleton attacks.",
         "modifier": [
             {
                 "fight": 1
@@ -3983,7 +3983,7 @@
     },
     {
         "level": "33-Beastmaster End",
-        "text": "Striking hard and true, you land the final blow on the beastmaster. Its undead corpse falls to the ground, defeated. A small roll of parchment, previously hidden under its fur cloak, falls to the ground at your feet. You unroll it and see that it is an incantation for a portal out of here. You recite the words on the parchment, and a portal opens up behind you. Taking one look back at the beastmaster and its manticore, you can't help but feel a pang of sorrow for their cursed existences. Hopefully you brought their souls some peace. You step through the portal.",
+        "text": "Striking hard and true, you land the final blow on the beastmaster. Its undead corpse falls to the ground, defeated. \n\nA small roll of parchment, previously hidden under its fur cloak, falls to the ground at your feet. You unroll it and see that it is an incantation for a portal out of here. You recite the words on the parchment, and a portal opens up behind you. Taking one look back at the beastmaster and its manticore, you can't help but feel a pang of sorrow for their cursed existences. Hopefully you brought their souls some peace. \n\nYou step through the portal.",
         "modifier": [
             {
                 "end": 1
