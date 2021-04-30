@@ -128,7 +128,7 @@
     },
     {
         "level": "01ba-Goblin Flee",
-        "text": "Terrified of what goblins might do if they see you, you attempt to run away. \n\nSprinting to the back of the cave, you are only met with a cold, hard wall. You grope around in the darkness for some kind of opening, some escape from this hellhole. \n\n'Well, what do we have here then?' a voice cackles behind you. You spin around to see your foe, but a goblin quickly dashes forward, plunging its dagger into your stomach and slashing it to the side, spilling your innards all over the floor. \n\nDarkness consumes everything.",
+        "text": "Terrified of what goblins might do if they see you, you attempt to run away. \n\nSprinting to the back of the cave, you are only met with a cold, hard wall. You grope around in the darkness for some kind of opening, some escape from this hellhole. \n\n\"Well, what do we have here then?\" a voice cackles behind you. You spin around to see your foe, but a goblin quickly dashes forward, plunging its dagger into your stomach and slashing it to the side, spilling your innards all over the floor. \n\nDarkness consumes everything.",
         "modifier": [
             {
                 "death": 1
@@ -146,7 +146,7 @@
     },
     {
         "level": "01bc-Bargain",
-        "text": "Holding the rusty sword loosely in your hand, you stand your ground as the goblins approach. As they enter the doorway, the stop in their tracks. \n\n'Cor, look at this one. He looks ready for battle!' \n\nKnowing that all goblins love a good deal, you hold up your hands and explain that you'd rather offer them your sword. \n\n'That thing doesn't look like it's worth the dirt under my nails', the goblin sneers. 'Tell ya what. We'll take your sword, in exchange for your life. Sound good? Good.' \n\nAnd with that, the goblins snatch up your weapon and disappear from the way they came. Damn. That weapon could have been useful. At least you're still breathing.",
+        "text": "Holding the rusty sword loosely in your hand, you stand your ground as the goblins approach. As they enter the doorway, the stop in their tracks. \n\n\"Cor, look at this one. He looks ready for battle!\" \n\nKnowing that all goblins love a good deal, you hold up your hands and explain that you'd rather offer them your sword. \n\n\"That thing doesn't look like it's worth the dirt under my nails\", the goblin sneers. \"Tell ya what. We'll take your sword, in exchange for your life. Sound good? Good.\" \n\nAnd with that, the goblins snatch up your weapon and disappear from the way they came. Damn. That weapon could have been useful. At least you're still breathing.",
         "modifier": [
             {
                 "weapon": {
@@ -187,7 +187,7 @@
     },
     {
         "level": "01bd-Goblin Battle",
-        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. \n\n'This one looks feisty!', the uglier one cackles. The goblin murmurs something to its partner, who runs off down the tunnel from which they entered. \n\n'Don't worry sunshine, I'll deal with you myself.' The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
+        "text": "Gripping your sword confidently, you stand your ground. Two goblins enter the cave and stop in their tracks. \n\n\"This one looks feisty!\", the uglier one cackles. The goblin murmurs something to its partner, who runs off down the tunnel from which they entered. \n\n\"Don't worry sunshine, I'll deal with you myself.\" The goblin unsheathes a sharp looking dagger, and steps forward to attack.",
         "modifier": [
             {
                 "fight": 1
@@ -1063,7 +1063,7 @@
     },
     {
         "level": "07a-Knock",
-        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped door handle, you wait for a response. \n\nNone comes. \n\nPerhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. 'Grah you idiot, come in! Didn't you hear me the first time?' yells a voice, quite impatiently.",
+        "text": "Knocking gently on the door, eyes still fixed on the peculiar shaped door handle, you wait for a response. \n\nNone comes. \n\nPerhaps you knocked too quietly? You knock harder this time, and hear a muffled voice inside. \"Grah you idiot, come in! Didn't you hear me the first time?\" yells a voice, quite impatiently.",
         "modifier": [
             {
                 "none": true
@@ -1078,7 +1078,7 @@
     },
     {
         "level": "08-Goblin Merchant",
-        "text": "Turning the door handle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sitting at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. \n\n'Quickly now, quick, we don't have much time,' the goblin exclaims. 'Are you gonna buy something or not?' \n\nThe rumbling grows steadily louder.",
+        "text": "Turning the door handle and swinging the door open wide, you are greeted by a room that is dimly lit, filled with an assortment of weapons, half-filled flasks, among other oddities. As you peer around the room, your eyes land on a green-skinned goblin, sitting at the far end of the room behind a shrouded table. Its arms are extended out beckoning you inside. \n\n\"Quickly now, quick, we don't have much time,\" the goblin exclaims. \"Are you gonna buy something or not?\" \n\nThe rumbling grows steadily louder.",
         "modifier": [
             {
                 "none": true
@@ -1109,7 +1109,7 @@
     },
     {
         "level": "08a-Axes",
-        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Anything else? We're running out of time!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1146,7 +1146,7 @@
     },
     {
         "level": "08b-Greaves",
-        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Anything else? We're running out of time!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1183,7 +1183,7 @@
     },
     {
         "level": "08c-Helmet",
-        "text": "'Anything else? We're running out of time!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Anything else? We're running out of time!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1223,7 +1223,7 @@
     },
     {
         "level": "08aa-Axe and Greaves",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1255,7 +1255,7 @@
     },
     {
         "level": "08ab-Axe and Helmet",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1290,7 +1290,7 @@
     },
     {
         "level": "08ac-Axe and HP",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1319,7 +1319,7 @@
     },
     {
         "level": "08ba-Greaves and Axe",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1351,7 +1351,7 @@
     },
     {
         "level": "08bb-Greaves and Helmet",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "head": "Black Iron Helmet"
@@ -1386,7 +1386,7 @@
     },
     {
         "level": "08bc-Greaves and HP",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1415,7 +1415,7 @@
     },
     {
         "level": "08ba-Helmet and Greaves",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "hands": "Plate Greaves"
@@ -1447,7 +1447,7 @@
     },
     {
         "level": "08aa-Helmet and Axe",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "weapon": {
@@ -1479,7 +1479,7 @@
     },
     {
         "level": "08bc-Helmet and HP",
-        "text": "'Hurry!!' \n\nThe rumbling gets ever louder.",
+        "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
                 "healthPotion": 1
@@ -1508,7 +1508,7 @@
     },
     {
         "level": "08d-Nothing",
-        "text": "'Phew, I thought you'd never make it!' the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. \n\nThe goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. \n\nThe entire room is now shaking and glass vials and old tomes cascade to the ground.",
+        "text": "\"Phew, I thought you'd never make it!\" the goblin said exasperatedly. The rumbling is now almost deafening, and you reflexively put your hands over your ears to salvage whatever's left of your eardrums. \n\nThe goblin cups its mouth to yell something at you, but you can't hear anything but the rumbling. The goblin shrugs, clicks its fingers and disappears in a puff of orange smoke. \n\nThe entire room is now shaking and glass vials and old tomes cascade to the ground.",
         "modifier": [
             {
                 "none": true
@@ -2532,7 +2532,7 @@
     },
     {
         "level": "20aaa-Pikeman Victory",
-        "text": "Another enemy of the King lay slain at your feet. 'Take this!' yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. \n\nYou're floating in darkness for what seems an eternity. \n\nYou wake up.",
+        "text": "Another enemy of the King lay slain at your feet. \"Take this!\" yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. \n\nYou're floating in darkness for what seems an eternity. \n\nYou wake up.",
         "modifier": [
             {
                 "health": 50
@@ -2574,7 +2574,7 @@
     },
     {
         "level": "22a-Nightmares",
-        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. 'Good morning', they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. \n\nBurning eyes. \nA skinless face. \nA mouth contorted in pain. \n\nA howling scream erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. \n\nYou wake up.",
+        "text": "Adjusting yourself in bed, your partner stirs, woken up by your movements. \"Good morning\", they say. But something is different about the way they spoke. You place your hand on their shoulder to roll them over. \n\nBurning eyes. \nA skinless face. \nA mouth contorted in pain. \n\nA howling scream erupts from their mouth, and you push yourself away in horror. As you fall out of the bed, your head strikes the ground with blinding pain. \n\nYou wake up.",
         "modifier": [
             {
                 "none": true
@@ -2685,7 +2685,7 @@
     },
     {
         "level": "20a-Fight Goblin",
-        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. \n\n'Tsk. Truly a shame to waste such talent.' The goblin sighs, as you slip into darkness.",
+        "text": "You rush at the goblin with a battle cry, but you're stopped mere feet away from it. You look down, and a giant black spear has entered your belly and exited the other side. The giant wielding it emerges from behind the goblin. You cough up blood. \n\n\"Tsk. Truly a shame to waste such talent.\" The goblin sighs, as you slip into darkness.",
         "modifier": [
             {
                 "death": 1
@@ -2694,7 +2694,7 @@
     },
     {
         "level": "20b-Cry",
-        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. \n\n'Blimey mate, no need for the waterworks!' the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. \n\n'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "text": "Tears stream down your face, fearful of the armed goblin and whatever is behind it. \n\n\"Blimey mate, no need for the waterworks!\" the goblin shouts, and beckons you over. Sniffling, you walk up to the goblin and feel slightly foolish for resorting to tears. \n\n\"You don't need to say nothin, and don't ail me with your woes,\" the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, \"Gormush and I have our own problems. All I wanna know from you, is do you got coin?\"",
         "modifier": [
             {
                 "none": true
@@ -2721,7 +2721,7 @@
     },
     {
         "level": "20c-Help",
-        "text": "You begin to ask the goblin for help, but it holds up a small wrinkled hand in a signal for you to stop. 'You don't need to say nothin, and don't ail me with your woes,' the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "text": "You begin to ask the goblin for help, but it holds up a small wrinkled hand in a signal for you to stop. \"You don't need to say nothin, and don't ail me with your woes,\" the goblin says loudly. Jabbing a thumb towards the huge grey giant behind him, \"Gormush and I have our own problems. All I wanna know from you, is do you got coin?\"",
         "modifier": [
             {
                 "none": true
@@ -2748,7 +2748,7 @@
     },
     {
         "level": "20d-Nothing",
-        "text": "'Not a talker eh?' sneers the goblin. 'Perfect. You don't need to say nothin, and please don't ail me with your woes.' Jabbing a thumb towards the huge grey giant behind him, the goblin continues. 'Gormush and I have our own problems. All I wanna know from you, is do you got coin?'",
+        "text": "\"Not a talker eh?\" sneers the goblin. \"Perfect. You don't need to say nothin,\" Jabbing a thumb towards the huge grey giant behind him, the goblin continues. \"Gormush and I have our own problems. All I wanna know from you, is do you got coin?\"",
         "modifier": [
             {
                 "none": true
@@ -2775,7 +2775,7 @@
     },
     {
         "level": "21-Goblin Merchant",
-        "text": "'Excellent choice, friend!' The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. \n\nPeering inside, you discover that the goblin actually has some decent items that may help.",
+        "text": "\"Excellent choice, friend!\" The goblin merchant steps aside and waves its hand towards a large burlap sack that is propped up against the remains of the wall. You approach it slowly, as to not cause alarm. The giant standing behind the goblin tenses as you get closer. \n\nPeering inside, you discover that the goblin actually has some decent items that may help.",
         "modifier": [
             {
                 "none": true
@@ -2806,7 +2806,7 @@
     },
     {
         "level": "21a-Helmet",
-        "text": "'Anything else?'",
+        "text": "\"Anything else?\"",
         "modifier": [
             {
                 "head": "Leather Helmet"
@@ -2838,7 +2838,7 @@
     },
     {
         "level": "21aa-Health and Helmet",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "healthPotion": 1
@@ -2862,7 +2862,7 @@
     },
     {
         "level": "21c-Longsword and Helmet",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "weapon": {
@@ -2889,7 +2889,7 @@
     },
     {
         "level": "21aaa-Longsword, Health and Helmet",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "weapon": {
@@ -2911,7 +2911,7 @@
     },
     {
         "level": "21aaa-Health Potion, Longsword and Helmet",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "healthPotion": 1
@@ -2930,7 +2930,7 @@
     },
     {
         "level": "21b-Health Potion",
-        "text": "'Anything else?'",
+        "text": "\"Anything else?\"",
         "modifier": [
             {
                 "healthPotion": 1
@@ -2959,7 +2959,7 @@
     },
     {
         "level": "21ba-Helmet and Health",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "head": "Leather Helmet"
@@ -2986,7 +2986,7 @@
     },
     {
         "level": "21bb-Longsword and Health",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "weapon": {
@@ -3013,7 +3013,7 @@
     },
     {
         "level": "21baa-Longsword, Helmet and Health",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "weapon": {
@@ -3035,7 +3035,7 @@
     },
     {
         "level": "21baa-Longsword, Helmet and Health",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "head": "Leather Helmet"
@@ -3057,7 +3057,7 @@
     },
     {
         "level": "21c-Longsword",
-        "text": "'Anything else?'",
+        "text": "\"Anything else?\"",
         "modifier": [
             {
                 "weapon": {
@@ -3089,7 +3089,7 @@
     },
     {
         "level": "21ca-Helmet and Longsword",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "head": "Leather Helmet"
@@ -3116,7 +3116,7 @@
     },
     {
         "level": "21cb-Health and Longsword",
-        "text": "'Lovely stuff!' cackles the goblin. 'Can I interest you in one last item?'",
+        "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
                 "healthPotion": 1
@@ -3140,7 +3140,7 @@
     },
     {
         "level": "21cba-Health, Helmet and Longsword",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "healthPotion": 1
@@ -3159,7 +3159,7 @@
     },
     {
         "level": "21caa-Helmet, Health and Longsword",
-        "text": "'Beautiful!' the goblin cheers. 'You've bought all me wares.'",
+        "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
                 "head": "Leather Helmet"
@@ -3192,7 +3192,7 @@
 
     {
         "level": "20bb-Refuse",
-        "text": "'Well 'ain't that a shame. I thought we were gonna strike a deal there.' the goblin complains. \n'Ah well. Come on Gormush, let's leave this sorry soul to their own fortune.'",
+        "text": "\"Well 'ain't that a shame. I thought we were gonna strike a deal there.\" the goblin complains. \n\"Ah well. Come on Gormush, let's leave this sorry soul to their own fortune.\"",
         "modifier": [
             {
                 "none": true
@@ -3207,7 +3207,7 @@
     },
     {
         "level": "21d-Nothing",
-        "text": "The goblin winks one saffron eye at you and says 'Great doin' business wit' ya. Oh and one more thing, if you see it - you'll know. Just make sure to place a hand on it. Sounds weird, I know, but just do it. That's all I'm allowed to tell ya.'",
+        "text": "The goblin winks one saffron eye at you and says \"Great doin' business wit' ya. Oh and one more thing, if you see it - you'll know. Just make sure to place a hand on it. Sounds weird, I know, but just do it. That's all I'm allowed to tell ya.\"",
         "modifier": [
             {
                 "none": true
@@ -3263,7 +3263,7 @@
     },
     {
         "level": "24-Skeletal Knight",
-        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. \n\nSunlight. You've made it! You finally escaped from the cave! \n\n... \n\nBut before you can celebrate your escape, you hear a raspy voice from in front of you. \n'Not so fast,' declares a figure, obscured by the blinding sun. 'No-one leaves that cave until they have got past me. Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.'",
+        "text": "After a quarter mile, you finally climb to the top of the path. Hoisting your leg over the rim, your face is greeted with a brilliant light. \n\nSunlight. You've made it! You finally escaped from the cave! \n\n... \n\nBut before you can celebrate your escape, you hear a raspy voice from in front of you. \n\"Not so fast,\" declares a figure, obscured by the blinding sun. \"No-one leaves that cave until they have got past me.\" Squinting your eyes, you see who stands before you. Fully clad in engraved steel armor, a skeletal knight brandishes a long spear in a battle-ready stance.",
         "modifier": [
             {
                 "none": true
@@ -3290,7 +3290,7 @@
     },
     {
         "level": "24a-Question",
-        "text": "'I do not have time to answer your foolish questions, mortal', the skeleton croaks. 'Prepare to die.' The knight locks its spear to its side with both bony hands, and charges.",
+        "text": "\"I do not have time to answer your foolish questions, mortal,\" the skeleton croaks. \"Prepare to die.\" The knight locks its spear to its side with both bony hands, and charges.",
         "modifier": [
             {
                 "fight": 1
@@ -3341,7 +3341,7 @@
     },
     {
         "level": "24d-Skeletal Knight Fight",
-        "text": "Gripping your weapon tightly, you stare at the knight with determination in your eyes. You've made it this far, and this is just one last hurdle in your way. \n\n'It appears that you understand the gravity of your situation. Very well.' The skeleton steps forward. 'You will die here, and no-one will remember you.' \n\nThe knight charges.",
+        "text": "Gripping your weapon tightly, you stare at the knight with determination in your eyes. You've made it this far, and this is just one last hurdle in your way. \n\n\"It appears that you understand the gravity of your situation. Very well.\" The skeleton steps forward. \"You will die here, and no-one will remember you.\" \n\nThe knight charges.",
         "modifier": [
             {
                 "fight": 1
@@ -3833,7 +3833,7 @@
     },
     {
         "level": "32-Undead Manticore Fight",
-        "text": "'So, you're finally awake,' laughs the voice. 'I could have killed you while you slept, but where's the honor in that?' \n\nLooking up you see that the voice belongs to a skeletal figure, who has some kind of animal fur draped over its shoulders. It wields a jagged whip at its waist, and standing next to it is... the manticore you killed. \n\nYou can clearly see the wounds that you inflicted upon its human face and its fur is soaked in its own blood, however, its eyes are now glowing with a blue fire. 'I don't appreciate people murdering my children,' the necro-beastmaster barks, its face now stern. 'It is always such a pain to bring them back.' The skeleton raises its whip, and gives it an almighty crack. \n\n'Attack', it commands. The undead manticore leaps towards you.",
+        "text": "\"So, you're finally awake,\" laughs the voice. \"I could have killed you while you slept, but where's the honor in that?\" \n\nLooking up you see that the voice belongs to a skeletal figure, who has some kind of animal fur draped over its shoulders. It wields a jagged whip at its waist, and standing next to it is... the manticore you killed. \n\nYou can clearly see the wounds that you inflicted upon its human face and its fur is soaked in its own blood, however, its eyes are now glowing with a blue fire. \"I don't appreciate people murdering my children,\" the necro-beastmaster barks, its face now stern. \"It is always such a pain to bring them back.\" The skeleton raises its whip, gives it an almighty crack, and raises a long bony finger in your direction. \n\n\"Attack\". \n\nThe undead manticore leaps towards you.",
         "modifier": [
             {
                 "fight": 1
@@ -3875,7 +3875,7 @@
     },
     {
         "level": "32a-Undead Manticore Victory",
-        "text": "You strike the manticore down once more, but this time you make sure to obliterate its head with a firm stomp of your boot. Hopefully that should stop it from coming back again. \n\n'MY CHILD!' screeches the beastmaster. 'I am going to make you suffer, adventurer. Your journey ends here!'",
+        "text": "You strike the manticore down once more, but this time you make sure to obliterate its head with a firm stomp of your boot. Hopefully that should stop it from coming back again. \n\n\"MY CHILD!\" screeches the beastmaster. \"I am going to make you suffer, adventurer. Your journey ends here!\"",
         "modifier": [
             {
                 "fight": 1
@@ -3941,7 +3941,7 @@
     },
     {
         "level": "31-Undead Beastmaster Fight",
-        "text": "Looking around, it doesn't seem like there is an exit in this room. Surely it couldn't be a dead end? A bright white light, much like the ones that covered the now deceased manticore, emits from the end of the room. A skeletal figure steps through, a beast's fur draped over its shoulders and a jagged whip hanging by its side. \n\n'You foul beast!' cries the skeleton as it steps through the portal. 'You have killed one of my most favorite children. Once I have taken your life, I will make sure that its resurrected form will feast on your corpse!' The necro-beastmaster uncoils its whip, and unleashes an almighty crack. 'You will suffer before the end.' \n\nThe skeleton attacks.",
+        "text": "Looking around, it doesn't seem like there is an exit in this room. Surely it couldn't be a dead end? A bright white light, much like the ones that covered the now deceased manticore, emits from the end of the room. A skeletal figure steps through, a beast's fur draped over its shoulders and a jagged whip hanging by its side. \n\n\"You foul beast!\" cries the skeleton as it steps through the portal. \"You have killed one of my most favorite children. Once I have taken your life, I will make sure that its resurrected form will feast on your corpse!\" The necro-beastmaster uncoils its whip, and unleashes an almighty crack. \"You will suffer before the end.\" \n\nThe skeleton attacks.",
         "modifier": [
             {
                 "fight": 1
