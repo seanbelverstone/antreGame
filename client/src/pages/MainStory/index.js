@@ -7,9 +7,9 @@ import attacks from "../../utils/attacks.js";
 import Inventory from "../../components/Inventory";
 import InventoryPopup from "../../components/InventoryPopup";
 import ChoiceBlock from "../../components/ChoiceBlock";
+import Enemy from "../../components/Enemy";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
-import enemies from "../../assets/images/enemyIcons";
 import "./style.css";
 
 const MainStory = () => {
@@ -533,29 +533,21 @@ const MainStory = () => {
                 }}
 
             />
-            <div style={{ display: imageDisplay }} className={enemyBlockFade} id="enemyBlock">
-                <div>{currentEnemy.name}</div>
-                <div className="healthArea">
-                    <div className="healthText">
-                        {currentEnemyHealth}/{currentEnemy.health}
-                    </div>
-                    <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
-                </div>
-
-                <img src={enemies[enemyImage]} id="enemyImage" />
-
-                <div id="charName">{currentCharacter.name}</div>
-                <div className="healthArea" id="userHealthArea">
-                    <div className="healthText">
-                        {currentUserHealth}/{maxHealth}
-                    </div>
-                    <div id="userBar" style={{ width: userHealthWidth }}></div>
-                </div>
-            </div>
-
-            <div id="attackText" className={optionFade} style={{display: attackDisplay}}>
-                {attackText}
-            </div>
+            <Enemy 
+                imageDisplay={imageDisplay}
+                enemyBlockFade={enemyBlockFade}
+                currentEnemy={currentEnemy}
+                currentEnemyHealth={currentEnemyHealth}
+                enemyHealthWidth={enemyHealthWidth}
+                enemyImage={enemyImage}
+                currentCharacter={currentCharacter}
+                currentUserHealth={currentUserHealth}
+                maxHealth={maxHealth}
+                userHealthWidth={userHealthWidth}
+                optionFade={optionFade}
+                attackDisplay={attackDisplay}
+                attackText={attackText}
+            />
 
             <div id="optionArea">
                 <ChoiceBlock
