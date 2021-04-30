@@ -4,14 +4,15 @@ import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
-import Inventory from "../Inventory";
-import InventoryPopup from "../InventoryPopup";
+import Inventory from "../../components/Inventory";
+import InventoryPopup from "../../components/InventoryPopup";
+import ChoiceBlock from "../../components/ChoiceBlock";
+import Enemy from "../../components/Enemy";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
-import enemies from "../../assets/images/enemyIcons";
 import "./style.css";
 
-const DecisionBlock = () => {
+const MainStory = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
@@ -141,43 +142,6 @@ const DecisionBlock = () => {
                 }
                 
             }
-        }
-    }
-
-    // maps through the options array and creates divs for them
-    const renderOptions = () => {
-        if (modifier[0] !== undefined && modifier[0].death) {
-            console.log(modifier[0])
-            return (
-                <div>
-                    <p className={`options ${optionFade}`}>You died.</p>
-                    <Button className="optionText" variant="contained" color="primary" onClick={setCurrentLevel("01-Start")}>
-                        START AGAIN
-                    </Button>
-                </div>
-            )
-        } else if (modifier[0] != undefined && modifier[0].fight) {
-            // If fight: true appears in the decision block, render the fight screen instead.
-            return (options.map(fightOption => {
-                return (
-                    <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" id={fightOption.label} onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
-                            {fightOption.label}
-                        </Button>
-                    </div>
-                )
-            }))
-        } else {
-            // Otherwise, show the option page
-            return options.map(option => {
-                return (
-                    <div className={`options ${optionFade}`} key={option.label}>
-                        <Button className="optionText" variant="contained" color="primary" id={option.label} onClick={() => handleClick(option)}>
-                            {option.label}
-                        </Button>
-                    </div>
-                )
-            })
         }
     }
 
@@ -361,15 +325,10 @@ const DecisionBlock = () => {
                 disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
             }
         }
-    // PSUEDOCODE
-    // For each of the options on screen, if it exists in the "clicked array", give it some disabled styling
     };
 
-
     const handleFight = (option) => {
-
         let skillButton = document.getElementById("Use skill");
-
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = async () => {
@@ -461,7 +420,6 @@ const DecisionBlock = () => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
-
         // if user is dead, hide all images and just render "you are dead"
         // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
         if (userNewWidth <= 0) {
@@ -575,31 +533,33 @@ const DecisionBlock = () => {
                 }}
 
             />
-            <div style={{ display: imageDisplay }} className={enemyBlockFade} id="enemyBlock">
-                <div>{currentEnemy.name}</div>
-                <div className="healthArea">
-                    <div className="healthText">
-                        {currentEnemyHealth}/{currentEnemy.health}
-                    </div>
-                    <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
-                </div>
+            <Enemy 
+                imageDisplay={imageDisplay}
+                enemyBlockFade={enemyBlockFade}
+                currentEnemy={currentEnemy}
+                currentEnemyHealth={currentEnemyHealth}
+                enemyHealthWidth={enemyHealthWidth}
+                enemyImage={enemyImage}
+                currentCharacter={currentCharacter}
+                currentUserHealth={currentUserHealth}
+                maxHealth={maxHealth}
+                userHealthWidth={userHealthWidth}
+                optionFade={optionFade}
+                attackDisplay={attackDisplay}
+                attackText={attackText}
+            />
 
-                <img src={enemies[enemyImage]} id="enemyImage" />
-
-                <div id="charName">{currentCharacter.name}</div>
-                <div className="healthArea" id="userHealthArea">
-                    <div className="healthText">
-                        {currentUserHealth}/{maxHealth}
-                    </div>
-                    <div id="userBar" style={{ width: userHealthWidth }}></div>
-                </div>
+            <div id="optionArea">
+                <ChoiceBlock
+                    modifier={modifier}
+                    optionFade={optionFade}
+                    setCurrentLevel={setCurrentLevel}
+                    options={options}
+                    buttonDisabled={buttonDisabled}
+                    handleFight={handleFight}
+                    handleClick={handleClick}
+                />
             </div>
-
-            <div id="attackText" className={optionFade} style={{display: attackDisplay}}>
-                {attackText}
-            </div>
-
-            <div id="optionArea">{renderOptions()}</div>
 
             <footer id="footer">
                 <Inventory
@@ -635,4 +595,4 @@ const DecisionBlock = () => {
     )
 }
 
-export default DecisionBlock;
+export default MainStory;

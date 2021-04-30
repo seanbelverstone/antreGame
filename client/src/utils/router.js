@@ -1,16 +1,16 @@
 import React from "react";
-import Login from "../components/Login";
-import CreateAccount from "../components/CreateAccount";
-import SelectCharacter from "../components/SelectCharacter";
-import CreateCharacter from "../components/CreateCharacter";
-import DecisionBlock from "../components/DecisionBlock";
+import Login from "../pages/Login";
+import CreateAccount from "../pages/CreateAccount";
+import SelectCharacter from "../pages/SelectCharacter";
+import CreateCharacter from "../pages/CreateCharacter";
+import MainStory from "../pages/MainStory";
 
 const routes = {
   "/": () => <Login />,
   "/account": () => <CreateAccount />,
   "/select": () => <SelectCharacter />,
   "/create": () => <CreateCharacter />,
-  "/play": () => <DecisionBlock />
+  "/play": () => <MainStory />
 };
 
 export default routes;

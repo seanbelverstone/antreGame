@@ -1,7 +1,7 @@
 import React from "react";
 import { useRoutes } from "hookrouter";
 import routes from "./utils/router";
-import PageNotFound from "./components/PageNotFound";
+import PageNotFound from "./pages/PageNotFound";
 import "./App.css";
 
 const App = () => {

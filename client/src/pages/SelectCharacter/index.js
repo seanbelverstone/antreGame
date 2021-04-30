@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import { navigate } from "hookrouter";
-import DeleteButton from "../DeleteButton";
+import DeleteButton from "../../components/DeleteButton";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
