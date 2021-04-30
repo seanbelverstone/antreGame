@@ -100,7 +100,6 @@ const DecisionBlock = () => {
         setAmulet(c.amulet);
         setHealthPotions(c.healthPotions);
         setGold(c.gold);
-
     };
 
     const handleLevel = (choice) => {
@@ -163,7 +162,6 @@ const DecisionBlock = () => {
                             {fightOption.label}
                         </Button>
                     </div>
-                    // Need to replace the direction for "RETURN TO THE TASK AT HAND", where it still goes back to the previous section but written slightly different.
                 )
             }))
         } else {
