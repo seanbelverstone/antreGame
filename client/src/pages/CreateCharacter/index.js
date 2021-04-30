@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
-import CreationPopup from "../CreationPopup";
+import CreationPopup from "../../components/CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
