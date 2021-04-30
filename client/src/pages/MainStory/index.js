@@ -6,6 +6,7 @@ import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Inventory from "../../components/Inventory";
 import InventoryPopup from "../../components/InventoryPopup";
+import ChoiceBlock from "../../components/ChoiceBlock";
 import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
@@ -141,43 +142,6 @@ const MainStory = () => {
                 }
                 
             }
-        }
-    }
-
-    // maps through the options array and creates divs for them
-    const renderOptions = () => {
-        if (modifier[0] !== undefined && modifier[0].death) {
-            console.log(modifier[0])
-            return (
-                <div>
-                    <p className={`options ${optionFade}`}>You died.</p>
-                    <Button className="optionText" variant="contained" color="primary" onClick={setCurrentLevel("01-Start")}>
-                        START AGAIN
-                    </Button>
-                </div>
-            )
-        } else if (modifier[0] != undefined && modifier[0].fight) {
-            // If fight: true appears in the decision block, render the fight screen instead.
-            return (options.map(fightOption => {
-                return (
-                    <div className={`options ${optionFade}`} key={fightOption.label}>
-                        <Button className="optionText" variant="contained" color="secondary" id={fightOption.label} onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
-                            {fightOption.label}
-                        </Button>
-                    </div>
-                )
-            }))
-        } else {
-            // Otherwise, show the option page
-            return options.map(option => {
-                return (
-                    <div className={`options ${optionFade}`} key={option.label}>
-                        <Button className="optionText" variant="contained" color="primary" id={option.label} onClick={() => handleClick(option)}>
-                            {option.label}
-                        </Button>
-                    </div>
-                )
-            })
         }
     }
 
@@ -599,7 +563,19 @@ const MainStory = () => {
                 {attackText}
             </div>
 
-            <div id="optionArea">{renderOptions()}</div>
+            <div id="optionArea">
+                {currentLevel ? 
+                <ChoiceBlock
+                    modifier={modifier}
+                    optionFade={optionFade}
+                    setCurrentLevel={setCurrentLevel}
+                    options={options}
+                    buttonDisabled={buttonDisabled}
+                    handleFight={handleFight}
+                    handleClick={handleClick}
+                /> : <div></div>
+            }
+            </div>
 
             <footer id="footer">
                 <Inventory
