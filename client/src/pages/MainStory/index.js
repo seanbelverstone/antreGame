@@ -325,15 +325,10 @@ const MainStory = () => {
                 disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
             }
         }
-    // PSUEDOCODE
-    // For each of the options on screen, if it exists in the "clicked array", give it some disabled styling
     };
 
-
     const handleFight = (option) => {
-
         let skillButton = document.getElementById("Use skill");
-
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = async () => {
@@ -425,7 +420,6 @@ const MainStory = () => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
-
         // if user is dead, hide all images and just render "you are dead"
         // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
         if (userNewWidth <= 0) {
@@ -564,7 +558,6 @@ const MainStory = () => {
             </div>
 
             <div id="optionArea">
-                {currentLevel ? 
                 <ChoiceBlock
                     modifier={modifier}
                     optionFade={optionFade}
@@ -573,8 +566,7 @@ const MainStory = () => {
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
                     handleClick={handleClick}
-                /> : <div></div>
-            }
+                />
             </div>
 
             <footer id="footer">
