@@ -11,7 +11,7 @@ import smallLogo from "../../assets/images/Antre.png";
 import enemies from "../../assets/images/enemyIcons";
 import "./style.css";
 
-const DecisionBlock = () => {
+const MainStory = () => {
 
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
@@ -635,4 +635,4 @@ const DecisionBlock = () => {
     )
 }
 
-export default DecisionBlock;
+export default MainStory;
