@@ -4,10 +4,6 @@
     top: 3%;
 }
 
-#charTitle {
-    font-size: 20px;
-}
-
 #allCharacters, #creatorWrapper {
     margin: 5vh auto;
     width: 60%;

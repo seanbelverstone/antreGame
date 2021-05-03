@@ -4,11 +4,6 @@
     margin: 5% 25% 0 25%;
 }
 
-#createTitle {
-    font-size: 25px;
-    margin-bottom: 30px;
-}
-
 .MuiInputBase-input, .MuiSelect-root {
     font-weight: bold !important;
 }

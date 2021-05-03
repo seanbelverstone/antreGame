@@ -1,7 +1,3 @@
-#title {
-    font-size: 30px;
-}
-
 #createAccountForm {
     display: flex;
     flex-direction: column;

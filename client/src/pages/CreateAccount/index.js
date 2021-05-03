@@ -100,7 +100,7 @@ const CreateAccount = () => {
     return(
         <Wrapper>
             <a id="back" href={"/"}>BACK</a>
-            <div id="title">CREATE ACCOUNT</div>
+            <div className="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccountForm" onSubmit={handleSubmit}>
 
                 <TextField 

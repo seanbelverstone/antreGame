@@ -27,6 +27,11 @@ a {
   cursor: pointer;
 }
 
+.title {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
 #logout {
   position: absolute;
   left: 12%;
