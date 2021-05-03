@@ -25,6 +25,8 @@ const CreateAccount = () => {
     const [passwordHelperText, setPasswordHelperText] = useState("");
 
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarColor, setSnackbarColor] = useState("");
 
     // Email validation check with regex
     const validateEmail = (email) => {
@@ -80,11 +82,19 @@ const CreateAccount = () => {
     }
 
     const createNewUser = () => {
-        API.createUser(username, email, password).then(() => {
+        API.createUser(username, email, password)
+        .then(() => {
             // Set the username to session storage so we can use it later
             window.sessionStorage.setItem("antreUsername", username);
+            setSnackbarColor("success")
+            setSnackbarMessage(`Account created. Welcome, ${username}`)
+            setSnackbarDisplay(true);
+        })
+        .catch((err) => {
+            setSnackbarColor("error")
+            setSnackbarMessage(`Sorry, the username ${username} already exists.`)
+            setSnackbarDisplay(true);
         });
-        setSnackbarDisplay(true);
     }
 
     return(
@@ -140,7 +150,13 @@ const CreateAccount = () => {
                 </Button>
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
-            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Account created. Welcome, ${username}`} destination="/"/>
+            <CreationPopup 
+                display={snackbarDisplay} 
+                setDisplay={setSnackbarDisplay} 
+                message={snackbarMessage} 
+                destination="/" 
+                snackbarColor={snackbarColor}
+                />
         </div>
     )
 }
