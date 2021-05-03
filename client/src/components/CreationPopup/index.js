@@ -24,7 +24,7 @@ function Alert(props) {
     },
   }));
   
-  export default function CreationPopup({ display, setDisplay, message, destination }) {
+  export default function CreationPopup({ display, setDisplay, message, destination, snackbarColor }) {
     const classes = useStyles();
     console.log(display)
   
@@ -32,15 +32,16 @@ function Alert(props) {
       if (reason === 'clickaway') {
         return;
       }
-
-      navigate(destination);
+      if (snackbarColor === "success") {
+        navigate(destination);
+      }
       setDisplay(false);
     };
   
     return (
       <div className={classes.root}>
         <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
+          <Alert onClose={handleClose} severity={snackbarColor}>
             {message}
           </Alert>
         </Snackbar>
