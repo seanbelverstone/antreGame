@@ -249,6 +249,7 @@ const MainStory = () => {
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
         if (modifier[0].fight && modifier.length < 2) {
+            document.getElementById("enemyBlock").scrollIntoView({ behavior: "smooth" });
             console.log("displaying enemy")
             console.log(enemyName)
             setEnemyImage(enemyName)
