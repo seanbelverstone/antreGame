@@ -1,7 +1,7 @@
 .wrapper {
     height: auto;
     width: 60vw;
-    background-color: #f7f7f7;
+    background-color: var(--foreground);
     padding: 50px;
     margin: 0 auto;
     border-radius: 10px;

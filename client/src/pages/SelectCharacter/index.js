@@ -122,7 +122,7 @@ const SelectCharacter = () => {
     return(
         <Wrapper>
             <div id="charTitle">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+            <Button variant="outlined" id="logoutButton" onClick={logout}>LOG OUT</Button>
 
             {/* do a map of the characters array, and render them here. */}
             {renderCharacters()}

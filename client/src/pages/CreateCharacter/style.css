@@ -4,15 +4,6 @@
     margin: 5% 25% 0 25%;
 }
 
-#back {
-    text-align: center;
-    color: black;
-    position: absolute;
-    left: 60%;
-    top: 6%;
-    z-index: 2;
-}  
-
 #createLogout {
     position: absolute;
     left: 37%;

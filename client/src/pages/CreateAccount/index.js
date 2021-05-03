@@ -4,7 +4,6 @@ import Wrapper from "../../components/Wrapper";
 import CreationPopup from "../../components/CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
-import "../../App.css";
 import "./style.css";
 
 const CreateAccount = () => {

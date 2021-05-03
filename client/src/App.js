@@ -2,7 +2,7 @@ import React from "react";
 import { useRoutes } from "hookrouter";
 import routes from "./utils/router";
 import PageNotFound from "./pages/PageNotFound";
-import "./App.css";
+import "./global.css";
 
 const App = () => {
 

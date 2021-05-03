@@ -1,4 +1,4 @@
-#logout {
+#logoutButton {
     position: absolute;
     left: 35%;
     top: 3%;
@@ -70,19 +70,19 @@
 }
 
 .strength {
-    color: darkred;
+    color: var(--strength);
 }
 
 .defense {
-    color: darkgreen;
+    color: var(--defense);
 }
 
 .wisdom {
-    color: darkblue;
+    color: var(--wisdom);
 }
 
 .luck {
-    color: goldenrod;
+    color: var(--luck);
 }
 
 .charButtons {
