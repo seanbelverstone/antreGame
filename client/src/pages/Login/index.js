@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { navigate } from "hookrouter";
+import Wrapper from "../../components/Wrapper";
 import API from "../../utils/API";
 import logo from "../../assets/images/Antre.png";
 import { TextField, Button } from "@material-ui/core";
@@ -40,9 +41,9 @@ const Login = () => {
     }
 
     return(
-        <div className="loginWrapper">
+        <Wrapper>
             <img src={logo} alt="logo" id="antreLogo"/>
-            <form noValidate autoComplete="off" id="login" onSubmit={onSubmit}>
+            <form noValidate autoComplete="off" id="loginForm" onSubmit={onSubmit}>
                 <TextField 
                     className="formInput" 
                     label="Username" 
@@ -68,7 +69,7 @@ const Login = () => {
                 </Button>
                 <a id="create" onClick={() => navigate("/account")}>CREATE AN ACCOUNT</a>
             </form>
-        </div>
+        </Wrapper>
                     
     )
 }

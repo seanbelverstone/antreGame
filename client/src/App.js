@@ -9,9 +9,9 @@ const App = () => {
     const routeResult = useRoutes(routes);
 
     return (
-        <div className="appWrapper">
+        <>
             {routeResult || <PageNotFound />}
-        </div>
+        </>
     )
 
 }

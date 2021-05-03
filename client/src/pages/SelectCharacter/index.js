@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import API from "../../utils/API";
 import { navigate } from "hookrouter";
+import Wrapper from "../../components/Wrapper";
 import DeleteButton from "../../components/DeleteButton";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -119,7 +120,7 @@ const SelectCharacter = () => {
     }
 
     return(
-        <div className="selectWrapper">
+        <Wrapper>
             <div id="charTitle">SELECT A CHARACTER</div>
             <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 
@@ -134,7 +135,7 @@ const SelectCharacter = () => {
             </div>
 
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
-        </div>
+        </Wrapper>
                     
     )
 }

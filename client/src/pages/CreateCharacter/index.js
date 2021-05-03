@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
+import Wrapper from "../../components/Wrapper";
 import CreationPopup from "../../components/CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
@@ -131,7 +132,7 @@ const CreateCharacter = () => {
     }
 
     return(
-        <div className="createWrapper">
+        <Wrapper>
             <form id="formWrapper" onSubmit={handleSubmit}>
             <a id="back" onClick={() => navigate("/select")}>BACK</a>
             <Button variant="outlined" id="createLogout" onClick={logout}>LOG OUT</Button>
@@ -196,7 +197,7 @@ const CreateCharacter = () => {
             </form>
             <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
-        </div>
+        </Wrapper>
                     
     )
 }

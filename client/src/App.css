@@ -1,17 +1,5 @@
-.appWrapper {
+body {
   background-color: #282c34;
-  /* min-height: 80vh; /* vh is relative to the viewport */
-  /* min-width: 60vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  border-radius: 10px;
-  text-align: center;
-  animation: fadeIn 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {

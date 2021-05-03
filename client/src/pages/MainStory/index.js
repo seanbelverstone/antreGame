@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import API from "../../utils/API";
+import Wrapper from "../../components/Wrapper";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Inventory from "../../components/Inventory";
@@ -520,7 +521,7 @@ const MainStory = () => {
     }
 
     return (
-        <div className="decisionWrapper">
+        <Wrapper>
             <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
 
             <Typewriter
@@ -590,7 +591,7 @@ const MainStory = () => {
                 <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
-        </div>
+        </Wrapper>
 
     )
 }

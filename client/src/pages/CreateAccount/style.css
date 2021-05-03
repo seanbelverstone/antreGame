@@ -1,12 +1,3 @@
-.createWrapper {
-    height: 80vmin;
-    min-width: 60vh;
-    background-color: #f7f7f7;
-    padding: 50px;
-    border-radius: 10px;
-    text-align: center;
-}
-
 #back {
     text-align: center;
     color: black;
@@ -25,7 +16,7 @@
     font-size: 30px;
 }
 
-#createAccount {
+#createAccountForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
