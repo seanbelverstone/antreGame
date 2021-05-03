@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Inventory(
-    {health,
+export default function Inventory({
+    health,
     maxHealth,
     strength,
     defense,
@@ -39,7 +39,8 @@ export default function Inventory(
     torch,
     amulet,
     healthPotions,
-    gold}) {
+    gold
+  }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -126,11 +127,11 @@ export default function Inventory(
                 </section>
                 <section className="section2">
                     <h2 id="statsTitle">Stats</h2>
-                    <div id="health">HP: {health}/{maxHealth}</div>
-                    <div id="strength">Strength: {strength}</div>
-                    <div id="defense">Defense: {defense}</div>
-                    <div id="wisdom">Wisdom: {wisdom}</div>
-                    <div id="luck">Luck: {luck}</div>
+                    <div className="health">HP: {health}/{maxHealth}</div>
+                    <div className="strength">Strength: {strength}</div>
+                    <div className="defense">Defense: {defense}</div>
+                    <div className="wisdom">Wisdom: {wisdom}</div>
+                    <div className="luck">Luck: {luck}</div>
                 </section>
             </div>
           </div>

@@ -1,14 +1,5 @@
-.decisionWrapper {
-    height: auto;
-    min-width: 60vh;
-    background-color: #f7f7f7;
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-}
-
 .Typewriter {
-    margin: 50px auto 0 auto;
+    margin: 70px auto 0 auto;
     border: 2px solid black;
     width: 60vh;
     text-align: left;
@@ -19,6 +10,7 @@
 #optionArea {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
     justify-content: space-evenly;
     width: 60vh;
     padding: 50px;
@@ -40,6 +32,7 @@
 }
 
 #footer {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

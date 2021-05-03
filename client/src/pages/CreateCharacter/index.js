@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
+import Wrapper from "../../components/Wrapper";
 import CreationPopup from "../../components/CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
@@ -131,11 +132,11 @@ const CreateCharacter = () => {
     }
 
     return(
-        <div className="createWrapper">
+        <Wrapper>
             <form id="formWrapper" onSubmit={handleSubmit}>
+            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
             <a id="back" onClick={() => navigate("/select")}>BACK</a>
-            <Button variant="outlined" id="createLogout" onClick={logout}>LOG OUT</Button>
-                <div id="createTitle">CREATE A CHARACTER</div>
+                <div className="title">CREATE A CHARACTER</div>
                     <FormControl className={classes.formControl}>
                         <TextField 
                             className="formInput" 
@@ -174,11 +175,11 @@ const CreateCharacter = () => {
                     </FormControl>
                     <div id="classDescription" style={{opacity: descriptonDisplay}}>
                         <div id="stats">
-                            <div id="health">HP: {health}</div>
-                            <div id="strength">Strength: {strength}</div>
-                            <div id="defense">Defense: {defense}</div>
-                            <div id="wisdom">Wisdom: {wisdom}</div>
-                            <div id="luck">Luck: {luck}</div>
+                            <div className="health">HP: {health}</div>
+                            <div className="strength">Strength: {strength}</div>
+                            <div className="defense">Defense: {defense}</div>
+                            <div className="wisdom">Wisdom: {wisdom}</div>
+                            <div className="luck">Luck: {luck}</div>
                         </div>
                         <div id="desAndSkill">
                             <div id="description">{description}</div>
@@ -196,7 +197,7 @@ const CreateCharacter = () => {
             </form>
             <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
-        </div>
+        </Wrapper>
                     
     )
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from "@material-ui/core";
+import "./style.css";
 
 const ChoiceBlock = ({
     modifier,

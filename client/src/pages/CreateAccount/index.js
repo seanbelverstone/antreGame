@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+import Wrapper from "../../components/Wrapper";
 import CreationPopup from "../../components/CreationPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
-import "../../App.css";
 import "./style.css";
 
 const CreateAccount = () => {
@@ -98,10 +98,10 @@ const CreateAccount = () => {
     }
 
     return(
-        <div className="createWrapper">
+        <Wrapper>
             <a id="back" href={"/"}>BACK</a>
-            <div id="title">CREATE ACCOUNT</div>
-            <form noValidate autoComplete="off" id="createAccount" onSubmit={handleSubmit}>
+            <div className="title">CREATE ACCOUNT</div>
+            <form noValidate autoComplete="off" id="createAccountForm" onSubmit={handleSubmit}>
 
                 <TextField 
                     className="formInput" 
@@ -157,7 +157,7 @@ const CreateAccount = () => {
                 destination="/" 
                 snackbarColor={snackbarColor}
                 />
-        </div>
+        </Wrapper>
     )
 }
 

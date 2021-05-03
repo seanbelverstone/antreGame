@@ -1,31 +1,4 @@
-.createWrapper {
-    height: 80vmin;
-    min-width: 60vh;
-    background-color: #f7f7f7;
-    padding: 50px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-#back {
-    text-align: center;
-    color: black;
-    position: absolute;
-    left: 60%;
-    top: 6%;
-    z-index: 2;
-}  
-
-#back:hover {
-    color: rgb(143, 143, 143);
-    text-decoration: underline;
-}
-
-#title {
-    font-size: 30px;
-}
-
-#createAccount {
+#createAccountForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
