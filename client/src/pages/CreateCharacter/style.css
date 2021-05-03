@@ -35,22 +35,6 @@
     width: 25vh;
 }
 
-#strength {
-    color: darkred;
-}
-
-#defense {
-    color: darkgreen;
-}
-
-#wisdom {
-    color: darkblue;
-}
-
-#luck {
-    color: goldenrod;
-}
-
 #desAndSkill {
     margin-left: 40px;
     width: 70vh;

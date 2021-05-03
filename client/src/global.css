@@ -41,6 +41,22 @@ a {
   text-decoration: underline;
 }
 
+.strength {
+  color: var(--strength);
+}
+
+.defense {
+  color: var(--defense);
+}
+
+.wisdom {
+  color: var(--wisdom);
+}
+
+.luck {
+  color: var(--luck);
+}
+
 @keyframes fadeIn {
   0% {
     visibility: visible;

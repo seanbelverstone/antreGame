@@ -47,18 +47,16 @@
     align-self: flex-end;
 }
 
-.health, .strength, .defense, .wisdom, .luck {
+/* have to specifiy section here so it doesnt affect CreateCharacter screen */
+section.health, section.strength, section.defense, section.wisdom, section.luck {
     display: flex;
     flex-direction: column;
-}
-
-.health {
-    border-left: 1px solid black;
-}
-
-.health, .strength, .defense, .wisdom, .luck, .level {
     border-right: 1px solid black;
     padding: 4px;
+}
+
+section.health {
+    border-left: 1px solid black;
 }
 
 .subHeadings {

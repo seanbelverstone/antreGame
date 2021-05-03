@@ -175,11 +175,11 @@ const CreateCharacter = () => {
                     </FormControl>
                     <div id="classDescription" style={{opacity: descriptonDisplay}}>
                         <div id="stats">
-                            <div id="health">HP: {health}</div>
-                            <div id="strength">Strength: {strength}</div>
-                            <div id="defense">Defense: {defense}</div>
-                            <div id="wisdom">Wisdom: {wisdom}</div>
-                            <div id="luck">Luck: {luck}</div>
+                            <div className="health">HP: {health}</div>
+                            <div className="strength">Strength: {strength}</div>
+                            <div className="defense">Defense: {defense}</div>
+                            <div className="wisdom">Wisdom: {wisdom}</div>
+                            <div className="luck">Luck: {luck}</div>
                         </div>
                         <div id="desAndSkill">
                             <div id="description">{description}</div>
