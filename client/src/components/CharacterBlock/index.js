@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import DeleteButton from "../DeleteButton";
+import "./style.css";
 
 const CharacterBlock = ({character}) => {
     

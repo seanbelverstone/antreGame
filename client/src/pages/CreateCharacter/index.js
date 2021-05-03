@@ -134,8 +134,8 @@ const CreateCharacter = () => {
     return(
         <Wrapper>
             <form id="formWrapper" onSubmit={handleSubmit}>
+            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
             <a id="back" onClick={() => navigate("/select")}>BACK</a>
-            <Button variant="outlined" id="createLogout" onClick={logout}>LOG OUT</Button>
                 <div id="createTitle">CREATE A CHARACTER</div>
                     <FormControl className={classes.formControl}>
                         <TextField 

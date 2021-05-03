@@ -27,6 +27,13 @@ a {
   cursor: pointer;
 }
 
+#logout {
+  position: absolute;
+  left: 12%;
+  top: 6%;
+  z-index: 2;
+}
+
 #back {
   text-align: center;
   color: black;

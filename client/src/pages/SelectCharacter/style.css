@@ -8,99 +8,17 @@
     font-size: 20px;
 }
 
-/* This block wraps the entire section, so we can have the PLAY/DELETE buttons out of the wrapper */
-.characterBlock {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    /* margin-top: 25px;
-    margin-bottom: 25px; */
-
-}
-
-/* Wraps the identity, stats and level/time sections. */
-.characterWrapper {
-    min-width: 370px;
-    display: flex;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: white;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px;
-
-
-}
-
-
-.identity {
-    padding: 4px;
-    text-align: left;
-    width: 25%;
-}
-
-.raceAndClass, .stats, .levelAndTime {
-    display: flex;
-}
-
-.race {
-    padding-right: 4px;
-}
-
-.class {
-    align-self: flex-end;
-}
-
-/* have to specifiy section here so it doesnt affect CreateCharacter screen */
-section.health, section.strength, section.defense, section.wisdom, section.luck {
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid black;
-    padding: 4px;
-}
-
-section.health {
-    border-left: 1px solid black;
-}
-
-.subHeadings {
-    text-decoration: underline;
-}
-
-.time {
-    padding: 4px;
-}
-
-.strength {
-    color: var(--strength);
-}
-
-.defense {
-    color: var(--defense);
-}
-
-.wisdom {
-    color: var(--wisdom);
-}
-
-.luck {
-    color: var(--luck);
-}
-
-.charButtons {
-    display: flex !important;
-    flex-direction: column;
-    padding: 4px;
-}
-
-#play, #delete {
-    margin: 2px;
+#allCharacters, #creatorWrapper {
+    margin: 5vh auto;
+    width: 60%;
 }
 
 #creatorWrapper {
-    flex-direction: row;
     justify-content: space-evenly;
-    max-width: 470px;
+}
+
+#createNew {
+    margin: auto 0;
 }
 
 .MuiSvgIcon-root {
