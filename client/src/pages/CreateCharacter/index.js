@@ -59,7 +59,7 @@ const CreateCharacter = () => {
                 setWisdom(1);
                 setLuck(2);
                 setDescription("Strong and fierce, the warrior is a reliable combatant.")
-                setSkill("Stalwart Defense: Impervious to damage for 1 turn.")
+                setSkill("Stalwart Defense: Massive increase to defense for 3 turns.")
                 setDescriptionDisplay(1)
                 break;
             case "Rogue":
@@ -79,7 +79,7 @@ const CreateCharacter = () => {
                 setWisdom(4);
                 setLuck(2);
                 setDescription("Using other worldly powers to surpass their foes, the paladin is the wisest of them all.")
-                setSkill("Holy Remedy: Restores 30% health")
+                setSkill("Holy Remedy: Fully restores all health.")
                 setDescriptionDisplay(1)
                 break;
             default:
@@ -195,7 +195,7 @@ const CreateCharacter = () => {
                         Create
                     </Button>
             </form>
-            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select"/>
+            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </Wrapper>
                     
