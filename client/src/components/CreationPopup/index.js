@@ -7,44 +7,53 @@ import { makeStyles } from '@material-ui/core/styles';
 
 let username = window.sessionStorage.getItem("antreUsername");
 if (!username) {
-    username = "player"
+  username = "player"
 }
 
 function Alert(props) {
 
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
-  
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
-  }));
-  
-  export default function CreationPopup({ display, setDisplay, message, destination, snackbarColor }) {
-    const classes = useStyles();
-    console.log(display)
-  
-    const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      if (snackbarColor === "success") {
-        navigate(destination);
-      }
-      setDisplay(false);
-    };
-  
-    return (
-      <div className={classes.root}>
-        <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity={snackbarColor}>
-            {message}
-          </Alert>
-        </Snackbar>
-      </div>
-    );
-  }
+  },
+}));
+
+const CreationPopup = (props) => {
+  const {
+    display,
+    setDisplay,
+    message,
+    destination,
+    snackbarColor
+  } = props;
+
+  const classes = useStyles();
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    if (snackbarColor === 'success') {
+      navigate(destination);
+    }
+    setDisplay(false);
+  };
+
+  return (
+    <div className={classes.root}>
+      <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={snackbarColor}>
+          {message}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+}
+
+export default CreationPopup;
