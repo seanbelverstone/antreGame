@@ -132,7 +132,7 @@ const Inventory = (props) => {
               </section>
               <h2 id="statsTitle">Stats</h2>
               <section className="attributes">
-                <div className="fullTitle">Character: {name}, the {race} {charClass}.</div>
+                <div className="fullTitle">{name}, the {race} {charClass}.</div>
                 <div className="health">HP: {health}/{maxHealth}</div>
                 <div className="strength">Strength: {strength}</div>
                 <div className="defense">Defense: {defense}</div>
