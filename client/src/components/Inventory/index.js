@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Inventory({
+const Inventory = (props) => {
+
+  const { 
     health,
     maxHealth,
     strength,
@@ -39,8 +41,11 @@ export default function Inventory({
     torch,
     amulet,
     healthPotions,
-    gold
-  }) {
+    gold,
+    name,
+    race,
+    charClass
+  } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -73,66 +78,67 @@ export default function Inventory({
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Inventory</h2>
             <div id="all">
-                <section className="section1">
-                    <div id="weapon">
-                        <img className="icon" src={invImages.sword} />
-                        <div>Weapon: {weapon} - {weaponDmg} dmg</div>
-                    </div>
+              <section className="items">
+                <div id="weapon">
+                  <img className="icon" src={invImages.sword} />
+                  <div>Weapon: {weapon} - {weaponDmg} dmg</div>
+                </div>
 
-                    <div id="head">
-                      <img className="icon" src={invImages.head} />
-                      <div>Head: {head}</div>
-                    </div>
+                <div id="head">
+                  <img className="icon" src={invImages.head} />
+                  <div>Head: {head}</div>
+                </div>
 
-                    <div id="chest">
-                      <img className="icon" src={invImages.chest} />
-                      <div>Chest: {chest}</div>
-                    </div>
+                <div id="chest">
+                  <img className="icon" src={invImages.chest} />
+                  <div>Chest: {chest}</div>
+                </div>
 
-                    <div id="legs">
-                      <img className="icon" src={invImages.legs} />
-                      <div>Legs: {legs}</div>
-                    </div>
+                <div id="legs">
+                  <img className="icon" src={invImages.legs} />
+                  <div>Legs: {legs}</div>
+                </div>
 
-                    <div id="hands">
-                      <img className="icon" src={invImages.hands} />
-                      <div>Hands: {hands}</div>
-                    </div>
+                <div id="hands">
+                  <img className="icon" src={invImages.hands} />
+                  <div>Hands: {hands}</div>
+                </div>
 
-                    <div id="feet">
-                      <img className="icon" src={invImages.feet} />
-                      <div>Feet: {feet}</div>
-                    </div>
+                <div id="feet">
+                  <img className="icon" src={invImages.feet} />
+                  <div>Feet: {feet}</div>
+                </div>
 
-                    <div id="torch">
-                      <img className="icon" src={invImages.torch} />
-                      <div>Torch: {torch}</div>
-                    </div>
+                <div id="torch">
+                  <img className="icon" src={invImages.torch} />
+                  <div>Torch: {torch}</div>
+                </div>
 
-                    <div id="amulet">
-                      <img className="icon" src={invImages.amulet} />
-                      <div>Amulet: {amulet}</div>
-                    </div>
+                <div id="amulet">
+                  <img className="icon" src={invImages.amulet} />
+                  <div>Amulet: {amulet}</div>
+                </div>
 
-                    <div id="healthPotion">
-                      <img className="icon" src={invImages.healthPotion} />
-                      <div>Health Potions: {healthPotions}</div>
-                    </div>
+                <div id="healthPotion">
+                  <img className="icon" src={invImages.healthPotion} />
+                  <div>Health Potions: {healthPotions}</div>
+                </div>
 
-                    <div id="gold">
-                      <img className="icon" src={invImages.gold} />
-                      <div>Gold: {gold}</div>
-                    </div>
+                <div id="gold">
+                  <img className="icon" src={invImages.gold} />
+                  <div>Gold: {gold}</div>
+                </div>
 
-                </section>
-                <section className="section2">
-                    <h2 id="statsTitle">Stats</h2>
-                    <div className="health">HP: {health}/{maxHealth}</div>
-                    <div className="strength">Strength: {strength}</div>
-                    <div className="defense">Defense: {defense}</div>
-                    <div className="wisdom">Wisdom: {wisdom}</div>
-                    <div className="luck">Luck: {luck}</div>
-                </section>
+              </section>
+              <h2 id="statsTitle">Stats</h2>
+              <section className="attributes">
+                <div className="fullTitle">Character: {name}, the {race} {charClass}.</div>
+                <div className="health">HP: {health}/{maxHealth}</div>
+                <div className="strength">Strength: {strength}</div>
+                <div className="defense">Defense: {defense}</div>
+                <div className="wisdom">Wisdom: {wisdom}</div>
+                <div className="luck">Luck: {luck}</div>
+              </section>
             </div>
           </div>
         </Fade>
@@ -140,3 +146,5 @@ export default function Inventory({
     </div>
   );
 }
+
+export default Inventory;

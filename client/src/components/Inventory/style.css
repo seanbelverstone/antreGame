@@ -10,8 +10,12 @@
     width: 50vh;
 }
 
-.section1, .section2 {
+.items, .attributes {
     padding: 10px;
+}
+
+.attributes {
+    text-align: center;
 }
 
 .icon {
