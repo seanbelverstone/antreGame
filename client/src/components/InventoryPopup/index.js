@@ -48,7 +48,7 @@ const InventoryPopup = ({ display, setDisplay, items }) => {
             let note;
 
             items.forEach((item) => {
-                if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end) {
+                if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;

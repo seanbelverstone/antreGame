@@ -236,6 +236,8 @@ const MainStory = () => {
                             }
                         ]);
                     })
+                } else if (mod.death) {
+                    return;
                 } else {
                     setSnackbarDisplay(false);
                 }
@@ -402,7 +404,6 @@ const MainStory = () => {
             // returns the warrior's defense to it's regular level
             setDefense(tempDefense);
         }
-
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
         if(cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
@@ -415,7 +416,6 @@ const MainStory = () => {
         setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
         if (currentEnemyHealth <= 0) {
-            console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             nextPhase().then(() => checkModifier());
@@ -424,20 +424,23 @@ const MainStory = () => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
-        // if user is dead, hide all images and just render "you are dead"
-        // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
+
         if (userNewWidth <= 0) {
-            console.log("You are dead.")
-            setEnemyBlockFade("hidden");
-            setImageDisplay("none");
-            setCurrentEnemy({});
-            // setEnemyImage("");
-            setModifier([
-                {
-                    "death": true
-                }
-            ])
+            handlePlayerDeath();
         }
+    }
+
+    const handlePlayerDeath = () => {
+        setEnemyBlockFade("hidden");
+        setImageDisplay("none");
+        setCurrentEnemy({});
+        setStoryText("After fighting valliantly, you succumb to your wounds.")
+        setAttackDisplay("none")
+        setModifier([
+            {
+                "death": true
+            }
+        ])
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
