@@ -7,6 +7,7 @@ import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Inventory from "../../components/Inventory";
 import InventoryPopup from "../../components/InventoryPopup";
+import DefaultPopup from "../../components/DefaultPopup";
 import ChoiceBlock from "../../components/ChoiceBlock";
 import Enemy from "../../components/Enemy";
 import Typewriter from 'typewriter-effect';
@@ -33,6 +34,7 @@ const MainStory = () => {
     const [optionFade, setOptionFade] = useState("hidden");
     const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
     const [attackDisplay, setAttackDisplay] = useState("none");
+    const [saveGameDisplay, setSaveGameDisplay] = useState(false);
 
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
@@ -518,6 +520,7 @@ const MainStory = () => {
         )
             .then((results) => {
                 console.log(results);
+                setSaveGameDisplay(true);
             })
     }
 
@@ -598,6 +601,7 @@ const MainStory = () => {
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
+            <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success"/>
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
         </Wrapper>
 

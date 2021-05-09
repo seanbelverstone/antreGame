@@ -16,7 +16,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const InventoryPopup = ({ display, setDisplay, items }) => {
+const InventoryPopup = (props) => {
+    const { 
+        display,
+        setDisplay,
+        items
+    } = props;
     const classes = useStyles();
     const [messages, setMessages] = useState([]);
 
