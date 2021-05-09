@@ -529,7 +529,7 @@ const MainStory = () => {
     return (
         <Wrapper>
             <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
-
+            <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
             <Typewriter
                 options={{
                     strings: storyText,
