@@ -586,6 +586,9 @@ const MainStory = () => {
                     amulet={amulet}
                     healthPotions={healthPotions}
                     gold={gold}
+                    name={currentCharacter.name}
+                    race={currentCharacter.race}
+                    charClass={currentCharacter.charClass}
                 />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
