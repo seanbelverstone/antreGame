@@ -5,7 +5,6 @@ import "./style.css";
 const ChoiceBlock = ({
     modifier,
     optionFade,
-    setCurrentLevel,
     options,
     buttonDisabled,
     handleFight,

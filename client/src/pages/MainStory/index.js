@@ -237,16 +237,12 @@ const MainStory = () => {
                             }
                         ]);
                     })
-                } else if (mod.death) {
-                    return;
                 } else {
                     setSnackbarDisplay(false);
                 }
             })
         }
-        // setSnackbarDisplay(true);
         updateCharacter();
-
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -564,7 +560,6 @@ const MainStory = () => {
                 <ChoiceBlock
                     modifier={modifier}
                     optionFade={optionFade}
-                    setCurrentLevel={setCurrentLevel}
                     options={options}
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
