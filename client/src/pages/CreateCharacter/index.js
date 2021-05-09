@@ -7,7 +7,7 @@ import { TextField, Button } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import { navigate } from "hookrouter";
 import Wrapper from "../../components/Wrapper";
-import CreationPopup from "../../components/CreationPopup";
+import DefaultPopup from "../../components/DefaultPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
@@ -195,7 +195,7 @@ const CreateCharacter = () => {
                         Create
                     </Button>
             </form>
-            <CreationPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success"/>
+            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success"/>
             <img src={smallLogo} alt="a small logo" id="smallLogo"/>
         </Wrapper>
                     

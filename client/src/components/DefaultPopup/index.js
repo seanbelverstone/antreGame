@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreationPopup = (props) => {
+const DefaultPopup = (props) => {
   const {
     display,
     setDisplay,
@@ -39,7 +39,7 @@ const CreationPopup = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-    if (snackbarColor === 'success') {
+    if (destination !== "") {
       navigate(destination);
     }
     setDisplay(false);
@@ -56,4 +56,4 @@ const CreationPopup = (props) => {
   );
 }
 
-export default CreationPopup;
+export default DefaultPopup;

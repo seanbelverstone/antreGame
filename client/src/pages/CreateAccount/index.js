@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import Wrapper from "../../components/Wrapper";
-import CreationPopup from "../../components/CreationPopup";
+import DefaultPopup from "../../components/DefaultPopup";
 import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png"
 import "./style.css";
@@ -150,7 +150,7 @@ const CreateAccount = () => {
                 </Button>
                 <img src={smallLogo} alt="a small logo" id="smallLogo"/>
             </form>
-            <CreationPopup 
+            <DefaultPopup 
                 display={snackbarDisplay} 
                 setDisplay={setSnackbarDisplay} 
                 message={snackbarMessage} 

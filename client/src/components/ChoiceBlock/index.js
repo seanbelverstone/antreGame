@@ -5,20 +5,15 @@ import "./style.css";
 const ChoiceBlock = ({
     modifier,
     optionFade,
-    setCurrentLevel,
     options,
     buttonDisabled,
     handleFight,
     handleClick
 }) => {
     if (modifier[0] !== undefined && modifier[0].death) {
-        console.log(modifier[0])
         return (
             <div>
-                <p className={`options ${optionFade}`}>You died.</p>
-                <Button className="optionText" variant="contained" color="primary" onClick={setCurrentLevel("01-Start")}>
-                    START AGAIN
-                </Button>
+                <p className={`options ${optionFade} title`}>You died.</p>
             </div>
         )
     } else if (modifier[0] != undefined && modifier[0].fight) {

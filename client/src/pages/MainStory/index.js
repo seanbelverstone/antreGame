@@ -7,6 +7,7 @@ import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
 import Inventory from "../../components/Inventory";
 import InventoryPopup from "../../components/InventoryPopup";
+import DefaultPopup from "../../components/DefaultPopup";
 import ChoiceBlock from "../../components/ChoiceBlock";
 import Enemy from "../../components/Enemy";
 import Typewriter from 'typewriter-effect';
@@ -33,6 +34,7 @@ const MainStory = () => {
     const [optionFade, setOptionFade] = useState("hidden");
     const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
     const [attackDisplay, setAttackDisplay] = useState("none");
+    const [saveGameDisplay, setSaveGameDisplay] = useState(false);
 
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
@@ -163,6 +165,7 @@ const MainStory = () => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
+        console.log(modifier)
         if (modifier.length && currentCharacter.level !== currentLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
@@ -241,9 +244,7 @@ const MainStory = () => {
                 }
             })
         }
-        // setSnackbarDisplay(true);
         updateCharacter();
-
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -323,6 +324,9 @@ const MainStory = () => {
     }
 
     const disableIfClicked = () => {
+        if (!options) {
+            return;
+        }
         for(let item of options) {
             if (clicked.includes(item.target)) {
                 let disabledElement = document.getElementById(item.label);
@@ -402,7 +406,6 @@ const MainStory = () => {
             // returns the warrior's defense to it's regular level
             setDefense(tempDefense);
         }
-
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
         if(cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
@@ -415,7 +418,6 @@ const MainStory = () => {
         setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
         if (currentEnemyHealth <= 0) {
-            console.log("Enemy defeated")
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             nextPhase().then(() => checkModifier());
@@ -424,20 +426,23 @@ const MainStory = () => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
-        // if user is dead, hide all images and just render "you are dead"
-        // does mean that a bunch of errors run if you load a game at 0 health, but thats an error for future Sean
+
         if (userNewWidth <= 0) {
-            console.log("You are dead.")
-            setEnemyBlockFade("hidden");
-            setImageDisplay("none");
-            setCurrentEnemy({});
-            // setEnemyImage("");
-            setModifier([
-                {
-                    "death": true
-                }
-            ])
+            handlePlayerDeath();
         }
+    }
+
+    const handlePlayerDeath = () => {
+        setEnemyBlockFade("hidden");
+        setImageDisplay("none");
+        setCurrentEnemy({});
+        setStoryText("After fighting valliantly, you succumb to your wounds.")
+        setAttackDisplay("none")
+        setModifier([
+            {
+                "death": true
+            }
+        ])
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
@@ -515,6 +520,7 @@ const MainStory = () => {
         )
             .then((results) => {
                 console.log(results);
+                setSaveGameDisplay(true);
             })
     }
 
@@ -525,8 +531,8 @@ const MainStory = () => {
 
     return (
         <Wrapper>
-            <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
-
+            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+            <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
             <Typewriter
                 options={{
                     strings: storyText,
@@ -557,7 +563,6 @@ const MainStory = () => {
                 <ChoiceBlock
                     modifier={modifier}
                     optionFade={optionFade}
-                    setCurrentLevel={setCurrentLevel}
                     options={options}
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
@@ -596,6 +601,7 @@ const MainStory = () => {
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
+            <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success"/>
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
         </Wrapper>
 
