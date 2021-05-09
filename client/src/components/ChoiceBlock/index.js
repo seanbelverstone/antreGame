@@ -14,7 +14,7 @@ const ChoiceBlock = ({
     if (modifier[0] !== undefined && modifier[0].death) {
         return (
             <div>
-                <p className={`options ${optionFade}`} className="title">You died.</p>
+                <p className={`options ${optionFade} title`}>You died.</p>
             </div>
         )
     } else if (modifier[0] != undefined && modifier[0].fight) {

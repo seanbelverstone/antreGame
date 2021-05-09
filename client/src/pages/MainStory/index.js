@@ -163,6 +163,7 @@ const MainStory = () => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
+        console.log(modifier)
         if (modifier.length && currentCharacter.level !== currentLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
@@ -325,6 +326,9 @@ const MainStory = () => {
     }
 
     const disableIfClicked = () => {
+        if (!options) {
+            return;
+        }
         for(let item of options) {
             if (clicked.includes(item.target)) {
                 let disabledElement = document.getElementById(item.label);
@@ -528,7 +532,7 @@ const MainStory = () => {
 
     return (
         <Wrapper>
-            <Button variant="outlined" id="logout" onClick={logout} /*disabled={buttonDisabled}*/>LOG OUT</Button>
+            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
             <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
             <Typewriter
                 options={{
