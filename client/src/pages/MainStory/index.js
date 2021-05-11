@@ -86,7 +86,6 @@ const MainStory = () => {
 
     useEffect(() => {
         setButtonTimes();
-        console.log('rerunning blocks')
     }, [typewriterDelay, storyText])
 
     useEffect(() => {
