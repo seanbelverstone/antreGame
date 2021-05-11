@@ -172,7 +172,6 @@ const MainStory = () => {
                 speedMultiplier = 44;
                 break;
         }
-        console.log(storyText.split("").length * speedMultiplier + 2000)
         setTimeout(() => {
             setOptionFade("fadeIn")
             if (currentEnemy !== {} && currentEnemy.health > 0) {
