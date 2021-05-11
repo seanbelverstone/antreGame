@@ -80,10 +80,14 @@ const MainStory = () => {
     }, [currentCharacter])
 
     useEffect(() => {
-        setButtonTimes();
         disableIfClicked();
         checkModifier();
     }, [storyText])
+
+    useEffect(() => {
+        setButtonTimes();
+        console.log('rerunning blocks')
+    }, [typewriterDelay, storyText])
 
     useEffect(() => {
         // Health bars now update based on the enemy and user's health
@@ -151,16 +155,31 @@ const MainStory = () => {
     }
 
     // This function renders the decision buttons based on how long it takes to write the story text.
+    // number of letters
     const setButtonTimes = () => {
+        let speedMultiplier;
+        clearTimeout();
         if (storyText.length === 0) {
             return;
         }
+        switch(typewriterDelay) {
+            case 1:
+                speedMultiplier = 11;
+                break;
+            case 20:
+                speedMultiplier = 30;
+                break;
+            case 40:
+                speedMultiplier = 44;
+                break;
+        }
+        console.log(storyText.split("").length * speedMultiplier + 2000)
         setTimeout(() => {
             setOptionFade("fadeIn")
             if (currentEnemy !== {} && currentEnemy.health > 0) {
                 displayEnemy();
             }
-        }, (storyText.length * 30 + 2000))
+        }, (storyText.split("").length * speedMultiplier + 2000))
 
     }
 
@@ -311,6 +330,8 @@ const MainStory = () => {
         // prevents the option from being added to the array twice.
         if ( option.target === "01-Start"
          || option.target === "02-Tunnel"
+         || option.target === "02-Tunnel Return Variant"
+         || option.target === "03-Three Paths"
          || option.target === "13a-Wrong room"
          || option.target === "13aa-Wrong room" 
          || option.target === "13b-Correct room" 

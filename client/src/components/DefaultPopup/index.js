@@ -47,7 +47,7 @@ const DefaultPopup = (props) => {
 
   return (
     <div className={classes.root}>
-      <Snackbar open={display} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}} style={{height: "100%"}}>
         <Alert onClose={handleClose} severity={snackbarColor}>
           {message}
         </Alert>
