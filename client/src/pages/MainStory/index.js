@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@material-ui/core";
+import { ButtonGroup, Button, Menu, MenuItem } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import API from "../../utils/API";
 import Wrapper from "../../components/Wrapper";
@@ -35,6 +35,8 @@ const MainStory = () => {
     const [enemyBlockFade, setEnemyBlockFade] = useState("hidden");
     const [attackDisplay, setAttackDisplay] = useState("none");
     const [saveGameDisplay, setSaveGameDisplay] = useState(false);
+    const [typewriterDelay, setTypewriterDelay] = useState(20);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
@@ -78,10 +80,13 @@ const MainStory = () => {
     }, [currentCharacter])
 
     useEffect(() => {
-        setButtonTimes();
         disableIfClicked();
         checkModifier();
     }, [storyText])
+
+    useEffect(() => {
+        setButtonTimes();
+    }, [typewriterDelay, storyText])
 
     useEffect(() => {
         // Health bars now update based on the enemy and user's health
@@ -149,16 +154,31 @@ const MainStory = () => {
     }
 
     // This function renders the decision buttons based on how long it takes to write the story text.
+    // number of letters
     const setButtonTimes = () => {
+        let speedMultiplier;
+        clearTimeout();
         if (storyText.length === 0) {
             return;
         }
+        switch(typewriterDelay) {
+            case 1:
+                speedMultiplier = 11;
+                break;
+            case 20:
+                speedMultiplier = 30;
+                break;
+            case 40:
+                speedMultiplier = 44;
+                break;
+        }
+        console.log(storyText.split("").length * speedMultiplier + 2000)
         setTimeout(() => {
             setOptionFade("fadeIn")
             if (currentEnemy !== {} && currentEnemy.health > 0) {
                 displayEnemy();
             }
-        }, (storyText.length * 30 + 2000))
+        }, (storyText.split("").length * speedMultiplier + 2000))
 
     }
 
@@ -309,6 +329,8 @@ const MainStory = () => {
         // prevents the option from being added to the array twice.
         if ( option.target === "01-Start"
          || option.target === "02-Tunnel"
+         || option.target === "02-Tunnel Return Variant"
+         || option.target === "03-Three Paths"
          || option.target === "13a-Wrong room"
          || option.target === "13aa-Wrong room" 
          || option.target === "13b-Correct room" 
@@ -466,6 +488,17 @@ const MainStory = () => {
         }, 2000)
     }
 
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+      const handleMenuClose = (speed, reason) => {
+        if (reason !== "backdropClick") {
+            setTypewriterDelay(speed);
+        }
+        setAnchorEl(null);
+      };
+
     const updateCharacter = () => {
         // Update sessionStorage
         console.log("Updating character")
@@ -533,16 +566,33 @@ const MainStory = () => {
         <Wrapper>
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
             <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
-            <Typewriter
-                options={{
-                    strings: storyText,
-                    autoStart: true,
-                    loop: false,
-                    delay: 20,
-                    wrapperClassName: "text"
-                }}
+            
+            <section className="textArea">
+                <Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
+                    {"Text Speed >>"}
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleMenuClose}
+                    elevation={0}
+                >
+                    <MenuItem onClick={() => handleMenuClose(40)}>Slow</MenuItem>
+                    <MenuItem onClick={() => handleMenuClose(20)}>Medium</MenuItem>
+                    <MenuItem onClick={() => handleMenuClose(1)}>Fast</MenuItem>
+                </Menu>
+                <Typewriter
+                    options={{
+                        strings: storyText,
+                        autoStart: true,
+                        loop: false,
+                        delay: typewriterDelay,
+                        wrapperClassName: "text"
+                    }}
+                />
+            </section>
 
-            />
             <Enemy 
                 imageDisplay={imageDisplay}
                 enemyBlockFade={enemyBlockFade}
