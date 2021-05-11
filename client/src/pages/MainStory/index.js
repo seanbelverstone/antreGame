@@ -549,7 +549,7 @@ const MainStory = () => {
             
             <section className="textArea">
                 <Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
-                    Text Speed
+                    {"Text Speed >>"}
                 </Button>
                 <Menu
                     anchorEl={anchorEl}

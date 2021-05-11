@@ -3,12 +3,12 @@ section.textArea {
 }
 
 #speedButton {
-    left: 25%;
+    left: 24.5%;
 }
 
 .MuiMenu-paper {
     top: 75px !important;
-    padding: 3px;
+    padding: 3px 13px 3px 13px;
 }
 
 .Typewriter {
