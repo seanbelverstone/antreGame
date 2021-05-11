@@ -1,7 +1,20 @@
+section.textArea {
+    margin-top: 80px;
+}
+
+#speedButton {
+    left: 25%;
+}
+
+.MuiMenu-paper {
+    top: 75px !important;
+    padding: 3px;
+}
+
 .Typewriter {
-    margin: 70px auto 0 auto;
+    margin: 0 auto 0 auto;
     border: 2px solid black;
-    width: 60vh;
+    width: 30vw;
     text-align: left;
     padding: 50px;
     min-height: 15vh;
