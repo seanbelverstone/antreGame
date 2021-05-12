@@ -57,6 +57,12 @@ const InventoryPopup = (props) => {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;
+                } else if (item.length && item.head || item.chest || item.hands || item.legs || item.feet) {
+                    note = `You equipped the ${Object.values(item)}. `
+                    addIfUnique(note);
+                } else if (item.torch === 0) {
+                    note = `You lost your torch. `;
+                    addIfUnique(note);
                 } else if (Math.sign(Object.values(item)) === 1) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
@@ -71,9 +77,6 @@ const InventoryPopup = (props) => {
                     addIfUnique(note);
                 } else if (Object.values(item.weapon)[1] <= 1) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
-                    addIfUnique(note);
-                } else if (item.length && Object.values(item.head || item.chest || item.hands || item.legs || item.feet)) {
-                    note = `You equipped the ${Object.values(item)}. `
                     addIfUnique(note);
                 } else {
                     // if the item is neither negative nor positive (0), just say that they lost the item. This relates to things like the torch
