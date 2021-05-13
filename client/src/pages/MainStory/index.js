@@ -237,10 +237,11 @@ const MainStory = () => {
                         return attacks.campaignLuckCheck(luck, mod.event);
                     }
                     checkingLuck().then((results) => {
+                        console.log(results)
                         setOptions([
                             {
-                                "label": results.label,
-                                "target": results.target
+                                "label": results[0].label,
+                                "target": results[0].target
                             }
                         ]);
                     })
