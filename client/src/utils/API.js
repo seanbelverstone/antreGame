@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const jwtToken = window.sessionStorage.getItem("jwtToken");
+let jwtToken;
 
 
 
@@ -22,6 +22,7 @@ export default {
     },
 
     getAllCharacters: (userId) => {
+        jwtToken = window.sessionStorage.getItem("jwtToken");
         return axios.get(`/api/characters/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`}
@@ -29,6 +30,7 @@ export default {
     },
 
     createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId) => {
+        jwtToken = window.sessionStorage.getItem("jwtToken");
         return axios.post("/api/characters", {
             name, 
             race, 
@@ -46,6 +48,7 @@ export default {
     },
 
     updateCharacter: (health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id) => {
+        jwtToken = window.sessionStorage.getItem("jwtToken");
         return axios.put(`/api/characters/${id}`, {
             health,
             strength,
@@ -73,6 +76,7 @@ export default {
     },
     
     deleteCharacter: (characterId) => {
+        jwtToken = window.sessionStorage.getItem("jwtToken");
         return axios.delete(`/api/characters/${characterId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`}
