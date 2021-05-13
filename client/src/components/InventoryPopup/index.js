@@ -51,8 +51,8 @@ const InventoryPopup = (props) => {
     const checkItems = () => {
         if (items !== []) {
             let note;
-
             items.forEach((item) => {
+                console.log("EGG", Object.values(item)[0])
                 if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
                     // if no modifier is present, just return.
                     setDisplay(false);
@@ -63,11 +63,14 @@ const InventoryPopup = (props) => {
                 } else if (item.torch === 0) {
                     note = `You lost your torch. `;
                     addIfUnique(note);
-                } else if (Math.sign(Object.values(item)) === 1) {
+                } else if (Math.sign(item.health) === 1) {
+                    note = `You restored ${item.health} health.`
+                    addIfUnique(note);
+                } else if (Object.values(item)[0] >= 1) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${Object.values(item)} ${Object.keys(item)}. `;
                     addIfUnique(note);
-                } else if (Object.values(item.weapon)[1] > 1) {
+                } else if (item.weapon && Object.values(item.weapon)[1] > 1) {
                     // if the weapon has more than 1 damage (not no weapon)
                     note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
                     addIfUnique(note);
