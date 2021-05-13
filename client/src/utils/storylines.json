@@ -2485,12 +2485,81 @@
             }
         ],
         "victory": {
-            "target": "20aa-Knight Second Fight"
+            "target": "20aa-Knight Interim"
         }
     },
     {
-        "level": "20aa-Knight Second Fight",
-        "text": "Victorious, you step towards your next target. \n\nYou see your fellow soldiers fighting alongside you, doing their best to keep the enemies away from the city gates. You spy an old friend, who dismantles enemy cavalry with his thrusting spear. You try to call out to him, but no sound comes out of your mouth. An enemy pikeman charges towards you before you can call out again.",
+        "level": "20aa-Knight Interim",
+        "text": "Standing victorious over your slain foe, allow yourself a second to take in your surroundings. \n\nFellow soldiers are fighting all around you, struggling to keep the enemies away from the enormous city gates that tower behind them. \n\nYou also notice an old friend, who skillfully dodges an approaching enemy cavalry unit, dismounting a rider in the process with a precise thrust of his spear. As he looks over you try to call out to him, but no sound comes out of your mouth. \n\nA group of enemy pikemen charge in an arrow formation, and you realize that time is of the essence.",
+        "modifier": [
+            {
+                "none": true
+            }
+        ],
+        "options": [
+            {
+                "label": "Assist the gate defenders",
+                "target": "20aaa-War Hammer Knight"
+            },
+            {
+                "label": "Help your friend",
+                "target": "20aab-Pikeman battle"
+            },
+            {
+                "label": "Retreat to the walls",
+                "target": "20aac-Retreat"
+            },
+            {
+                "label": "Charge into battle",
+                "target": "20aad-Charge"
+            }
+        ]
+    },
+    {
+        "level": "20aaa-War Hammer Knight",
+        "text": "Noticing that the soldiers defending the gates are being beaten back, you quickly move over to assist them. You deflect a few blows from nearby spearmen, and just manage to dodge out of the way as a huge war hammmer slams into the ground beside you. It's lifted from the crater it created by its wielder, a monstrous looking knight encased in a thick scarlet armor. The knight grunts, and readies for another swing.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "SCARLET KNIGHT",
+            "health": 50,
+            "strength": 4,
+            "defense": 5,
+            "wisdom": 1,
+            "luck": 2,
+            "weapon": {
+                "name": "War Hammer",
+                "dmg": 9
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aaaa-War Victory"
+        }
+    },
+    {
+        "level": "20aab-Pikeman battle",
+        "text": "\"You look exhausted!\" chuckles your friend, as you run over to their aid. \n\n\"There isn't any time for rest now you fat prick, come on, help me take out some of these twats!\" He dives headfirst into battle, spear at his side. You can't help but laugh, how did they ever get away being so reckless in battle? They really were always so reckless, right up until -- \n\nBefore you can continue your thought, a screaming pikeman engages you in combat.",
         "modifier": [
             {
                 "fight": 1
@@ -2504,7 +2573,7 @@
             "wisdom": 1,
             "luck": 4,
             "weapon": {
-                "name": "pike",
+                "name": "Pike",
                 "dmg": 7
             }
         },
@@ -2527,12 +2596,96 @@
             }
         ],
         "victory": {
-            "target": "20aaa-Pikeman Victory"
+            "target": "20aaaa-War Victory"
         }
     },
     {
-        "level": "20aaa-Pikeman Victory",
-        "text": "Another enemy of the King lay slain at your feet. \"Take this!\" yells your friend, and throws you a health potion. As you pour the liquid into your mouth, you see a mounted knight charge towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. But as his body leaves the ground, and his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. \n\nYou're floating in darkness for what seems an eternity. \n\nYou wake up.",
+        "level": "20aac-Retreat",
+        "text": "Raising your sword and pointing it at the walls behind you, you order your men to retreat to safety. As you all begin to fall back, the enemy troops advance. A flurry of arrows rain down upon you and your men as you run, taking a few of their lives. \n\nThe wall is edging closer, but another round of arrows descend from above. Screams of your men fill the air. \n\nYou've got to do something, otherwise no-one will make it. Looking up and with a silent nod of agreement, both you and your friend stop running away from battle, and instead charge back towards it. Raising your weapons high and bellowing out louder than you ever thought possible, you leap at nearby infantry.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "INFANTRY",
+            "health": 50,
+            "strength": 2,
+            "defense": 2,
+            "wisdom": 2,
+            "luck": 6,
+            "weapon": {
+                "name": "Axe",
+                "dmg": 6
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aaaa-War Victory"
+        }
+    },
+    {
+        "level": "20aad-Charge",
+        "text": "You glance around, and see men falling all around you. The enemy troops are advancing, and it seems as though all hope is lost. You know that the only way to win this is to charge head on and face them, but you cannot stop the rout that has begun.\n\nThen you see it.\n\nA standard bearer, proudly walking towards the field of battle, accompanied by a whole troop of musicians. The booming of the drums and blast of the trumpets resonate through you - it's as almost as if a wave of revitalizing energy washed through you all. \n\nWith renewed courage and the sound of fate behind you, you all charge towards the oncoming foes.",
+        "modifier": [
+            {
+                "fight": 1
+            }
+        ],
+        "enemy": {
+            "name": "SWORDSMAN",
+            "health": 50,
+            "strength": 10,
+            "defense": 1,
+            "wisdom": 1,
+            "luck": 1,
+            "weapon": {
+                "name": "sword",
+                "dmg": 7
+            }
+        },
+        "options": [
+            {
+                "label": "Normal Attack",
+                "target": "normal"
+            },
+            {
+                "label": "Special Attack",
+                "target": "special"
+            },
+            {
+                "label": "Use health potion",
+                "target": "potion"
+            },
+            {
+                "label": "Use skill",
+                "target": "skill"
+            }
+        ],
+        "victory": {
+            "target": "20aaaa-War Victory"
+        }
+    },
+    {
+        "level": "20aaaa-War Victory",
+        "text": "Another enemy of the King lay slain at your feet. \"Take this!\" yells your friend, and throws you a health potion. They grin at you as you pour the liquid into your mouth. \n\n\"Drink up you weak bastard!\" \n\nA mounted knight charges towards your friend from behind. With an outstretched arm you scream for him to move, but he doesn't hear you. The oncoming knight's enormous morningstar connects with your friend's spine with a sickening crunch, lifting him off his feet. As his body leaves the ground, his eyes roll back, the grass and hills and everything around you turns to ash, it burns away like a piece of forgotten parchment. \n\nYou're floating in darkness for what seems an eternity. \n\nYou wake up.",
         "modifier": [
             {
                 "health": 50
