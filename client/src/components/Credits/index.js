@@ -4,6 +4,11 @@ import { Button } from "@material-ui/core";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import mysql from "../../assets/images/companyIcons/mysql.png";
+import react from "../../assets/images/companyIcons/react.png";
+import express from "../../assets/images/companyIcons/express.png";
+import node from "../../assets/images/companyIcons/nodejs.png";
+import materialUi from "../../assets/images/companyIcons/materialUi.png";
 import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Inventory = (props) => {
+const Credits = (props) => {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -52,11 +57,27 @@ const Inventory = (props) => {
         }}
       >
         <Fade in={open}>
-
+        <div className={classes.paper}>
+            <h2 id="transition-modal-title">Credits</h2>
+            <section className="section" id="created">
+              <div>Created and designed by: </div>
+              <div>Sean Belverstone</div>
+            </section>
+            <section className="section" id="built">
+              <div>Built with: </div>
+              <div>
+              <img className='images' href="https://reactjs.org/" target="_blank" src={react}/>
+              <img className='images' href="https://reactjs.org/" target="_blank" src={node}/>
+              <img className='images' href="https://reactjs.org/" target="_blank" src={express}/>
+              <img className='images' href="https://reactjs.org/" target="_blank" src={mysql}/>
+              <img className='images' href="https://reactjs.org/" target="_blank" src={materialUi}/>
+                </div>
+            </section>
+        </div>
         </Fade>
       </Modal>
     </div>
   );
 }
 
-export default Inventory;
+export default Credits;
