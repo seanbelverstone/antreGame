@@ -1,8 +1,14 @@
 .section {
-    width: 10%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .images {
-    width: 50%
+    width: 15%;
+}
+
+#imageSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

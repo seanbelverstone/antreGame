@@ -10,6 +10,7 @@ import express from "../../assets/images/companyIcons/express.png";
 import node from "../../assets/images/companyIcons/nodejs.png";
 import materialUi from "../../assets/images/companyIcons/materialUi.png";
 import "./style.css";
+import DonateButton from '../DonateButton';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    minWidth: "40vh"
+    minWidth: "40vh",
+    maxWidth: "60vw"
   },
 }));
 
@@ -57,23 +59,27 @@ const Credits = (props) => {
         }}
       >
         <Fade in={open}>
-        <div className={classes.paper}>
-            <h2 id="transition-modal-title">Credits</h2>
+          <div className={classes.paper}>
+            <h1 id="transition-modal-title">Credits</h1>
             <section className="section" id="created">
-              <div>Created and designed by: </div>
+              <h2>Created and designed by: </h2>
               <div>Sean Belverstone</div>
             </section>
             <section className="section" id="built">
-              <div>Built with: </div>
-              <div>
-              <img className='images' href="https://reactjs.org/" target="_blank" src={react}/>
-              <img className='images' href="https://reactjs.org/" target="_blank" src={node}/>
-              <img className='images' href="https://reactjs.org/" target="_blank" src={express}/>
-              <img className='images' href="https://reactjs.org/" target="_blank" src={mysql}/>
-              <img className='images' href="https://reactjs.org/" target="_blank" src={materialUi}/>
-                </div>
+              <h2>Built with: </h2>
+              <div id="imageSection">
+                <img className='images' href="https://reactjs.org/" target="_blank" src={react} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={node} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={express} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={mysql} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={materialUi} />
+              </div>
             </section>
-        </div>
+            <section className="section">
+              <span>If you would like to buy me a coffee, or donate to help me continue to develop this one man-show, I'd really appreciate it :)</span>
+              <DonateButton />
+            </section>
+          </div>
         </Fade>
       </Modal>
     </div>
