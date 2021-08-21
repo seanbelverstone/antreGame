@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from "@material-ui/core";
 import Modal from '@material-ui/core/Modal';
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Credits = (props) => {
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
