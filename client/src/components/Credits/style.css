@@ -1,0 +1,17 @@
+.section {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.images {
+    width: 8%;
+    padding: 5px;
+    margin: 5px;
+    opacity: 1;
+}
+
+.imageSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
