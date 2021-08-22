@@ -299,7 +299,7 @@ const MainStory = () => {
 
     const enemyTurn = () => {
         const enemyAttack = async () => {
-            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense);
+            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentEnemy.luck);
         };
 
         enemyAttack().then((results) => {
@@ -362,7 +362,7 @@ const MainStory = () => {
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = async () => {
-                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense);
+                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, luck);
                 };
                 normalAttack().then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
