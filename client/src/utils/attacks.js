@@ -108,8 +108,7 @@ export default {
         // PSUEDOCODE
         // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
         // Maybe we need a turn counter? Almost definitely.
-        // For rogue, do the same as special attack but increase weapon damage by a lot (max?) and remove
-        // the luck constraints.
+        // For rogue, guarantee the next attack will crit. (increase luck to 20 for 1 turn)
         // For paladin, heal health completely.
 
         // Once skill has completed, based on Wisdom number - disable the button for that many turns
@@ -137,8 +136,7 @@ export default {
                 skillResult = 20;
                 break;
             case "Rogue":
-                skill = "Rapid attack";
-                const initalRoll = diceRoll();
+                skill = "Lucky Strike";
                 skillResult = Math.ceil(((3 * 9) * initalRoll) / enemyDef);
                 battleText = `You used Rapid Attack. Fast as lightning, you strike the enemy for ${skillResult} damage!`
                 break;
