@@ -1,5 +1,5 @@
 const diceRoll = () => {
-    return(Math.floor(Math.random() * 6) + 1);
+    return (Math.floor(Math.random() * 6) + 1);
 };
 
 const critChance = (luck) => {
@@ -33,7 +33,7 @@ export default {
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
     specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
-        const initalRoll = diceRoll();    
+        const initalRoll = diceRoll();
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
         let critDamage = (((3 * weaponDamage) * initalRoll) + (strength * 3));
 
@@ -62,7 +62,7 @@ export default {
                 finalDamage
             };
         } else {
-            battleText =  `You roll for a special attack. \n You compare luck values with the enemy and your roll is lower. \n Your attack misses!`;
+            battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is lower. \n Your attack misses!`;
             finalDamage = 0;
             return {
                 battleText,
@@ -92,7 +92,7 @@ export default {
                 healthIncrease
             }
         }
-        
+
     },
 
     useSkill: (charClass, wisdom, enemyDef) => {
@@ -126,7 +126,7 @@ export default {
             cooldownLength = 0;
         }
 
-        switch(charClass) {
+        switch (charClass) {
             case "Warrior":
                 skill = "Stalwart defense";
                 battleText = "You used Stalwart Defense. Your defense has been temporarily increased!"
@@ -134,7 +134,7 @@ export default {
                 break;
             case "Rogue":
                 skill = "Rapid attack";
-                const initalRoll = diceRoll();    
+                const initalRoll = diceRoll();
                 skillResult = Math.ceil(((3 * 9) * initalRoll) / enemyDef);
                 battleText = `You used Rapid Attack. Fast as lightning, you strike the enemy for ${skillResult} damage!`
                 break;
@@ -153,13 +153,22 @@ export default {
     },
 
     // ENEMY ATTACKS
-    enemyNormalAttack: (enemyWeapon, strength, myDef) => {
+    enemyNormalAttack: (enemyWeapon, strength, myDef, enemyLuck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
+        const critDamage = ((enemyWeapon * initialRoll) + (strength * 2));
+
         console.log(`Enemy weapon ${enemyWeapon}`)
         console.log(`My defense ${myDef}`)
         console.log(`Total damage before divison ${finalDamage * myDef}`)
 
+        if (critChance(enemyLuck)) {
+            battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${critDamage} damage.`
+            return {
+                battleText,
+                critDamage
+            }
+        }
         battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
         return {
             battleText,
@@ -188,7 +197,7 @@ export default {
         // Story 1 is Dark path traps
         console.log(story)
         if (story === 1) {
-            if(updatedNumber <= 1) {
+            if (updatedNumber <= 1) {
                 options = deathLevel
             } else if (myRoll > 1 && myRoll < 6) {
                 options = badLuckLevel;
@@ -234,7 +243,7 @@ export default {
                 target: options
             }
         ]
-    
+
     },
 
     torchCheck: (torch) => {
@@ -247,9 +256,9 @@ export default {
         }
         console.log(options)
         return {
-                label: "Continue",
-                target: options
-            }
+            label: "Continue",
+            target: options
+        }
     }
 
 }
