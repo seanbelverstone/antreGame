@@ -19,23 +19,27 @@ export default {
     normalAttack: (weaponDamage, strength, enemyDef, luck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
-        const critDamage = ((weaponDamage * initialRoll) + (strength * 2));
+        const critDamage = (weaponDamage * initialRoll) + (strength * 2);
         if (critChance(luck)) {
             battleText = `You rolled a ${initialRoll}, and it was a crit! \n Your normal attack does ${critDamage} damage.`
+            return {
+                battleText,
+                finalDamage: critDamage
+            };
         } else {
             battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
+            return {
+                battleText,
+                finalDamage
+            };
         }
-        return {
-            battleText,
-            finalDamage
-        };
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
     specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
         const initalRoll = diceRoll();
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
-        let critDamage = (((3 * weaponDamage) * initalRoll) + (strength * 3));
+        let critDamage = ((3 * weaponDamage) * initalRoll) + (strength * 3);
 
         console.log(`Dice roll: ${initalRoll}`);
         console.log(`Weapon Damage: ${weaponDamage}`);
@@ -49,11 +53,11 @@ export default {
         let enemyLuckRoll = diceRoll();
 
         if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
-            if (critChance(luck / 2)) {
+            if (critChance(Math.floor(luck / 2))) {
                 battleText = `You roll for a special attack. \n You compare luck values with the enemy, your roll is higher, AND it's a crit! \n Your special attack does ${critDamage} damage!`;
                 return {
                     battleText,
-                    critDamage
+                    finalDamage: critDamage
                 };
             }
             battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is higher! \n Your special attack does ${finalDamage} damage!`;
@@ -156,17 +160,18 @@ export default {
     enemyNormalAttack: (enemyWeapon, strength, myDef, enemyLuck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
-        const critDamage = ((enemyWeapon * initialRoll) + (strength * 2));
+        const critDamage = (enemyWeapon * initialRoll) + (strength * 2);
 
         console.log(`Enemy weapon ${enemyWeapon}`)
         console.log(`My defense ${myDef}`)
         console.log(`Total damage before divison ${finalDamage * myDef}`)
-
+        console.log(finalDamage);
+        console.log(critDamage);
         if (critChance(enemyLuck)) {
             battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${critDamage} damage.`
             return {
                 battleText,
-                critDamage
+                finalDamage: critDamage
             }
         }
         battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
