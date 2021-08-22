@@ -168,7 +168,7 @@ export default {
         console.log(finalDamage);
         console.log(critDamage);
         if (critChance(enemyLuck)) {
-            battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${critDamage} damage.`
+            battleText = `The enemy rolled a ${initialRoll} and it was a crit! \n Their attack does ${critDamage} damage.`
             return {
                 battleText,
                 finalDamage: critDamage
