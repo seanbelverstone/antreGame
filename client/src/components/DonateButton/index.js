@@ -49,7 +49,7 @@ const DonateButton = (props) => {
             setMessage(`Transaction completed by ${details.payer.name.given_name}. Thank you for your support! :)`)
           }}
           options={{
-            clientId: process.env.REACT_CLIENT_ID
+            clientId: process.env.REACT_APP_CLIENT_ID
           }}
         />
       )}
