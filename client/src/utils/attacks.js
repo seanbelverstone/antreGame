@@ -1,6 +1,13 @@
 const diceRoll = () => {
     return(Math.floor(Math.random() * 6) + 1);
-}
+};
+
+const critChance = (luck) => {
+    const initialRoll = (Math.floor(Math.random() * 20) + 1)
+    const luckCheck = (initialRoll + luck)
+    // If the roll + luck is 19 or higher, it's a crit.
+    return luckCheck >= 19;
+};
 
 let battleText;
 
@@ -9,12 +16,14 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weaponDamage, strength, enemyDef) => {
+    normalAttack: (weaponDamage, strength, enemyDef, luck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
-
-        let battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
-
+        if (critChance(luck)) {
+            battleText = `You rolled a ${initialRoll}, and it was a crit! \n Your normal attack does ${finalDamage * 2} damage.`
+        } else {
+            battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
+        }
         return {
             battleText,
             finalDamage
@@ -25,7 +34,6 @@ export default {
     specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
         const initalRoll = diceRoll();    
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
-    
         
         console.log(`Dice roll: ${initalRoll}`);
         console.log(`Weapon Damage: ${weaponDamage}`);
@@ -39,6 +47,13 @@ export default {
         let enemyLuckRoll = diceRoll();
 
         if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
+            if (critChance(luck / 2)) {
+                battleText = `You roll for a special attack. \n You compare luck values with the enemy, your roll is higher, AND it's a crit! \n Your special attack does ${finalDamage * 2} damage!`;
+                return {
+                    battleText,
+                    finalDamage
+                };
+            }
             battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is higher! \n Your special attack does ${finalDamage} damage!`;
             return {
                 battleText,

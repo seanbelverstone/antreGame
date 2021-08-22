@@ -63,7 +63,7 @@ const DonateButton = (props) => {
           disableFunding={['venmo']}
           onSuccess={(details, data) => {
             setSnackbarDisplay(true)
-            setMessage(`Transaction completed by ${details.payer.name.given_name}. Thank you for your support! :)`)
+            setMessage(`Donation made by ${details.payer.name.given_name}. Thank you for your support! :)`)
           }}
 
         />
