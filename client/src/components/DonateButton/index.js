@@ -22,7 +22,6 @@ const DonateButton = (props) => {
       setAmountHelperText('Please make sure to only use numbers.');
     }
   }, [amount]);
-  console.log(process.env.NODE_ENV);
   return (
     <div style={{display: "flex", flex: 1, flexDirection: "column"}}>
       <TextField
