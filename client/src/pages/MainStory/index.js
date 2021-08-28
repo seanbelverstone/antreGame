@@ -67,6 +67,8 @@ const MainStory = () => {
     const [cooldownRound, setCooldownRound] = useState(0);
     const [warriorDefenseRound, setWarriorDefenseRound] = useState(0);
     const [tempDefense, setTempDefense] = useState(0);
+    const [rogueLuckRound, setRogueLuckRound] = useState(0)
+    const [tempLuck, setTempLuck] = useState(0);
 
     useEffect(() => {
         // grabs the current character selected and stores it in state
@@ -299,7 +301,7 @@ const MainStory = () => {
 
     const enemyTurn = () => {
         const enemyAttack = async () => {
-            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense);
+            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentEnemy.luck);
         };
 
         enemyAttack().then((results) => {
@@ -362,7 +364,7 @@ const MainStory = () => {
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = async () => {
-                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense);
+                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, luck);
                 };
                 normalAttack().then(results => {
                     setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
@@ -410,7 +412,9 @@ const MainStory = () => {
                         setDefense(defense + results.skillResult);
                         setWarriorDefenseRound(roundCount + 3)
                     } else if (currentCharacter.charClass === "Rogue") {
-                        setCurrentEnemyHealth(currentEnemyHealth - results.skillResult)
+                        setTempLuck(luck);
+                        setLuck(results.skillResult);
+                        setRogueLuckRound(roundCount + 1)
                     } else {
                         setCurrentUserHealth(maxHealth)
                     }
@@ -427,6 +431,10 @@ const MainStory = () => {
         if (currentCharacter.charClass === "Warrior" && roundCount === warriorDefenseRound) {
             // returns the warrior's defense to it's regular level
             setDefense(tempDefense);
+        }
+        if (currentCharacter.charClass === "Rogue" && roundCount === rogueLuckRound) {
+            // returns the rogue's luck to it's regular level
+            setLuck(tempLuck);
         }
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
         if(cooldownRound === roundCount && skillUsed) {

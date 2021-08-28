@@ -11,7 +11,7 @@ const DonateButton = (props) => {
   const [snackbarDisplay, setSnackbarDisplay] = useState(false);
   const [message, setMessage] = useState('');
   const pattern = new RegExp(/^[0-9]*$/g)
-  
+
   useEffect(() => {
     if (pattern.test(amount)) {
       setAmountError(false);
@@ -23,12 +23,12 @@ const DonateButton = (props) => {
     }
   }, [amount]);
   return (
-    <div style={{display: "flex", flex: 1, flexDirection: "column"}}>
+    <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
       <TextField
         id="amountInput"
         label="Donation amount"
         variant="outlined"
-        error={amountError} 
+        error={amountError}
         helperText={amountHelperText}
         InputProps={{
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -46,7 +46,7 @@ const DonateButton = (props) => {
           disableFunding={['venmo']}
           onSuccess={(details, data) => {
             setSnackbarDisplay(true)
-            setMessage(`Transaction completed by ${details.payer.name.given_name}. Thank you for your support! :)`)
+            setMessage(`Donation made by ${details.payer.name.given_name}. Thank you for your support! :)`)
           }}
           options={{
             clientId: process.env.REACT_APP_CLIENT_ID
@@ -63,7 +63,7 @@ const DonateButton = (props) => {
           disableFunding={['venmo']}
           onSuccess={(details, data) => {
             setSnackbarDisplay(true)
-            setMessage(`Transaction completed by ${details.payer.name.given_name}. Thank you for your support! :)`)
+            setMessage(`Donation made by ${details.payer.name.given_name}. Thank you for your support! :)`)
           }}
 
         />

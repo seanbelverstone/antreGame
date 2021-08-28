@@ -1,6 +1,13 @@
 const diceRoll = () => {
-    return(Math.floor(Math.random() * 6) + 1);
-}
+    return (Math.floor(Math.random() * 6) + 1);
+};
+
+const critChance = (luck) => {
+    const initialRoll = (Math.floor(Math.random() * 20) + 1)
+    const luckCheck = (initialRoll + luck)
+    // If the roll + luck is 19 or higher, it's a crit.
+    return luckCheck >= 19;
+};
 
 let battleText;
 
@@ -9,24 +16,31 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weaponDamage, strength, enemyDef) => {
+    normalAttack: (weaponDamage, strength, enemyDef, luck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
-
-        let battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
-
-        return {
-            battleText,
-            finalDamage
-        };
+        const critDamage = (weaponDamage * initialRoll) + (strength * 2);
+        if (critChance(luck)) {
+            battleText = `You rolled a ${initialRoll}, and it was a crit! \n Your normal attack does ${critDamage} damage.`
+            return {
+                battleText,
+                finalDamage: critDamage
+            };
+        } else {
+            battleText = `You rolled a ${initialRoll}! \n Your normal attack does ${finalDamage} damage.`
+            return {
+                battleText,
+                finalDamage
+            };
+        }
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
     specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
-        const initalRoll = diceRoll();    
+        const initalRoll = diceRoll();
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
-    
-        
+        let critDamage = ((3 * weaponDamage) * initalRoll) + (strength * 3);
+
         console.log(`Dice roll: ${initalRoll}`);
         console.log(`Weapon Damage: ${weaponDamage}`);
         console.log(`Str: ${strength}`);
@@ -39,13 +53,20 @@ export default {
         let enemyLuckRoll = diceRoll();
 
         if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
+            if (critChance(Math.floor(luck / 1.5))) {
+                battleText = `You roll for a special attack. \n You compare luck values with the enemy, your roll is higher, AND it's a crit! \n Your special attack does ${critDamage} damage!`;
+                return {
+                    battleText,
+                    finalDamage: critDamage
+                };
+            }
             battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is higher! \n Your special attack does ${finalDamage} damage!`;
             return {
                 battleText,
                 finalDamage
             };
         } else {
-            battleText =  `You roll for a special attack. \n You compare luck values with the enemy and your roll is lower. \n Your attack misses!`;
+            battleText = `You roll for a special attack. \n You compare luck values with the enemy and your roll is lower. \n Your attack misses!`;
             finalDamage = 0;
             return {
                 battleText,
@@ -75,7 +96,7 @@ export default {
                 healthIncrease
             }
         }
-        
+
     },
 
     useSkill: (charClass, wisdom, enemyDef) => {
@@ -87,8 +108,7 @@ export default {
         // PSUEDOCODE
         // For warrior, set character defense to 20 for 3 turns. After 3 turns, it returns to normal
         // Maybe we need a turn counter? Almost definitely.
-        // For rogue, do the same as special attack but increase weapon damage by a lot (max?) and remove
-        // the luck constraints.
+        // For rogue, guarantee the next attack will crit. (increase luck to 20 for 1 turn)
         // For paladin, heal health completely.
 
         // Once skill has completed, based on Wisdom number - disable the button for that many turns
@@ -109,17 +129,16 @@ export default {
             cooldownLength = 0;
         }
 
-        switch(charClass) {
+        switch (charClass) {
             case "Warrior":
                 skill = "Stalwart defense";
                 battleText = "You used Stalwart Defense. Your defense has been temporarily increased!"
                 skillResult = 20;
                 break;
             case "Rogue":
-                skill = "Rapid attack";
-                const initalRoll = diceRoll();    
-                skillResult = Math.ceil(((3 * 9) * initalRoll) / enemyDef);
-                battleText = `You used Rapid Attack. Fast as lightning, you strike the enemy for ${skillResult} damage!`
+                skill = "Gambler's Strike";
+                battleText = `You used Gambler's Strike. Your luck has been massively increased for 1 turn!`
+                skillResult = 20;
                 break;
             case "Paladin":
                 skill = "Holy remedy";
@@ -136,13 +155,23 @@ export default {
     },
 
     // ENEMY ATTACKS
-    enemyNormalAttack: (enemyWeapon, strength, myDef) => {
+    enemyNormalAttack: (enemyWeapon, strength, myDef, enemyLuck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((enemyWeapon * initialRoll) + (strength * 2)) / myDef);
+        const critDamage = (enemyWeapon * initialRoll) + (strength * 2);
+
         console.log(`Enemy weapon ${enemyWeapon}`)
         console.log(`My defense ${myDef}`)
         console.log(`Total damage before divison ${finalDamage * myDef}`)
-
+        console.log(finalDamage);
+        console.log(critDamage);
+        if (critChance(enemyLuck)) {
+            battleText = `The enemy rolled a ${initialRoll} and it was a crit! \n Their attack does ${critDamage} damage.`
+            return {
+                battleText,
+                finalDamage: critDamage
+            }
+        }
         battleText = `The enemy rolled a ${initialRoll}! \n Their attack does ${finalDamage} damage.`
         return {
             battleText,
@@ -171,7 +200,7 @@ export default {
         // Story 1 is Dark path traps
         console.log(story)
         if (story === 1) {
-            if(updatedNumber <= 1) {
+            if (updatedNumber <= 1) {
                 options = deathLevel
             } else if (myRoll > 1 && myRoll < 6) {
                 options = badLuckLevel;
@@ -217,7 +246,7 @@ export default {
                 target: options
             }
         ]
-    
+
     },
 
     torchCheck: (torch) => {
@@ -230,9 +259,9 @@ export default {
         }
         console.log(options)
         return {
-                label: "Continue",
-                target: options
-            }
+            label: "Continue",
+            target: options
+        }
     }
 
 }
