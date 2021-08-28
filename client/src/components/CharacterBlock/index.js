@@ -1,17 +1,75 @@
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import DeleteButton from "../DeleteButton";
 import "./style.css";
 
-const CharacterBlock = ({character}) => {
+const mapStateToProps = (state) => {
+    return {
+        inventory: state.updateCharacter.inventory,
+        stats: state.updateCharacter.stats,
+        levels: state.updateCharacter.levels,
+        time: state.updateCharacter.time
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
+const BoundCharacterBlock = (props) => {
+    const { updateCharacter, character, levels } = props;
     
     const playThisCharacter = (character) => {
-        window.sessionStorage.setItem("currentCharacter", JSON.stringify(character));
+        console.log(character);
+        updateCharacter({
+            inventory: {
+                weapon: character.weapon,
+                weaponDamage: character.weaponDamage,
+                head: character.head,
+                chest: character.chest,
+                legs: character.legs,
+                hands: character.hands,
+                feet: character.feet,
+                torch: character.torch,
+                amulet: character.amulet,
+                healthPotions: character.healthPotions,
+                gold: character.gold
+            }
+        });
+        updateCharacter({
+            stats: {
+                name: character.name,
+                race: character.race,
+                charClass: character.charClass,
+                health: character.health,
+                strength: character.strength,
+                defense: character.defense,
+                wisdom: character.wisdom,
+                luck: character.luck
+            }
+
+        });
+        updateCharacter({
+            levels: {
+                visited: [
+                    ...levels.visited,
+                    character.level
+                ],
+                current: character.level
+            }
+        });
+        updateCharacter({
+            time: {
+                value: character.time
+            }
+        });
         navigate("/play");
     }
 
-    console.log(character.id)
     return(
         <div className="characterBlock">
             <div className="characterWrapper">
@@ -68,5 +126,7 @@ const CharacterBlock = ({character}) => {
         </div>
     )
 }
+
+const CharacterBlock = connect(mapStateToProps, mapDispatchToProps)(BoundCharacterBlock);
 
 export default CharacterBlock;

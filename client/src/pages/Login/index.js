@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
 import { navigate } from "hookrouter";
+import * as actionCreators from "../../redux/actions/actionCreators";
 import Wrapper from "../../components/Wrapper";
 import Credits from "../../components/Credits";
 import API from "../../utils/API";
@@ -7,7 +10,19 @@ import logo from "../../assets/images/Antre.png";
 import { TextField, Button } from "@material-ui/core";
 import "./style.css";
 
-const Login = () => {
+const mapStateToProps = (state) => {
+    return {
+        user: state.authenticateUser.user,
+        auth: state.authenticateUser.auth
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
+
+const BoundLogin = (props) => {
 
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState(false);
@@ -15,6 +30,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState(false);
     const [passwordHelperText, setPasswordHelperText] = useState("");
+    const { authenticateUser } = props;
 
 
     const onSubmit = (event) => {
@@ -26,9 +42,13 @@ const Login = () => {
                 setUsernameError(false);
                 setPasswordError(false);
                 setPasswordHelperText("");
-                // set the user's ID to session storage, so we can use it throughout the applicable
-                window.sessionStorage.setItem("id", results.data.user.id);
-                window.sessionStorage.setItem("jwtToken", results.data.token);
+                authenticateUser({
+                    user: {
+                        id: results.data.user.id,
+                        username: username,
+                        jwt: results.data.token
+                    }
+                });
             })
             .then(() => {
                 navigate("/select");
@@ -41,39 +61,41 @@ const Login = () => {
             });
     }
 
-    return(
+    return (
         <Wrapper>
             <Credits />
-            <img src={logo} alt="logo" id="antreLogo"/>
+            <img src={logo} alt="logo" id="antreLogo" />
             <form noValidate autoComplete="off" id="loginForm" onSubmit={onSubmit}>
-                <TextField 
-                    className="formInput" 
-                    label="Username" 
+                <TextField
+                    className="formInput"
+                    label="Username"
                     variant="outlined"
-                    onChange={event => setUsername(event.target.value)} 
-                    error={usernameError} 
-                    />
-                <TextField 
-                    className="formInput" 
-                    label="Password" 
-                    variant="outlined" 
+                    onChange={event => setUsername(event.target.value)}
+                    error={usernameError}
+                />
+                <TextField
+                    className="formInput"
+                    label="Password"
+                    variant="outlined"
                     type="password"
                     onChange={event => setPassword(event.target.value)}
-                    error={passwordError} 
+                    error={passwordError}
                     helperText={passwordHelperText}
-                    />
-                <Button 
-                    variant="contained" 
+                />
+                <Button
+                    variant="contained"
                     color="primary"
                     type="submit"
-                    >
+                >
                     Login
                 </Button>
                 <a id="create" onClick={() => navigate("/account")}>CREATE AN ACCOUNT</a>
             </form>
         </Wrapper>
-                    
+
     )
 }
+
+const Login = connect(mapStateToProps, mapDispatchToProps)(BoundLogin);
 
 export default Login;

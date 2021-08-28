@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
 
 import updateCharacter from './updateCharacter';
+import authenticateUser from './authenticateUser';
+
 
 const fullReducer = combineReducers({
-    updateCharacter
+    updateCharacter,
+    authenticateUser
 });
 
 const rootReducer = (state, action) => {

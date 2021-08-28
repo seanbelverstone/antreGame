@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
         inventory: state.updateCharacter.inventory,
         stats: state.updateCharacter.stats,
         levels: state.updateCharacter.levels,
-        time: state.updateCharacter.time
+        time: state.updateCharacter.time,
+        user: state.authenticateUser.user
     }
 }
 
@@ -86,6 +87,8 @@ const BoundMainStory = (props) => {
     const [rogueLuckRound, setRogueLuckRound] = useState(0)
     const [tempLuck, setTempLuck] = useState(0);
 
+    const { updateCharacter, levels, user, resetStore } = props;
+
     useEffect(() => {
         // grabs the current character selected and stores it in state
         setCurrentCharacter(JSON.parse(window.sessionStorage.getItem("currentCharacter")));
@@ -93,9 +96,7 @@ const BoundMainStory = (props) => {
 
     useEffect(() => {
         handleLevel(currentCharacter.level);
-        handleText(currentCharacter.level);
-        handleStats(currentCharacter);
-    }, [currentCharacter])
+    }, [levels])
 
     useEffect(() => {
         disableIfClicked();
@@ -111,28 +112,7 @@ const BoundMainStory = (props) => {
         setHealthWidth();
     }, [currentEnemyHealth, currentUserHealth])
 
-    const handleStats = (c) => {
-        console.log("updating stats")
-        setCurrentUserHealth(c.health)
-        setStrength(c.strength);
-        setDefense(c.defense);
-        setWisdom(c.wisdom);
-        setLuck(c.luck);
-        setWeapon(c.weapon);
-        setWeaponDmg(c.weaponDamage)
-        setHead(c.head);
-        setChest(c.chest);
-        setLegs(c.legs);
-        setHands(c.hands);
-        setFeet(c.feet);
-        setTorch(c.torch);
-        setAmulet(c.amulet);
-        setHealthPotions(c.healthPotions);
-        setGold(c.gold);
-    };
-
     const handleLevel = (choice) => {
-        const { updateCharacter, levels } = props;
         // once level has been chosen, look at the modifiers that are present
         switch (choice) {
             case '01-Start' || "02-Tunnel" || "02-Tunnel Return Variant" ||
@@ -145,33 +125,21 @@ const BoundMainStory = (props) => {
                 });
                 break;
             default:
-            updateCharacter({
-                levels: {
-                    visited: [
-                        ...levels.visited,
-                        choice
-                    ],
-                    current: choice
-                }
-            });
+                updateCharacter({
+                    levels: {
+                        visited: [
+                            ...levels.visited,
+                            choice
+                        ],
+                        current: choice
+                    }
+                });
         }
-
-        // // sets max health based on the character's class
-        // switch (currentCharacter.charClass) {
-        //     case "Warrior":
-        //         setMaxHealth(80)
-        //         break;
-        //     case "Rogue":
-        //         setMaxHealth(60)
-        //         break;
-        //     case "Paladin":
-        //         setMaxHealth(70)
-        //         break;
-        //     default: return
-        // }
+        handleText(levels.current);
     }
 
     const handleText = (choice) => {
+        console.log(choice);
         // loops through the storylines array, and matches the character's level with the corresponding object
         for (let i = 0; i < storylines.length; i++) {
 
@@ -187,7 +155,7 @@ const BoundMainStory = (props) => {
                     setCooldownRound(0);
                     setSkillUsed(false);
                 }
-                
+
             }
         }
     }
@@ -200,7 +168,7 @@ const BoundMainStory = (props) => {
         if (storyText.length === 0) {
             return;
         }
-        switch(typewriterDelay) {
+        switch (typewriterDelay) {
             case 1:
                 speedMultiplier = 11;
                 break;
@@ -221,7 +189,6 @@ const BoundMainStory = (props) => {
     }
 
     const checkModifier = () => {
-        const { levels } = props;
         console.log(levels);
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
@@ -359,9 +326,8 @@ const BoundMainStory = (props) => {
 
     // This takes the value from the option, and sets the level and text based on its target
     const handleClick = (option) => {
-        updateClickedArray(option);
+        // updateClickedArray(option);
         handleLevel(option.target);
-        handleText(option.target);
         setOptionFade("none");
         setImageDisplay("none")
         if (option.target === "Main Menu") {
@@ -403,7 +369,7 @@ const BoundMainStory = (props) => {
         if (!options) {
             return;
         }
-        for(let item of options) {
+        for (let item of options) {
             if (clicked.includes(item.target)) {
                 let disabledElement = document.getElementById(item.label);
                 disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
@@ -477,7 +443,7 @@ const BoundMainStory = (props) => {
         // Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
         // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
-        setRoundCount(current => current +1)
+        setRoundCount(current => current + 1)
         checkHealth();
 
         if (currentCharacter.charClass === "Warrior" && roundCount === warriorDefenseRound) {
@@ -489,7 +455,7 @@ const BoundMainStory = (props) => {
             setLuck(tempLuck);
         }
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
-        if(cooldownRound === roundCount && skillUsed) {
+        if (cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
         }
     }
@@ -542,22 +508,21 @@ const BoundMainStory = (props) => {
             setEnemyImage("");
             setRoundCount(1);
             handleLevel(victoryTarget.target);
-            handleText(victoryTarget.target);
             // After fights are complete, update the character in sessionStorage
-            updateCharacter();
+            // updateCharacter();
         }, 2000)
     }
 
     const handleMenuClick = (event) => {
         setAnchorEl(event.currentTarget);
-      };
-    
-      const handleMenuClose = (speed, reason) => {
+    };
+
+    const handleMenuClose = (speed, reason) => {
         if (reason !== "backdropClick") {
             setTypewriterDelay(speed);
         }
         setAnchorEl(null);
-      };
+    };
 
     // const updateCharacter = () => {
     //     // Update sessionStorage
@@ -589,8 +554,8 @@ const BoundMainStory = (props) => {
     // }
 
     const saveGame = async () => {
-        updateCharacter();
-        API.updateCharacter(
+        // updateCharacter();
+        API.saveCharacter(
             currentUserHealth,
             strength,
             defense,
@@ -609,7 +574,8 @@ const BoundMainStory = (props) => {
             gold,
             currentLevel,
             time,
-            currentCharacter.id
+            user.id,
+            user.jwt
         )
             .then((results) => {
                 console.log(results);
@@ -618,7 +584,7 @@ const BoundMainStory = (props) => {
     }
 
     const logout = () => {
-        window.sessionStorage.clear();
+        resetStore()
         navigate("/")
     }
 
@@ -626,7 +592,7 @@ const BoundMainStory = (props) => {
         <Wrapper>
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
             <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
-            
+
             <section className="textArea">
                 <Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
                     {"Text Speed >>"}
@@ -653,7 +619,7 @@ const BoundMainStory = (props) => {
                 />
             </section>
 
-            <Enemy 
+            <Enemy
                 imageDisplay={imageDisplay}
                 enemyBlockFade={enemyBlockFade}
                 currentEnemy={currentEnemy}
@@ -711,7 +677,7 @@ const BoundMainStory = (props) => {
 
                 <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
-            <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success"/>
+            <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
         </Wrapper>
 

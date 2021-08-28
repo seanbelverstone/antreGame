@@ -85,7 +85,6 @@ const CreateAccount = () => {
         API.createUser(username, email, password)
         .then(() => {
             // Set the username to session storage so we can use it later
-            window.sessionStorage.setItem("antreUsername", username);
             setSnackbarColor("success")
             setSnackbarMessage(`Account created. Welcome, ${username}`)
             setSnackbarDisplay(true);

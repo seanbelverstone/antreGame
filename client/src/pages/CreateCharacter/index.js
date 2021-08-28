@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,6 +15,16 @@ import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.authenticateUser.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -22,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CreateCharacter = () => {
+const BoundCreateCharacter = (props) => {
     
     const classes = useStyles();
     const [name, setName] = useState("");
@@ -35,14 +48,12 @@ const CreateCharacter = () => {
     const [defense, setDefense] = useState(0);
     const [wisdom, setWisdom] = useState(0);
     const [luck, setLuck] = useState(0);
-
     const [description, setDescription] = useState("");
     const [descriptonDisplay, setDescriptionDisplay] = useState(0);
     const [skill, setSkill] = useState("");
-
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
-    const userId = window.sessionStorage.getItem("id");
+    const { user, resetStore } = props;
 
     // By passing in charClass, setStats runs whenever the selected class is selected
     useEffect((charClass) => {
@@ -119,15 +130,14 @@ const CreateCharacter = () => {
     }
 
     const createNewCharacter = () => {
-        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
+        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, user.id, user.jwt)
             .then(results => {
-                console.log(results)
                 setSnackbarDisplay(true);
             })
     }
 
     const logout = () => {
-        window.sessionStorage.clear();
+        resetStore();
         navigate("/")
     }
 
@@ -201,5 +211,7 @@ const CreateCharacter = () => {
                     
     )
 }
+
+const CreateCharacter = connect(mapStateToProps, mapDispatchToProps)(BoundCreateCharacter);
 
 export default CreateCharacter;

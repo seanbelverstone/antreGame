@@ -1,9 +1,5 @@
 import axios from "axios";
 
-let jwtToken;
-
-
-
 export default {
 
     createUser: (username, email, password) => {
@@ -21,16 +17,14 @@ export default {
         }) 
     },
 
-    getAllCharacters: (userId) => {
-        jwtToken = window.sessionStorage.getItem("jwtToken");
+    getAllCharacters: (userId, jwtToken) => {
         return axios.get(`/api/characters/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`}
         })
     },
 
-    createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId) => {
-        jwtToken = window.sessionStorage.getItem("jwtToken");
+    createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId, jwtToken) => {
         return axios.post("/api/characters", {
             name, 
             race, 
@@ -47,8 +41,7 @@ export default {
         })
     },
 
-    updateCharacter: (health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id) => {
-        jwtToken = window.sessionStorage.getItem("jwtToken");
+    saveCharacter: (health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id, jwtToken) => {
         return axios.put(`/api/characters/${id}`, {
             health,
             strength,
@@ -75,8 +68,7 @@ export default {
         })
     },
     
-    deleteCharacter: (characterId) => {
-        jwtToken = window.sessionStorage.getItem("jwtToken");
+    deleteCharacter: (characterId, jwtToken) => {
         return axios.delete(`/api/characters/${characterId}`, {
             headers: {
                 'Authorization': `Bearer ${jwtToken}`}

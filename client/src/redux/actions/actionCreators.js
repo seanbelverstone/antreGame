@@ -19,3 +19,13 @@ export const updateCharacter = (options) => {
         time
     }
 }
+
+export const authenticateUser = (options) => {
+    const {
+        user
+    } = options;
+    return {
+        type: "AUTHENTICATE_USER",
+        user
+    }
+}
