@@ -137,8 +137,8 @@ export default {
                 break;
             case "Rogue":
                 skill = "Lucky Strike";
-                skillResult = Math.ceil(((3 * 9) * initalRoll) / enemyDef);
-                battleText = `You used Rapid Attack. Fast as lightning, you strike the enemy for ${skillResult} damage!`
+                battleText = `You used Lucky Strike. Your luck has been temporarily increased!`
+                skillResult = 40;
                 break;
             case "Paladin":
                 skill = "Holy remedy";

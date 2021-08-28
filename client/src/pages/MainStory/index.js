@@ -413,7 +413,7 @@ const MainStory = () => {
                         setWarriorDefenseRound(roundCount + 3)
                     } else if (currentCharacter.charClass === "Rogue") {
                         setTempLuck(luck);
-                        setLuck(20);
+                        setLuck(results.skillResult);
                         setRogueLuckRound(roundCount + 1)
                     } else {
                         setCurrentUserHealth(maxHealth)
@@ -433,7 +433,7 @@ const MainStory = () => {
             setDefense(tempDefense);
         }
         if (currentCharacter.charClass === "Rogue" && roundCount === rogueLuckRound) {
-            // returns the warrior's defense to it's regular level
+            // returns the rogue's luck to it's regular level
             setLuck(tempLuck);
         }
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
