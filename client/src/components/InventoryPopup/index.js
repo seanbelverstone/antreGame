@@ -55,42 +55,42 @@ const InventoryPopup = (props) => {
             items.forEach((item) => {
                 const itemName = Object.keys(item);
                 const quantity = Object.values(item)[0];
-                const armorPiece = Object.values(item);
+                const armorPiece = Object.values(item)[0];
                 if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;
                 } else if (item.length && item.head || item.chest || item.hands || item.legs || item.feet) {
                     note = `You equipped the ${armorPiece}. `
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (item.torch === 0) {
                     note = `You lost your torch.`;
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (Math.sign(item.health) === 1) {
                     note = `You restored ${item.health} health.`
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (quantity >= 1) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${quantity} ${camelToTitle(itemName[0])}. `;
                     if(itemName[0] === 'healthPotion' && quantity > 1) {
                         note = `You gained ${quantity} Health Potions. `;
                     }
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (item.weapon && Object.values(item.weapon)[1] > 1) {
                     // if the weapon has more than 1 damage (not no weapon)
                     note = `You gained the ${item.weapon.name}, which does ${item.weapon.dmg} damage. `;
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (Math.sign(quantity) === -1) {
                     // if the modifier is negative, set the note to say you lost an item
                     note = `You lost ${quantity} ${itemName}. `;
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else if (Object.values(item.weapon)[1] <= 1) {
                     note = `You lost your weapon. Your damage has been reduced to 1. `;
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 } else {
                     // if the item is neither negative nor positive (0), just say that they lost the item. This relates to things like the torch
                     note = `You lost your ${armorPiece}. `;
-                    addIfUnique(note);
+                    return addIfUnique(note);
                 }
             });
         }

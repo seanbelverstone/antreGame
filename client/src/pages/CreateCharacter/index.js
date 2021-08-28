@@ -69,7 +69,7 @@ const CreateCharacter = () => {
                 setWisdom(2);
                 setLuck(4);
                 setDescription("As deadly as they are cunning, the rogue utilizes their luck to end fights quickly.")
-                setSkill("Lucky Strike: Guaranteed critical hit next turn.")
+                setSkill("Gambler's Strike: Massive increase to critical hit chance on the next turn.")
                 setDescriptionDisplay(1)
                 break;
             case "Paladin":

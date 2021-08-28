@@ -53,7 +53,7 @@ export default {
         let enemyLuckRoll = diceRoll();
 
         if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
-            if (critChance(Math.floor(luck / 2))) {
+            if (critChance(Math.floor(luck / 1.5))) {
                 battleText = `You roll for a special attack. \n You compare luck values with the enemy, your roll is higher, AND it's a crit! \n Your special attack does ${critDamage} damage!`;
                 return {
                     battleText,
@@ -136,9 +136,9 @@ export default {
                 skillResult = 20;
                 break;
             case "Rogue":
-                skill = "Lucky Strike";
-                battleText = `You used Lucky Strike. Your luck has been temporarily increased!`
-                skillResult = 40;
+                skill = "Gambler's Strike";
+                battleText = `You used Gambler's Strike. Your luck has been massively increased for 1 turn!`
+                skillResult = 20;
                 break;
             case "Paladin":
                 skill = "Holy remedy";
