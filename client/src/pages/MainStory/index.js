@@ -36,13 +36,10 @@ const BoundMainStory = (props) => {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
-    const [currentCharacter, setCurrentCharacter] = useState({})
-    const [currentLevel, setCurrentLevel] = useState("")
     const [storyText, setStoryText] = useState("");
     const [attackText, setAttackText] = useState("");
     const [modifier, setModifier] = useState([]);
     const [options, setOptions] = useState([]);
-    const [clicked, setClicked] = useState([]);
     const [currentEnemy, setCurrentEnemy] = useState({});
     const [enemyName, setEnemyName] = useState("");
     const [victoryTarget, setVictoryTarget] = useState({});
@@ -58,27 +55,10 @@ const BoundMainStory = (props) => {
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
-    const [currentUserHealth, setCurrentUserHealth] = useState(1);
     const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
     const [maxHealth, setMaxHealth] = useState();
 
     // stats that will change and be passed to save function
-    const [strength, setStrength] = useState();
-    const [defense, setDefense] = useState();
-    const [wisdom, setWisdom] = useState();
-    const [luck, setLuck] = useState();
-    const [weapon, setWeapon] = useState();
-    const [weaponDmg, setWeaponDmg] = useState(3);
-    const [head, setHead] = useState();
-    const [chest, setChest] = useState();
-    const [legs, setLegs] = useState();
-    const [hands, setHands] = useState();
-    const [feet, setFeet] = useState();
-    const [torch, setTorch] = useState();
-    const [amulet, setAmulet] = useState();
-    const [healthPotions, setHealthPotions] = useState();
-    const [gold, setGold] = useState();
-    const [time, setTime] = useState();
     const [roundCount, setRoundCount] = useState(1);
     const [skillUsed, setSkillUsed] = useState(false);
     const [cooldownRound, setCooldownRound] = useState(0);
@@ -87,15 +67,10 @@ const BoundMainStory = (props) => {
     const [rogueLuckRound, setRogueLuckRound] = useState(0)
     const [tempLuck, setTempLuck] = useState(0);
 
-    const { updateCharacter, levels, user, resetStore } = props;
+    const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
     useEffect(() => {
-        // grabs the current character selected and stores it in state
-        setCurrentCharacter(JSON.parse(window.sessionStorage.getItem("currentCharacter")));
-    }, [])
-
-    useEffect(() => {
-        handleLevel(currentCharacter.level);
+        handleText(levels.current);
     }, [levels])
 
     useEffect(() => {
@@ -110,7 +85,7 @@ const BoundMainStory = (props) => {
     useEffect(() => {
         // Health bars now update based on the enemy and user's health
         setHealthWidth();
-    }, [currentEnemyHealth, currentUserHealth])
+    }, [currentEnemyHealth, stats.health])
 
     const handleLevel = (choice) => {
         // once level has been chosen, look at the modifiers that are present
@@ -139,7 +114,6 @@ const BoundMainStory = (props) => {
     }
 
     const handleText = (choice) => {
-        console.log(choice);
         // loops through the storylines array, and matches the character's level with the corresponding object
         for (let i = 0; i < storylines.length; i++) {
 
@@ -189,60 +163,52 @@ const BoundMainStory = (props) => {
     }
 
     const checkModifier = () => {
-        console.log(levels);
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
-        // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
-        if (modifier.length && currentCharacter.level !== currentLevel) {
+        if (modifier.length) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
-                console.log(mod)
-                // FYI, i hate using an if statement like this.
-                // tried to use a switch case but that didnt work for some reason
+                const currentMod = Object.keys(mod)[0];
+                console.log(mod[currentMod]);
                 if (mod.weapon) {
-                    // setWeapon(mod.weapon.name)
-                    // setWeaponDmg(mod.weapon.dmg)
                     updateCharacter({
                         inventory: {
-                            weapon: mod.weapon,
+                            weapon: mod.weapon.name,
                             weaponDmg: mod.weapon.dmg
                         }
                     })
                 } else if (mod.health) {
-                    if (currentUserHealth + mod.health > maxHealth) {
-                        setCurrentUserHealth(maxHealth)
-                    } else {
-                        setCurrentUserHealth(currentUserHealth + mod.health)
-                    }
-                } else if (mod.strength) {
-                    setStrength(strength + mod.strength)
-                } else if (mod.defense) {
-                    setDefense(defense + mod.defense)
-                } else if (mod.wisdom) {
-                    setWisdom(wisdom + mod.wisdom)
-                } else if (mod.luck) {
-                    setLuck(luck + mod.luck)
-                } else if (mod.head) {
-                    setHead(mod.head)
-                } else if (mod.chest) {
-                    setChest(mod.chest)
-                } else if (mod.legs) {
-                    setLegs(mod.legs)
-                } else if (mod.hands) {
-                    setHands(mod.hands)
-                } else if (mod.feet) {
-                    setFeet(mod.feet)
-                } else if (mod.torch || mod.torch === 0) {
-                    setTorch(mod.torch)
-                } else if (mod.amulet) {
-                    setAmulet(mod.amulet)
-                } else if (mod.healthPotion) {
-                    setHealthPotions(healthPotions + mod.healthPotion)
-                } else if (mod.gold) {
-                    if (gold + mod.gold < 0) {
-                        setGold(0)
-                    } else {
-                        setGold(gold + mod.gold)
-                    }
+                    updateCharacter({
+                        stats: {
+                            health: stats.health + mod.health > maxHealth ? maxHealth : stats.health + mod.health
+                        }
+                    });
+                } else if (mod[currentMod] === 'strength' ||
+                    mod[currentMod] === 'defense' ||
+                    mod[currentMod] === 'wisdom' ||
+                    mod[currentMod] === 'luck') {
+                        updateCharacter({
+                            stats: {
+                                [currentMod]: stats[currentMod] + mod[currentMod]
+                            }
+                        });
+                } else if (mod[currentMod] === 'head' ||
+                    mod[currentMod] === 'chest' ||
+                    mod[currentMod] === 'legs' ||
+                    mod[currentMod] === 'hands' ||
+                    mod[currentMod] === 'feet' ||
+                    mod[currentMod] === 'torch' ||
+                    mod[currentMod] === 'amulet') {
+                        updateCharacter({
+                            inventory: {
+                                [currentMod]: mod[currentMod]
+                            }
+                        });
+                } else if (mod[currentMod] === 'healthPotions' || mod[currentMod] === 'gold') {
+                        updateCharacter({
+                            inventory: {
+                                [currentMod]: inventory[currentMod] + mod[currentMod]
+                            }
+                        });
                 } else if (mod.luckCheck) {
                     setSnackbarDisplay(false);
                     const checkingLuck = async () => {
@@ -336,41 +302,12 @@ const BoundMainStory = (props) => {
         }
     }
 
-    // const updateClickedArray = (option) => {
-    //     const { updateCharacter, levels } = props;
-    //     // prevents the option from being added to the array twice.
-    //     if ( option.target === "01-Start"
-    //      || option.target === "02-Tunnel"
-    //      || option.target === "02-Tunnel Return Variant"
-    //      || option.target === "03-Three Paths"
-    //      || option.target === "13a-Wrong room"
-    //      || option.target === "13aa-Wrong room" 
-    //      || option.target === "13b-Correct room" 
-    //      || option.target === "13bb-Correct room") {
-    //         // For the random room puzzle, don't deactivate anything
-    //         return;
-    //     } else if (clicked.includes(option.target)) {
-    //         disableIfClicked(option);
-    //         return;
-    //     } else {
-    //         updateCharacter({
-    //             levels: {
-    //                 visited: [
-    //                     ...levels.visited,
-    //                     option.target
-    //                 ]
-    //             }
-    //         });
-    //         // setClicked([...clicked, option.target])
-    //     }
-    // }
-
     const disableIfClicked = () => {
         if (!options) {
             return;
         }
         for (let item of options) {
-            if (clicked.includes(item.target)) {
+            if (levels.visited.includes(item.target)) {
                 let disabledElement = document.getElementById(item.label);
                 disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
             }
@@ -378,6 +315,8 @@ const BoundMainStory = (props) => {
     };
 
     const handleFight = (option) => {
+        const { weaponDmg, healthPotions } = inventory;
+        const { health, strength, defense, wisdom, luck } = stats;
         let skillButton = document.getElementById("Use skill");
         switch (option.label) {
             case "Normal Attack":
@@ -461,6 +400,18 @@ const BoundMainStory = (props) => {
     }
 
     const setHealthWidth = () => {
+        switch (stats.charClass) {
+            case "Warrior":
+                setMaxHealth(80)
+                break;
+            case "Rogue":
+                setMaxHealth(60)
+                break;
+            case "Paladin":
+                setMaxHealth(70)
+                break;
+            default: return
+        }
         // This sets the red enemy health bar to be a percentage of the total amount
         let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
         setEnemyHealthWidth(`${enemyNewWidth}%`);
@@ -472,7 +423,7 @@ const BoundMainStory = (props) => {
             return;
         }
 
-        let userNewWidth = (100 * currentUserHealth) / maxHealth;
+        let userNewWidth = (100 * stats.health) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
 
         if (userNewWidth <= 0) {
@@ -524,35 +475,6 @@ const BoundMainStory = (props) => {
         setAnchorEl(null);
     };
 
-    // const updateCharacter = () => {
-    //     // Update sessionStorage
-    //     console.log("Updating character")
-    //     window.sessionStorage.setItem("currentCharacter", JSON.stringify({
-    //         "id": currentCharacter.id,
-    //         "name": currentCharacter.name,
-    //         "race": currentCharacter.race,
-    //         "charClass": currentCharacter.charClass,
-    //         "health": currentUserHealth,
-    //         "strength": strength,
-    //         "defense": defense,
-    //         "wisdom": wisdom,
-    //         "luck": luck,
-    //         "weapon": weapon,
-    //         "weaponDamage": weaponDmg,
-    //         "head": head,
-    //         "chest": chest,
-    //         "legs": legs,
-    //         "hands": hands,
-    //         "feet": feet,
-    //         "torch": torch,
-    //         "amulet": amulet,
-    //         "healthPotions": healthPotions,
-    //         "gold": gold,
-    //         "level": currentLevel,
-    //         "time": time
-    //     }))
-    // }
-
     const saveGame = async () => {
         // updateCharacter();
         API.saveCharacter(
@@ -591,7 +513,7 @@ const BoundMainStory = (props) => {
     return (
         <Wrapper>
             <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
-            <a id="back" href={"/select"}>QUIT TO<br />MAIN MENU</a>
+            <a id="back" onClick={() => navigate('/select')}>QUIT TO<br />MAIN MENU</a>
 
             <section className="textArea">
                 <Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
@@ -626,8 +548,8 @@ const BoundMainStory = (props) => {
                 currentEnemyHealth={currentEnemyHealth}
                 enemyHealthWidth={enemyHealthWidth}
                 enemyImage={enemyImage}
-                currentCharacter={currentCharacter}
-                currentUserHealth={currentUserHealth}
+                characterName={stats.name}
+                currentUserHealth={stats.health}
                 maxHealth={maxHealth}
                 userHealthWidth={userHealthWidth}
                 optionFade={optionFade}
@@ -650,26 +572,26 @@ const BoundMainStory = (props) => {
                 <Inventory
                     id="inventory"
                     disabled={buttonDisabled}
-                    health={currentUserHealth}
+                    health={stats.health}
                     maxHealth={maxHealth}
-                    strength={strength}
-                    defense={defense}
-                    wisdom={wisdom}
-                    luck={luck}
-                    weapon={weapon}
-                    weaponDmg={weaponDmg}
-                    head={head}
-                    chest={chest}
-                    legs={legs}
-                    hands={hands}
-                    feet={feet}
-                    torch={torch}
-                    amulet={amulet}
-                    healthPotions={healthPotions}
-                    gold={gold}
-                    name={currentCharacter.name}
-                    race={currentCharacter.race}
-                    charClass={currentCharacter.charClass}
+                    strength={stats.strength}
+                    defense={stats.defense}
+                    wisdom={stats.wisdom}
+                    luck={stats.luck}
+                    weapon={inventory.weapon}
+                    weaponDmg={inventory.weaponDmg}
+                    head={inventory.head}
+                    chest={inventory.chest}
+                    legs={inventory.legs}
+                    hands={inventory.hands}
+                    feet={inventory.feet}
+                    torch={inventory.torch}
+                    amulet={inventory.amulet}
+                    healthPotions={inventory.healthPotions}
+                    gold={inventory.gold}
+                    name={stats.name}
+                    race={stats.race}
+                    charClass={stats.charClass}
                 />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>

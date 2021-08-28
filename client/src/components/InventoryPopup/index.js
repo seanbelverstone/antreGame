@@ -23,6 +23,7 @@ const InventoryPopup = (props) => {
         setDisplay,
         items
     } = props;
+    console.log(items);
     const classes = useStyles();
     const [messages, setMessages] = useState([]);
 
@@ -33,7 +34,9 @@ const InventoryPopup = (props) => {
     }, [display]);
 
     useEffect(() => {
-        checkItems();
+        if (!items[0]?.none) {
+            checkItems();
+        }
     }, [items])
 
     const addIfUnique = (note) => {
