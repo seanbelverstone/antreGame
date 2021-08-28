@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
 import { ButtonGroup, Button, Menu, MenuItem } from "@material-ui/core";
 import { navigate } from "hookrouter";
+import * as actionCreators from "../../redux/actions/actionCreators";
 import API from "../../utils/API";
 import Wrapper from "../../components/Wrapper";
 import storylines from "../../utils/storylines.json";
@@ -14,7 +17,20 @@ import Typewriter from 'typewriter-effect';
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const MainStory = () => {
+const mapStateToProps = (state) => {
+    return {
+        inventory: state.updateCharacter.inventory,
+        stats: state.updateCharacter.stats,
+        levels: state.updateCharacter.levels,
+        time: state.updateCharacter.time
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
+const BoundMainStory = (props) => {
 
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
@@ -116,22 +132,43 @@ const MainStory = () => {
     };
 
     const handleLevel = (choice) => {
+        const { updateCharacter, levels } = props;
         // once level has been chosen, look at the modifiers that are present
-        setCurrentLevel(choice)
-
-        // sets max health based on the character's class
-        switch (currentCharacter.charClass) {
-            case "Warrior":
-                setMaxHealth(80)
+        switch (choice) {
+            case '01-Start' || "02-Tunnel" || "02-Tunnel Return Variant" ||
+                "03-Three Paths" || "13a-Wrong room" || "13aa-Wrong room" ||
+                "13b-Correct room" || "13bb-Correct room":
+                updateCharacter({
+                    level: {
+                        current: choice
+                    }
+                });
                 break;
-            case "Rogue":
-                setMaxHealth(60)
-                break;
-            case "Paladin":
-                setMaxHealth(70)
-                break;
-            default: return
+            default:
+            updateCharacter({
+                levels: {
+                    visited: [
+                        ...levels.visited,
+                        choice
+                    ],
+                    current: choice
+                }
+            });
         }
+
+        // // sets max health based on the character's class
+        // switch (currentCharacter.charClass) {
+        //     case "Warrior":
+        //         setMaxHealth(80)
+        //         break;
+        //     case "Rogue":
+        //         setMaxHealth(60)
+        //         break;
+        //     case "Paladin":
+        //         setMaxHealth(70)
+        //         break;
+        //     default: return
+        // }
     }
 
     const handleText = (choice) => {
@@ -184,19 +221,25 @@ const MainStory = () => {
     }
 
     const checkModifier = () => {
+        const { levels } = props;
+        console.log(levels);
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // adding the second clause makes sure that users cant just keep refreshing the same page to get unlimited upgrades
-        console.log(modifier)
         if (modifier.length && currentCharacter.level !== currentLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 console.log(mod)
-
                 // FYI, i hate using an if statement like this.
                 // tried to use a switch case but that didnt work for some reason
                 if (mod.weapon) {
-                    setWeapon(mod.weapon.name)
-                    setWeaponDmg(mod.weapon.dmg)
+                    // setWeapon(mod.weapon.name)
+                    // setWeaponDmg(mod.weapon.dmg)
+                    updateCharacter({
+                        inventory: {
+                            weapon: mod.weapon,
+                            weaponDmg: mod.weapon.dmg
+                        }
+                    })
                 } else if (mod.health) {
                     if (currentUserHealth + mod.health > maxHealth) {
                         setCurrentUserHealth(maxHealth)
@@ -266,7 +309,7 @@ const MainStory = () => {
                 }
             })
         }
-        updateCharacter();
+        // updateCharacter();
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
@@ -327,25 +370,34 @@ const MainStory = () => {
         }
     }
 
-    const updateClickedArray = (option) => {
-        // prevents the option from being added to the array twice.
-        if ( option.target === "01-Start"
-         || option.target === "02-Tunnel"
-         || option.target === "02-Tunnel Return Variant"
-         || option.target === "03-Three Paths"
-         || option.target === "13a-Wrong room"
-         || option.target === "13aa-Wrong room" 
-         || option.target === "13b-Correct room" 
-         || option.target === "13bb-Correct room") {
-            // For the random room puzzle, don't deactivate anything
-            return;
-        } else if (clicked.includes(option.target)) {
-            disableIfClicked(option);
-            return;
-        } else {
-            setClicked([...clicked, option.target])
-        }
-    }
+    // const updateClickedArray = (option) => {
+    //     const { updateCharacter, levels } = props;
+    //     // prevents the option from being added to the array twice.
+    //     if ( option.target === "01-Start"
+    //      || option.target === "02-Tunnel"
+    //      || option.target === "02-Tunnel Return Variant"
+    //      || option.target === "03-Three Paths"
+    //      || option.target === "13a-Wrong room"
+    //      || option.target === "13aa-Wrong room" 
+    //      || option.target === "13b-Correct room" 
+    //      || option.target === "13bb-Correct room") {
+    //         // For the random room puzzle, don't deactivate anything
+    //         return;
+    //     } else if (clicked.includes(option.target)) {
+    //         disableIfClicked(option);
+    //         return;
+    //     } else {
+    //         updateCharacter({
+    //             levels: {
+    //                 visited: [
+    //                     ...levels.visited,
+    //                     option.target
+    //                 ]
+    //             }
+    //         });
+    //         // setClicked([...clicked, option.target])
+    //     }
+    // }
 
     const disableIfClicked = () => {
         if (!options) {
@@ -507,34 +559,34 @@ const MainStory = () => {
         setAnchorEl(null);
       };
 
-    const updateCharacter = () => {
-        // Update sessionStorage
-        console.log("Updating character")
-        window.sessionStorage.setItem("currentCharacter", JSON.stringify({
-            "id": currentCharacter.id,
-            "name": currentCharacter.name,
-            "race": currentCharacter.race,
-            "charClass": currentCharacter.charClass,
-            "health": currentUserHealth,
-            "strength": strength,
-            "defense": defense,
-            "wisdom": wisdom,
-            "luck": luck,
-            "weapon": weapon,
-            "weaponDamage": weaponDmg,
-            "head": head,
-            "chest": chest,
-            "legs": legs,
-            "hands": hands,
-            "feet": feet,
-            "torch": torch,
-            "amulet": amulet,
-            "healthPotions": healthPotions,
-            "gold": gold,
-            "level": currentLevel,
-            "time": time
-        }))
-    }
+    // const updateCharacter = () => {
+    //     // Update sessionStorage
+    //     console.log("Updating character")
+    //     window.sessionStorage.setItem("currentCharacter", JSON.stringify({
+    //         "id": currentCharacter.id,
+    //         "name": currentCharacter.name,
+    //         "race": currentCharacter.race,
+    //         "charClass": currentCharacter.charClass,
+    //         "health": currentUserHealth,
+    //         "strength": strength,
+    //         "defense": defense,
+    //         "wisdom": wisdom,
+    //         "luck": luck,
+    //         "weapon": weapon,
+    //         "weaponDamage": weaponDmg,
+    //         "head": head,
+    //         "chest": chest,
+    //         "legs": legs,
+    //         "hands": hands,
+    //         "feet": feet,
+    //         "torch": torch,
+    //         "amulet": amulet,
+    //         "healthPotions": healthPotions,
+    //         "gold": gold,
+    //         "level": currentLevel,
+    //         "time": time
+    //     }))
+    // }
 
     const saveGame = async () => {
         updateCharacter();
@@ -665,5 +717,7 @@ const MainStory = () => {
 
     )
 }
+
+const MainStory = connect(mapStateToProps, mapDispatchToProps)(BoundMainStory);
 
 export default MainStory;
