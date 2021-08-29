@@ -57,7 +57,6 @@ const BoundCharacterBlock = (props) => {
         updateCharacter({
             levels: {
                 visited: [
-                    ...levels.visited,
                     isBlacklistedChoice(character.level) ? '01-Start' : character.level
                 ],
                 current: character.level

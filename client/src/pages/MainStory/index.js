@@ -454,7 +454,8 @@ const BoundMainStory = (props) => {
             {
                 "death": true
             }
-        ])
+        ]);
+        saveGame();
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
