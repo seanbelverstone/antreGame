@@ -5,6 +5,7 @@ import * as actionCreators from "../../redux/actions/actionCreators";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import DeleteButton from "../DeleteButton";
+import { isBlacklistedChoice } from '../../utils/functions';
 import "./style.css";
 
 const mapStateToProps = (state) => {
@@ -57,7 +58,7 @@ const BoundCharacterBlock = (props) => {
             levels: {
                 visited: [
                     ...levels.visited,
-                    character.level
+                    isBlacklistedChoice(character.level) ? '01-Start' : character.level
                 ],
                 current: character.level
             }

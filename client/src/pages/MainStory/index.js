@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux"
-import { ButtonGroup, Button, Menu, MenuItem } from "@material-ui/core";
+import { Button, Menu, MenuItem } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import * as actionCreators from "../../redux/actions/actionCreators";
 import API from "../../utils/API";
+import { stringToCamel, isBlacklistedChoice } from '../../utils/functions';
 import Wrapper from "../../components/Wrapper";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
@@ -90,28 +91,25 @@ const BoundMainStory = (props) => {
 
     const handleLevel = (choice) => {
         // once level has been chosen, look at the modifiers that are present
-        switch (choice) {
-            case '01-Start' || "02-Tunnel" || "02-Tunnel Return Variant" ||
-                "03-Three Paths" || "13a-Wrong room" || "13aa-Wrong room" ||
-                "13b-Correct room" || "13bb-Correct room":
-                updateCharacter({
-                    level: {
-                        current: choice
-                    }
-                });
-                break;
-            default:
-                updateCharacter({
-                    levels: {
-                        visited: [
-                            ...levels.visited,
-                            choice
-                        ],
-                        current: choice
-                    }
-                });
+        if (isBlacklistedChoice(choice)) {
+            updateCharacter({
+                level: {
+                    current: choice
+                }
+            });
+            handleText(choice);
+        } else {
+            updateCharacter({
+                levels: {
+                    visited: [
+                        ...levels.visited,
+                        choice
+                    ],
+                    current: choice
+                }
+            });
+            handleText(choice);
         }
-        handleText(levels.current);
     }
 
     const handleText = (choice) => {
@@ -165,7 +163,8 @@ const BoundMainStory = (props) => {
 
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
-        if (modifier.length) {
+        // features a check so if they've already visited this level, they can't keep getting the same buff
+        if (modifier.length && levels.visited.indexOf(levels.current)) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 const currentMod = Object.keys(mod)[0];
@@ -173,7 +172,7 @@ const BoundMainStory = (props) => {
                     updateCharacter({
                         inventory: {
                             weapon: mod.weapon.name,
-                            weaponDmg: mod.weapon.dmg
+                            weaponDamage: mod.weapon.dmg
                         }
                     })
                 } else if (mod.health) {
@@ -262,18 +261,16 @@ const BoundMainStory = (props) => {
     }
 
     const checkHealth = () => {
-        if (currentEnemyHealth > 0 && currentUserHealth > 0) {
+        if (currentEnemyHealth > 0 && stats.health > 0) {
             setTimeout(() => {
                 enemyTurn();
             }, 3000)
-        } else {
-            return;
         }
     }
 
     const enemyTurn = () => {
-        const enemyAttack = async () => {
-            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, defense, currentEnemy.luck);
+        const enemyAttack = () => {
+            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
         };
 
         enemyAttack().then((results) => {
@@ -303,32 +300,32 @@ const BoundMainStory = (props) => {
         }
         for (let item of options) {
             if (levels.visited.includes(item.target)) {
-                let disabledElement = document.getElementById(item.label);
+                let disabledElement = document.getElementById(stringToCamel(item.label));
                 disabledElement.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);")
             }
         }
     };
 
-    const handleFight = (option) => {
-        const { weaponDmg, healthPotions } = inventory;
+    const handleFight = async (option) => {
+        const { weaponDamage, healthPotions } = inventory;
         const { health, strength, defense, wisdom, luck } = stats;
-        let skillButton = document.getElementById("Use skill");
+        let skillButton = document.getElementById("useSkill");
         switch (option.label) {
             case "Normal Attack":
-                const normalAttack = async () => {
-                    return attacks.normalAttack(weaponDmg, strength, currentEnemy.defense, luck);
+                const normalAttack = () => {
+                    return attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
                 };
-                normalAttack().then(results => {
-                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                normalAttack().then(async results => {
+                    await setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 });
                 break;
             case "Special Attack":
-                const specialAttack = async () => {
-                    return attacks.specialAttack(weaponDmg, strength, currentEnemy.defense, luck, currentEnemy.luck);
+                const specialAttack = () => {
+                    return attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
                 };
-                specialAttack().then(results => {
-                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                specialAttack().then(async results => {
+                    await setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
                 })
                 break;
@@ -340,11 +337,11 @@ const BoundMainStory = (props) => {
                     if (results.healthIncrease > 0) {
                         setHealthPotions(healthPotions - 1)
                         // if the user's health with the increase added is MORE than their max, just set it to max.
-                        if (currentUserHealth + results.healthIncrease > maxHealth) {
-                            setCurrentUserHealth(maxHealth);
-                        } else {
-                            setCurrentUserHealth(currentUserHealth + results.healthIncrease)
-                        }
+                        updateCharacter({
+                            stats: {
+                                health: stats.health + results.healthIncrease > maxHealth ? maxHealth : stats.health + results.healthIncrease
+                            }
+                        })
                     }
                     setAttackText(results.battleText)
                 })
@@ -359,7 +356,7 @@ const BoundMainStory = (props) => {
                     setSkillUsed(true);
                     setCooldownRound(roundCount + results.cooldownLength)
                     setAttackText(results.battleText)
-                    if (currentCharacter.charClass === "Warrior") {
+                    if (stats.charClass === "Warrior") {
                         setTempDefense(defense);
                         updateCharacter({
                             stats: {
@@ -367,7 +364,7 @@ const BoundMainStory = (props) => {
                             }
                         });
                         setWarriorDefenseRound(roundCount + 3)
-                    } else if (currentCharacter.charClass === "Rogue") {
+                    } else if (stats.charClass === "Rogue") {
                         setTempLuck(luck);
                         updateCharacter({
                             stats: {
@@ -376,7 +373,11 @@ const BoundMainStory = (props) => {
                         })
                         setRogueLuckRound(roundCount + 1)
                     } else {
-                        setCurrentUserHealth(maxHealth)
+                        updateCharacter({
+                            stats: {
+                                health: maxHealth
+                            }
+                        });
                     }
                 })
                 break;
@@ -386,15 +387,24 @@ const BoundMainStory = (props) => {
         // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
         setRoundCount(current => current + 1)
-        checkHealth();
+        await checkHealth();
 
-        if (currentCharacter.charClass === "Warrior" && roundCount === warriorDefenseRound) {
-            // returns the warrior's defense to it's regular level
-            setDefense(tempDefense);
+
+        if (stats.charClass === "Warrior" && (roundCount === warriorDefenseRound || currentEnemyHealth <= 0)) {
+            // returns the warrior's defense to it's regular level if the round numbers match or the enemy is dead
+            updateCharacter({
+                stats: {
+                    defense: tempDefense
+                }
+            });
         }
-        if (currentCharacter.charClass === "Rogue" && roundCount === rogueLuckRound) {
-            // returns the rogue's luck to it's regular level
-            setLuck(tempLuck);
+        if (stats.charClass === "Rogue" && (roundCount === rogueLuckRound || currentEnemyHealth <= 0)) {
+            // returns the rogue's luck to it's regular level if the round numbers match or the enemy is dead
+            updateCharacter({
+                stats: {
+                    luck: tempLuck
+                }
+            });
         }
         // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
         if (cooldownRound === roundCount && skillUsed) {
@@ -579,7 +589,7 @@ const BoundMainStory = (props) => {
                     wisdom={stats.wisdom}
                     luck={stats.luck}
                     weapon={inventory.weapon}
-                    weaponDmg={inventory.weaponDamage}
+                    weaponDamage={inventory.weaponDamage}
                     head={inventory.head}
                     chest={inventory.chest}
                     legs={inventory.legs}
