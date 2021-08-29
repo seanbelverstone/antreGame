@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
         inventory: state.updateCharacter.inventory,
         stats: state.updateCharacter.stats,
         levels: state.updateCharacter.levels,
-        time: state.updateCharacter.time
+        time: state.updateCharacter.time,
+        user: state.authenticateUser.user
     }
 }
 
@@ -22,49 +23,49 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const BoundCharacterBlock = (props) => {
-    const { updateCharacter, character, levels } = props;
+    const { updateCharacter, character, user } = props;
     
-    const playThisCharacter = (character) => {
+    const playThisCharacter = (selectedCharacter) => {
         updateCharacter({
             inventory: {
-                weapon: character.weapon,
-                weaponDamage: character.weaponDamage,
-                head: character.head,
-                chest: character.chest,
-                legs: character.legs,
-                hands: character.hands,
-                feet: character.feet,
-                torch: character.torch,
-                amulet: character.amulet,
-                healthPotions: character.healthPotions,
-                gold: character.gold
+                weapon: selectedCharacter.weapon,
+                weaponDamage: selectedCharacter.weaponDamage,
+                head: selectedCharacter.head,
+                chest: selectedCharacter.chest,
+                legs: selectedCharacter.legs,
+                hands: selectedCharacter.hands,
+                feet: selectedCharacter.feet,
+                torch: selectedCharacter.torch,
+                amulet: selectedCharacter.amulet,
+                healthPotions: selectedCharacter.healthPotions,
+                gold: selectedCharacter.gold
             }
         });
         updateCharacter({
             stats: {
-                id: character.id,
-                name: character.name,
-                race: character.race,
-                charClass: character.charClass,
-                health: character.health,
-                strength: character.strength,
-                defense: character.defense,
-                wisdom: character.wisdom,
-                luck: character.luck
+                id: selectedCharacter.id,
+                name: selectedCharacter.name,
+                race: selectedCharacter.race,
+                charClass: selectedCharacter.charClass,
+                health: selectedCharacter.health,
+                strength: selectedCharacter.strength,
+                defense: selectedCharacter.defense,
+                wisdom: selectedCharacter.wisdom,
+                luck: selectedCharacter.luck
             }
 
         });
         updateCharacter({
             levels: {
                 visited: [
-                    isBlacklistedChoice(character.level) ? '01-Start' : character.level
+                    isBlacklistedChoice(selectedCharacter.level) ? '01-Start' : selectedCharacter.level
                 ],
-                current: character.level
+                current: selectedCharacter.level
             }
         });
         updateCharacter({
             time: {
-                value: character.time
+                value: selectedCharacter.time
             }
         });
         navigate("/play");
@@ -121,7 +122,7 @@ const BoundCharacterBlock = (props) => {
                     PLAY
                 </Button>
 
-                <DeleteButton id={character.id}/>
+                <DeleteButton id={character.id} jwtToken={user.jwtToken}/>
             </section>
         </div>
     )

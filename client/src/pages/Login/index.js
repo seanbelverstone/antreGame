@@ -46,7 +46,7 @@ const BoundLogin = (props) => {
                     user: {
                         id: results.data.user.id,
                         username: username,
-                        jwt: results.data.token
+                        jwtToken: results.data.token
                     }
                 });
             })

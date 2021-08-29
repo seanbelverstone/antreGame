@@ -29,7 +29,7 @@ const BoundSelectCharacter = (props) => {
     const { user, resetStore } = props;
 
     useEffect(() => {
-        API.getAllCharacters(user.id, user.jwt)
+        API.getAllCharacters(user.id, user.jwtToken)
         .then(results => {
             // pushes the data to the characters array
             const newCharacters = results.data;

@@ -2,7 +2,7 @@ export const initialState = {
     user: {
         id: '',
         username: '',
-        jwt: ''
+        jwtToken: ''
     }
 }
 

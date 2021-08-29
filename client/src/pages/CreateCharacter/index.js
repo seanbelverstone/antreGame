@@ -130,7 +130,7 @@ const BoundCreateCharacter = (props) => {
     }
 
     const createNewCharacter = () => {
-        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, user.id, user.jwt)
+        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, user.id, user.jwtToken)
             .then(results => {
                 setSnackbarDisplay(true);
             })

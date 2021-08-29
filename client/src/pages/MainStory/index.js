@@ -509,7 +509,7 @@ const BoundMainStory = (props) => {
             inventory.gold,
             levels.current,
             time.value,
-            user.jwt
+            user.jwtToken
         )
             .then((results) => {
                 setSaveGameDisplay(true);
