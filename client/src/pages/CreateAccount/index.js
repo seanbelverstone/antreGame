@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { navigate } from "hookrouter";
 import { TextField, Button } from "@material-ui/core";
 import Wrapper from "../../components/Wrapper";
 import DefaultPopup from "../../components/DefaultPopup";
@@ -86,7 +87,7 @@ const CreateAccount = () => {
         .then(() => {
             // Set the username to session storage so we can use it later
             setSnackbarColor("success")
-            setSnackbarMessage(`Account created. Welcome, ${username}`)
+            setSnackbarMessage(`Account created. Welcome, ${username}!`)
             setSnackbarDisplay(true);
         })
         .catch((err) => {
@@ -98,7 +99,7 @@ const CreateAccount = () => {
 
     return(
         <Wrapper>
-            <a id="back" href={"/"}>BACK</a>
+            <a id="back" onClick={() => navigate('/')}>BACK</a>
             <div className="title">CREATE ACCOUNT</div>
             <form noValidate autoComplete="off" id="createAccountForm" onSubmit={handleSubmit}>
 

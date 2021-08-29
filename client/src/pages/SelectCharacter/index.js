@@ -45,7 +45,9 @@ const BoundSelectCharacter = (props) => {
     }, [characters]);
 
     const renderCharacters = () => {
-        return characters.map(character => <CharacterBlock character={character} key={character.id}/>)
+        return characters.map(character => {
+        return <CharacterBlock character={character} key={character.id}/>
+        })
     }
 
     const checkForSpace = () => {

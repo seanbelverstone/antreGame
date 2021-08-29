@@ -41,8 +41,10 @@ export default {
         })
     },
 
-    saveCharacter: (health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, id, jwtToken) => {
+    saveCharacter: (id, health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, jwtToken) => {
+        console.log(id)
         return axios.put(`/api/characters/${id}`, {
+            id,
             health,
             strength,
             defense,
@@ -60,8 +62,7 @@ export default {
             healthPotions, 
             gold, 
             level, 
-            time,
-            id
+            time
         }, {
             headers: {
             'Authorization': `Bearer ${jwtToken}`}

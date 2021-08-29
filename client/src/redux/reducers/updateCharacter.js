@@ -13,6 +13,7 @@ export const initialState = {
         gold: 0
     },
     stats: {
+        id: '',
         name: '',
         race: '',
         charClass: '',

@@ -55,6 +55,7 @@ const BoundMainStory = (props) => {
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
+    const [currentUserHealth, setCurrentUserHealth] = useState(1);
     const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
     const [maxHealth, setMaxHealth] = useState();
 
@@ -255,7 +256,7 @@ const BoundMainStory = (props) => {
             setAttackDisplay("flex");
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
-            setCurrentUserHealth(currentCharacter.health);
+            setCurrentUserHealth(stats.health);
             setCurrentEnemyHealth(currentEnemy.health);
             setTimeout(() => {
                 const enemyBlock = document.getElementById("enemyBlock");
@@ -366,11 +367,19 @@ const BoundMainStory = (props) => {
                     setAttackText(results.battleText)
                     if (currentCharacter.charClass === "Warrior") {
                         setTempDefense(defense);
-                        setDefense(defense + results.skillResult);
+                        updateCharacter({
+                            stats: {
+                                defense: defense + results.skillResult
+                            }
+                        });
                         setWarriorDefenseRound(roundCount + 3)
                     } else if (currentCharacter.charClass === "Rogue") {
                         setTempLuck(luck);
-                        setLuck(results.skillResult);
+                        updateCharacter({
+                            stats: {
+                                luck: results.skillResult
+                            }
+                        })
                         setRogueLuckRound(roundCount + 1)
                     } else {
                         setCurrentUserHealth(maxHealth)
@@ -459,8 +468,7 @@ const BoundMainStory = (props) => {
             setEnemyImage("");
             setRoundCount(1);
             handleLevel(victoryTarget.target);
-            // After fights are complete, update the character in sessionStorage
-            // updateCharacter();
+            saveGame();
         }, 2000)
     }
 
@@ -475,32 +483,31 @@ const BoundMainStory = (props) => {
         setAnchorEl(null);
     };
 
-    const saveGame = async () => {
-        // updateCharacter();
+    const saveGame = () => {
         API.saveCharacter(
-            currentUserHealth,
-            strength,
-            defense,
-            wisdom,
-            luck,
-            weapon,
-            weaponDmg,
-            head,
-            chest,
-            legs,
-            hands,
-            feet,
-            torch,
-            amulet,
-            healthPotions,
-            gold,
-            currentLevel,
-            time,
-            user.id,
+            stats.id,
+            stats.health,
+            stats.strength,
+            stats.defense,
+            stats.wisdom,
+            stats.luck,
+            inventory.weapon,
+            inventory.weaponDamage,
+            inventory.head,
+            inventory.chest,
+            inventory.legs,
+            inventory.hands,
+            inventory.feet,
+            inventory.torch,
+            inventory.amulet,
+            inventory.healthPotions,
+            inventory.gold,
+            levels.current,
+            time.value,
             user.jwt
         )
             .then((results) => {
-                console.log(results);
+                console.log(results.data);
                 setSaveGameDisplay(true);
             })
     }
@@ -579,7 +586,7 @@ const BoundMainStory = (props) => {
                     wisdom={stats.wisdom}
                     luck={stats.luck}
                     weapon={inventory.weapon}
-                    weaponDmg={inventory.weaponDmg}
+                    weaponDmg={inventory.weaponDamage}
                     head={inventory.head}
                     chest={inventory.chest}
                     legs={inventory.legs}

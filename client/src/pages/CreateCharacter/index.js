@@ -27,16 +27,16 @@ const mapDispatchToProps = (dispatch) => {
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
+        marginTop: theme.spacing(2),
     },
-  }));
+}));
 
 const BoundCreateCharacter = (props) => {
-    
+
     const classes = useStyles();
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -141,74 +141,74 @@ const BoundCreateCharacter = (props) => {
         navigate("/")
     }
 
-    return(
+    return (
         <Wrapper>
             <form id="formWrapper" onSubmit={handleSubmit}>
-            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
-            <a id="back" onClick={() => navigate("/select")}>BACK</a>
+                <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+                <a id="back" onClick={() => navigate("/select")}>BACK</a>
                 <div className="title">CREATE A CHARACTER</div>
-                    <FormControl className={classes.formControl}>
-                        <TextField 
-                            className="formInput" 
-                            label="Name" 
-                            variant="outlined"
-                            onChange={event => setName(event.target.value)} 
-                            error={nameError} 
-                            helperText={nameHelperText}
-                            />
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="raceLabel">Race</InputLabel>
-                        <Select
-                            labelId="raceLabel"
-                            id="raceSelect"
-                            value={race}
-                            onChange={handleRaceChange}
-                            >
-                            <MenuItem value={"Human"} id="human">Human</MenuItem>
-                            <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
-                            <MenuItem value={"Dwarf"} id="dwarf">Dwarf</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="classLabel">Class</InputLabel>
-                        <Select
-                            labelId="classLabel"
-                            id="classSelect"
-                            value={charClass}
-                            onChange={handleClassChange}
-                            >
-                            <MenuItem value={"Warrior"} id="warrior">Warrior</MenuItem>
-                            <MenuItem value={"Rogue"} id="rogue">Rogue</MenuItem>
-                            <MenuItem value={"Paladin"} id="paladin">Paladin</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <div id="classDescription" style={{opacity: descriptonDisplay}}>
-                        <div id="stats">
-                            <div className="health">HP: {health}</div>
-                            <div className="strength">Strength: {strength}</div>
-                            <div className="defense">Defense: {defense}</div>
-                            <div className="wisdom">Wisdom: {wisdom}</div>
-                            <div className="luck">Luck: {luck}</div>
-                        </div>
-                        <div id="desAndSkill">
-                            <div id="description">{description}</div>
-                            <h3 id="skillName">Skill</h3>
-                            <div id="skill">{skill}</div>
-                        </div>
+                <FormControl className={classes.formControl}>
+                    <TextField
+                        className="formInput"
+                        label="Name"
+                        variant="outlined"
+                        onChange={event => setName(event.target.value)}
+                        error={nameError}
+                        helperText={nameHelperText}
+                    />
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="raceLabel">Race</InputLabel>
+                    <Select
+                        labelId="raceLabel"
+                        id="raceSelect"
+                        value={race}
+                        onChange={handleRaceChange}
+                    >
+                        <MenuItem value={"Human"} id="human">Human</MenuItem>
+                        <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
+                        <MenuItem value={"Dwarf"} id="dwarf">Dwarf</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="classLabel">Class</InputLabel>
+                    <Select
+                        labelId="classLabel"
+                        id="classSelect"
+                        value={charClass}
+                        onChange={handleClassChange}
+                    >
+                        <MenuItem value={"Warrior"} id="warrior">Warrior</MenuItem>
+                        <MenuItem value={"Rogue"} id="rogue">Rogue</MenuItem>
+                        <MenuItem value={"Paladin"} id="paladin">Paladin</MenuItem>
+                    </Select>
+                </FormControl>
+                <div id="classDescription" style={{ opacity: descriptonDisplay }}>
+                    <div id="stats">
+                        <div className="health">HP: {health}</div>
+                        <div className="strength">Strength: {strength}</div>
+                        <div className="defense">Defense: {defense}</div>
+                        <div className="wisdom">Wisdom: {wisdom}</div>
+                        <div className="luck">Luck: {luck}</div>
                     </div>
-                    <Button 
-                        variant="contained" 
-                        color="primary"
-                        type="submit"
-                        >
-                        Create
-                    </Button>
+                    <div id="desAndSkill">
+                        <div id="description">{description}</div>
+                        <h3 id="skillName">Skill</h3>
+                        <div id="skill">{skill}</div>
+                    </div>
+                </div>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                >
+                    Create
+                </Button>
             </form>
-            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success"/>
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success" />
+            <img src={smallLogo} alt="a small logo" id="smallLogo" />
         </Wrapper>
-                    
+
     )
 }
 

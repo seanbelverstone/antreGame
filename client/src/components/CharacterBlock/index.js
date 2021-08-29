@@ -24,7 +24,6 @@ const BoundCharacterBlock = (props) => {
     const { updateCharacter, character, levels } = props;
     
     const playThisCharacter = (character) => {
-        console.log(character);
         updateCharacter({
             inventory: {
                 weapon: character.weapon,
@@ -42,6 +41,7 @@ const BoundCharacterBlock = (props) => {
         });
         updateCharacter({
             stats: {
+                id: character.id,
                 name: character.name,
                 race: character.race,
                 charClass: character.charClass,
