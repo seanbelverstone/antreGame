@@ -87,7 +87,7 @@ const BoundMainStory = (props) => {
     useEffect(() => {
         // Health bars now update based on the enemy and user's health
         setHealthWidth();
-    }, [currentEnemyHealth, stats.health])
+    }, [currentEnemyHealth, currentUserHealth])
 
     const handleLevel = (choice) => {
         // once level has been chosen, look at the modifiers that are present
