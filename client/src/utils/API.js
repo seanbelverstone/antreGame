@@ -42,7 +42,6 @@ export default {
     },
 
     saveCharacter: (id, health, strength, defense, wisdom, luck, weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold, level, time, jwtToken) => {
-        console.log(id)
         return axios.put(`/api/characters/${id}`, {
             id,
             health,

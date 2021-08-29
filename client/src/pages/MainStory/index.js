@@ -169,7 +169,6 @@ const BoundMainStory = (props) => {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 const currentMod = Object.keys(mod)[0];
-                console.log(mod[currentMod]);
                 if (mod.weapon) {
                     updateCharacter({
                         inventory: {
@@ -183,28 +182,28 @@ const BoundMainStory = (props) => {
                             health: stats.health + mod.health > maxHealth ? maxHealth : stats.health + mod.health
                         }
                     });
-                } else if (mod[currentMod] === 'strength' ||
-                    mod[currentMod] === 'defense' ||
-                    mod[currentMod] === 'wisdom' ||
-                    mod[currentMod] === 'luck') {
+                } else if (currentMod === 'strength' ||
+                    currentMod === 'defense' ||
+                    currentMod === 'wisdom' ||
+                    currentMod === 'luck') {
                         updateCharacter({
                             stats: {
                                 [currentMod]: stats[currentMod] + mod[currentMod]
                             }
                         });
-                } else if (mod[currentMod] === 'head' ||
-                    mod[currentMod] === 'chest' ||
-                    mod[currentMod] === 'legs' ||
-                    mod[currentMod] === 'hands' ||
-                    mod[currentMod] === 'feet' ||
-                    mod[currentMod] === 'torch' ||
-                    mod[currentMod] === 'amulet') {
+                } else if (currentMod === 'head' ||
+                    currentMod === 'chest' ||
+                    currentMod === 'legs' ||
+                    currentMod === 'hands' ||
+                    currentMod === 'feet' ||
+                    currentMod === 'torch' ||
+                    currentMod === 'amulet') {
                         updateCharacter({
                             inventory: {
                                 [currentMod]: mod[currentMod]
                             }
                         });
-                } else if (mod[currentMod] === 'healthPotions' || mod[currentMod] === 'gold') {
+                } else if (currentMod === 'healthPotion' || currentMod === 'gold') {
                         updateCharacter({
                             inventory: {
                                 [currentMod]: inventory[currentMod] + mod[currentMod]
@@ -216,7 +215,6 @@ const BoundMainStory = (props) => {
                         return attacks.campaignLuckCheck(luck, mod.event);
                     }
                     checkingLuck().then((results) => {
-                        console.log(results)
                         setOptions([
                             {
                                 "label": results[0].label,
@@ -226,7 +224,6 @@ const BoundMainStory = (props) => {
                     })
                 } else if (mod.torchCheck) {
                     setSnackbarDisplay(false);
-                    console.log("here")
                     const checkingTorch = async () => {
                         return attacks.torchCheck(torch);
                     }
@@ -249,8 +246,6 @@ const BoundMainStory = (props) => {
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
         if (modifier[0].fight && modifier.length < 2) {
-            console.log("displaying enemy")
-            console.log(enemyName)
             setEnemyImage(enemyName)
 
             setAttackDisplay("flex");
@@ -282,7 +277,6 @@ const BoundMainStory = (props) => {
         };
 
         enemyAttack().then((results) => {
-            console.log(results);
             // needed to look at the previous state in order for the enemy to take the correct health into account
             setCurrentUserHealth(current => current - results.finalDamage);
             setAttackText(results.battleText);
@@ -507,7 +501,6 @@ const BoundMainStory = (props) => {
             user.jwt
         )
             .then((results) => {
-                console.log(results.data);
                 setSaveGameDisplay(true);
             })
     }

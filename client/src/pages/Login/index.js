@@ -42,7 +42,6 @@ const BoundLogin = (props) => {
                 setUsernameError(false);
                 setPasswordError(false);
                 setPasswordHelperText("");
-                console.log(results.data)
                 authenticateUser({
                     user: {
                         id: results.data.user.id,

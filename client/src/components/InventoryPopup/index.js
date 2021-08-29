@@ -34,9 +34,9 @@ const InventoryPopup = (props) => {
     }, [display]);
 
     useEffect(() => {
-        if (!items[0]?.none) {
+        // if (!items[0]?.none) {
             checkItems();
-        }
+        // }
     }, [items])
 
     const addIfUnique = (note) => {
