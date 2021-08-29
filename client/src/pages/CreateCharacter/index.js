@@ -118,9 +118,9 @@ const BoundCreateCharacter = (props) => {
     }
 
     const checkName = () => {
-        if (name.length > 11 || name.length < 1) {
+        if (name.length > 20 || name.length < 1) {
             setNameError(true);
-            setNameHelperText("Please use a name that is less than 10 characters")
+            setNameHelperText("Please use a name that is less than 20 characters")
             return;
         } else {
             setNameError(false);

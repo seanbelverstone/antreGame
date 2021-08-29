@@ -185,11 +185,11 @@ const BoundMainStory = (props) => {
                     currentMod === 'defense' ||
                     currentMod === 'wisdom' ||
                     currentMod === 'luck') {
-                        updateCharacter({
-                            stats: {
-                                [currentMod]: stats[currentMod] + mod[currentMod]
-                            }
-                        });
+                    updateCharacter({
+                        stats: {
+                            [currentMod]: stats[currentMod] + mod[currentMod]
+                        }
+                    });
                 } else if (currentMod === 'head' ||
                     currentMod === 'chest' ||
                     currentMod === 'legs' ||
@@ -197,21 +197,21 @@ const BoundMainStory = (props) => {
                     currentMod === 'feet' ||
                     currentMod === 'torch' ||
                     currentMod === 'amulet') {
-                        updateCharacter({
-                            inventory: {
-                                [currentMod]: mod[currentMod]
-                            }
-                        });
+                    updateCharacter({
+                        inventory: {
+                            [currentMod]: mod[currentMod]
+                        }
+                    });
                 } else if (currentMod === 'healthPotion' || currentMod === 'gold') {
-                        updateCharacter({
-                            inventory: {
-                                [currentMod]: inventory[currentMod] + mod[currentMod]
-                            }
-                        });
+                    updateCharacter({
+                        inventory: {
+                            [currentMod]: inventory[currentMod] + mod[currentMod]
+                        }
+                    });
                 } else if (mod.luckCheck) {
                     setSnackbarDisplay(false);
                     const checkingLuck = async () => {
-                        return attacks.campaignLuckCheck(luck, mod.event);
+                        return attacks.campaignLuckCheck(stats.luck, mod.event);
                     }
                     checkingLuck().then((results) => {
                         setOptions([
@@ -239,14 +239,12 @@ const BoundMainStory = (props) => {
                 }
             })
         }
-        // updateCharacter();
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
     const displayEnemy = () => {
         if (modifier[0].fight && modifier.length < 2) {
             setEnemyImage(enemyName)
-
             setAttackDisplay("flex");
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
@@ -258,28 +256,6 @@ const BoundMainStory = (props) => {
             }, 1000);
         }
         return;
-    }
-
-    const checkHealth = () => {
-        if (currentEnemyHealth > 0 && stats.health > 0) {
-            setTimeout(() => {
-                enemyTurn();
-            }, 3000)
-        }
-    }
-
-    const enemyTurn = () => {
-        const enemyAttack = () => {
-            return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
-        };
-
-        enemyAttack().then((results) => {
-            // needed to look at the previous state in order for the enemy to take the correct health into account
-            setCurrentUserHealth(current => current - results.finalDamage);
-            setAttackText(results.battleText);
-        })
-        // enable buttons after attack
-        setButtonDisabled(false);
     }
 
     // This takes the value from the option, and sets the level and text based on its target
@@ -308,26 +284,28 @@ const BoundMainStory = (props) => {
 
     const handleFight = async (option) => {
         const { weaponDamage, healthPotions } = inventory;
-        const { health, strength, defense, wisdom, luck } = stats;
+        const { health, strength, defense, wisdom, luck, charClass } = stats;
         let skillButton = document.getElementById("useSkill");
         switch (option.label) {
             case "Normal Attack":
-                const normalAttack = () => {
+                const normalAttack = async () => {
                     return attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
                 };
-                normalAttack().then(async results => {
-                    await setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
-                    setAttackText(results.battleText)
+                normalAttack().then(results => {
+                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage);
+                    setAttackText(results.battleText);
+                    enemyTurn();
                 });
                 break;
             case "Special Attack":
-                const specialAttack = () => {
+                const specialAttack = async () => {
                     return attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
                 };
-                specialAttack().then(async results => {
-                    await setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
+                specialAttack().then(results => {
+                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
                     setAttackText(results.battleText)
-                })
+                    enemyTurn();
+                });
                 break;
             case "Use health potion":
                 const heal = async () => {
@@ -337,47 +315,48 @@ const BoundMainStory = (props) => {
                     if (results.healthIncrease > 0) {
                         setHealthPotions(healthPotions - 1)
                         // if the user's health with the increase added is MORE than their max, just set it to max.
-                        updateCharacter({
-                            stats: {
-                                health: stats.health + results.healthIncrease > maxHealth ? maxHealth : stats.health + results.healthIncrease
-                            }
-                        })
+                        setCurrentUserHealth(currentUserHealth + results.healthIncrease > maxHealth ?
+                            maxHealth : currentUserHealth + results.healthIncrease)
                     }
                     setAttackText(results.battleText)
-                })
+                    enemyTurn();
+                });
                 break;
             case "Use skill":
                 const skill = async () => {
-                    return attacks.useSkill(currentCharacter.charClass, wisdom, currentEnemy.defense)
+                    return attacks.useSkill(charClass, wisdom, currentEnemy.defense)
                 };
-                skill().then(results => {
+                skill().then(async results => {
                     // sets a style to the skill button to make it the only one that continues being disabled.
                     skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
                     setSkillUsed(true);
                     setCooldownRound(roundCount + results.cooldownLength)
                     setAttackText(results.battleText)
-                    if (stats.charClass === "Warrior") {
+                    if (charClass === "Warrior") {
                         setTempDefense(defense);
-                        updateCharacter({
+                        await updateCharacter({
                             stats: {
                                 defense: defense + results.skillResult
                             }
                         });
                         setWarriorDefenseRound(roundCount + 3)
-                    } else if (stats.charClass === "Rogue") {
+                        enemyTurn();
+                    } else if (charClass === "Rogue") {
                         setTempLuck(luck);
-                        updateCharacter({
+                        await updateCharacter({
                             stats: {
                                 luck: results.skillResult
                             }
                         })
                         setRogueLuckRound(roundCount + 1)
+                        enemyTurn();
                     } else {
-                        updateCharacter({
+                        await updateCharacter({
                             stats: {
                                 health: maxHealth
                             }
                         });
+                        enemyTurn();
                     }
                 })
                 break;
@@ -387,29 +366,62 @@ const BoundMainStory = (props) => {
         // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
         setRoundCount(current => current + 1)
-        await checkHealth();
-
-
-        if (stats.charClass === "Warrior" && (roundCount === warriorDefenseRound || currentEnemyHealth <= 0)) {
-            // returns the warrior's defense to it's regular level if the round numbers match or the enemy is dead
+    }        
+        // if the enemy is still alive, we want to check if we're on the debuff rounds instead
+        // if so, reset the stats to their pre-skill values.
+        if (roundCount === warriorDefenseRound) {
             updateCharacter({
                 stats: {
                     defense: tempDefense
                 }
             });
         }
-        if (stats.charClass === "Rogue" && (roundCount === rogueLuckRound || currentEnemyHealth <= 0)) {
-            // returns the rogue's luck to it's regular level if the round numbers match or the enemy is dead
+        if (roundCount === rogueLuckRound) {
             updateCharacter({
                 stats: {
                     luck: tempLuck
                 }
             });
         }
-        // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
-        if (cooldownRound === roundCount && skillUsed) {
-            skillButton.removeAttribute("style");
+    // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
+    if (cooldownRound === roundCount && skillUsed) {
+        skillButton.removeAttribute("style");
+    }
+
+    const enemyTurn = () => {
+        setTimeout(() => {
+             if (currentEnemyHealth > 0) {
+            const enemyAttack = async () => {
+                return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
+            };
+            enemyAttack().then((results) => {
+                // needed to look at the previous state in order for the enemy to take the correct health into account
+                setCurrentUserHealth(current => current - results.finalDamage);
+                setAttackText(results.battleText);
+            });
+            // enable buttons after attack
+            setButtonDisabled(false);
+        } else {
+        // if the enemy is dead, we want to set the enemy health and width to 0, reset the player's buffed values to
+        // their pre-skill values, and then move on. 
+            setCurrentEnemyHealth(0);
+            setEnemyHealthWidth(0);
+            if (tempDefense !== 0) {
+                updateCharacter({
+                    stats: {
+                        defense: tempDefense
+                    }
+                });
+            } else if (tempLuck !== 0) {
+                updateCharacter({
+                    stats: {
+                        luck: tempLuck
+                    }
+                });
+            }
+            nextPhase();
         }
+        }, 3000)
     }
 
     const setHealthWidth = () => {
@@ -429,14 +441,8 @@ const BoundMainStory = (props) => {
         let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
         setEnemyHealthWidth(`${enemyNewWidth}%`);
         // If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
-        if (currentEnemyHealth <= 0) {
-            setCurrentEnemyHealth(0);
-            setEnemyHealthWidth(0);
-            nextPhase().then(() => checkModifier());
-            return;
-        }
 
-        let userNewWidth = (100 * stats.health) / maxHealth;
+        let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
 
         if (userNewWidth <= 0) {
@@ -460,6 +466,11 @@ const BoundMainStory = (props) => {
 
     // Fade the image out after a second, so it's not jarringly quick.
     const nextPhase = async () => {
+        updateCharacter({
+            stats: {
+                health: currentUserHealth
+            }
+        });
         setTimeout(() => {
             setAttackDisplay("none");
             setEnemyBlockFade("fadeOut")
@@ -475,6 +486,7 @@ const BoundMainStory = (props) => {
             handleLevel(victoryTarget.target);
             saveGame();
         }, 2000)
+        checkModifier()
     }
 
     const handleMenuClick = (event) => {
@@ -560,7 +572,7 @@ const BoundMainStory = (props) => {
                 enemyHealthWidth={enemyHealthWidth}
                 enemyImage={enemyImage}
                 characterName={stats.name}
-                currentUserHealth={stats.health}
+                currentUserHealth={currentUserHealth === 1 ? stats.health : currentUserHealth}
                 maxHealth={maxHealth}
                 userHealthWidth={userHealthWidth}
                 optionFade={optionFade}
