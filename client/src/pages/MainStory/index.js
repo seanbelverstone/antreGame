@@ -351,11 +351,7 @@ const BoundMainStory = (props) => {
                         setRogueLuckRound(roundCount + 1)
                         enemyTurn();
                     } else {
-                        await updateCharacter({
-                            stats: {
-                                health: maxHealth
-                            }
-                        });
+                        setCurrentUserHealth(maxHealth)
                         enemyTurn();
                     }
                 })
@@ -366,7 +362,6 @@ const BoundMainStory = (props) => {
         // Also check health, to make sure that enemy or user isn't dead
         setButtonDisabled(true);
         setRoundCount(current => current + 1)
-    }        
         // if the enemy is still alive, we want to check if we're on the debuff rounds instead
         // if so, reset the stats to their pre-skill values.
         if (roundCount === warriorDefenseRound) {
@@ -383,10 +378,11 @@ const BoundMainStory = (props) => {
                 }
             });
         }
-    // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
-    if (cooldownRound === roundCount && skillUsed) {
-        skillButton.removeAttribute("style");
-    }
+        // If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
+        if (cooldownRound === roundCount && skillUsed) {
+            skillButton.removeAttribute("style");
+        }
+    }    
 
     const enemyTurn = () => {
         setTimeout(() => {
