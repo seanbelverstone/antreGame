@@ -1,9 +1,8 @@
 .wrapper {
-    height: auto;
-    width: 60vw;
+    width: 50vw;
     background-color: var(--foreground);
-    padding: 50px;
-    margin: 0 auto;
+    padding: 20px;
+    margin: 2.5% auto;
     border-radius: 10px;
     text-align: center;
     align-items: center;
