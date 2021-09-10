@@ -33,7 +33,7 @@ const BoundLogin = (props) => {
     const { authenticateUser } = props;
 
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
         API.checkUser(username, password)
             .then(results => {
