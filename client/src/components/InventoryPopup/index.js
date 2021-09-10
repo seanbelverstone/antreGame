@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InventoryPopup = (props) => {
-    const { 
+    const {
         display,
         setDisplay,
         items
@@ -33,9 +33,7 @@ const InventoryPopup = (props) => {
     }, [display]);
 
     useEffect(() => {
-        // if (!items[0]?.none) {
-            checkItems();
-        // }
+        checkItems();
     }, [items])
 
     const addIfUnique = (note) => {
@@ -74,7 +72,7 @@ const InventoryPopup = (props) => {
                 } else if (quantity >= 1) {
                     // if the modifier returns as positive, user gains an item
                     note = `You gained ${quantity} ${camelToTitle(itemName[0])}. `;
-                    if(itemName[0] === 'healthPotion' && quantity > 1) {
+                    if (itemName[0] === 'healthPotions' && quantity > 1) {
                         note = `You gained ${quantity} Health Potions. `;
                     }
                     return addIfUnique(note);
@@ -110,7 +108,7 @@ const InventoryPopup = (props) => {
 
     return (
         <div className={classes.root}>
-            <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "left"}} style={{height: "100%"}}>
+            <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "left" }} style={{ height: "100%" }}>
                 <Alert onClose={handleClose} severity="info">
                     {messages}
                 </Alert>

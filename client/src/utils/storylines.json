@@ -442,7 +442,7 @@
         "text": "Deciding to see if the adventurer had any good items, you rifle through his belongings. He doesn't seem to have much and his food has long since rotten away, but you do find a couple health potions and add them to your inventory.",
         "modifier": [
             {
-                "healthPotion": 2
+                "healthPotions": 2
             }
         ],
         "options": [
@@ -1293,7 +1293,7 @@
         "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -1389,7 +1389,7 @@
         "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -1482,7 +1482,7 @@
         "text": "\"Hurry!!\" \n\nThe rumbling gets ever louder.",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -2216,7 +2216,7 @@
         "text": "Popping open the tiny chest with ease, you find a small health potion and a few gold pieces inside.",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": 4
@@ -2994,7 +2994,7 @@
         "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -3067,7 +3067,7 @@
         "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -3086,7 +3086,7 @@
         "text": "\"Anything else?\"",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -3272,7 +3272,7 @@
         "text": "\"Lovely stuff!\" cackles the goblin. \"Can I interest you in one last item?\"",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -2
@@ -3296,7 +3296,7 @@
         "text": "\"Beautiful!\" the goblin cheers. \"You've bought all me wares.\"",
         "modifier": [
             {
-                "healthPotion": 1
+                "healthPotions": 1
             },
             {
                 "gold": -5

@@ -46,6 +46,7 @@ const Inventory = (props) => {
     race,
     charClass
   } = props;
+  console.log(healthPotions);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

@@ -37,6 +37,7 @@ const BoundMainStory = (props) => {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
+    const [initalLevel, setInitalLevel] = useState('');
     const [storyText, setStoryText] = useState("");
     const [attackText, setAttackText] = useState("");
     const [modifier, setModifier] = useState([]);
@@ -72,6 +73,17 @@ const BoundMainStory = (props) => {
     const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
     useEffect(() => {
+        // sets the current level if visited has just been set, or if the user reloads.
+        // Aids the check in checkModifier to prevent users from reloading for unlimited buffs
+        if (levels.visited.length <= 1 || window.performance.getEntriesByType('navigation')[0].type === 'reload') {
+            setInitalLevel(levels.current)
+        }
+        window.onbeforeunload = () => {
+            setInitalLevel(levels.current)
+        }
+    }, []);
+
+    useEffect(() => {
         handleText(levels.current);
     }, [levels])
 
@@ -90,7 +102,8 @@ const BoundMainStory = (props) => {
     }, [currentEnemyHealth, currentUserHealth])
 
     const handleLevel = (choice) => {
-        // once level has been chosen, look at the modifiers that are present
+        const { current, visited } = levels;
+        // If the choice selected is one that repeats, don't add it to the visited array.
         if (isBlacklistedChoice(choice)) {
             updateCharacter({
                 level: {
@@ -113,6 +126,12 @@ const BoundMainStory = (props) => {
     }
 
     const handleText = (choice) => {
+        // When a player dies, it puts them on 00-Death. This means that if they select this character
+        // again, they'll remain dead.
+        if (choice === '00-Death') {
+            handlePlayerDeath();
+            return;
+        }
         // loops through the storylines array, and matches the character's level with the corresponding object
         for (let i = 0; i < storylines.length; i++) {
 
@@ -163,8 +182,8 @@ const BoundMainStory = (props) => {
 
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
-        // features a check so if they've already visited this level, they can't keep getting the same buff
-        if (modifier.length && levels.visited.indexOf(levels.current)) {
+        // If it's their saved level, they can't get the buff again.
+        if (modifier.length && levels.current !== initalLevel) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 const currentMod = Object.keys(mod)[0];
@@ -202,7 +221,7 @@ const BoundMainStory = (props) => {
                             [currentMod]: mod[currentMod]
                         }
                     });
-                } else if (currentMod === 'healthPotion' || currentMod === 'gold') {
+                } else if (currentMod === 'healthPotions' || currentMod === 'gold') {
                     updateCharacter({
                         inventory: {
                             [currentMod]: inventory[currentMod] + mod[currentMod]
@@ -288,73 +307,51 @@ const BoundMainStory = (props) => {
         let skillButton = document.getElementById("useSkill");
         switch (option.label) {
             case "Normal Attack":
-                const normalAttack = async () => {
-                    return attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
-                };
-                normalAttack().then(results => {
-                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage);
-                    setAttackText(results.battleText);
-                    enemyTurn();
-                });
+                const normalAttack = await attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
+                setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
+                setAttackText(normalAttack.battleText);
                 break;
             case "Special Attack":
-                const specialAttack = async () => {
-                    return attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
-                };
-                specialAttack().then(results => {
-                    setCurrentEnemyHealth(currentEnemyHealth - results.finalDamage)
-                    setAttackText(results.battleText)
-                    enemyTurn();
-                });
+                const specialAttack = await attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
+                setCurrentEnemyHealth(currentEnemyHealth - specialAttack.finalDamage)
+                setAttackText(specialAttack.battleText)
                 break;
             case "Use health potion":
-                const heal = async () => {
-                    return attacks.useHealthPotion(healthPotions)
-                };
-                heal().then(results => {
-                    if (results.healthIncrease > 0) {
-                        setHealthPotions(healthPotions - 1)
-                        // if the user's health with the increase added is MORE than their max, just set it to max.
-                        setCurrentUserHealth(currentUserHealth + results.healthIncrease > maxHealth ?
-                            maxHealth : currentUserHealth + results.healthIncrease)
-                    }
-                    setAttackText(results.battleText)
-                    enemyTurn();
-                });
+                const heal = await attacks.useHealthPotion(healthPotions)
+                if (heal.healthIncrease > 0) {
+                    setHealthPotions(healthPotions - 1)
+                    // if the user's health with the increase added is MORE than their max, just set it to max.
+                    setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
+                        maxHealth : currentUserHealth + heal.healthIncrease)
+                }
+                setAttackText(heal.battleText)
                 break;
             case "Use skill":
-                const skill = async () => {
-                    return attacks.useSkill(charClass, wisdom, currentEnemy.defense)
-                };
-                skill().then(async results => {
-                    // sets a style to the skill button to make it the only one that continues being disabled.
-                    skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
-                    setSkillUsed(true);
-                    setCooldownRound(roundCount + results.cooldownLength)
-                    setAttackText(results.battleText)
-                    if (charClass === "Warrior") {
-                        setTempDefense(defense);
-                        await updateCharacter({
-                            stats: {
-                                defense: defense + results.skillResult
-                            }
-                        });
-                        setWarriorDefenseRound(roundCount + 3)
-                        enemyTurn();
-                    } else if (charClass === "Rogue") {
-                        setTempLuck(luck);
-                        await updateCharacter({
-                            stats: {
-                                luck: results.skillResult
-                            }
-                        })
-                        setRogueLuckRound(roundCount + 1)
-                        enemyTurn();
-                    } else {
-                        setCurrentUserHealth(maxHealth)
-                        enemyTurn();
-                    }
-                })
+                const skill = await attacks.useSkill(charClass, wisdom)
+                // sets a style to the skill button to make it the only one that continues being disabled.
+                skillButton.setAttribute("style", "pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);");
+                setSkillUsed(true);
+                setCooldownRound(roundCount + skill.cooldownLength)
+                setAttackText(skill.battleText)
+                if (charClass === "Warrior") {
+                    setTempDefense(defense);
+                    await updateCharacter({
+                        stats: {
+                            defense: defense + skill.skillResult
+                        }
+                    });
+                    setWarriorDefenseRound(roundCount + 3)
+                } else if (charClass === "Rogue") {
+                    setTempLuck(luck);
+                    await updateCharacter({
+                        stats: {
+                            luck: skill.skillResult
+                        }
+                    })
+                    setRogueLuckRound(roundCount + 1)
+                } else {
+                    setCurrentUserHealth(maxHealth)
+                }
                 break;
             default: return;
         }
@@ -382,24 +379,12 @@ const BoundMainStory = (props) => {
         if (cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
         }
-    }    
+        await isEnemyAlive();
+    }
 
-    const enemyTurn = () => {
-        setTimeout(() => {
-             if (currentEnemyHealth > 0) {
-            const enemyAttack = async () => {
-                return attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
-            };
-            enemyAttack().then((results) => {
-                // needed to look at the previous state in order for the enemy to take the correct health into account
-                setCurrentUserHealth(current => current - results.finalDamage);
-                setAttackText(results.battleText);
-            });
-            // enable buttons after attack
-            setButtonDisabled(false);
-        } else {
-        // if the enemy is dead, we want to set the enemy health and width to 0, reset the player's buffed values to
-        // their pre-skill values, and then move on. 
+    const isEnemyAlive = async () => {
+        console.log(currentEnemyHealth < 0)
+        if (currentEnemyHealth < 0) {
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
             if (tempDefense !== 0) {
@@ -416,8 +401,19 @@ const BoundMainStory = (props) => {
                 });
             }
             nextPhase();
+        } else {
+            enemyTurn();
         }
+    }
+
+    const enemyTurn = () => {
+        const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
+        setTimeout(() => {
+            setCurrentUserHealth(current => current - enemyAttack.finalDamage);
+            setAttackText(enemyAttack.battleText);
         }, 3000)
+        // enable buttons after attack
+        setButtonDisabled(false);
     }
 
     const setHealthWidth = () => {
@@ -440,13 +436,15 @@ const BoundMainStory = (props) => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
-
+        if (enemyNewWidth <= 0) {
+            isEnemyAlive();
+        }
         if (userNewWidth <= 0) {
             handlePlayerDeath();
         }
     }
 
-    const handlePlayerDeath = () => {
+    const handlePlayerDeath = async () => {
         setEnemyBlockFade("hidden");
         setImageDisplay("none");
         setCurrentEnemy({});
@@ -457,7 +455,17 @@ const BoundMainStory = (props) => {
                 "death": true
             }
         ]);
-        saveGame();
+        updateCharacter({
+            stats: {
+                health: 0
+            }
+        });
+        updateCharacter({
+            levels: {
+                current: '00-Death',
+                visited: []
+            }
+        });
     }
 
     // Fade the image out after a second, so it's not jarringly quick.
@@ -480,7 +488,6 @@ const BoundMainStory = (props) => {
             setEnemyImage("");
             setRoundCount(1);
             handleLevel(victoryTarget.target);
-            saveGame();
         }, 2000)
         checkModifier()
     }
@@ -518,10 +525,10 @@ const BoundMainStory = (props) => {
             levels.current,
             time.value,
             user.jwtToken
-        )
-            .then((results) => {
-                setSaveGameDisplay(true);
-            })
+        ).then((results) => {
+            console.log(results);
+            setSaveGameDisplay(true);
+        })
     }
 
     const logout = () => {
