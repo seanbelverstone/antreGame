@@ -16,7 +16,7 @@ export default {
 
     // USER ATTACKS
     // Normal attack does weapon damage * dice roll, + strength * 2, divided by enemy defense
-    normalAttack: (weaponDamage, strength, enemyDef, luck) => {
+    normalAttack: async (weaponDamage, strength, enemyDef, luck) => {
         const initialRoll = diceRoll();
         const finalDamage = Math.ceil(((weaponDamage * initialRoll) + (strength * 2)) / enemyDef);
         const critDamage = (weaponDamage * initialRoll) + (strength * 2);
@@ -36,7 +36,7 @@ export default {
     },
 
     // Normal attack does 3 * weapon damage, * dice roll, + strength * 3, divided by enemy defense
-    specialAttack: (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
+    specialAttack: async (weaponDamage, strength, enemyDef, luck, enemyLuck) => {
         const initalRoll = diceRoll();
         let finalDamage = Math.ceil((((3 * weaponDamage) * initalRoll) + (strength * 3)) / enemyDef);
         let critDamage = ((3 * weaponDamage) * initalRoll) + (strength * 3);
@@ -75,7 +75,7 @@ export default {
         }
     },
 
-    useHealthPotion: (potionCount) => {
+    useHealthPotion: async (potionCount) => {
         const initalRoll = diceRoll();
         const secondRoll = diceRoll();
         // perfect roll (6 x 6) + 25 = 61 health increased
@@ -99,7 +99,7 @@ export default {
 
     },
 
-    useSkill: (charClass, wisdom, enemyDef) => {
+    useSkill: async (charClass, wisdom) => {
         console.log(`You are a ${charClass}`)
         let cooldownLength;
         let skill;

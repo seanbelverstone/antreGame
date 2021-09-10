@@ -55,12 +55,11 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.bool.isRequired,
 };
 
-export default function DeleteButton(id) {
+export default function DeleteButton(props) {
   
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(false);
-  const [charId, setCharId] = useState(id)
-
+  const { id, jwtToken } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,9 +72,8 @@ export default function DeleteButton(id) {
   };
 
   const handleDelete = (value) => {
-      const userId = parseInt(window.sessionStorage.getItem("id"));
     if (value) {
-       API.deleteCharacter(charId.id)
+       API.deleteCharacter(id, jwtToken)
             .then(() => 
             location.reload());
     }

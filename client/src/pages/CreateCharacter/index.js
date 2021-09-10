@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,18 +15,28 @@ import API from "../../utils/API";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.authenticateUser.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
+        margin: theme.spacing(1),
+        minWidth: 120,
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
+        marginTop: theme.spacing(2),
     },
-  }));
+}));
 
-const CreateCharacter = () => {
-    
+const BoundCreateCharacter = (props) => {
+
     const classes = useStyles();
     const [name, setName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -35,14 +48,12 @@ const CreateCharacter = () => {
     const [defense, setDefense] = useState(0);
     const [wisdom, setWisdom] = useState(0);
     const [luck, setLuck] = useState(0);
-
     const [description, setDescription] = useState("");
     const [descriptonDisplay, setDescriptionDisplay] = useState(0);
     const [skill, setSkill] = useState("");
-
     const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
-    const userId = window.sessionStorage.getItem("id");
+    const { user, resetStore } = props;
 
     // By passing in charClass, setStats runs whenever the selected class is selected
     useEffect((charClass) => {
@@ -107,9 +118,9 @@ const CreateCharacter = () => {
     }
 
     const checkName = () => {
-        if (name.length > 11 || name.length < 1) {
+        if (name.length > 20 || name.length < 1) {
             setNameError(true);
-            setNameHelperText("Please use a name that is less than 10 characters")
+            setNameHelperText("Please use a name that is less than 20 characters")
             return;
         } else {
             setNameError(false);
@@ -119,87 +130,88 @@ const CreateCharacter = () => {
     }
 
     const createNewCharacter = () => {
-        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, userId)
+        API.createNewCharacter(name, race, charClass, health, strength, defense, wisdom, luck, user.id, user.jwtToken)
             .then(results => {
-                console.log(results)
                 setSnackbarDisplay(true);
             })
     }
 
     const logout = () => {
-        window.sessionStorage.clear();
+        resetStore();
         navigate("/")
     }
 
-    return(
+    return (
         <Wrapper>
             <form id="formWrapper" onSubmit={handleSubmit}>
-            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
-            <a id="back" onClick={() => navigate("/select")}>BACK</a>
+                <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+                <a id="back" onClick={() => navigate("/select")}>BACK</a>
                 <div className="title">CREATE A CHARACTER</div>
-                    <FormControl className={classes.formControl}>
-                        <TextField 
-                            className="formInput" 
-                            label="Name" 
-                            variant="outlined"
-                            onChange={event => setName(event.target.value)} 
-                            error={nameError} 
-                            helperText={nameHelperText}
-                            />
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="raceLabel">Race</InputLabel>
-                        <Select
-                            labelId="raceLabel"
-                            id="raceSelect"
-                            value={race}
-                            onChange={handleRaceChange}
-                            >
-                            <MenuItem value={"Human"} id="human">Human</MenuItem>
-                            <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
-                            <MenuItem value={"Dwarf"} id="dwarf">Dwarf</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="classLabel">Class</InputLabel>
-                        <Select
-                            labelId="classLabel"
-                            id="classSelect"
-                            value={charClass}
-                            onChange={handleClassChange}
-                            >
-                            <MenuItem value={"Warrior"} id="warrior">Warrior</MenuItem>
-                            <MenuItem value={"Rogue"} id="rogue">Rogue</MenuItem>
-                            <MenuItem value={"Paladin"} id="paladin">Paladin</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <div id="classDescription" style={{opacity: descriptonDisplay}}>
-                        <div id="stats">
-                            <div className="health">HP: {health}</div>
-                            <div className="strength">Strength: {strength}</div>
-                            <div className="defense">Defense: {defense}</div>
-                            <div className="wisdom">Wisdom: {wisdom}</div>
-                            <div className="luck">Luck: {luck}</div>
-                        </div>
-                        <div id="desAndSkill">
-                            <div id="description">{description}</div>
-                            <h3 id="skillName">Skill</h3>
-                            <div id="skill">{skill}</div>
-                        </div>
+                <FormControl className={classes.formControl}>
+                    <TextField
+                        className="formInput"
+                        label="Name"
+                        variant="outlined"
+                        onChange={event => setName(event.target.value)}
+                        error={nameError}
+                        helperText={nameHelperText}
+                    />
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="raceLabel">Race</InputLabel>
+                    <Select
+                        labelId="raceLabel"
+                        id="raceSelect"
+                        value={race}
+                        onChange={handleRaceChange}
+                    >
+                        <MenuItem value={"Human"} id="human">Human</MenuItem>
+                        <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
+                        <MenuItem value={"Dwarf"} id="dwarf">Dwarf</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="classLabel">Class</InputLabel>
+                    <Select
+                        labelId="classLabel"
+                        id="classSelect"
+                        value={charClass}
+                        onChange={handleClassChange}
+                    >
+                        <MenuItem value={"Warrior"} id="warrior">Warrior</MenuItem>
+                        <MenuItem value={"Rogue"} id="rogue">Rogue</MenuItem>
+                        <MenuItem value={"Paladin"} id="paladin">Paladin</MenuItem>
+                    </Select>
+                </FormControl>
+                <div id="classDescription" style={{ opacity: descriptonDisplay }}>
+                    <div id="stats">
+                        <div className="health">HP: {health}</div>
+                        <div className="strength">Strength: {strength}</div>
+                        <div className="defense">Defense: {defense}</div>
+                        <div className="wisdom">Wisdom: {wisdom}</div>
+                        <div className="luck">Luck: {luck}</div>
                     </div>
-                    <Button 
-                        variant="contained" 
-                        color="primary"
-                        type="submit"
-                        >
-                        Create
-                    </Button>
+                    <div id="desAndSkill">
+                        <div id="description">{description}</div>
+                        <h3 id="skillName">Skill</h3>
+                        <div id="skill">{skill}</div>
+                    </div>
+                </div>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                >
+                    Create
+                </Button>
             </form>
-            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success"/>
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success" />
+            <img src={smallLogo} alt="a small logo" id="smallLogo" />
         </Wrapper>
-                    
+
     )
 }
+
+const CreateCharacter = connect(mapStateToProps, mapDispatchToProps)(BoundCreateCharacter);
 
 export default CreateCharacter;

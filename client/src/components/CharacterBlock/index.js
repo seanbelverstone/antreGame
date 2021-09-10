@@ -1,17 +1,76 @@
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { Button } from "@material-ui/core";
 import { navigate } from "hookrouter";
 import DeleteButton from "../DeleteButton";
+import { isBlacklistedChoice } from '../../utils/functions';
 import "./style.css";
 
-const CharacterBlock = ({character}) => {
+const mapStateToProps = (state) => {
+    return {
+        inventory: state.updateCharacter.inventory,
+        stats: state.updateCharacter.stats,
+        levels: state.updateCharacter.levels,
+        time: state.updateCharacter.time,
+        user: state.authenticateUser.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
+const BoundCharacterBlock = (props) => {
+    const { updateCharacter, character, user } = props;
     
-    const playThisCharacter = (character) => {
-        window.sessionStorage.setItem("currentCharacter", JSON.stringify(character));
+    const playThisCharacter = (selectedCharacter) => {
+        updateCharacter({
+            inventory: {
+                weapon: selectedCharacter.weapon,
+                weaponDamage: selectedCharacter.weaponDamage,
+                head: selectedCharacter.head,
+                chest: selectedCharacter.chest,
+                legs: selectedCharacter.legs,
+                hands: selectedCharacter.hands,
+                feet: selectedCharacter.feet,
+                torch: selectedCharacter.torch,
+                amulet: selectedCharacter.amulet,
+                healthPotions: selectedCharacter.healthPotions,
+                gold: selectedCharacter.gold
+            }
+        });
+        updateCharacter({
+            stats: {
+                id: selectedCharacter.id,
+                name: selectedCharacter.name,
+                race: selectedCharacter.race,
+                charClass: selectedCharacter.charClass,
+                health: selectedCharacter.health,
+                strength: selectedCharacter.strength,
+                defense: selectedCharacter.defense,
+                wisdom: selectedCharacter.wisdom,
+                luck: selectedCharacter.luck
+            }
+
+        });
+        updateCharacter({
+            levels: {
+                visited: [
+                    isBlacklistedChoice(selectedCharacter.level) ? '01-Start' : selectedCharacter.level
+                ],
+                current: selectedCharacter.level
+            }
+        });
+        updateCharacter({
+            time: {
+                value: selectedCharacter.time
+            }
+        });
         navigate("/play");
     }
 
-    console.log(character.id)
     return(
         <div className="characterBlock">
             <div className="characterWrapper">
@@ -63,10 +122,12 @@ const CharacterBlock = ({character}) => {
                     PLAY
                 </Button>
 
-                <DeleteButton id={character.id}/>
+                <DeleteButton id={character.id} jwtToken={user.jwtToken}/>
             </section>
         </div>
     )
 }
+
+const CharacterBlock = connect(mapStateToProps, mapDispatchToProps)(BoundCharacterBlock);
 
 export default CharacterBlock;

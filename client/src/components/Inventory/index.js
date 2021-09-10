@@ -32,7 +32,7 @@ const Inventory = (props) => {
     wisdom,
     luck,
     weapon,
-    weaponDmg,
+    weaponDamage,
     head,
     chest,
     legs,
@@ -46,6 +46,7 @@ const Inventory = (props) => {
     race,
     charClass
   } = props;
+  console.log(healthPotions);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -81,7 +82,7 @@ const Inventory = (props) => {
               <section className="items">
                 <div id="weapon">
                   <img className="icon" src={invImages.sword} />
-                  <div>Weapon: {weapon} - {weaponDmg} dmg</div>
+                  <div>Weapon: {weapon} - {weaponDamage} dmg</div>
                 </div>
 
                 <div id="head">

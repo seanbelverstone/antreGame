@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux"
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { Button } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,22 +12,31 @@ import CharacterBlock from "../../components/CharacterBlock";
 import smallLogo from "../../assets/images/Antre.png";
 import "./style.css";
 
-const SelectCharacter = () => {
+const mapStateToProps = (state) => {
+    return {
+        user: state.authenticateUser.user
+    }
+}
 
-    const userId = parseInt(window.sessionStorage.getItem("id"));
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
 
+
+const BoundSelectCharacter = (props) => {
     const [characters, updateCharacters] = useState([]);
     const [lessThanFour, setLessThanFour] = useState("none");
+    const { user, resetStore } = props;
 
     useEffect(() => {
-        API.getAllCharacters(userId)
+        API.getAllCharacters(user.id, user.jwtToken)
         .then(results => {
             // pushes the data to the characters array
             const newCharacters = results.data;
             updateCharacters(prev => [...prev, ...newCharacters]);
         });
         checkForSpace();
-    }, [userId])
+    }, [user.id])
 
     useEffect(() => {
         if (characters.length) {
@@ -33,7 +45,9 @@ const SelectCharacter = () => {
     }, [characters]);
 
     const renderCharacters = () => {
-        return characters.map(character => <CharacterBlock character={character} key={character.id}/>)
+        return characters.map(character => {
+        return <CharacterBlock character={character} key={character.id}/>
+        })
     }
 
     const checkForSpace = () => {
@@ -46,7 +60,7 @@ const SelectCharacter = () => {
     }
 
     const logout = () => {
-        window.sessionStorage.clear();
+        resetStore();
         navigate("/")
     }
 
@@ -73,5 +87,8 @@ const SelectCharacter = () => {
                     
     )
 }
+
+const SelectCharacter = connect(mapStateToProps, mapDispatchToProps)(BoundSelectCharacter);
+
 
 export default SelectCharacter;

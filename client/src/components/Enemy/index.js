@@ -8,7 +8,7 @@ const Enemy = ({
     currentEnemyHealth,
     enemyHealthWidth,
     enemyImage,
-    currentCharacter,
+    characterName,
     currentUserHealth,
     maxHealth,
     userHealthWidth,
@@ -30,7 +30,7 @@ const Enemy = ({
 
                 <img src={enemies[enemyImage]} id="enemyImage" />
 
-                <div id="charName">{currentCharacter.name}</div>
+                <div id="charName">{characterName}</div>
                 <div className="healthArea" id="userHealthArea">
                     <div className="healthText">
                         {currentUserHealth}/{maxHealth}
