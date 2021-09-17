@@ -16,15 +16,15 @@ const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#f7f7f7",
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    minWidth: "40vh",
-    maxWidth: "60vw"
+    width: '40vw',
+    borderRadius: "10px"
   },
 }));
 
@@ -67,19 +67,20 @@ const Credits = (props) => {
             </section>
             <section className="section" id="created">
               <h2>Created by</h2>
-              <p>Sean Belverstone</p>
+              <span>Sean Belverstone</span>
             </section>
             <section className="section" id="logoCredit">
               <h2>Logo Design</h2>
-              <p>Logo design created on Canva.</p>
-              <p>All other images were used from free websites across the internet.</p>
+              <span>Logo design created on Canva.</span>
+              <span>All other images were used from free websites across the internet.</span>
             </section>
             <section className="section" id="testers">
               <h2>Testers</h2>
-              <p>Alex Anderson</p>
-              <p>Mark Hobbs</p>
-              <p>Ben Murray</p>
-              <p>Jack Pickard</p>
+              <span>Alex Anderson</span>
+              <span>Ben Murray</span>
+              <span>Jack Pickard</span>
+              <span>Lewie Cox</span>
+              <span>Mark Hobbs</span>
             </section>
             <section className="section" id="built">
               <h2>Built with: </h2>
@@ -93,8 +94,8 @@ const Credits = (props) => {
             </section>
             <section className="section" id="testers">
               <h2>With special thanks to</h2>
-              <p>Olivia Yeargain, for putting up with my long nights and constant styling advice.</p>
-              <p>Full Stack Coding Bootcamp @ UT Austin, for teaching me the skills I needed to get started.</p>
+              <span>Olivia Yeargain, for putting up with my long nights and constant styling advice.</span>
+              <span>Full Stack Coding Bootcamp @ UT Austin, for teaching me the skills I needed to get started.</span>
             </section>
           </div>
         </Fade>
