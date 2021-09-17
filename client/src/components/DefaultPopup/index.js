@@ -30,9 +30,6 @@ const DefaultPopup = (props) => {
   const classes = useStyles();
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
     if (destination !== "") {
       navigate(destination);
     }
@@ -41,7 +38,12 @@ const DefaultPopup = (props) => {
 
   return (
     <div className={classes.root}>
-      <Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}} style={{height: "100%"}}>
+      <Snackbar
+        open={display}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{vertical: "top", horizontal: "right"}}
+        style={{height: "20%", top: '40vh', width: '23vw'}}>
         <Alert onClose={handleClose} severity={snackbarColor}>
           {message}
         </Alert>
