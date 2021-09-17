@@ -537,10 +537,12 @@ const BoundMainStory = (props) => {
     }
 
     return (
-        <Wrapper>
-            <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
-            <a id="back" onClick={() => navigate('/select')}>QUIT TO<br />MAIN MENU</a>
-
+        <Wrapper page="main">
+            <div className="topRow">
+                <Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+                <img src={smallLogo} alt="a small logo" id="smallLogo" />
+                <a id="back" onClick={() => navigate('/select')}>QUIT TO<br />MAIN MENU</a>
+            </div>
             <section className="textArea">
                 <Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
                     {"Text Speed >>"}
@@ -622,8 +624,6 @@ const BoundMainStory = (props) => {
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
                 </div>
-
-                <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </footer>
             <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />

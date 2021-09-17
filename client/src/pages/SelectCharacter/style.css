@@ -1,16 +1,18 @@
-#logoutButton {
-    position: absolute;
-    left: 35%;
-    top: 3%;
+#selectCharacter .title {
+    margin-right: 11vw !important;
 }
 
 #allCharacters, #creatorWrapper {
     margin: 5vh auto;
-    width: 40%;
+}
+
+#allCharacters {
+    width: 31vw;
 }
 
 #creatorWrapper {
     justify-content: space-evenly;
+    width: 29vw;
 }
 
 #createNew {

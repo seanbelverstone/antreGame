@@ -56,9 +56,9 @@ const BoundCreateCharacter = (props) => {
     const { user, resetStore } = props;
 
     // By passing in charClass, setStats runs whenever the selected class is selected
-    useEffect((charClass) => {
+    useEffect(() => {
         setStats();
-    })
+    }, [charClass])
 
     // sets the stats of the corresponding class
     const setStats = () => {
@@ -142,16 +142,19 @@ const BoundCreateCharacter = (props) => {
     }
 
     return (
-        <Wrapper>
-            <form id="formWrapper" onSubmit={handleSubmit}>
+        <Wrapper page="createCharacter">
+            <div className="topRow">
                 <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
-                <a id="back" onClick={() => navigate("/select")}>BACK</a>
                 <div className="title">CREATE A CHARACTER</div>
+                <a id="back" onClick={() => navigate("/select")}>&#x2190; BACK</a>
+            </div>
+
+            <form id="formWrapper" onSubmit={handleSubmit}>
                 <FormControl className={classes.formControl}>
                     <TextField
                         className="formInput"
                         label="Name"
-                        variant="outlined"
+                        variant="standard"
                         onChange={event => setName(event.target.value)}
                         error={nameError}
                         helperText={nameHelperText}
@@ -201,6 +204,7 @@ const BoundCreateCharacter = (props) => {
                     variant="contained"
                     color="primary"
                     type="submit"
+                    disabled={race === '' || charClass === ''}
                 >
                     Create
                 </Button>

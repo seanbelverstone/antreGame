@@ -1,6 +1,8 @@
 .section {
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .images {
@@ -14,4 +16,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+h2 {
+    text-decoration: underline;
 }

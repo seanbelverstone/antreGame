@@ -1,7 +1,7 @@
 #formWrapper {
     display: flex;
     flex-direction: column;
-    margin: 5% 25% 0 25%;
+    margin: 5vh 25% 0 25%;
 }
 
 .MuiInputBase-input, .MuiSelect-root {

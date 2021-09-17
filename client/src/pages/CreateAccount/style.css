@@ -1,3 +1,7 @@
+#createAccount .title {
+    margin-left: 5.5vw !important;
+}
+
 #createAccountForm {
     display: flex;
     flex-direction: column;
@@ -8,10 +12,4 @@
 
 .formInput, #submit {
     margin-top: 10px !important;
-}
-
-#smallLogo {
-    margin-top: 10px;
-    width: 15vh;
-    align-self: center;
 }

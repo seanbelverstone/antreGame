@@ -40,9 +40,6 @@ const DonateButton = (props) => {
         <PayPalButton
           amount={amount || 10.00}
           shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-          style={{
-            layout: 'horizontal'
-          }}
           disableFunding={['venmo']}
           onSuccess={(details, data) => {
             setSnackbarDisplay(true)
@@ -50,6 +47,10 @@ const DonateButton = (props) => {
           }}
           options={{
             clientId: process.env.REACT_APP_CLIENT_ID
+          }}
+          style={{
+            layout: 'horizontal',
+            shape: 'pill'
           }}
         />
       )}

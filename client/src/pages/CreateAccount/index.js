@@ -57,7 +57,7 @@ const CreateAccount = () => {
 
     // Email validation
     const checkEmail = () => {
-        if(!validateEmail(email)) {
+        if (!validateEmail(email)) {
             setEmailError(true);
             setEmailHelperText("Please enter a valid email")
         } else {
@@ -84,79 +84,81 @@ const CreateAccount = () => {
 
     const createNewUser = () => {
         API.createUser(username, email, password)
-        .then(() => {
-            // Set the username to session storage so we can use it later
-            setSnackbarColor("success")
-            setSnackbarMessage(`Account created. Welcome, ${username}!`)
-            setSnackbarDisplay(true);
-        })
-        .catch((err) => {
-            setSnackbarColor("error")
-            setSnackbarMessage(`Sorry, the username ${username} already exists.`)
-            setSnackbarDisplay(true);
-        });
+            .then(() => {
+                // Set the username to session storage so we can use it later
+                setSnackbarColor("success")
+                setSnackbarMessage(`Account created. Welcome, ${username}!`)
+                setSnackbarDisplay(true);
+            })
+            .catch((err) => {
+                setSnackbarColor("error")
+                setSnackbarMessage(`Sorry, the username ${username} already exists.`)
+                setSnackbarDisplay(true);
+            });
     }
 
-    return(
-        <Wrapper>
-            <a id="back" onClick={() => navigate('/')}>BACK</a>
-            <div className="title">CREATE ACCOUNT</div>
+    return (
+        <Wrapper page="createAccount">
+            <div className="topRow">
+                <div className="title">CREATE ACCOUNT</div>
+                <a id="back" onClick={() => navigate('/')}>&#x2190; BACK</a>
+            </div>
             <form noValidate autoComplete="off" id="createAccountForm" onSubmit={handleSubmit}>
 
-                <TextField 
-                    className="formInput" 
-                    label="Username" 
-                    variant="outlined" 
-                    onChange={event => setUsername(event.target.value)} 
-                    error={usernameError} 
+                <TextField
+                    className="formInput"
+                    label="Username"
+                    variant="outlined"
+                    onChange={event => setUsername(event.target.value)}
+                    error={usernameError}
                     helperText={usernameHelperText}
-                    />
+                />
 
-                <TextField 
-                    className="formInput" 
-                    label="Email" 
-                    variant="outlined"  
-                    onChange={event => setEmail(event.target.value)} 
-                    error={emailError} 
+                <TextField
+                    className="formInput"
+                    label="Email"
+                    variant="outlined"
+                    onChange={event => setEmail(event.target.value)}
+                    error={emailError}
                     helperText={emailHelperText}
-                    />
+                />
 
-                <TextField 
-                    className="formInput" 
-                    label="Password" 
-                    variant="outlined" 
-                    type="password" 
+                <TextField
+                    className="formInput"
+                    label="Password"
+                    variant="outlined"
+                    type="password"
                     onChange={event => setPassword(event.target.value)}
-                    error={passwordError} 
-                    />
+                    error={passwordError}
+                />
 
-                <TextField 
-                    className="formInput" 
+                <TextField
+                    className="formInput"
                     label="Confirm Password"
-                    variant="outlined" 
-                    type="password" 
+                    variant="outlined"
+                    type="password"
                     onChange={event => setConfirmPassword(event.target.value)}
-                    error={passwordError} 
+                    error={passwordError}
                     helperText={passwordHelperText}
-                    />
+                />
 
-                <Button 
-                    variant="contained" 
+                <Button
+                    variant="contained"
                     color="primary"
                     id="submit"
                     type="submit"
-                    >
+                >
                     Submit
                 </Button>
-                <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+                <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </form>
-            <DefaultPopup 
-                display={snackbarDisplay} 
-                setDisplay={setSnackbarDisplay} 
-                message={snackbarMessage} 
-                destination="/" 
+            <DefaultPopup
+                display={snackbarDisplay}
+                setDisplay={setSnackbarDisplay}
+                message={snackbarMessage}
+                destination="/"
                 snackbarColor={snackbarColor}
-                />
+            />
         </Wrapper>
     )
 }
