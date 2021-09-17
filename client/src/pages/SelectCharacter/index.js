@@ -30,11 +30,11 @@ const BoundSelectCharacter = (props) => {
 
     useEffect(() => {
         API.getAllCharacters(user.id, user.jwtToken)
-        .then(results => {
-            // pushes the data to the characters array
-            const newCharacters = results.data;
-            updateCharacters(prev => [...prev, ...newCharacters]);
-        });
+            .then(results => {
+                // pushes the data to the characters array
+                const newCharacters = results.data;
+                updateCharacters(prev => [...prev, ...newCharacters]);
+            });
         checkForSpace();
     }, [user.id])
 
@@ -46,13 +46,13 @@ const BoundSelectCharacter = (props) => {
 
     const renderCharacters = () => {
         return characters.map(character => {
-        return <CharacterBlock character={character} key={character.id}/>
+            return <CharacterBlock character={character} key={character.id} />
         })
     }
 
     const checkForSpace = () => {
         // Allows the user to have only 4 characters. If they have less than 4, it displays the "create new character" box.
-        if(characters.length < 4) {
+        if (characters.length < 4) {
             setLessThanFour("flex")
         } else {
             setLessThanFour("none")
@@ -64,10 +64,12 @@ const BoundSelectCharacter = (props) => {
         navigate("/")
     }
 
-    return(
+    return (
         <Wrapper page="selectCharacter">
-            <div className="title">SELECT A CHARACTER</div>
-            <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+            <div className="topRow">
+                <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+                <div className="title">SELECT A CHARACTER</div>
+            </div>
 
             {/* do a map of the characters array, and render them here. */}
             <section id="allCharacters">
@@ -75,16 +77,16 @@ const BoundSelectCharacter = (props) => {
             </section>
 
 
-            <div style={{display: lessThanFour}} id="creatorWrapper" className="characterWrapper">
+            <div style={{ display: lessThanFour }} id="creatorWrapper" className="characterWrapper">
                 <div id="createNew">Create a new character</div>
                 <IconButton variant="contained" color="primary" onClick={() => navigate("/create")}>
                     <AddIcon />
                 </IconButton>
             </div>
 
-            <img src={smallLogo} alt="a small logo" id="smallLogo"/>
+            <img src={smallLogo} alt="a small logo" id="smallLogo" />
         </Wrapper>
-                    
+
     )
 }
 

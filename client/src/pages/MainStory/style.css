@@ -1,5 +1,9 @@
-section.textArea {
-    margin-top: 80px;
+#logout, #back {
+    z-index: 0;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0;
 }
 
 #speedButton {
@@ -25,7 +29,7 @@ section.textArea {
     margin: 0 auto;
     justify-content: space-evenly;
     width: 60vh;
-    padding: 50px;
+    padding: 15px;
 }
 
 .options {
@@ -125,7 +129,3 @@ section.textArea {
     justify-content: center;
     margin: 5px;
 }
-
-/* body {
-    white-space: pre-line;
-} */

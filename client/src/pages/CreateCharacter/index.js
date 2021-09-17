@@ -143,10 +143,13 @@ const BoundCreateCharacter = (props) => {
 
     return (
         <Wrapper page="createCharacter">
+            <div className="topRow">
                 <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
-                <a id="back" onClick={() => navigate("/select")}>&#x2190; BACK</a>
                 <div className="title">CREATE A CHARACTER</div>
-                <form id="formWrapper" onSubmit={handleSubmit}>
+                <a id="back" onClick={() => navigate("/select")}>&#x2190; BACK</a>
+            </div>
+
+            <form id="formWrapper" onSubmit={handleSubmit}>
                 <FormControl className={classes.formControl}>
                     <TextField
                         className="formInput"

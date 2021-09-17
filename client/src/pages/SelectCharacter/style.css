@@ -1,7 +1,5 @@
-#logoutButton {
-    position: absolute;
-    left: 35%;
-    top: 3%;
+#selectCharacter .title {
+    margin-right: 11vw !important;
 }
 
 #allCharacters, #creatorWrapper {
