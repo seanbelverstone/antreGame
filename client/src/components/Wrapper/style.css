@@ -10,3 +10,7 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+
+#login {
+    width: 25vw;
+}

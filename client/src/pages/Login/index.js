@@ -6,7 +6,7 @@ import * as actionCreators from "../../redux/actions/actionCreators";
 import Wrapper from "../../components/Wrapper";
 import Credits from "../../components/Credits";
 import API from "../../utils/API";
-import logo from "../../assets/images/Antre.png";
+import logo from "../../assets/images/AntreCrop.png";
 import { TextField, Button } from "@material-ui/core";
 import "./style.css";
 
@@ -62,7 +62,7 @@ const BoundLogin = (props) => {
     }
 
     return (
-        <Wrapper>
+        <Wrapper page="login">
             <Credits />
             <img src={logo} alt="logo" id="antreLogo" />
             <form noValidate autoComplete="off" id="loginForm" onSubmit={onSubmit}>
