@@ -11,6 +11,10 @@
     animation-fill-mode: forwards;
 }
 
-#login {
+#login, #createAccount {
     width: 25vw;
+}
+
+#selectCharacter {
+    width: 40vw;
 }

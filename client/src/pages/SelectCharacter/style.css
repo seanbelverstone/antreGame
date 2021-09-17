@@ -6,11 +6,15 @@
 
 #allCharacters, #creatorWrapper {
     margin: 5vh auto;
-    width: 60%;
+}
+
+#allCharacters {
+    width: 31vw;
 }
 
 #creatorWrapper {
     justify-content: space-evenly;
+    width: 29vw;
 }
 
 #createNew {

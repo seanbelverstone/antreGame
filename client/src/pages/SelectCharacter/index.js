@@ -65,7 +65,7 @@ const BoundSelectCharacter = (props) => {
     }
 
     return(
-        <Wrapper>
+        <Wrapper page="selectCharacter">
             <div className="title">SELECT A CHARACTER</div>
             <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 
