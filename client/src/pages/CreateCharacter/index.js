@@ -42,7 +42,9 @@ const BoundCreateCharacter = (props) => {
     const [nameError, setNameError] = useState(false);
     const [nameHelperText, setNameHelperText] = useState("");
     const [race, setRace] = useState("");
+    const [raceError, setRaceError] = useState(false);
     const [charClass, setCharClass] = useState("");
+    const [charClassError, setCharClassError] = useState(false);
     const [health, setHealth] = useState(0);
     const [strength, setStrength] = useState(0);
     const [defense, setDefense] = useState(0);
@@ -56,9 +58,9 @@ const BoundCreateCharacter = (props) => {
     const { user, resetStore } = props;
 
     // By passing in charClass, setStats runs whenever the selected class is selected
-    useEffect((charClass) => {
+    useEffect(() => {
         setStats();
-    })
+    }, [charClass])
 
     // sets the stats of the corresponding class
     const setStats = () => {
@@ -124,6 +126,8 @@ const BoundCreateCharacter = (props) => {
             return;
         } else {
             setNameError(false);
+            setRaceError(false);
+            setCharClassError(false);
             setNameHelperText("");
             createNewCharacter();
         }
@@ -143,15 +147,15 @@ const BoundCreateCharacter = (props) => {
 
     return (
         <Wrapper>
-            <form id="formWrapper" onSubmit={handleSubmit}>
                 <Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
                 <a id="back" onClick={() => navigate("/select")}>BACK</a>
                 <div className="title">CREATE A CHARACTER</div>
+                <form id="formWrapper" onSubmit={handleSubmit}>
                 <FormControl className={classes.formControl}>
                     <TextField
                         className="formInput"
                         label="Name"
-                        variant="outlined"
+                        variant="standard"
                         onChange={event => setName(event.target.value)}
                         error={nameError}
                         helperText={nameHelperText}
@@ -164,6 +168,7 @@ const BoundCreateCharacter = (props) => {
                         id="raceSelect"
                         value={race}
                         onChange={handleRaceChange}
+                        error={raceError}
                     >
                         <MenuItem value={"Human"} id="human">Human</MenuItem>
                         <MenuItem value={"Elf"} id="elf">Elf</MenuItem>
@@ -177,6 +182,7 @@ const BoundCreateCharacter = (props) => {
                         id="classSelect"
                         value={charClass}
                         onChange={handleClassChange}
+                        error={charClassError}
                     >
                         <MenuItem value={"Warrior"} id="warrior">Warrior</MenuItem>
                         <MenuItem value={"Rogue"} id="rogue">Rogue</MenuItem>
@@ -201,6 +207,7 @@ const BoundCreateCharacter = (props) => {
                     variant="contained"
                     color="primary"
                     type="submit"
+                    disabled={race === '' || charClass === ''}
                 >
                     Create
                 </Button>
