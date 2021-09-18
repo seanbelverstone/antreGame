@@ -1,6 +1,5 @@
 .wrapper {
     width: 50vw;
-    max-height: 85vh;
     background-color: var(--foreground);
     padding: 20px;
     margin: 2.5% auto;

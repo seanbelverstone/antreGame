@@ -1,0 +1,26 @@
+.value {
+    margin-left: 4px;
+}
+
+#strength {
+    color: var(--strength)
+}
+
+#defense {
+    color: var(--defense)
+}
+
+#wisdom {
+    color: var(--wisdom)
+}
+
+#luck {
+    color: var(--luck)
+}
+
+#strength, #defense, #wisdom, #luck, .leftStat, .rightStat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px;
+}

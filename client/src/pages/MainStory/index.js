@@ -9,7 +9,7 @@ import { stringToCamel, isBlacklistedChoice } from '../../utils/functions';
 import Wrapper from "../../components/Wrapper";
 import storylines from "../../utils/storylines.json";
 import attacks from "../../utils/attacks.js";
-import Inventory from "../../components/Inventory";
+import InventoryV2 from "../../components/InventoryV2";
 import InventoryPopup from "../../components/InventoryPopup";
 import DefaultPopup from "../../components/DefaultPopup";
 import ChoiceBlock from "../../components/ChoiceBlock";
@@ -597,11 +597,12 @@ const BoundMainStory = (props) => {
             </div>
 
             <footer id="footer">
-                <Inventory
+                <InventoryV2
                     id="inventory"
                     disabled={buttonDisabled}
                     health={stats.health}
                     maxHealth={maxHealth}
+                    userHealthWidth={(100 * stats.health) / maxHealth}
                     strength={stats.strength}
                     defense={stats.defense}
                     wisdom={stats.wisdom}
