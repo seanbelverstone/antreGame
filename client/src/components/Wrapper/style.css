@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper, #inventoryModal {
     width: 50vw;
     background-color: var(--foreground);
     padding: 20px;
@@ -17,4 +17,10 @@
 
 #selectCharacter, #createCharacter, #main {
     width: 40vw;
+}
+
+#inventoryModal {
+    width: 22vw;
+    text-align: left;
+    align-items: unset;
 }

@@ -1,7 +1,8 @@
-.value {
-    margin-left: 4px;
+#left, #right {
+    align-self: center;
 }
 
+/* Stats */
 #strength {
     color: var(--strength)
 }
@@ -18,9 +19,53 @@
     color: var(--luck)
 }
 
-#strength, #defense, #wisdom, #luck, .leftStat, .rightStat {
+#strength, #defense, #wisdom, #luck, .leftStat, .rightStat, #top, #bottom, #inventoryModal {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 2px;
+}
+
+/* Misc items */
+#top, #bottom {
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.icon {
+    max-width: 15vh;
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+}
+
+#torch .icon {
+    margin-left: 35px;
+    width: 8vh;
+}
+
+#torch .iconText {
+    margin-left: 20px;
+}
+
+.iconText {
+    width: auto;
+    text-align: center;
+}
+
+.equipmentIcon {
+    max-width: 5vh;
+}
+
+.key {
+    text-decoration: underline;
+}
+
+#weapon, #head, #chest, #hands, #legs, #feet {
+    display: flex;
+    flex-direction: row;
+}
+
+.invText {
+    margin: 0 0 15px 5px;
 }

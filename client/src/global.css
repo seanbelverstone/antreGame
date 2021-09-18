@@ -27,6 +27,17 @@ a {
   cursor: pointer;
 }
 
+.MuiDivider-root {
+  height: 2px !important;
+  background-color: var(--background) !important;
+  margin: 10px !important;
+}
+
+.MuiDivider-vertical {
+  width: 2px !important;
+  height: 58vh !important;
+}
+
 .topRow {
   width: 95%;
   display: flex;
