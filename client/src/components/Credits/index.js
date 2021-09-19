@@ -60,14 +60,20 @@ const Credits = (props) => {
       >
         <Fade in={open}>
           <div className={classes.paper} style={{overflowY: "scroll", maxHeight: "80vh", padding: "40px"}}>
-            <h1 id="transition-modal-title">Credits</h1>  
-            <section className="section">
-              <span>If you would like to buy me a coffee or donate to help me continue to develop this one man-show, I'd really appreciate it :)</span>
-              <DonateButton />
-            </section>
+            <h1 id="transition-modal-title" className="title" style={{margin: '0 30px'}}>CREDITS</h1>  
             <section className="section" id="created">
               <h2>Created by</h2>
               <span>Sean Belverstone</span>
+            </section>
+            <section className="section" id="built">
+              <h2>Built with: </h2>
+              <div className="imageSection">
+                <img className='images' href="https://reactjs.org/" target="_blank" src={react} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={materialUi} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={express} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={node} />
+                <img className='images' href="https://reactjs.org/" target="_blank" src={mysql} />
+              </div>
             </section>
             <section className="section" id="logoCredit">
               <h2>Logo Design</h2>
@@ -82,20 +88,14 @@ const Credits = (props) => {
               <span>Lewie Cox</span>
               <span>Mark Hobbs</span>
             </section>
-            <section className="section" id="built">
-              <h2>Built with: </h2>
-              <div className="imageSection">
-                <img className='images' href="https://reactjs.org/" target="_blank" src={react} />
-                <img className='images' href="https://reactjs.org/" target="_blank" src={materialUi} />
-                <img className='images' href="https://reactjs.org/" target="_blank" src={express} />
-                <img className='images' href="https://reactjs.org/" target="_blank" src={node} />
-                <img className='images' href="https://reactjs.org/" target="_blank" src={mysql} />
-              </div>
-            </section>
-            <section className="section" id="testers">
+            <section className="section">
               <h2>With special thanks to</h2>
               <span>Olivia Yeargain, for putting up with my long nights and constant styling advice.</span>
               <span>Full Stack Coding Bootcamp @ UT Austin, for teaching me the skills I needed to get started.</span>
+            </section>
+            <section className="section" style={{marginTop: '40px'}}>
+              <span>If you would like to buy me a coffee or donate to help me continue to develop this one man-show, I'd really appreciate it :)</span>
+              <DonateButton />
             </section>
           </div>
         </Fade>

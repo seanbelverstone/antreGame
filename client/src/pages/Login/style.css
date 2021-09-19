@@ -30,3 +30,18 @@
   color: rgb(143, 143, 143);
   text-decoration: underline;
 }
+
+#disclaimer {
+  position: fixed;     
+  text-align: center;    
+  bottom: 0px; 
+  width: 100%;
+  color: var(--foreground);
+  opacity: 0.5;
+}
+
+#disclaimerLink {
+  color: var(--luck);
+  text-decoration: underline;
+  cursor: pointer;
+}
