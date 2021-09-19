@@ -54,6 +54,7 @@ a {
 .title {
   font-size: 30px;
   margin: 30px 30px;
+  text-align: center;
 }
 
 #logout {
