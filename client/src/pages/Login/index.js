@@ -62,37 +62,41 @@ const BoundLogin = (props) => {
     }
 
     return (
-        <Wrapper page="login">
-            <Credits />
-            <img src={logo} alt="logo" id="antreLogo" />
-            <form noValidate autoComplete="off" id="loginForm" onSubmit={onSubmit}>
-                <TextField
-                    className="formInput"
-                    label="Username"
-                    variant="outlined"
-                    onChange={event => setUsername(event.target.value)}
-                    error={usernameError}
-                />
-                <TextField
-                    className="formInput"
-                    label="Password"
-                    variant="outlined"
-                    type="password"
-                    onChange={event => setPassword(event.target.value)}
-                    error={passwordError}
-                    helperText={passwordHelperText}
-                />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                >
-                    Login
-                </Button>
-                <a id="create" onClick={() => navigate("/account")}>CREATE AN ACCOUNT</a>
-            </form>
-        </Wrapper>
-
+        <>
+            <Wrapper page="login">
+                <Credits />
+                <img src={logo} alt="logo" id="antreLogo" />
+                <form noValidate autoComplete="off" id="loginForm" onSubmit={onSubmit}>
+                    <TextField
+                        className="formInput"
+                        label="Username"
+                        variant="outlined"
+                        onChange={event => setUsername(event.target.value)}
+                        error={usernameError}
+                    />
+                    <TextField
+                        className="formInput"
+                        label="Password"
+                        variant="outlined"
+                        type="password"
+                        onChange={event => setPassword(event.target.value)}
+                        error={passwordError}
+                        helperText={passwordHelperText}
+                    />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                    >
+                        Login
+                    </Button>
+                    <a id="create" onClick={() => navigate("/account")}>CREATE AN ACCOUNT</a>
+                </form>
+            </Wrapper>
+            <p id="disclaimer">This game is currently under development. If you discover any bugs, please create an issue on
+                the GitHub repository <span id="disclaimerLink" href='https://github.com/seanbelverstone/antreGame/issues' target="_blank">HERE</span>
+            </p>
+        </>
     )
 }
 
