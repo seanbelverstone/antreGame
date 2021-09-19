@@ -32,10 +32,9 @@
     left: 31%;
 }
 
-#dialog {
-    z-index: 4;
-    top: -15%;
-    right: 65%;
+#statsBlock #dialog {
+    top: -15% !important;
+    right: 65% !important;
 }
 
 /* Misc items */

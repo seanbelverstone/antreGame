@@ -67,7 +67,7 @@ const Inventory = (props) => {
                 header: 'Strength',
                 body: `Strength determines how much power an attack has. Normal attacks do 1-6
                 multiplied by your weapon damage, added to double your strength value. With
-                special attacks, your strength value ${<i>and</i>} weapon damage is tripled.`
+                special attacks, your strength value and weapon damage is tripled.`
             },
             {
                 header: 'Defense',

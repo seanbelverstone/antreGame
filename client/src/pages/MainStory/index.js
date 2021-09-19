@@ -585,7 +585,7 @@ const BoundMainStory = (props) => {
                 attackText={attackText}
             />
 
-            <div id="optionArea">
+            <div id="optionArea" className={optionFade}>
                 <ChoiceBlock
                     modifier={modifier}
                     optionFade={optionFade}
@@ -593,6 +593,9 @@ const BoundMainStory = (props) => {
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
                     handleClick={handleClick}
+                    weaponDamage={inventory.weaponDamage}
+                    strength={stats.strength}
+                    enemyDefense={currentEnemy.defense}
                 />
             </div>
 

@@ -18,6 +18,7 @@
 }
 
 #dialog {
+  z-index: 4;
   opacity: 0.95;
-  position: fixed;
+  position: absolute;
 }

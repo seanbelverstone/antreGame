@@ -34,7 +34,7 @@ const exampleProps = {
 */
 
 const Info = (props) => {
-    const { infoProps } = props;
+    const { infoProps, optionFade } = props;
     console.log(infoProps);
     const classes = useStyles();
     const [hover, setHover] = useState(false);
@@ -42,10 +42,10 @@ const Info = (props) => {
     const onHover = () => setHover(true);
     const onLeave = () => setHover(false);
     return (
-        <div>
+        <div className={optionFade}>
             <InfoIcon className="infoIcon" onMouseEnter={onHover} onMouseLeave={onLeave} />
             {hover ? (
-                <div className={classes.paper} id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
+                <div className={classes.paper } id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
                     <h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>
                     {infoProps.subheadings.map(prop => (
                         <React.Fragment key={prop.header.toLowerCase()}>
