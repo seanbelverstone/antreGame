@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InfoIcon from '@material-ui/icons/Info';
 import { makeStyles } from '@material-ui/core/styles';
+import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -29,7 +30,7 @@ const Info = (props) => {
         <div>
             <InfoIcon className="infoIcon" onMouseEnter={onHover} onMouseLeave={onLeave} />
             {hover ? (
-                <div className={classes.paper} id="statHelp" onMouseEnter={onHover} onMouseLeave={onLeave}>
+                <div className={classes.paper} id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
                     <h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>
                     {infoProps.subheadings.map(prop => (
                         <React.Fragment key={prop.header.toLowerCase()}>
