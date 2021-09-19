@@ -69,6 +69,7 @@ const BoundMainStory = (props) => {
     const [tempDefense, setTempDefense] = useState(0);
     const [rogueLuckRound, setRogueLuckRound] = useState(0)
     const [tempLuck, setTempLuck] = useState(0);
+    const [timer, setTimer] = useState(0);
 
     const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
@@ -81,6 +82,7 @@ const BoundMainStory = (props) => {
         window.onbeforeunload = () => {
             setInitalLevel(levels.current)
         }
+        startTimer();
     }, []);
 
     useEffect(() => {
@@ -178,6 +180,15 @@ const BoundMainStory = (props) => {
             }
         }, (storyText.split("").length * speedMultiplier + 2000))
 
+    }
+
+    const startTimer = () => {
+        let currentTime = time.value;
+        setInterval(() => setTimer(currentTime++), 1000);
+    }
+
+    const stopTimer = () => {
+        clearInterval(startTimer)
     }
 
     const checkModifier = () => {
@@ -387,7 +398,6 @@ const BoundMainStory = (props) => {
     }
 
     const isEnemyAlive = async () => {
-        console.log(currentEnemyHealth < 0)
         if (currentEnemyHealth < 0) {
             setCurrentEnemyHealth(0);
             setEnemyHealthWidth(0);
@@ -508,6 +518,11 @@ const BoundMainStory = (props) => {
     };
 
     const saveGame = () => {
+        updateCharacter({
+            time: {
+                value: timer
+            }
+        });
         API.saveCharacter(
             stats.id,
             stats.health,
@@ -527,15 +542,15 @@ const BoundMainStory = (props) => {
             inventory.healthPotions,
             inventory.gold,
             levels.current,
-            time.value,
+            timer,
             user.jwtToken
         ).then((results) => {
-            console.log(results);
             setSaveGameDisplay(true);
         })
     }
 
     const logout = () => {
+        stopTimer();
         resetStore()
         navigate("/")
     }

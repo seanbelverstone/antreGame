@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux"
 import * as actionCreators from "../../redux/actions/actionCreators";
@@ -23,7 +23,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const BoundCharacterBlock = (props) => {
-    const { updateCharacter, character, user } = props;
+    const { updateCharacter, character, user, time } = props;
+    const [timePlayed, setTimePlayed] = useState('');
+    useEffect(() => {
+        calculateTime();
+    }, [])
     
     const playThisCharacter = (selectedCharacter) => {
         updateCharacter({
@@ -71,6 +75,13 @@ const BoundCharacterBlock = (props) => {
         navigate("/play");
     }
 
+    const calculateTime = () => {
+        const minutes = Math.floor(character.time / 60);
+        const seconds = character.time - minutes * 60;
+        const prettySeconds = seconds < 10 ? `0${seconds}` : seconds;
+        setTimePlayed(`${minutes}:${prettySeconds}`);
+    }
+
     return(
         <div className="characterBlock">
             <div className="characterWrapper">
@@ -113,7 +124,7 @@ const BoundCharacterBlock = (props) => {
                     </section>
                     <section  className="time">
                         <div className="subHeadings">Time</div>
-                        <div>{character.time}</div>
+                        <div>{timePlayed}</div>
                     </section>                    
                 </section>
             </div>

@@ -36,7 +36,6 @@ const exampleProps = {
 
 const Info = (props) => {
     const { infoProps, optionFade } = props;
-    console.log(infoProps);
     const classes = useStyles();
     const [hover, setHover] = useState(false);
 

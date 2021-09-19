@@ -131,6 +131,6 @@ a {
   }
 }
 
-.Typewriter, #dialog {
+.Typewriter, #dialog, #inventoryPopup {
   white-space: pre-line;
 }
