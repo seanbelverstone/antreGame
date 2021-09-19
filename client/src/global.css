@@ -128,3 +128,7 @@ a {
     transform: scale(0);
   }
 }
+
+.Typewriter, #dialog {
+  white-space: pre-line;
+}

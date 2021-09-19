@@ -22,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
 /*
 const exampleProps = {
     title: '',
-    subheadings: [
+    main: [
         {
             header: '',
+            subheading: ''
             body: ''
         }
         ...
@@ -47,10 +48,11 @@ const Info = (props) => {
             {hover ? (
                 <div className={classes.paper } id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
                     <h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>
-                    {infoProps.subheadings.map(prop => (
+                    {infoProps.main.map(prop => (
                         <React.Fragment key={prop.header.toLowerCase()}>
-                            <h4 className="key"id={prop.header.toLowerCase()}>{prop.header}</h4>
-                            <p>{prop.body}</p>
+                            <h3 className="key"id={prop.header.toLowerCase()}>{prop.header}</h3>
+                            {prop?.subheading ? <div className="subheading" style={{color: 'darkred'}}>{prop.subheading}</div> : ''}
+                            <div className="dialogBody">{prop.body}</div>
                         </React.Fragment>
                     ))}
                 </div>)

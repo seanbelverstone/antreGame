@@ -62,29 +62,22 @@ const Inventory = (props) => {
 
     const statInfo = {
         title: 'Stats',
-        subheadings: [
+        main: [
             {
                 header: 'Strength',
-                body: `Strength determines how much power an attack has. Normal attacks do 1-6
-                multiplied by your weapon damage, added to double your strength value. With
-                special attacks, your strength value and weapon damage is tripled.`
+                body: `Strength determines how much power an attack has. Normal attacks do 1-6 multiplied by your weapon damage, added to double your strength value. With special attacks, your strength value and weapon damage is tripled.`
             },
             {
                 header: 'Defense',
-                body: `The higher your defense value, the less damage recieved. All attacks are divided
-                by the receiver's defense value. Critical hits bypass defense checks.`
+                body: `The higher your defense value, the less damage recieved. All attacks are divided by the receiver's defense value. Critical hits bypass defense checks.`
             },
             {
                 header: 'Wisdom',
-                body: `When you use a class specific skill, the amount of time you'll need to wait before
-                using it again is calculated by your wisdom. The more wisdom you have, the less
-                time between uses.`
+                body: `When you use a class specific skill, the amount of time you'll need to wait before using it again is calculated by your wisdom. The more wisdom you have, the less time between uses.`
             },
             {
                 header: 'Luck',
-                body: `Every attack goes through a luck check. If your luck reaches a certain value,
-                the attack will bypass a defense check dealing huge damage. Enemies also
-                have the ability to critically hit.`
+                body: `Every attack goes through a luck check. If your luck reaches a certain value, the attack will bypass a defense check dealing huge damage. Enemies also have the ability to critically hit.`
             }
         ]
     };

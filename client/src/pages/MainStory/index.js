@@ -596,6 +596,8 @@ const BoundMainStory = (props) => {
                     weaponDamage={inventory.weaponDamage}
                     strength={stats.strength}
                     enemyDefense={currentEnemy.defense}
+                    charClass={stats.charClass}
+                    wisdom={stats.wisdom}
                 />
             </div>
 
