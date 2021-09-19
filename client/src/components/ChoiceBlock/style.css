@@ -1,0 +1,14 @@
+#optionArea .infoIcon {
+    position: absolute;
+    top: -17%;
+}
+
+#optionArea #dialog {
+    z-index: 4;
+    top: -320%;
+    right: 50%;
+}
+
+.hidden {
+    visibility: hidden;
+}

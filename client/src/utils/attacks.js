@@ -44,7 +44,7 @@ export default {
         console.log(`Dice roll: ${initalRoll}`);
         console.log(`Weapon Damage: ${weaponDamage}`);
         console.log(`Str: ${strength}`);
-        console.log(`Enemy defence ${enemyDef}`);
+        console.log(`Enemy defense ${enemyDef}`);
         console.log(`Luck: ${luck}`);
         console.log(`Enemy luck: ${enemyLuck}`);
         console.log(`Final damage ${finalDamage}`);

@@ -319,7 +319,11 @@ const BoundMainStory = (props) => {
             case "Use health potion":
                 const heal = await attacks.useHealthPotion(healthPotions)
                 if (heal.healthIncrease > 0) {
-                    setHealthPotions(healthPotions - 1)
+                    updateCharacter({
+                        inventory: {
+                            healthPotions: inventory.healthPotions - 1
+                        }
+                    });
                     // if the user's health with the increase added is MORE than their max, just set it to max.
                     setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
                         maxHealth : currentUserHealth + heal.healthIncrease)
@@ -585,7 +589,7 @@ const BoundMainStory = (props) => {
                 attackText={attackText}
             />
 
-            <div id="optionArea">
+            <div id="optionArea" className={optionFade}>
                 <ChoiceBlock
                     modifier={modifier}
                     optionFade={optionFade}
@@ -593,6 +597,11 @@ const BoundMainStory = (props) => {
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
                     handleClick={handleClick}
+                    weaponDamage={inventory.weaponDamage}
+                    strength={stats.strength}
+                    enemyDefense={currentEnemy.defense}
+                    charClass={stats.charClass}
+                    wisdom={stats.wisdom}
                 />
             </div>
 
@@ -600,8 +609,9 @@ const BoundMainStory = (props) => {
                 <Inventory
                     id="inventory"
                     disabled={buttonDisabled}
-                    health={stats.health}
+                    health={currentUserHealth === 1 ? stats.health : currentUserHealth}
                     maxHealth={maxHealth}
+                    userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
                     strength={stats.strength}
                     defense={stats.defense}
                     wisdom={stats.wisdom}
@@ -617,7 +627,7 @@ const BoundMainStory = (props) => {
                     amulet={inventory.amulet}
                     healthPotions={inventory.healthPotions}
                     gold={inventory.gold}
-                    name={stats.name}
+                    charName={stats.name}
                     race={stats.race}
                     charClass={stats.charClass}
                 />

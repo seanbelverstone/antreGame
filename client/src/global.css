@@ -1,6 +1,7 @@
 :root {
   --background:  #282c34;
   --foreground:  #f7f7f7;
+  --info: lightskyblue;
   --strength: darkred;
   --defense: darkgreen;
   --wisdom: darkblue;
@@ -25,6 +26,18 @@ code {
 
 a {
   cursor: pointer;
+}
+
+.MuiDivider-root {
+  height: 2px !important;
+  background-color: var(--background) !important;
+  margin: 10px !important;
+}
+
+.MuiDivider-vertical {
+  width: 2px !important;
+  height: auto !important;
+  margin-top: 80px !important;
 }
 
 .topRow {
@@ -115,4 +128,8 @@ a {
     opacity: 0;
     transform: scale(0);
   }
+}
+
+.Typewriter, #dialog {
+  white-space: pre-line;
 }

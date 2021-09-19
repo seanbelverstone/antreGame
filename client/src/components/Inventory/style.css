@@ -1,36 +1,115 @@
-#transition-modal-title, #statsTitle {
-    text-align: center;
-    text-decoration: underline;
+.fullTitle {
+  position: fixed;
+  margin-bottom: 20px;
 }
 
-#all {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50vh;
+#left,
+#right {
+  align-self: center;
+  margin-top: 80px;
 }
 
-.items, .attributes {
-    padding: 10px;
+/* Stats */
+#strength {
+  color: var(--strength);
 }
 
-.attributes {
-    text-align: center;
+#defense {
+  color: var(--defense);
+}
+
+#wisdom {
+  color: var(--wisdom);
+}
+
+#luck {
+  color: var(--luck);
+}
+
+#strength,
+#defense,
+#wisdom,
+#luck,
+.topStat,
+.center,
+.bottomStat,
+#topMisc,
+#bottomMisc,
+#inventoryModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 2px;
+}
+
+#topMisc,
+.topStat,
+.bottomStat {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.center {
+  height: 5px;
+  align-items: center;
+}
+
+#topMisc {
+  margin-bottom: 20px;
+}
+
+#statsBlock #dialog {
+  width: 18vw;
+  top: -15% !important;
+  right: 67% !important;
+}
+
+/* Misc items */
+#top,
+#bottom {
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .icon {
-    max-width: 4vh;
-}
-
-#weapon, #head, #chest, #legs, #hands, #feet, #torch, #amulet, #healthPotion, #gold {
-    display: flex;
-}
-
-#all section div div {
-    margin-left: 10px;
+  max-width: 15vh;
+  text-align: center;
+  width: 100%;
+  margin: 5px;
 }
 
 #torch .icon {
-    max-width: 3vh;
-    margin-right: 5px;
+  margin-left: 35px;
+  width: 8vh;
+}
+
+#torch .iconText {
+  margin-left: 20px;
+}
+
+.iconText {
+  width: auto;
+  text-align: center;
+}
+
+.equipmentIcon {
+  max-width: 5vh;
+}
+
+.key {
+  text-decoration: underline;
+}
+
+#weapon,
+#head,
+#chest,
+#hands,
+#legs,
+#feet {
+  display: flex;
+  flex-direction: row;
+}
+
+.invText {
+  margin: 0 0 15px 5px;
 }

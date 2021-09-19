@@ -1,0 +1,25 @@
+.infoIcon {
+  color: var(--info);
+  background-color: var(--background);
+  border-radius: 25px;
+  width: 25px !important;
+  height: 25px !important;
+  justify-content: flex-end;
+}
+
+.infoIcon {
+  transition: transform 0.1s ease-in-out;
+}
+
+.infoIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+#dialog {
+  z-index: 4;
+  opacity: 0.95;
+  position: fixed;
+  border-radius: 10px;
+}
