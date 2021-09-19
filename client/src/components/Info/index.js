@@ -18,6 +18,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+// Props passed to this component must be in the following format:
+/*
+const exampleProps = {
+    title: '',
+    subheadings: [
+        {
+            header: '',
+            body: ''
+        }
+        ...
+    ]
+};
+<Info infoProps={exampleProps} />
+*/
+
 const Info = (props) => {
     const { infoProps } = props;
     console.log(infoProps);
