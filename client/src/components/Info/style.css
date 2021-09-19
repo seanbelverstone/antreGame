@@ -20,6 +20,6 @@
 #dialog {
   z-index: 4;
   opacity: 0.95;
-  position: absolute;
+  position: fixed;
   border-radius: 10px;
 }
