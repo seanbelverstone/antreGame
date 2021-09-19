@@ -1,6 +1,7 @@
 :root {
   --background:  #282c34;
   --foreground:  #f7f7f7;
+  --info: lightskyblue;
   --strength: darkred;
   --defense: darkgreen;
   --wisdom: darkblue;
@@ -75,6 +76,15 @@ a {
 #back:hover {
   color: rgb(143, 143, 143);
   text-decoration: underline;
+}
+
+.infoIcon {
+  color: var(--info);
+  background-color: var(--background);
+  border-radius: 25px;
+  width: 25px !important;
+  height: 25px !important;
+  justify-content: flex-end;
 }
 
 #smallLogo {

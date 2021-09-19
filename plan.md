@@ -37,7 +37,7 @@ The data below gets updated via a post when user saves the game. Name, Race and 
 
 - Health
 - Strength + 3 
-- Defence + 5
+- Defense + 5
 - Wisdom
 - Luck
 - Weapon
@@ -73,17 +73,17 @@ check their inventory, stats and other things during the game via a popout side 
 
 ## **Fight Sequences**
 
-All enemies have set health/defence/wisdom/luck.
+All enemies have set health/defense/wisdom/luck.
 
-Script creates a dice roll for both user and enemy attacks/defence
+Script creates a dice roll for both user and enemy attacks/defense
 
 User has options:
 - ### Normal attack
-    - (weapon damage x dice) + (str x 2) / defence
+    - (weapon damage x dice) + (str x 2) / defense
     - Always hits
         
 - ### Special attack
-    - (3x weapon damage x dice) + (str x 3) / defence     
+    - (3x weapon damage x dice) + (str x 3) / defense     
     - Then, roll 1 - 6 and add user luck value. If enemy luck roll is less, attack hits.
 
 
