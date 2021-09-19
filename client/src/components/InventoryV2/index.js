@@ -118,6 +118,9 @@ return (
                                     <div>Defense: {defense}</div>
                                 </section>
                             </div>
+                            <div className="center">
+                                <Info infoProps={statInfo}/>
+                            </div>
                             <div className="bottomStat">
                                 <section id="wisdom">
                                     <div>Wisdom: {wisdom}</div>
@@ -126,7 +129,6 @@ return (
                                     <div>Luck: {luck}</div>
                                 </section>
                             </div>
-                            <Info infoProps={statInfo}/>
                         </section>
                         <Divider />
                         <section id="misc">

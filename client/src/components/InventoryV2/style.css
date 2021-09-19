@@ -19,22 +19,31 @@
   color: var(--luck);
 }
 
-#strength, #defense, #wisdom, #luck, .topStat, .bottomStat, #topMisc, #bottomMisc, #inventoryModal {
+#strength, #defense, #wisdom, #luck, .topStat, .center, .bottomStat, #topMisc, #bottomMisc, #inventoryModal {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 2px;
 }
 
-#statsBlock .infoIcon {
-    position: absolute;
-    top: 17%;
-    left: 31%;
+#topMisc, .topStat, .bottomStat {
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.center {
+    height: 5px;
+    align-items: center;
+}
+
+#topMisc {
+    margin-bottom: 20px;
 }
 
 #statsBlock #dialog {
+    width: 18vw;
     top: -15% !important;
-    right: 65% !important;
+    right: 70% !important;
 }
 
 /* Misc items */

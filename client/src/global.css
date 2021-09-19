@@ -36,7 +36,7 @@ a {
 
 .MuiDivider-vertical {
   width: 2px !important;
-  height: 58vh !important;
+  height: auto !important;
 }
 
 .topRow {

@@ -319,7 +319,11 @@ const BoundMainStory = (props) => {
             case "Use health potion":
                 const heal = await attacks.useHealthPotion(healthPotions)
                 if (heal.healthIncrease > 0) {
-                    setHealthPotions(healthPotions - 1)
+                    updateCharacter({
+                        inventory: {
+                            healthPotions: inventory.healthPotions - 1
+                        }
+                    });
                     // if the user's health with the increase added is MORE than their max, just set it to max.
                     setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
                         maxHealth : currentUserHealth + heal.healthIncrease)
@@ -605,9 +609,9 @@ const BoundMainStory = (props) => {
                 <InventoryV2
                     id="inventory"
                     disabled={buttonDisabled}
-                    health={stats.health}
+                    health={currentUserHealth === 1 ? stats.health : currentUserHealth}
                     maxHealth={maxHealth}
-                    userHealthWidth={(100 * stats.health) / maxHealth}
+                    userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
                     strength={stats.strength}
                     defense={stats.defense}
                     wisdom={stats.wisdom}
