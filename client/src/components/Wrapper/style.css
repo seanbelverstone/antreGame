@@ -25,24 +25,30 @@
     align-items: unset;
 }
 
-@media screen and (max-width: 480px) {
-    .wrapper {
-        width: 80% !important;
+@media screen and (max-width: 1382px) {
+    #login, #createAccount {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #login, #createAccount {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #login, #createAccount {
+        padding: 15px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    
+
 }
 
-@media screen and (max-width: 768px) {
-    
-}
-
-@media screen and (max-width: 992px) {
-    
-}
-
-@media screen and (max-width: 1382px) {
-    
+@media screen and (max-width: 480px) {
+    #login, #createAccount {
+        width: 80%;
+    }
 }

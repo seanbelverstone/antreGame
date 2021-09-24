@@ -1,8 +1,5 @@
 #antreLogo {
-  min-width: 40vh;
-  max-width: 80vh;
-  max-height: 80vh;
-  min-height: 40vh;
+  width: 25vw;
   padding: 20px;
 }
 
@@ -46,22 +43,30 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 480px) {
-  
-}
-
-@media screen and (max-width: 600px) {
-  
-}
-
-@media screen and (max-width: 768px) {
-  
+@media screen and (max-width: 1382px) {
+  #antreLogo {
+    width: 40vw;
+  }
 }
 
 @media screen and (max-width: 992px) {
-  
+  #antreLogo {
+    width: 60vw;
+  }
 }
 
-@media screen and (max-width: 1382px) {
-  
+@media screen and (max-width: 768px) {
+  #antreLogo {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 480px) {
+  #antreLogo {
+    width: 60vw;
+  }
 }
