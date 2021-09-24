@@ -6,7 +6,7 @@
 }
 
 .images {
-    width: 8%;
+    width: 15%;
     padding: 5px;
     margin: 5px;
     opacity: 1;
@@ -16,8 +16,49 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 h2 {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 1382px) {
+    
+}
+
+@media screen and (max-width: 992px) {
+    .images {
+        width: 12%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .images {
+        width: 20%;
+    }
+    .imageSection {
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .creditModal {
+        width: 60vw !important;
+        max-height: 75vh !important; 
+    }
+    .images {
+        width: 23%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .images {
+        width: 30%;
+        padding: 0;
+    }
+    .MuiFormControl-root, .MuiTextField-root {
+        width: 45% !important;
+    }
 }
