@@ -29,11 +29,17 @@
     #login, #createAccount {
         width: 40%;
     }
+    #selectCharacter {
+        width: 50vw;
+    }
 }
 
 @media screen and (max-width: 992px) {
     #login, #createAccount {
         width: 65%;
+    }
+    #selectCharacter {
+        width: 70vw;
     }
 }
 
@@ -41,14 +47,22 @@
     #login, #createAccount {
         padding: 15px;
     }
+    #selectCharacter {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 600px) {
-
+    #selectCharacter {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 480px) {
     #login, #createAccount {
         width: 80%;
+    }
+    #selectCharacter {
+        width: 100%;
     }
 }

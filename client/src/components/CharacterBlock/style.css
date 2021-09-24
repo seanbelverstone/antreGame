@@ -1,3 +1,8 @@
+#allCharacters {
+    width: 31vw;
+    margin: 5vh auto;
+}
+
 /* This block wraps the entire section, so we can have the PLAY/DELETE buttons out of the wrapper */
 .characterBlock {
     display: flex;
@@ -8,7 +13,7 @@
 
 /* Wraps the identity, stats and level/time sections. */
 .characterWrapper {
-    min-width: 500px;
+    width: 500px;
     display: flex;
     border: 2px solid black;
     border-radius: 5px;
@@ -77,4 +82,50 @@ section.health {
 
 #play, #delete {
     margin: 2px;
+}
+
+@media screen and (max-width: 1382px) {
+    #allCharacters {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #allCharacters {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #allCharacters {
+        width: 85vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #allCharacters {
+        width: 100vw;
+        margin: 0;
+    }
+    .characterBlock {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .charButtons {
+        flex-direction: row;
+        padding: 0;
+    }
+    #play, #delete {
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .characterWrapper {
+        width: 460px;
+    }
+    .raceAndClass {
+        display: flex;
+        flex-direction: column;
+    }
 }
