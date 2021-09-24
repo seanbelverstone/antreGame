@@ -24,3 +24,25 @@
     text-align: left;
     align-items: unset;
 }
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 992px) {
+    
+}
+
+@media screen and (max-width: 1382px) {
+    
+}
