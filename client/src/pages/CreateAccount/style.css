@@ -1,5 +1,5 @@
 #createAccount .title {
-    margin-left: 5.5vw !important;
+    margin-left: 5.5vw;
 }
 
 #createAccountForm {
@@ -12,4 +12,43 @@
 
 .formInput, #submit {
     margin-top: 10px !important;
+}
+
+@media screen and (max-width: 1382px) {
+    #createAccount .title {
+        margin-left: 9.5vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #createAccount .title {
+        margin-left: 18.5vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #createAccount .title {
+        margin-left: 14.5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topRow {
+        justify-content: flex-end !important;
+    }
+
+    #createAccount .title {
+        margin-right: 4vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #createAccount .title {
+        margin: 8vw 0 0 8vw;
+    }
+
+    #back {
+        align-self: flex-start;
+        padding: 5px;
+    }
 }
