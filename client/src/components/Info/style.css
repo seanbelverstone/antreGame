@@ -29,7 +29,7 @@
 }
 
 @media screen and (max-width: 1382px) {
-  #dialog {
+  #main #dialog {
     right: -37px !important;
     width: 35vw;
     height: 50vh;
@@ -37,21 +37,22 @@
 }
 
 @media screen and (max-width: 992px) {
-  #dialog {
+  #main #dialog {
     width: 50vw;
+    overflow-y: scroll;
   }
 }
 
 @media screen and (max-width: 768px) {
-  #dialog {
+  #main #dialog {
     top: -330px !important;
-    right: -45px !important;
+    right: -90px !important;
     width: 65vw;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #dialog {
+  #main #dialog {
     top: -270px !important;
     right: -80px !important;
     width: 85vw;
@@ -59,7 +60,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  #dialog {
+  #main #dialog {
     right: -25px !important;
   }
 }

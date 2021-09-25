@@ -156,7 +156,11 @@
     }
     .saveSuccess {
         top: 70vh !important;
-        right: 208px !important;
+        right: 0 !important;
+        left: 0 !important;
+        align-items: center;
+        justify-content: center !important;
+        width: 100% !important;
     }
     #enemyImage {
         margin-top: 5%;
@@ -177,5 +181,9 @@
 @media screen and (max-width: 480px) {
     #optionArea {
         width: 90vw;
+    }
+
+    #saveSuccess {
+        width: 100%;
     }
 }
