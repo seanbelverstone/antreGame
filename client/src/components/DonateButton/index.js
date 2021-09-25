@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { PayPalButton } from "react-paypal-button-v2";
-import { TextField } from "@material-ui/core";
-import InputAdornment from '@material-ui/core/InputAdornment';
 import DefaultPopup from "../../components/DefaultPopup";
 
 const DonateButton = (props) => {
@@ -24,52 +21,12 @@ const DonateButton = (props) => {
   }, [amount]);
   return (
     <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
-      <TextField
-        id="amountInput"
-        label="Donation amount"
-        variant="outlined"
-        error={amountError}
-        helperText={amountHelperText}
-        InputProps={{
-          startAdornment: <InputAdornment position="start">$</InputAdornment>,
-        }}
-        onChange={event => setAmount(event.target.value)}
-        style={{ width: "30%", alignSelf: "center", margin: "20px" }}
-      />
-      {process.env.NODE_ENV === "production" && (
-        <PayPalButton
-          amount={amount || 10.00}
-          shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-          disableFunding={['venmo']}
-          onSuccess={(details, data) => {
-            setSnackbarDisplay(true)
-            setMessage(`Donation made by ${details.payer.name.given_name}. Thank you for your support! :)`)
-          }}
-          options={{
-            clientId: process.env.REACT_APP_CLIENT_ID
-          }}
-          style={{
-            layout: 'horizontal',
-            shape: 'pill'
-          }}
-        />
-      )}
-      {process.env.NODE_ENV === "development" && (
-        <PayPalButton
-          amount={amount || 10.00}
-          shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-          style={{
-            layout: 'horizontal'
-          }}
-          disableFunding={['venmo']}
-          onSuccess={(details, data) => {
-            setSnackbarDisplay(true)
-            setMessage(`Donation made by ${details.payer.name.given_name}. Thank you for your support! :)`)
-          }}
-
-        />
-      )}
-
+      {/* donate button */}
+      <form style={{ marginTop: '20px' }} action="https://www.paypal.com/donate" method="post" target="_blank">
+        <input type="hidden" name="hosted_button_id" value="65G9KZUKC95RW" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </form>
       <DefaultPopup
         display={snackbarDisplay}
         message={message}
