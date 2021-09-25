@@ -24,3 +24,52 @@
     text-align: left;
     align-items: unset;
 }
+
+@media screen and (max-width: 1382px) {
+    #login, #createAccount, #main {
+        width: 40%;
+    }
+    #selectCharacter {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #login, #createAccount, #createCharacter, #main {
+        width: 65%;
+    }
+    #selectCharacter {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #login, #createAccount, #createCharacter  {
+        padding: 15px;
+    }
+    #selectCharacter {
+        width: 90%;
+    }
+    #main {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #selectCharacter, #createCharacter, #main  {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #login, #createAccount {
+        width: 80%;
+    }
+    #selectCharacter, #createCharacter, #main {
+        width: 100%;
+    }
+    #main {
+        padding: 10px 20px 20px 20px;
+        margin: 0;
+    }
+}

@@ -24,7 +24,8 @@ const DefaultPopup = (props) => {
     setDisplay,
     message,
     destination,
-    snackbarColor
+    snackbarColor,
+    customClass
   } = props;
 
   const classes = useStyles();
@@ -37,14 +38,15 @@ const DefaultPopup = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root}`}>
       <Snackbar
+        className={customClass}
         open={display}
         autoHideDuration={6000}
         onClose={handleClose}
         anchorOrigin={{vertical: "top", horizontal: "right"}}
         style={{height: "20%", top: '40vh', width: '23vw'}}>
-        <Alert onClose={handleClose} severity={snackbarColor}>
+        <Alert  onClose={handleClose} severity={snackbarColor}>
           {message}
         </Alert>
       </Snackbar>

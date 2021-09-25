@@ -59,7 +59,7 @@ const Credits = (props) => {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper} style={{overflowY: "scroll", maxHeight: "80vh", padding: "40px"}}>
+          <div className={`${classes.paper} creditModal`} style={{overflowY: "scroll", maxHeight: "80vh", padding: "40px"}}>
             <h1 id="transition-modal-title" className="title" style={{margin: '0 30px'}}>CREDITS</h1>  
             <section className="section" id="created">
               <h2>Created by</h2>

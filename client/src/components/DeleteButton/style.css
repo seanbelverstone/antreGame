@@ -1,7 +1,52 @@
+.MuiDialog-paperWidthSm {
+    max-width: 300px !important;
+    text-align: center;
+}
+
+#warning {
+    color: var(--strength);
+    text-decoration: underline;
+}
+
+#simple-dialog-title h2 {
+    text-decoration: none !important;
+    font-weight: bolder !important;
+}
+
+.MuiAvatar-colorDefault {
+    background-color: white !important;
+}
+
+
+.yesNoList {
+    display: flex;
+    align-items: center;
+}
+.yesWrapper, .noWrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.MuiListItemAvatar-root {
+    min-width: min-content !important;
+}
+
 #yes {
     fill: darkgreen !important;
 }
 
 #no {
     fill: darkred !important;
+}
+
+#yesText span, #noText span {
+    font-weight: bolder !important;
+}
+
+#yesText span {
+    color: darkgreen;
+}
+
+#noText span {
+    color: darkred;
 }
