@@ -43,6 +43,7 @@
 
 .stats {
     padding: 4px;
+    align-items: center;
 }
 
 /* have to specifiy section here so it doesnt affect CreateCharacter screen */
@@ -94,6 +95,9 @@ section.health {
     #allCharacters {
         width: 70vw;
     }
+    .characterWrapper {
+        width: 460px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -127,5 +131,32 @@ section.health {
     .raceAndClass {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #allCharacters {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .characterWrapper {
+        width: 370px;
+        flex-wrap: wrap;
+    }
+    .characterBlock {
+        width: 80%;
+    }
+    .identity, .raceAndClass {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    .raceAndClass {
+        flex-direction: row;
+    }
+    .name {
+        font-size: 16pt !important;
     }
 }

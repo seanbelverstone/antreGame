@@ -59,16 +59,24 @@
         margin-bottom: 3vh;
     }
     #selectCharacter .title {
-        margin-left: 10vw !important;
-        margin-right: 15vw !important;
+        margin-left: 2vw !important;
+        margin-right: 18vw !important;
+    }
+    #selectCharacter #logout {
+        width: 25vw;
     }
 }
 
-@media screen and (max-width: 480px) {
-    #logout {
-        width: 20vw;
+@media screen and (max-width: 450px) {
+    #selectCharacter .topRow {
+        flex-direction: column;
+        width: 100%;
     }
     #selectCharacter .title {
         margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    #selectCharacter #logout {
+        width: 30vw;
     }
 }
