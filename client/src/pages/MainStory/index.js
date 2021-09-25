@@ -83,6 +83,11 @@ const BoundMainStory = (props) => {
             setInitalLevel(levels.current)
         }
         startTimer();
+
+        // prevents scrollIntoView error
+        return () => {
+            setEnemyBlockFade('hidden');
+        }
     }, []);
 
     useEffect(() => {
@@ -281,8 +286,10 @@ const BoundMainStory = (props) => {
             setCurrentUserHealth(stats.health);
             setCurrentEnemyHealth(currentEnemy.health);
             setTimeout(() => {
-                const enemyBlock = document.getElementById("enemyBlock");
-                enemyBlock.scrollIntoView({ behavior: "smooth" })
+                if (enemyBlockFade === "fadeIn") {
+                    const enemyBlock = document.getElementById("enemyBlock");
+                    enemyBlock.scrollIntoView({ behavior: "smooth" })
+                }
             }, 1000);
         }
         return;

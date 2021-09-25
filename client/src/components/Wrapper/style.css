@@ -65,6 +65,9 @@
 }
 
 @media screen and (max-width: 480px) {
+    .wrapper {
+        padding: 20px 0 0 0;
+    }
     #login, #createAccount {
         width: 80%;
     }
@@ -72,7 +75,7 @@
         width: 100%;
     }
     #main {
-        padding: 10px 20px 20px 20px;
+        /* padding: 10px 20px 20px 20px; */
         margin: 0;
     }
 }
