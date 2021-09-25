@@ -60,8 +60,9 @@
 
 #statsBlock #dialog {
   width: 18vw;
-  top: -15% !important;
-  right: 67% !important;
+  top: -5% !important;
+  right: 69% !important;
+  height: min-content;
 }
 
 /* Misc items */
@@ -112,4 +113,50 @@
 
 .invText {
   margin: 0 0 15px 5px;
+}
+
+@media screen and (max-width: 1382px) {
+  #statsBlock #dialog {
+    top: 24% !important;
+    right: 11% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #inventoryModal {
+    width: 60vw;
+  }
+  #statsBlock #dialog {
+    top: 24% !important;
+    right: 11% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #inventoryModal {
+    width: 70vw;
+  }
+  #statsBlock #dialog {
+    overflow-y: scroll;
+    top: 27% !important;
+    right: 14% !important;
+    height: 45vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #inventoryModal {
+    width: 90vw;
+  }
+  #statsBlock #dialog {
+    top: 14% !important;
+    right: 19% !important;
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #statsBlock #dialog {
+    right: 12% !important;
+  }
 }

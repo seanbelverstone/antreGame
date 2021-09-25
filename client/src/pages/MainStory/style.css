@@ -169,8 +169,13 @@
         width: 80vw;
         padding: 25px;
     }
+    #optionArea {
+        width: 90vw;
+    }
 }
 
 @media screen and (max-width: 480px) {
-
+    #optionArea {
+        width: 90vw;
+    }
 }
