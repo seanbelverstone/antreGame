@@ -5,6 +5,7 @@
 
 #warning {
     color: var(--strength);
+    text-decoration: underline;
 }
 
 #simple-dialog-title h2 {
