@@ -1,24 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import DefaultPopup from "../../components/DefaultPopup";
+import React from 'react';
 
-const DonateButton = (props) => {
-  const [amount, setAmount] = useState('');
-  const [amountError, setAmountError] = useState(false);
-  const [amountHelperText, setAmountHelperText] = useState('');
-  const [snackbarDisplay, setSnackbarDisplay] = useState(false);
-  const [message, setMessage] = useState('');
-  const pattern = new RegExp(/^[0-9]*$/g)
-
-  useEffect(() => {
-    if (pattern.test(amount)) {
-      setAmountError(false);
-      setAmountHelperText('');
-    } else {
-      setAmount("10.00");
-      setAmountError(true);
-      setAmountHelperText('Please make sure to only use numbers.');
-    }
-  }, [amount]);
+const DonateButton = () => {
   return (
     <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
       {/* donate button */}
@@ -27,12 +9,6 @@ const DonateButton = (props) => {
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
       </form>
-      <DefaultPopup
-        display={snackbarDisplay}
-        message={message}
-        setDisplay={setSnackbarDisplay}
-        destination=""
-      />
     </div>
   );
 };
