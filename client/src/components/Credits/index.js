@@ -94,7 +94,7 @@ const Credits = (props) => {
               <span>Full Stack Coding Bootcamp @ UT Austin, for teaching me the skills I needed to get started.</span>
             </section>
             <section className="section" style={{marginTop: '40px'}}>
-              <span>If you would like to buy me a coffee or donate to help me continue to develop this one man-show, I'd really appreciate it :)</span>
+              <span>If you would like to buy me a coffee or donate to help me continue to develop this one man-show, it would mean so much to me! :)</span>
               <DonateButton />
             </section>
           </div>
