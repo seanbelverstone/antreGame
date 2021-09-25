@@ -18,8 +18,48 @@
 }
 
 #dialog {
-  z-index: 4;
+  z-index: 100;
   opacity: 0.95;
   position: fixed;
   border-radius: 10px;
+  width: 25vw;
+  height: 60vh;
+  top: -480px !important;
+  right: -20px !important;
+}
+
+@media screen and (max-width: 1382px) {
+  #dialog {
+    right: -37px !important;
+    width: 35vw;
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #dialog {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #dialog {
+    top: -330px !important;
+    right: -45px !important;
+    width: 65vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #dialog {
+    top: -270px !important;
+    right: -80px !important;
+    width: 85vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #dialog {
+    right: -25px !important;
+  }
 }

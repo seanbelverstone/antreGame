@@ -1,11 +1,3 @@
-#logout, #back {
-    z-index: 0;
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    margin: 0;
-}
-
 #speedButton {
     left: 24.5%;
 }
@@ -21,6 +13,7 @@
     text-align: left;
     padding: 50px;
     min-height: 15vh;
+    border-radius: 10px;
 }
 
 #optionArea {
@@ -28,7 +21,7 @@
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: space-evenly;
-    width: 60vh;
+    width: 25vw;
     padding: 15px;
 }
 
@@ -52,7 +45,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80vh;
+    width: 100%;
 }
 
 .fadeIn {
@@ -128,4 +121,61 @@
     align-items: center;
     justify-content: center;
     margin: 5px;
+}
+
+@media screen and (max-width: 1382px) {
+    #optionArea {
+        width: 35vw
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #smallLogo {
+        width: 10vw;
+    }
+    .Typewriter {
+        width: 55vw;
+        padding: 25px;
+    }
+    #optionArea {
+        width: 50vw
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #main .topRow {
+        width: 100%;
+        padding: 0;
+    }
+    #main .topRow #back {
+        align-self: center;
+    }
+    .Typewriter {
+        width: 65vw;
+        padding: 25px;
+    }
+    .saveSuccess {
+        top: 70vh !important;
+        right: 208px !important;
+    }
+    #enemyImage {
+        margin-top: 5%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .Typewriter {
+        width: 80vw;
+        padding: 25px;
+    }
+    #optionArea {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #optionArea {
+        width: 90vw;
+    }
 }

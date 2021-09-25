@@ -2,12 +2,8 @@
     margin-right: 11vw !important;
 }
 
-#allCharacters, #creatorWrapper {
+#creatorWrapper {
     margin: 5vh auto;
-}
-
-#allCharacters {
-    width: 31vw;
 }
 
 #creatorWrapper {
@@ -29,4 +25,50 @@
 
 #smallLogo {
     bottom: 5%;
+}
+
+@media screen and (max-width: 1382px) {
+    #selectCharacter .title {
+        margin-right: 13vw !important;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #selectCharacter .topRow {
+        padding: 0;
+        justify-content: flex-start !important;
+    }
+    #selectCharacter .title {
+        margin-left: 9vw !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #selectCharacter .title {
+        margin-left: 11vw !important;
+    }
+    #smallLogo {
+        margin: 0;
+        width: 25vw !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #creatorWrapper {
+        width: 50vw;
+        margin-bottom: 3vh;
+    }
+    #selectCharacter .title {
+        margin-left: 10vw !important;
+        margin-right: 15vw !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #logout {
+        width: 20vw;
+    }
+    #selectCharacter .title {
+        margin-left: 0 !important;
+    }
 }
