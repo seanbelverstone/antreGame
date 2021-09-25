@@ -29,12 +29,14 @@
 }
 
 #disclaimer {
-  position: fixed;     
+  position: relative;     
   text-align: center;    
   bottom: 0px; 
   width: 100%;
   color: var(--foreground);
   opacity: 0.5;
+  margin-top: 30px;
+  bottom: 0%;
 }
 
 #disclaimerLink {

@@ -6,17 +6,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 50%;
-    margin: 15% 25% 10% 25%;
+    margin: 15% auto;
 }
 
 .formInput, #submit {
     margin-top: 10px !important;
 }
 
+.createPopup {
+    right: 34px !important;
+}
+
 @media screen and (max-width: 1382px) {
     #createAccount .title {
         margin-left: 9.5vw;
+    }
+    .createPopup {
+        right: 23% !important;
     }
 }
 
@@ -24,11 +32,20 @@
     #createAccount .title {
         margin-left: 18.5vw;
     }
+    .createPopup {
+        width: 60vw !important;
+        left: 7% !important;
+        justify-content: center !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
     #createAccount .title {
         margin-left: 14.5vw;
+    }
+    .createPopup {
+        width: 60vw !important;
+        left: 0 !important;
     }
 }
 
@@ -36,7 +53,9 @@
     #createAccount .topRow {
         justify-content: flex-end !important;
     }
-
+    .createPopup {
+        left: 6% !important;
+    }
     #createAccount .title {
         margin-right: 4vw;
     }
@@ -46,7 +65,10 @@
     #createAccount .title {
         margin: 8vw 0 0 8vw;
     }
-
+    .createPopup {
+        width: 80vw !important;
+        left: 4% !important;
+    }
     #back {
         align-self: flex-start;
         padding: 5px;

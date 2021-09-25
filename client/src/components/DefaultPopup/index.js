@@ -31,7 +31,7 @@ const DefaultPopup = (props) => {
   const classes = useStyles();
 
   const handleClose = (event, reason) => {
-    if (destination !== "") {
+    if (destination !== "" && snackbarColor !== "error") {
       navigate(destination);
     }
     setDisplay(false);

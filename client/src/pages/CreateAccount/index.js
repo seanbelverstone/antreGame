@@ -153,6 +153,7 @@ const CreateAccount = () => {
                 <img src={smallLogo} alt="a small logo" id="smallLogo" />
             </form>
             <DefaultPopup
+                customClass="createPopup"
                 display={snackbarDisplay}
                 setDisplay={setSnackbarDisplay}
                 message={snackbarMessage}
