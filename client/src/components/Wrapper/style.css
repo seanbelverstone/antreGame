@@ -53,6 +53,9 @@
     #main {
         width: 75%;
     }
+    #disclaimer {
+        font-size: 10pt;
+    }
 }
 
 @media screen and (max-width: 600px) {
