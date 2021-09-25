@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width: 992px) {
-    .topRow {
+    #selectCharacter .topRow {
         padding: 0;
         justify-content: flex-start !important;
     }

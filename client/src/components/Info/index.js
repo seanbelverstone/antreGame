@@ -43,7 +43,7 @@ const Info = (props) => {
     const onLeave = () => setHover(false);
     return (
         <div className={optionFade}>
-            <InfoIcon className="infoIcon" onMouseEnter={onHover} onMouseLeave={onLeave} />
+            <InfoIcon className="infoIcon" onMouseEnter={onHover} onMouseLeave={onLeave} onClick={onHover} />
             {hover ? (
                 <div className={classes.paper } id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
                     <h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>

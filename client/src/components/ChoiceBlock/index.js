@@ -93,7 +93,6 @@ const ChoiceBlock = (props) => {
     } else if (modifier[0] != undefined && modifier[0].fight) {
         // If fight: true appears in the decision block, render the fight screen instead.
         return <>
-            <Info infoProps={fightInfo} optionFade={optionFade} />
             {options.map(fightOption => {
                 return (
                     <div className={`options ${optionFade}`} key={fightOption.label}>
@@ -103,6 +102,7 @@ const ChoiceBlock = (props) => {
                     </div>
                 )
             })}
+            <Info infoProps={fightInfo} optionFade={optionFade} />
         </>;
     } else {
         // Otherwise, show the option page

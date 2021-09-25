@@ -650,7 +650,7 @@ const BoundMainStory = (props) => {
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
                 </div>
             </footer>
-            <DefaultPopup display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />
+            <DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />
             <InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
         </Wrapper>
 

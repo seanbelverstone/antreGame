@@ -33,7 +33,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .topRow {
+    #createAccount .topRow {
         justify-content: flex-end !important;
     }
 

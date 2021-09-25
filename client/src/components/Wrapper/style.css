@@ -26,7 +26,7 @@
 }
 
 @media screen and (max-width: 1382px) {
-    #login, #createAccount {
+    #login, #createAccount, #main {
         width: 40%;
     }
     #selectCharacter {
@@ -35,7 +35,7 @@
 }
 
 @media screen and (max-width: 992px) {
-    #login, #createAccount, #createCharacter {
+    #login, #createAccount, #createCharacter, #main {
         width: 65%;
     }
     #selectCharacter {
@@ -44,16 +44,19 @@
 }
 
 @media screen and (max-width: 768px) {
-    #login, #createAccount, #createCharacter {
+    #login, #createAccount, #createCharacter  {
         padding: 15px;
     }
     #selectCharacter {
         width: 90%;
     }
+    #main {
+        width: 75%;
+    }
 }
 
 @media screen and (max-width: 600px) {
-    #selectCharacter, #createCharacter {
+    #selectCharacter, #createCharacter, #main  {
         width: 100%;
     }
 }
@@ -62,7 +65,11 @@
     #login, #createAccount {
         width: 80%;
     }
-    #selectCharacter, #createCharacter {
+    #selectCharacter, #createCharacter, #main {
         width: 100%;
+    }
+    #main {
+        padding: 10px 20px 20px 20px;
+        margin: 0;
     }
 }
