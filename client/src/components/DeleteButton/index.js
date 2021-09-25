@@ -26,23 +26,25 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+      <h2 id="warning">WARNING</h2>
       <DialogTitle id="simple-dialog-title">Are you sure you want to delete this character?</DialogTitle>
-      <List>
-        <ListItem autoFocus button onClick={() => handleListItemClick(true)}>
+      <h3 id="warning">THIS ACTION CANNOT BE REVERSED</h3>
+      <List className="yesNoList">
+        <ListItem className="yesWrapper" autoFocus button onClick={() => handleListItemClick(true)}>
           <ListItemAvatar>
             <Avatar>
               <CheckIcon id="yes"/>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Yes" />
+          <ListItemText id="yesText" primary="YES" />
         </ListItem>
-        <ListItem autoFocus button onClick={() => handleListItemClick(false)}>
+        <ListItem className="noWrapper" autoFocus button onClick={() => handleListItemClick(false)}>
           <ListItemAvatar>
             <Avatar>
               <ClearIcon id="no"/>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="No" />
+          <ListItemText id="noText" primary="NO" />
         </ListItem>
       </List>
     </Dialog>

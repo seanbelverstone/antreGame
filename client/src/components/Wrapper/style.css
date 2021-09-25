@@ -35,7 +35,7 @@
 }
 
 @media screen and (max-width: 992px) {
-    #login, #createAccount {
+    #login, #createAccount, #createCharacter {
         width: 65%;
     }
     #selectCharacter {
@@ -44,7 +44,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    #login, #createAccount {
+    #login, #createAccount, #createCharacter {
         padding: 15px;
     }
     #selectCharacter {
@@ -53,7 +53,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    #selectCharacter {
+    #selectCharacter, #createCharacter {
         width: 100%;
     }
 }
@@ -62,7 +62,7 @@
     #login, #createAccount {
         width: 80%;
     }
-    #selectCharacter {
+    #selectCharacter, #createCharacter {
         width: 100%;
     }
 }

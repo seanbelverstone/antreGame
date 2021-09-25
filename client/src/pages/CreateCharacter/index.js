@@ -209,7 +209,7 @@ const BoundCreateCharacter = (props) => {
                     Create
                 </Button>
             </form>
-            <DefaultPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success" />
+            <DefaultPopup customClass="createSuccess" display={snackbarDisplay} setDisplay={setSnackbarDisplay} message={`Character created!`} destination="/select" snackbarColor="success" />
             <img src={smallLogo} alt="a small logo" id="smallLogo" />
         </Wrapper>
 
