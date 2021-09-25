@@ -157,6 +157,14 @@
 
 @media screen and (max-width: 480px) {
   #statsBlock #dialog {
-    right: 12% !important;
+    width: 80vw;
+    right: 0 !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #statsBlock #dialog {
+    min-width: 30vw;
+    right: 0 !important;
   }
 }

@@ -53,9 +53,15 @@
 
 @media screen and (max-width: 600px) {
   #main #dialog {
-    top: -270px !important;
-    right: -80px !important;
+    top: -280px !important;
+    right: -20px !important;
     width: 85vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #main #dialog {
+    right: -25px !important;
   }
 }
 
