@@ -4,7 +4,7 @@ import SKELETON from "./skeleton.svg";
 import JUVENILE_DRAGON from "./dragon.png";
 import KNIGHT from "./knight.svg";
 import PIKEMAN from "./pikeman.svg";
-import BLIND_LIZARD from "./lizard.svg";
+import BLIND_LIZARD from "./lizard.png";
 import SKELETAL_KNIGHT from "./skeletalKnight.svg";
 import RUNED_MANTICORE from "./manticore.svg";
 import NECRO_BEASTMASTER from "./beastmaster.svg";

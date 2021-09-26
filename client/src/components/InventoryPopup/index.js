@@ -56,7 +56,6 @@ const InventoryPopup = (props) => {
                 const itemName = Object.keys(item);
                 const quantity = Object.values(item)[0];
                 const armorPiece = Object.values(item)[0];
-                console.log(item);
                 if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
                     // if no modifier is present, just return.
                     setDisplay(false);

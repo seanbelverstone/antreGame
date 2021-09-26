@@ -199,7 +199,8 @@ const BoundMainStory = (props) => {
     const checkModifier = () => {
         // checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
         // If it's their saved level, they can't get the buff again.
-        if (modifier.length && levels.current !== initalLevel) {
+        // Needed to add in an extra check for torchCheck only, as it wasn't playing nice
+        if ((modifier.length && levels.current !== initalLevel) || modifier[0]?.torchCheck) {
             setSnackbarDisplay(true);
             modifier.forEach(mod => {
                 const currentMod = Object.keys(mod)[0];
@@ -259,7 +260,7 @@ const BoundMainStory = (props) => {
                 } else if (mod.torchCheck) {
                     setSnackbarDisplay(false);
                     const checkingTorch = async () => {
-                        return attacks.torchCheck(torch);
+                        return attacks.torchCheck(inventory.torch);
                     }
                     checkingTorch().then((results) => {
                         setOptions([

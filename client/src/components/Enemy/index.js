@@ -19,12 +19,6 @@ const Enemy = (props) => {
         attackText
     } = props;
 
-    console.log(imageDisplay);
-    console.log(currentEnemy);
-    console.log(enemies);
-    console.log(enemyImage);
-    console.log(enemies[enemyImage]);
-
     return (
         <>
             <div style={{ display: imageDisplay }} className={enemyBlockFade} id="enemyBlock">
