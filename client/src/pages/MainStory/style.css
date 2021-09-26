@@ -61,7 +61,7 @@
 }
 
 #enemyBlock {
-    max-width: 280px;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -69,8 +69,7 @@
 }
 
 #enemyImage {
-    max-width: 25vh;
-    max-height: 25vh;
+    width: 15vw;
     margin-top: 10%;
 }
 
@@ -127,6 +126,9 @@
     #optionArea {
         width: 35vw
     }
+    #enemyImage {
+        width: 20vw;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -139,6 +141,12 @@
     }
     #optionArea {
         width: 50vw
+    }
+    #enemyBlock {
+        width: 40vw;
+    }
+    #enemyImage {
+        width: 35vw;
     }
 }
 
@@ -165,7 +173,6 @@
     #enemyImage {
         margin-top: 5%;
     }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -176,14 +183,28 @@
     #optionArea {
         width: 90vw;
     }
+    #enemyBlock {
+        width: 55vw;
+    }
+    #enemyImage {
+        width: 50vw;
+    }
 }
 
 @media screen and (max-width: 480px) {
     #optionArea {
         width: 90vw;
     }
-
+    .options {
+        padding: 5px;
+    }
     #saveSuccess {
         width: 100%;
+    }
+    #enemyBlock {
+        width: 80vw;
+    }
+    #enemyImage {
+        width: 60vw;
     }
 }

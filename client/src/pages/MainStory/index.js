@@ -240,7 +240,7 @@ const BoundMainStory = (props) => {
                 } else if (currentMod === 'healthPotions' || currentMod === 'gold') {
                     updateCharacter({
                         inventory: {
-                            [currentMod]: inventory[currentMod] + mod[currentMod]
+                            [currentMod]: inventory[currentMod] + mod[currentMod] < 0 ? 0 : inventory[currentMod] + mod[currentMod]
                         }
                     });
                 } else if (mod.luckCheck) {

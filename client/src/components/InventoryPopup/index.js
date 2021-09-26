@@ -56,11 +56,12 @@ const InventoryPopup = (props) => {
                 const itemName = Object.keys(item);
                 const quantity = Object.values(item)[0];
                 const armorPiece = Object.values(item)[0];
+                console.log(item);
                 if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;
-                } else if (item.length && item.head || item.chest || item.hands || item.legs || item.feet) {
+                } else if (item.head || item.chest || item.hands || item.legs || item.feet) {
                     note = `You equipped the ${armorPiece}.\n `
                     return addIfUnique(note);
                 } else if (item.torch === 0) {
