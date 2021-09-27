@@ -67,6 +67,7 @@
 
 @media screen and (max-width: 480px) {
   #main #dialog {
+    top: -320px !important;
     right: -25px !important;
   }
 }

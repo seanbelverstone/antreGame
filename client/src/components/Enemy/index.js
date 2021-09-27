@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import enemies from "../../assets/images/enemyIcons";
 
-const Enemy = ({
-    imageDisplay,
-    enemyBlockFade,
-    currentEnemy,
-    currentEnemyHealth,
-    enemyHealthWidth,
-    enemyImage,
-    characterName,
-    currentUserHealth,
-    maxHealth,
-    userHealthWidth,
-    optionFade,
-    attackDisplay,
-    attackText
-}) => {
+const Enemy = (props) => {
+
+    const {
+        imageDisplay,
+        enemyBlockFade,
+        currentEnemy,
+        currentEnemyHealth,
+        enemyHealthWidth,
+        enemyImage,
+        characterName,
+        currentUserHealth,
+        maxHealth,
+        userHealthWidth,
+        optionFade,
+        attackDisplay,
+        attackText
+    } = props;
 
     return (
         <>
@@ -28,7 +30,7 @@ const Enemy = ({
                     <div id="enemyBar" style={{ width: enemyHealthWidth }}></div>
                 </div>
 
-                <img src={enemies[enemyImage]} id="enemyImage" />
+                <img src={enemies[enemyImage.toUpperCase()]} id="enemyImage" />
 
                 <div id="charName">{characterName}</div>
                 <div className="healthArea" id="userHealthArea">

@@ -60,7 +60,7 @@ const InventoryPopup = (props) => {
                     // if no modifier is present, just return.
                     setDisplay(false);
                     return;
-                } else if (item.length && item.head || item.chest || item.hands || item.legs || item.feet) {
+                } else if (item.head || item.chest || item.hands || item.legs || item.feet) {
                     note = `You equipped the ${armorPiece}.\n `
                     return addIfUnique(note);
                 } else if (item.torch === 0) {
