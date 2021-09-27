@@ -1,5 +1,5 @@
 import GIANT_RAT from "./giantRat.png";
-import GOBLIN from "./goblin.svg"
+import GOBLIN from "./goblin.png"
 import SKELETON from "./skeleton.svg";
 import JUVENILE_DRAGON from "./dragon.png";
 import KNIGHT from "./knight.svg";
