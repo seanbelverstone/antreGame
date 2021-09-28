@@ -125,3 +125,35 @@ a {
 .Typewriter, #dialog, #inventoryPopup {
   white-space: pre-line;
 }
+
+/* Scrollbar */
+/* Chrome */
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border: .25em solid var(--background);
+  border-radius: 0 100vw 100vw 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(168, 168, 168);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(107, 107, 107);
+}
+
+/* Firefox */
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: var(--foreground) var(--background);
+    scrollbar-width: thin;
+  }
+}
