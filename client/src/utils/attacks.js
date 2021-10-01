@@ -5,8 +5,8 @@ const diceRoll = () => {
 const critChance = (luck) => {
     const initialRoll = (Math.floor(Math.random() * 20) + 1)
     const luckCheck = (initialRoll + luck)
-    // If the roll + luck is 19 or higher, it's a crit.
-    return luckCheck >= 19;
+    // If the roll + luck is 20 or higher, it's a crit. (generally a 5% chance)
+    return luckCheck >= 20;
 };
 
 let battleText;

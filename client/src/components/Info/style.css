@@ -23,9 +23,10 @@
   position: fixed;
   border-radius: 10px;
   width: 25vw;
-  height: 60vh;
-  top: -480px !important;
+  height: 65vh;
+  top: -550px !important;
   right: -20px !important;
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 1382px) {
@@ -39,7 +40,6 @@
 @media screen and (max-width: 992px) {
   #main #dialog {
     width: 50vw;
-    overflow-y: scroll;
   }
 }
 

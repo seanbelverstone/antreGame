@@ -180,7 +180,7 @@ const BoundMainStory = (props) => {
         }
         setTimeout(() => {
             setOptionFade("fadeIn")
-            if (currentEnemy !== {} && currentEnemy.health > 0) {
+            if (currentEnemy !== {} && currentEnemyHealth !== currentEnemy.health) {
                 displayEnemy();
             }
         }, (storyText.split("").length * speedMultiplier + 2000))
@@ -323,11 +323,11 @@ const BoundMainStory = (props) => {
     const handleFight = async (option) => {
         const { weaponDamage, healthPotions } = inventory;
         const { health, strength, defense, wisdom, luck, charClass } = stats;
-        let skillButton = document.getElementById("useSkill");
+        const skillButton = document.getElementById("useSkill");
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = await attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
-                setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
+                await setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
                 setAttackText(normalAttack.battleText);
                 break;
             case "Special Attack":
@@ -402,40 +402,70 @@ const BoundMainStory = (props) => {
         if (cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
         }
-        await isEnemyAlive();
-    }
-
-    const isEnemyAlive = async () => {
-        if (currentEnemyHealth < 0) {
-            setCurrentEnemyHealth(0);
-            setEnemyHealthWidth(0);
-            if (tempDefense !== 0) {
-                updateCharacter({
-                    stats: {
-                        defense: tempDefense
-                    }
-                });
-            } else if (tempLuck !== 0) {
-                updateCharacter({
-                    stats: {
-                        luck: tempLuck
-                    }
-                });
-            }
-            nextPhase();
-        } else {
+        if (await isEnemyAlive()) {
             enemyTurn();
+        } else {
+            nextPhase();
         }
     }
 
+    const isEnemyAlive = async () => currentEnemyHealth > 0 || false;
+
     const enemyTurn = () => {
-        const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
+        if (currentEnemyHealth > 0) {
+            const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
+            setTimeout(() => {
+                setCurrentUserHealth(current => current - enemyAttack.finalDamage);
+                setAttackText(enemyAttack.battleText);
+            }, 3000)
+            // enable buttons after attack
+            setButtonDisabled(false);
+        }
+    }
+
+    // Sets the buffed status back to their original values
+    const resetBuffs = () => {
+        if (tempDefense !== 0) {
+            updateCharacter({
+                stats: {
+                    defense: tempDefense
+                }
+            });
+        } else if (tempLuck !== 0) {
+            updateCharacter({
+                stats: {
+                    luck: tempLuck
+                }
+            });
+        }
+    }
+
+    const nextPhase = async () => {
+        // set enemy health to 0, and reset buffs
+        setCurrentEnemyHealth(0);
+        setEnemyHealthWidth(0);
+        resetBuffs();
+        updateCharacter({
+            stats: {
+                health: currentUserHealth
+            }
+        });
+        // Fade the image out after a second, so it's not jarringly quick.
         setTimeout(() => {
-            setCurrentUserHealth(current => current - enemyAttack.finalDamage);
-            setAttackText(enemyAttack.battleText);
-        }, 3000)
-        // enable buttons after attack
-        setButtonDisabled(false);
+            setAttackDisplay("none");
+            setEnemyBlockFade("fadeOut")
+        }, 1000)
+        // Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
+        setTimeout(() => {
+            setEnemyBlockFade("hidden");
+            setImageDisplay("none");
+            setCurrentEnemy({});
+            setAttackText("")
+            setEnemyImage("");
+            setRoundCount(1);
+            handleLevel(victoryTarget.target);
+        }, 2000)
+        checkModifier()
     }
 
     const setHealthWidth = () => {
@@ -458,8 +488,10 @@ const BoundMainStory = (props) => {
 
         let userNewWidth = (100 * currentUserHealth) / maxHealth;
         setUserHealthWidth(`${userNewWidth}%`);
+
         if (enemyNewWidth <= 0) {
-            isEnemyAlive();
+            nextPhase();
+            return;
         }
         if (userNewWidth <= 0) {
             handlePlayerDeath();
@@ -488,30 +520,6 @@ const BoundMainStory = (props) => {
                 visited: []
             }
         });
-    }
-
-    // Fade the image out after a second, so it's not jarringly quick.
-    const nextPhase = async () => {
-        updateCharacter({
-            stats: {
-                health: currentUserHealth
-            }
-        });
-        setTimeout(() => {
-            setAttackDisplay("none");
-            setEnemyBlockFade("fadeOut")
-        }, 1000)
-        // Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
-        setTimeout(() => {
-            setEnemyBlockFade("hidden");
-            setImageDisplay("none");
-            setCurrentEnemy({});
-            setAttackText("")
-            setEnemyImage("");
-            setRoundCount(1);
-            handleLevel(victoryTarget.target);
-        }, 2000)
-        checkModifier()
     }
 
     const handleMenuClick = (event) => {
