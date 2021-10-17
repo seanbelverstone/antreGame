@@ -57,8 +57,8 @@ const BoundMainStory = (props) => {
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
-    const [currentUserHealth, setCurrentUserHealth] = useState(1);
-    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
+    const [currentUserHealth, setCurrentUserHealth] = useState(null);
+    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(null);
     const [maxHealth, setMaxHealth] = useState();
 
     // stats that will change and be passed to save function
@@ -107,7 +107,7 @@ const BoundMainStory = (props) => {
         // Health bars now update based on the enemy and user's health
         setHealthWidth();
     }, [currentEnemyHealth, currentUserHealth])
-
+    
     const handleLevel = (choice) => {
         const { current, visited } = levels;
         // If the choice selected is one that repeats, don't add it to the visited array.
@@ -322,12 +322,13 @@ const BoundMainStory = (props) => {
 
     const handleFight = async (option) => {
         const { weaponDamage, healthPotions } = inventory;
-        const { health, strength, defense, wisdom, luck, charClass } = stats;
+        const { strength, defense, wisdom, luck, charClass } = stats;
         const skillButton = document.getElementById("useSkill");
+        setButtonDisabled(true);
         switch (option.label) {
             case "Normal Attack":
                 const normalAttack = await attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
-                await setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
+                setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
                 setAttackText(normalAttack.battleText);
                 break;
             case "Special Attack":
@@ -380,7 +381,6 @@ const BoundMainStory = (props) => {
         }
         // Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
         // Also check health, to make sure that enemy or user isn't dead
-        setButtonDisabled(true);
         setRoundCount(current => current + 1)
         // if the enemy is still alive, we want to check if we're on the debuff rounds instead
         // if so, reset the stats to their pre-skill values.
@@ -413,8 +413,8 @@ const BoundMainStory = (props) => {
 
     const enemyTurn = () => {
         if (currentEnemyHealth > 0) {
-            const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
             setTimeout(() => {
+                const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
                 setCurrentUserHealth(current => current - enemyAttack.finalDamage);
                 setAttackText(enemyAttack.battleText);
             }, 3000)
