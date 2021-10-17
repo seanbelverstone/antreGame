@@ -57,8 +57,8 @@ const BoundMainStory = (props) => {
     // this determines the width of the healthbar. Will change based on damage done
     const [enemyHealthWidth, setEnemyHealthWidth] = useState("100%");
     const [userHealthWidth, setUserHealthWidth] = useState("100%");
-    const [currentUserHealth, setCurrentUserHealth] = useState(null);
-    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(null);
+    const [currentUserHealth, setCurrentUserHealth] = useState(1);
+    const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
     const [maxHealth, setMaxHealth] = useState();
 
     // stats that will change and be passed to save function
@@ -278,14 +278,14 @@ const BoundMainStory = (props) => {
     }
 
     // Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
-    const displayEnemy = () => {
+    const displayEnemy = async () => {
         if (modifier[0].fight && modifier.length < 2) {
+            setCurrentUserHealth(stats.health);
+            setCurrentEnemyHealth(currentEnemy.health);
             setEnemyImage(enemyName)
             setAttackDisplay("flex");
             setImageDisplay("block");
             setEnemyBlockFade("fadeIn")
-            setCurrentUserHealth(stats.health);
-            setCurrentEnemyHealth(currentEnemy.health);
             setTimeout(() => {
                 if (enemyBlockFade === "fadeIn") {
                     const enemyBlock = document.getElementById("enemyBlock");
