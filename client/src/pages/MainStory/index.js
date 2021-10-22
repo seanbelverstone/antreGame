@@ -87,6 +87,7 @@ const BoundMainStory = (props) => {
         // prevents scrollIntoView error
         return () => {
             setEnemyBlockFade('hidden');
+            clearInterval(startTimer);
         }
     }, []);
 
@@ -101,6 +102,9 @@ const BoundMainStory = (props) => {
 
     useEffect(() => {
         setButtonTimes();
+        return () => {
+            clearTimeout(setButtonTimes);
+        }
     }, [typewriterDelay, storyText])
 
     useEffect(() => {
@@ -109,7 +113,6 @@ const BoundMainStory = (props) => {
     }, [currentEnemyHealth, currentUserHealth])
     
     const handleLevel = (choice) => {
-        const { current, visited } = levels;
         // If the choice selected is one that repeats, don't add it to the visited array.
         if (isBlacklistedChoice(choice)) {
             updateCharacter({
@@ -141,7 +144,6 @@ const BoundMainStory = (props) => {
         }
         // loops through the storylines array, and matches the character's level with the corresponding object
         for (let i = 0; i < storylines.length; i++) {
-
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
                 setModifier(storylines[i].modifier);
@@ -154,7 +156,6 @@ const BoundMainStory = (props) => {
                     setCooldownRound(0);
                     setSkillUsed(false);
                 }
-
             }
         }
     }
@@ -402,14 +403,14 @@ const BoundMainStory = (props) => {
         if (cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
         }
-        if (await isEnemyAlive()) {
+        if (isEnemyAlive()) {
             enemyTurn();
         } else {
             nextPhase();
         }
     }
 
-    const isEnemyAlive = async () => currentEnemyHealth > 0 || false;
+    const isEnemyAlive = () => currentEnemyHealth > 0 || false;
 
     const enemyTurn = () => {
         if (currentEnemyHealth > 0) {
@@ -417,9 +418,9 @@ const BoundMainStory = (props) => {
                 const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
                 setCurrentUserHealth(current => current - enemyAttack.finalDamage);
                 setAttackText(enemyAttack.battleText);
+                // enable buttons after attack
+                setButtonDisabled(false);
             }, 3000)
-            // enable buttons after attack
-            setButtonDisabled(false);
         }
     }
 
@@ -540,27 +541,12 @@ const BoundMainStory = (props) => {
             }
         });
         API.saveCharacter(
-            stats.id,
-            stats.health,
-            stats.strength,
-            stats.defense,
-            stats.wisdom,
-            stats.luck,
-            inventory.weapon,
-            inventory.weaponDamage,
-            inventory.head,
-            inventory.chest,
-            inventory.legs,
-            inventory.hands,
-            inventory.feet,
-            inventory.torch,
-            inventory.amulet,
-            inventory.healthPotions,
-            inventory.gold,
+            stats,
+            inventory,
             levels.current,
             timer,
             user.jwtToken
-        ).then((results) => {
+        ).then(() => {
             setSaveGameDisplay(true);
         })
     }
@@ -603,7 +589,6 @@ const BoundMainStory = (props) => {
                     }}
                 />
             </section>
-
             <Enemy
                 imageDisplay={imageDisplay}
                 enemyBlockFade={enemyBlockFade}
@@ -619,7 +604,6 @@ const BoundMainStory = (props) => {
                 attackDisplay={attackDisplay}
                 attackText={attackText}
             />
-
             <div id="optionArea" className={optionFade}>
                 <ChoiceBlock
                     modifier={modifier}
@@ -628,39 +612,14 @@ const BoundMainStory = (props) => {
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
                     handleClick={handleClick}
-                    weaponDamage={inventory.weaponDamage}
-                    strength={stats.strength}
                     enemyDefense={currentEnemy.defense}
-                    charClass={stats.charClass}
-                    wisdom={stats.wisdom}
                 />
             </div>
-
             <footer id="footer">
                 <Inventory
-                    id="inventory"
-                    disabled={buttonDisabled}
                     health={currentUserHealth === 1 ? stats.health : currentUserHealth}
                     maxHealth={maxHealth}
                     userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
-                    strength={stats.strength}
-                    defense={stats.defense}
-                    wisdom={stats.wisdom}
-                    luck={stats.luck}
-                    weapon={inventory.weapon}
-                    weaponDamage={inventory.weaponDamage}
-                    head={inventory.head}
-                    chest={inventory.chest}
-                    legs={inventory.legs}
-                    hands={inventory.hands}
-                    feet={inventory.feet}
-                    torch={inventory.torch}
-                    amulet={inventory.amulet}
-                    healthPotions={inventory.healthPotions}
-                    gold={inventory.gold}
-                    charName={stats.name}
-                    race={stats.race}
-                    charClass={stats.charClass}
                 />
                 <div>
                     <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>

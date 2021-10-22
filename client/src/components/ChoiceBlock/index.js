@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { stringToCamel } from '../../utils/functions';
 import Info from '../Info';
 import { Button } from "@material-ui/core";
 import "./style.css";
 
-const ChoiceBlock = (props) => {
+const mapStateToProps = (state) => {
+    return {
+        inventory: state.updateCharacter.inventory,
+        stats: state.updateCharacter.stats
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
+
+const BoundChoiceBlock = (props) => {
     const {
+        inventory,
+        stats,
         modifier,
         optionFade,
         options,
         buttonDisabled,
         handleFight,
         handleClick,
-        weaponDamage,
-        strength,
         enemyDefense,
-        charClass,
-        wisdom
     } = props;
+    const { weaponDamage } = inventory;
+    const { charClass, strength, wisdom } = stats;
 
     const normalMinDamage = Math.ceil(((weaponDamage * 1) + (strength * 2)) / enemyDefense)
     const normalMaxDamage = Math.ceil(((weaponDamage * 6) + (strength * 2)) / enemyDefense)
@@ -117,5 +131,7 @@ const ChoiceBlock = (props) => {
         })
     }
 };
+
+const ChoiceBlock = connect(mapStateToProps, mapDispatchToProps)(BoundChoiceBlock);
 
 export default ChoiceBlock;
