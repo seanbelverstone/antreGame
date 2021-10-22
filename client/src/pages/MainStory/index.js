@@ -418,9 +418,9 @@ const BoundMainStory = (props) => {
                 const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
                 setCurrentUserHealth(current => current - enemyAttack.finalDamage);
                 setAttackText(enemyAttack.battleText);
+                // enable buttons after attack
+                setButtonDisabled(false);
             }, 3000)
-            // enable buttons after attack
-            setButtonDisabled(false);
         }
     }
 
@@ -541,27 +541,12 @@ const BoundMainStory = (props) => {
             }
         });
         API.saveCharacter(
-            stats.id,
-            stats.health,
-            stats.strength,
-            stats.defense,
-            stats.wisdom,
-            stats.luck,
-            inventory.weapon,
-            inventory.weaponDamage,
-            inventory.head,
-            inventory.chest,
-            inventory.legs,
-            inventory.hands,
-            inventory.feet,
-            inventory.torch,
-            inventory.amulet,
-            inventory.healthPotions,
-            inventory.gold,
+            stats,
+            inventory,
             levels.current,
             timer,
             user.jwtToken
-        ).then((results) => {
+        ).then(() => {
             setSaveGameDisplay(true);
         })
     }
@@ -620,7 +605,6 @@ const BoundMainStory = (props) => {
                 attackDisplay={attackDisplay}
                 attackText={attackText}
             />
-
             <div id="optionArea" className={optionFade}>
                 <ChoiceBlock
                     modifier={modifier}
@@ -664,7 +648,7 @@ const BoundMainStory = (props) => {
                     charClass={stats.charClass}
                 />
                 <div>
-                    <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+                    <Button type="button" id="save" variant="contained" disabled={enemyImage !== ''} onClick={saveGame}>Save Game</Button>
                 </div>
             </footer>
             <DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />
