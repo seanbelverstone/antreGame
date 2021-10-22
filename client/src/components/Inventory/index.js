@@ -14,10 +14,7 @@ import "./style.css";
 const mapStateToProps = (state) => {
     return {
         inventory: state.updateCharacter.inventory,
-        stats: state.updateCharacter.stats,
-        levels: state.updateCharacter.levels,
-        time: state.updateCharacter.time,
-        user: state.authenticateUser.user
+        stats: state.updateCharacter.stats
     }
 }
 
@@ -53,7 +50,6 @@ const BoundInventory = (props) => {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    // const [hover, setHover] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
