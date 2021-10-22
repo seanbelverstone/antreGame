@@ -87,6 +87,7 @@ const BoundMainStory = (props) => {
         // prevents scrollIntoView error
         return () => {
             setEnemyBlockFade('hidden');
+            clearInterval(startTimer);
         }
     }, []);
 
@@ -101,6 +102,9 @@ const BoundMainStory = (props) => {
 
     useEffect(() => {
         setButtonTimes();
+        return () => {
+            clearTimeout(setButtonTimes);
+        }
     }, [typewriterDelay, storyText])
 
     useEffect(() => {
@@ -109,7 +113,6 @@ const BoundMainStory = (props) => {
     }, [currentEnemyHealth, currentUserHealth])
     
     const handleLevel = (choice) => {
-        const { current, visited } = levels;
         // If the choice selected is one that repeats, don't add it to the visited array.
         if (isBlacklistedChoice(choice)) {
             updateCharacter({
@@ -141,7 +144,6 @@ const BoundMainStory = (props) => {
         }
         // loops through the storylines array, and matches the character's level with the corresponding object
         for (let i = 0; i < storylines.length; i++) {
-
             if (storylines[i].level === choice) {
                 setStoryText(storylines[i].text);
                 setModifier(storylines[i].modifier);
@@ -154,7 +156,6 @@ const BoundMainStory = (props) => {
                     setCooldownRound(0);
                     setSkillUsed(false);
                 }
-
             }
         }
     }
@@ -402,14 +403,14 @@ const BoundMainStory = (props) => {
         if (cooldownRound === roundCount && skillUsed) {
             skillButton.removeAttribute("style");
         }
-        if (await isEnemyAlive()) {
+        if (isEnemyAlive()) {
             enemyTurn();
         } else {
             nextPhase();
         }
     }
 
-    const isEnemyAlive = async () => currentEnemyHealth > 0 || false;
+    const isEnemyAlive = () => currentEnemyHealth > 0 || false;
 
     const enemyTurn = () => {
         if (currentEnemyHealth > 0) {
