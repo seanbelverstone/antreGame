@@ -612,11 +612,7 @@ const BoundMainStory = (props) => {
                     buttonDisabled={buttonDisabled}
                     handleFight={handleFight}
                     handleClick={handleClick}
-                    weaponDamage={inventory.weaponDamage}
-                    strength={stats.strength}
                     enemyDefense={currentEnemy.defense}
-                    charClass={stats.charClass}
-                    wisdom={stats.wisdom}
                 />
             </div>
             <footer id="footer">
