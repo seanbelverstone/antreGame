@@ -589,7 +589,6 @@ const BoundMainStory = (props) => {
                     }}
                 />
             </section>
-
             <Enemy
                 imageDisplay={imageDisplay}
                 enemyBlockFade={enemyBlockFade}
@@ -620,35 +619,14 @@ const BoundMainStory = (props) => {
                     wisdom={stats.wisdom}
                 />
             </div>
-
             <footer id="footer">
                 <Inventory
-                    id="inventory"
-                    disabled={buttonDisabled}
                     health={currentUserHealth === 1 ? stats.health : currentUserHealth}
                     maxHealth={maxHealth}
                     userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
-                    strength={stats.strength}
-                    defense={stats.defense}
-                    wisdom={stats.wisdom}
-                    luck={stats.luck}
-                    weapon={inventory.weapon}
-                    weaponDamage={inventory.weaponDamage}
-                    head={inventory.head}
-                    chest={inventory.chest}
-                    legs={inventory.legs}
-                    hands={inventory.hands}
-                    feet={inventory.feet}
-                    torch={inventory.torch}
-                    amulet={inventory.amulet}
-                    healthPotions={inventory.healthPotions}
-                    gold={inventory.gold}
-                    charName={stats.name}
-                    race={stats.race}
-                    charClass={stats.charClass}
                 />
                 <div>
-                    <Button type="button" id="save" variant="contained" disabled={enemyImage !== ''} onClick={saveGame}>Save Game</Button>
+                    <Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
                 </div>
             </footer>
             <DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={`Game saved!`} destination="" snackbarColor="success" />

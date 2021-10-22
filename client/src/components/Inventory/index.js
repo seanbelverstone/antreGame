@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actionCreators from "../../redux/actions/actionCreators";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Divider } from "@material-ui/core";
 import Modal from '@material-ui/core/Modal';
@@ -7,6 +10,20 @@ import Fade from '@material-ui/core/Fade';
 import invImages from "../../assets/images/invIcons";
 import Info from '../Info';
 import "./style.css";
+
+const mapStateToProps = (state) => {
+    return {
+        inventory: state.updateCharacter.inventory,
+        stats: state.updateCharacter.stats,
+        levels: state.updateCharacter.levels,
+        time: state.updateCharacter.time,
+        user: state.authenticateUser.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actionCreators, dispatch);
+}
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -23,34 +40,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Inventory = (props) => {
-
-    const {
+const BoundInventory = (props) => {
+    const { 
+        inventory, 
+        stats,
         health,
         maxHealth,
-        userHealthWidth,
-        strength,
-        defense,
-        wisdom,
-        luck,
-        weapon,
-        weaponDamage,
-        head,
-        chest,
-        legs,
-        hands,
-        feet,
-        torch,
-        amulet,
-        healthPotions,
-        gold,
-        charName,
-        race,
-        charClass
+        userHealthWidth
     } = props;
+    const { name, race, charClass, strength, defense, wisdom, luck } = stats;
+    const { weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold } = inventory;
+
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [hover, setHover] = useState(false);
+    // const [hover, setHover] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -101,7 +104,7 @@ const Inventory = (props) => {
             >
                 <Fade in={open}>
                     <div className={classes.paper} id="inventoryModal">
-                        <h2 className="fullTitle">{charName}, the {race} {charClass}.</h2>
+                        <h2 className="fullTitle">{name}, the {race} {charClass}.</h2>
                         <section id="left">
                             <section id="statsBlock">
                                 <div style={{ textAlign: 'center' }}>HP</div>
@@ -209,5 +212,7 @@ const Inventory = (props) => {
         </div>
     );
 }
+
+const Inventory = connect(mapStateToProps, mapDispatchToProps)(BoundInventory);
 
 export default Inventory;
