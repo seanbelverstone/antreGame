@@ -1,44 +1,19 @@
 {
   "name": "antre-game",
-  "version": "1.0.0",
-  "description": "A `choose your own adventure` style web game",
-  "engines": {
-    "node": "v14.15.4"
-  },
-  "main": "server.js",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node -r esm server.js",
-    "start:dev": "concurrently \"nodemon -r esm --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "seed": "node scripts/seedDB.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^5.0.0",
-    "nodemon": "^2.0.7"
-  },
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@vvo/typewriter-effect": "^2.13.1",
     "axios": "^0.21.1",
-    "bcrypt": "^5.0.0",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
     "hookrouter": "^1.2.5",
     "if-env": "^1.0.4",
-    "mysql2": "^2.2.5",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.4",
@@ -46,8 +21,19 @@
     "react-scripts": "^4.0.1",
     "redux": "^4.1.1",
     "redux-persist": "^6.0.0",
-    "sequelize": "^6.4.0",
     "typewriter-effect": "^2.17.0",
     "web-vitals": "^0.2.4"
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
