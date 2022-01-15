@@ -1,5 +1,6 @@
 import axios from "axios";
-const endpoint = 'https://antre-game-server.herokuapp.com'
+const env = process.env.NODE_ENV || 'development';
+const endpoint = env === "development" ? 'http://localhost:3001' : 'https://antre-game-server.herokuapp.com';
 
 export default {
 
