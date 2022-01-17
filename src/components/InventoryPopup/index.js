@@ -114,13 +114,13 @@ const InventoryPopup = (props) => {
 };
 
 InventoryPopup.propTypes = {
-	display: PropTypes.string,
+	display: PropTypes.bool,
 	setDisplay: PropTypes.func,
 	items: PropTypes.oneOfType([PropTypes.array])
 };
 
 InventoryPopup.defaultProps = {
-	display: '',
+	display: false,
 	setDisplay: () => {},
 	items: []
 };

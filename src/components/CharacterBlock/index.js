@@ -134,7 +134,7 @@ const BoundCharacterBlock = (props) => {
                     PLAY
 				</Button>
 
-				<DeleteButton id={character.id} jwtToken={user.jwtToken}/>
+				<DeleteButton id={character.id.toString()} jwtToken={user.jwtToken}/>
 			</section>
 		</div>
 	);

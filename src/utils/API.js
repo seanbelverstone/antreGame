@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 import axios from 'axios';
-// eslint-disable-next-line no-undef
 const env = process.env.NODE_ENV || 'development';
 const endpoint = env === 'development' ? 'http://localhost:3001' : 'https://antre-game-server.herokuapp.com';
 

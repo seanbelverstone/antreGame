@@ -136,7 +136,7 @@ const BoundChoiceBlock = (props) => {
 BoundChoiceBlock.propTypes = {
 	inventory: PropTypes.object,
 	stats: PropTypes.object,
-	modifier: PropTypes.object,
+	modifier: PropTypes.oneOfType([PropTypes.array]),
 	optionFade: PropTypes.string,
 	options: PropTypes.oneOfType([PropTypes.array]),
 	buttonDisabled: PropTypes.bool,
@@ -148,7 +148,7 @@ BoundChoiceBlock.propTypes = {
 BoundChoiceBlock.defaultProps = {
 	inventory: {},
 	stats: {},
-	modifier: {},
+	modifier: [],
 	optionFade: '',
 	options: [],
 	buttonDisabled: false,
