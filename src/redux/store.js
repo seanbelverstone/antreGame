@@ -5,20 +5,20 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import rootReducer from './reducers';
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    stateReconciler: autoMergeLevel2,
-    whitelist: [
-        'updateCharacter',
-        'authenticateUser'
-    ]
+	key: 'root',
+	storage,
+	stateReconciler: autoMergeLevel2,
+	whitelist: [
+		'updateCharacter',
+		'authenticateUser'
+	]
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
-    pReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	pReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export const persistor = persistStore(store);

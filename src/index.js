@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
-import { render } from "react-dom";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { render } from 'react-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
 render(
-    <Provider store={store} >
-        <PersistGate loading={null} persistor={persistor}>
-            <App />
-        </PersistGate>
-    </Provider>,
-    document.getElementById("root")
+	<Provider store={store} >
+		<PersistGate loading={null} persistor={persistor}>
+			<App />
+		</PersistGate>
+	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
