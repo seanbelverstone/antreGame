@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@vvo/typewriter-effect": "^2.13.1",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
@@ -29,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_ENV=production && react-scripts build",
+    "build": "cross-env NODE_ENV=production react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint"
