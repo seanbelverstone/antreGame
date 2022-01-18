@@ -5,7 +5,7 @@ import store, { persistor } from './redux/store';
 import { render } from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from '../public/serviceWorker';
 
 render(
 	<Provider store={store} >
