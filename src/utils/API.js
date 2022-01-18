@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 import axios from 'axios';
-const env = process.env.NODE_ENV || 'development';
-console.log(process.env.NODE_ENV);
-const endpoint = env === 'development' ? 'http://localhost:3001' : 'https://antre-game-server.herokuapp.com';
+const endpoint = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://antre-game-server.herokuapp.com';
 
 export default {
 
