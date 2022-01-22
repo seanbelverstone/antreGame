@@ -12,6 +12,7 @@ import Wrapper from '../../components/Wrapper';
 import CharacterBlock from '../../components/CharacterBlock';
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
+import ProfileModal from '../../components/ProfileModal';
 
 const mapStateToProps = (state) => {
 	return {
@@ -67,6 +68,7 @@ const BoundSelectCharacter = (props) => {
 
 	return (
 		<Wrapper page="selectCharacter">
+			<ProfileModal />
 			<div className="topRow">
 				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 				<div className="title">SELECT A CHARACTER</div>
