@@ -7,6 +7,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { IconButton } from '@material-ui/core';
 
+// PSUEDOCODE
+// When modal is open, if the prop `formInProgress` = true then disable clickout
+// modal closure.
+// if nothing edited, disable submit button.
+// api call to change username/password/email/delete account?
+
 const useStyles = makeStyles((theme) => ({
 	modal: {
 		display: 'flex',
