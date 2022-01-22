@@ -71,7 +71,7 @@ const CreateAccount = () => {
 		if (password !== confirmPassword) {
 			setPasswordError(true);
 			setPasswordHelperText('Passwords don\'t match');
-		} if (password.length === 0 || confirmPassword.length === 0) {
+		} else if (password.length === 0 || confirmPassword.length === 0) {
 			setPasswordError(true);
 			setPasswordHelperText('Please enter a password');
 		} else {
