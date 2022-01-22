@@ -8,6 +8,7 @@ import { navigate } from 'hookrouter';
 import DeleteButton from '../DeleteButton';
 import { isBlacklistedChoice } from '../../utils/functions';
 import './style.css';
+import API from '../../utils/API';
 
 const mapStateToProps = (state) => {
 	return {
@@ -83,6 +84,14 @@ const BoundCharacterBlock = (props) => {
 		setTimePlayed(`${minutes}:${prettySeconds}`);
 	};
 
+	const handleDelete = (value) => {
+		if (value) {
+			API.deleteCharacter(character.id.toString(), user.jwtToken)
+				.then(() => 
+					location.reload());
+		}
+	};
+
 	return(
 		<div className="characterBlock">
 			<div className="characterWrapper">
@@ -134,7 +143,12 @@ const BoundCharacterBlock = (props) => {
                     PLAY
 				</Button>
 
-				<DeleteButton id={character.id.toString()} jwtToken={user.jwtToken}/>
+				<DeleteButton
+					id={character.id.toString()}
+					jwtToken={user.jwtToken}
+					customText="Are you sure you want to delete this character?"
+					callback={handleDelete}
+				/>
 			</section>
 		</div>
 	);

@@ -68,7 +68,7 @@ const BoundSelectCharacter = (props) => {
 
 	return (
 		<Wrapper page="selectCharacter">
-			<ProfileModal />
+			<ProfileModal user={user} />
 			<div className="topRow">
 				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 				<div className="title">SELECT A CHARACTER</div>
