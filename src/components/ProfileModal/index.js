@@ -39,10 +39,14 @@ const ProfileModal = (props) => {
 	const [username, setUsername] = useState('');
 	const [usernameError, setUsernameError] = useState(false);
 	const [usernameHelperText, setUsernameHelperText] = useState('');
+	// const [usernameFade, setUsernameFade] = useState('');
+
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [passwordError, setPasswordError] = useState(false);
 	const [passwordHelperText, setPasswordHelperText] = useState('');
+	// const [passwordFade, setPasswordFade] = useState('');
+
 	const [formInProgress, setFormInProgress] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
@@ -69,6 +73,7 @@ const ProfileModal = (props) => {
 	};
 
 	const displayEditBlock = (type) => {
+		// add transition to edit button, where it rotates and turns into an x.
 		if (type === 'username') {
 			setDisplayUsername(displayUsername === 'none' ? 'flex' : 'none');
 		} else {
@@ -132,11 +137,11 @@ const ProfileModal = (props) => {
 					<div className={classes.paper} id="profileModal">
 						<h2 className="title">Edit Account</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							Username: {user.username} <a onClick={() => displayEditBlock('username')}>Edit</a>
+							Username: {user.username}
+							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('username')}>Edit</a>
 						</div>
-						<form noValidate autoComplete="off" className="editAccountForm" style={{ display: displayUsername }}>
+						<form noValidate autoComplete="off" className="editAccountForm fadeIn" style={{ display: displayUsername }}>
 							<TextField
-								display={displayUsername}
 								className="formInput"
 								label="Username"
 								variant="outlined"
@@ -148,12 +153,12 @@ const ProfileModal = (props) => {
 								Submit
 							</Button>
 						</form>
-						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em' }}>
-							Password: ******* <a onClick={() => displayEditBlock('password')}>Edit</a>
+						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em', marginBottom: '1em' }}>
+							Password: *******
+							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('password')}>Edit</a>
 						</div>
-						<form noValidate autoComplete="off" className="editAccountForm" style={{ display: displayPassword}}>
+						<form noValidate autoComplete="off" className="editAccountForm fadeIn" style={{ display: displayPassword}}>
 							<TextField
-								className="formInput"
 								label="Password"
 								variant="outlined"
 								type="password"
