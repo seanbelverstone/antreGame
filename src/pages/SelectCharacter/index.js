@@ -12,10 +12,13 @@ import Wrapper from '../../components/Wrapper';
 import CharacterBlock from '../../components/CharacterBlock';
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
+import ProfileModal from '../../components/ProfileModal';
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.authenticateUser.user
+		user: state.authenticateUser.user,
+		authenticateUser: state.authenticateUser,
+		resetStore: state.resetStore
 	};
 };
 
@@ -27,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 const BoundSelectCharacter = (props) => {
 	const [characters, updateCharacters] = useState([]);
 	const [lessThanFour, setLessThanFour] = useState('none');
-	const { user, resetStore } = props;
+	const { user, authenticateUser, resetStore } = props;
 
 	useEffect(() => {
 		API.getAllCharacters(user.id, user.jwtToken)
@@ -67,6 +70,7 @@ const BoundSelectCharacter = (props) => {
 
 	return (
 		<Wrapper page="selectCharacter">
+			<ProfileModal user={user} authenticateUser={authenticateUser} resetStore={resetStore} />
 			<div className="topRow">
 				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 				<div className="title">SELECT A CHARACTER</div>
@@ -93,11 +97,13 @@ const BoundSelectCharacter = (props) => {
 
 BoundSelectCharacter.propTypes = {
 	user: PropTypes.object,
+	authenticateUser: PropTypes.func,
 	resetStore: PropTypes.func
 };
 
 BoundSelectCharacter.defaultProps = {
 	user: {},
+	authenticateUser: () => {},
 	resetStore: () => {}
 };
 

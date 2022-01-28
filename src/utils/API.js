@@ -11,12 +11,25 @@ export default {
 			password
 		});
 	},
-
 	checkUser: (username, password) => {
 		return axios.post(`${endpoint}/api/auth`, {
 			username, 
 			password
 		}); 
+	},
+	editUser: (type, value, id, jwtToken) => {
+		return axios.put(`${endpoint}/api/users/${id}`, {
+			[type === 'username' ? 'username' : 'password']: value
+		}, {
+			headers: {
+				'Authorization': `Bearer ${jwtToken}`}
+		});
+	},
+	deleteUser: (userId, jwtToken) => {
+		return axios.delete(`${endpoint}/api/users/${userId}`, {
+			headers: {
+				'Authorization': `Bearer ${jwtToken}`}
+		});
 	},
 
 	getAllCharacters: (userId, jwtToken) => {
@@ -25,7 +38,6 @@ export default {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
-
 	createNewCharacter: (name, race, charClass, health, strength, defense, wisdom, luck, UserId, jwtToken) => {
 		return axios.post(`${endpoint}/api/characters`, {
 			name, 
@@ -42,7 +54,6 @@ export default {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
-
 	saveCharacter: (stats, inventory, levels, time, jwtToken) => {
 		const { id, health, strength, defense, wisdom, luck } = stats;
 		const {weapon, weaponDamage, head,  chest,  legs,  hands,  feet,  torch,  amulet,  healthPotions,  gold } = inventory;
@@ -71,7 +82,6 @@ export default {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
-    
 	deleteCharacter: (characterId, jwtToken) => {
 		return axios.delete(`${endpoint}/api/characters/${characterId}`, {
 			headers: {

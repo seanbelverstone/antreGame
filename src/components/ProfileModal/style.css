@@ -1,0 +1,22 @@
+#profileModal {
+	width: 25vw;
+    background-color: var(--foreground);
+    padding: 20px;
+    margin: 2.5% auto;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    animation: fadeIn 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#deleteAccount {
+	margin-top: 2em;
+}
+
+.editAccountForm {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

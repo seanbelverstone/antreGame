@@ -71,7 +71,7 @@ const CreateAccount = () => {
 		if (password !== confirmPassword) {
 			setPasswordError(true);
 			setPasswordHelperText('Passwords don\'t match');
-		} if (password.length === 0 || confirmPassword.length === 0) {
+		} else if (password.length === 0 || confirmPassword.length === 0) {
 			setPasswordError(true);
 			setPasswordHelperText('Please enter a password');
 		} else {
@@ -85,7 +85,6 @@ const CreateAccount = () => {
 	const createNewUser = () => {
 		API.createUser(username, email, password)
 			.then(() => {
-				// Set the username to session storage so we can use it later
 				setSnackbarColor('success');
 				setSnackbarMessage(`Account created. Welcome, ${username}!`);
 				setSnackbarDisplay(true);

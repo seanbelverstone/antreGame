@@ -10,11 +10,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import API from '../../utils/API';
 import './style.css';
 
 function SimpleDialog(props) {
-	const { onClose, selectedValue, open } = props;
+	// eslint-disable-next-line react/prop-types
+	const { onClose, selectedValue, open, customText } = props;
 
 	const handleClose = () => {
 		onClose(selectedValue);
@@ -27,7 +27,7 @@ function SimpleDialog(props) {
 	return (
 		<Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
 			<h2 id="warning">WARNING</h2>
-			<DialogTitle id="simple-dialog-title">Are you sure you want to delete this character?</DialogTitle>
+			<DialogTitle id="simple-dialog-title">{customText}</DialogTitle>
 			<h3 id="warning">THIS ACTION CANNOT BE REVERSED</h3>
 			<List className="yesNoList">
 				<ListItem className="yesWrapper" autoFocus button onClick={() => handleListItemClick(true)}>
@@ -61,7 +61,7 @@ export default function DeleteButton(props) {
   
 	const [open, setOpen] = useState(false);
 	const [selectedValue, setSelectedValue] = useState(false);
-	const { id, jwtToken } = props;
+	const { text, customText, callback } = props;
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -70,33 +70,29 @@ export default function DeleteButton(props) {
 	const handleClose = (value) => {
 		setOpen(false);
 		setSelectedValue(value);
-		handleDelete(value);
-	};
-
-	const handleDelete = (value) => {
-		if (value) {
-			API.deleteCharacter(id, jwtToken)
-				.then(() => 
-					location.reload());
-		}
+		callback && callback(value);
 	};
 
 	return (
-		<div>
+		<div id={props.id}>
 			<Button variant="contained" color="secondary" id="delete" onClick={handleClickOpen}>
-            DELETE
+				{text ? text : 'DELETE'}
 			</Button>
-			<SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+			<SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} customText={customText} />
 		</div>
 	);
 }
 
 DeleteButton.propTypes = {
 	id: PropTypes.string,
-	jwtToken: PropTypes.string
+	text: PropTypes.string,
+	customText: PropTypes.string,
+	callback: PropTypes.func
 };
 
 DeleteButton.defaultProps = {
 	id: '',
-	jwtToken: ''
+	text: '',
+	customText: '',
+	callback: () => {}
 };
