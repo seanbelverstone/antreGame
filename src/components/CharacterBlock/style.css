@@ -89,6 +89,9 @@ section.health {
     #allCharacters {
         width: 50vw;
     }
+	.characterWrapper {
+        width: 480px;
+    }
 }
 
 @media screen and (max-width: 992px) {

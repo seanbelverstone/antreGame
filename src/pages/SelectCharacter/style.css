@@ -1,5 +1,9 @@
 #selectCharacter .title {
-    margin-right: 11vw !important;
+    margin-right: 2vw !important;
+}
+
+#selectCharacter .topRow {
+	width: 92% !important;
 }
 
 #creatorWrapper {
@@ -29,7 +33,7 @@
 
 @media screen and (max-width: 1382px) {
     #selectCharacter .title {
-        margin-right: 13vw !important;
+        margin-right: 4vw !important;
     }
 }
 

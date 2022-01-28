@@ -70,10 +70,10 @@ const BoundSelectCharacter = (props) => {
 
 	return (
 		<Wrapper page="selectCharacter">
-			<ProfileModal user={user} authenticateUser={authenticateUser} resetStore={resetStore} />
-			<div className="topRow">
+			<div className="topRow" style={{ marginRight: '0 !important' }}>
 				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 				<div className="title">SELECT A CHARACTER</div>
+				<ProfileModal user={user} authenticateUser={authenticateUser} resetStore={resetStore} />
 			</div>
 
 			{/* do a map of the characters array, and render them here. */}

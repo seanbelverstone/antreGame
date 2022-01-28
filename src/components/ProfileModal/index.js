@@ -156,7 +156,7 @@ const ProfileModal = (props) => {
 
 	return (
 		<div>
-			<IconButton variant="contained" color="primary" onClick={handleOpen} style={{ float: 'right' }}>
+			<IconButton variant="contained" color="primary" onClick={handleOpen}>
 				<ManageAccountsIcon />
 			</IconButton>
 			<Modal
