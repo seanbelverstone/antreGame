@@ -138,7 +138,9 @@ const ProfileModal = (props) => {
 						<h2 className="title">Edit Account</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							Username: {user.username}
-							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('username')}>{displayUsername === 'none' ? 'Edit' : 'Hide'}</a>
+							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('username')}>
+								{displayUsername === 'none' ? 'Edit' : 'Hide'}
+							</a>
 						</div>
 						<form noValidate autoComplete="off" className="editAccountForm fadeIn" style={{ display: displayUsername }}>
 							<TextField
@@ -155,7 +157,9 @@ const ProfileModal = (props) => {
 						</form>
 						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em', marginBottom: '1em' }}>
 							Password: *******
-							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('password')}>{displayPassword === 'none' ? 'Edit' : 'Hide'}</a>
+							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('password')}>
+								{displayPassword === 'none' ? 'Edit' : 'Hide'}
+							</a>
 						</div>
 						<form noValidate autoComplete="off" className="editAccountForm fadeIn" style={{ display: displayPassword }}>
 							<TextField
