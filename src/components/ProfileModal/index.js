@@ -173,9 +173,9 @@ const ProfileModal = (props) => {
 			>
 				<Fade in={open}>
 					<div className={classes.paper} id="profileModal">
-						<h2 className="title">Edit Account</h2>
+						<h2 className="title" style={{ textDecoration: 'none' }}>EDIT ACCOUNT</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							Username: {user.username}
+							<p>Username: {user.username}</p>
 							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('username')}>
 								{displayUsername === 'none' ? 'Edit' : 'Hide'}
 							</a>
@@ -195,7 +195,7 @@ const ProfileModal = (props) => {
 							</Button>
 						</form>
 						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em', marginBottom: '1em' }}>
-							Password: *******
+							<p>Password: *******</p>
 							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('password')}>
 								{displayPassword === 'none' ? 'Edit' : 'Hide'}
 							</a>
@@ -225,6 +225,7 @@ const ProfileModal = (props) => {
 						</form>
 						<div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '1em' }}>
 							<DeleteButton
+								id="deleteAccount"
 								text="DELETE ACCOUNT"
 								customText="Are you sure you want to delete your account?"
 								callback={handleUserDelete} />

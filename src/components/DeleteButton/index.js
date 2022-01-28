@@ -74,7 +74,7 @@ export default function DeleteButton(props) {
 	};
 
 	return (
-		<div>
+		<div id={props.id}>
 			<Button variant="contained" color="secondary" id="delete" onClick={handleClickOpen}>
 				{text ? text : 'DELETE'}
 			</Button>
@@ -84,12 +84,14 @@ export default function DeleteButton(props) {
 }
 
 DeleteButton.propTypes = {
+	id: PropTypes.string,
 	text: PropTypes.string,
 	customText: PropTypes.string,
 	callback: PropTypes.func
 };
 
 DeleteButton.defaultProps = {
+	id: '',
 	text: '',
 	customText: '',
 	callback: () => {}
