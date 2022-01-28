@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 import DeleteButton from '../DeleteButton';
 import './style.css';
+import API from '../../utils/API';
+import DefaultPopup from '../DefaultPopup';
 
 // PSUEDOCODE
 // When modal is open, if the prop `formInProgress` = true then disable clickout
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const ProfileModal = (props) => {
-	const { user } = props;
+	const { user, authenticateUser/*, resetStore */} = props;
 	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 	const [displayUsername, setDisplayUsername] = useState('none');
@@ -39,19 +41,21 @@ const ProfileModal = (props) => {
 	const [username, setUsername] = useState('');
 	const [usernameError, setUsernameError] = useState(false);
 	const [usernameHelperText, setUsernameHelperText] = useState('');
-	// const [usernameFade, setUsernameFade] = useState('');
 
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [passwordError, setPasswordError] = useState(false);
 	const [passwordHelperText, setPasswordHelperText] = useState('');
-	// const [passwordFade, setPasswordFade] = useState('');
 
 	const [formInProgress, setFormInProgress] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
 		!formInProgress && setOpen(false);
 	};
+
+	const [snackbarDisplay, setSnackbarDisplay] = useState(false);
+	const [snackbarMessage, setSnackbarMessage] = useState('');
+	const [snackbarColor, setSnackbarColor] = useState('');
 
 	const handleField = (value, type) => {
 		if (type === 'username') {
@@ -70,6 +74,9 @@ const ProfileModal = (props) => {
 		const { id, jwtToken } = user;
 		console.log(value);
 		console.log(id, jwtToken);
+		handleClose();
+		// resetStore
+		// navigate to login page, resetting the store as we go.
 	};
 
 	const displayEditBlock = (type) => {
@@ -111,9 +118,27 @@ const ProfileModal = (props) => {
 
 	const editField = (type) => {
 		// should return an error if the username already exists.
-		console.log(type);
-		displayEditBlock(type);
-		handleClose();
+		const { id, jwtToken } = user;
+		const value = type === 'username' ? username : password;
+		API.editUser(type, value, id, jwtToken)
+			.then((res) => {
+				console.log(res);
+				setSnackbarColor('success');
+				setSnackbarMessage(`Successfully updated ${type}.`);
+				setSnackbarDisplay(true);
+				type === 'password' ? setPassword('') : setUsername('');
+				type === 'username' && authenticateUser({
+					user: {
+						username: value
+					}
+				});
+				displayEditBlock(type);
+			})
+			.catch(() => {
+				setSnackbarColor('error');
+				setSnackbarMessage('Sorry, that username already exists.');
+				setSnackbarDisplay(true);
+			});
 	};
 
 	return (
@@ -150,6 +175,7 @@ const ProfileModal = (props) => {
 								onChange={event => handleField(event.target.value, 'username')}
 								error={usernameError}
 								helperText={usernameHelperText}
+								value={username}
 							/>
 							<Button variant="contained" color="primary" onClick={checkUsername}>
 								Submit
@@ -168,6 +194,7 @@ const ProfileModal = (props) => {
 								type="password"
 								onChange={event => handleField(event.target.value, 'password')}
 								error={passwordError}
+								value={password}
 							/>
 							<TextField
 								className="formInput"
@@ -177,6 +204,7 @@ const ProfileModal = (props) => {
 								onChange={event => setConfirmPassword(event.target.value)}
 								error={passwordError}
 								helperText={passwordHelperText}
+								password={confirmPassword}
 							/>
 							<Button variant="contained" color="primary" onClick={checkPasswords}>
 								Submit
@@ -188,6 +216,14 @@ const ProfileModal = (props) => {
 								customText="Are you sure you want to delete your account?"
 								callback={handleUserDelete} />
 						</div>
+						<DefaultPopup
+							customClass="createPopup"
+							display={snackbarDisplay}
+							setDisplay={setSnackbarDisplay}
+							message={snackbarMessage}
+							// destination="/"
+							snackbarColor={snackbarColor}
+						/>
 					</div>
 				</Fade>
 			</Modal>
@@ -197,10 +233,14 @@ const ProfileModal = (props) => {
 
 ProfileModal.propTypes = {
 	user: PropTypes.object,
+	authenticateUser: PropTypes.func,
+	resetStore: PropTypes.func
 };
 
 ProfileModal.defaultProps = {
 	user: {},
+	authenticateUser: () => {},
+	resetStore: () => {}
 };
 
 export default ProfileModal;

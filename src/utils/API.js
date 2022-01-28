@@ -17,13 +17,17 @@ export default {
 			password
 		}); 
 	},
-	editUser: (username, password, userId) => {
-		return axios.put(`${endpoint}/api/users/${userId}`, {
+	editUser: (type, value, id, jwtToken) => {
+		return axios.put(`${endpoint}/api/users/${id}`, {
+			[type === 'username' ? 'username' : 'password']: value,
+			id,
+			jwtToken
+		}, {
 			headers: {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
-	deleteUser: (userId) => {
+	deleteUser: (userId, jwtToken) => {
 		return axios.put(`${endpoint}/api/users/${userId}`, {
 			headers: {
 				'Authorization': `Bearer ${jwtToken}`}
