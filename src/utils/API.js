@@ -19,16 +19,14 @@ export default {
 	},
 	editUser: (type, value, id, jwtToken) => {
 		return axios.put(`${endpoint}/api/users/${id}`, {
-			[type === 'username' ? 'username' : 'password']: value,
-			id,
-			jwtToken
+			[type === 'username' ? 'username' : 'password']: value
 		}, {
 			headers: {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
 	deleteUser: (userId, jwtToken) => {
-		return axios.put(`${endpoint}/api/users/${userId}`, {
+		return axios.delete(`${endpoint}/api/users/${userId}`, {
 			headers: {
 				'Authorization': `Bearer ${jwtToken}`}
 		});

@@ -11,6 +11,7 @@ import DeleteButton from '../DeleteButton';
 import './style.css';
 import API from '../../utils/API';
 import DefaultPopup from '../DefaultPopup';
+import { navigate } from 'hookrouter';
 
 // PSUEDOCODE
 // When modal is open, if the prop `formInProgress` = true then disable clickout
@@ -71,12 +72,24 @@ const ProfileModal = (props) => {
 	};
 
 	const handleUserDelete = (value) => {
+		const { resetStore } = props;
 		const { id, jwtToken } = user;
-		console.log(value);
-		console.log(id, jwtToken);
-		handleClose();
+		if (value) {
+			API.deleteUser(id, jwtToken)
+				.then(() => {
+					handleClose();
+					resetStore();
+					navigate('/');
+				})
+				.catch(() => {
+					setSnackbarColor('error');
+					setSnackbarMessage('Sorry, there was an error deleting your account. Please contact support@antregame.com');
+					setSnackbarDisplay(true);
+				});
 		// resetStore
 		// navigate to login page, resetting the store as we go.
+		}
+		
 	};
 
 	const displayEditBlock = (type) => {
@@ -221,7 +234,7 @@ const ProfileModal = (props) => {
 							display={snackbarDisplay}
 							setDisplay={setSnackbarDisplay}
 							message={snackbarMessage}
-							// destination="/"
+							destination={`${snackbarMessage === 'Successfully deleted account.' ? '/' : null}`}
 							snackbarColor={snackbarColor}
 						/>
 					</div>
