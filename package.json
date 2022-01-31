@@ -48,9 +48,5 @@
   "devDependencies": {
     "eslint": "^7.11.0",
     "eslint-plugin-react": "^7.28.0"
-  },
-  "resolutions": {
-	"//": "See https://github.com/facebook/create-react-app/issues/11773",
-	"react-error-overlay": "6.0.9"
   }
 }
