@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { navigate } from 'hookrouter';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';

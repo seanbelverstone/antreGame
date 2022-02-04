@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { Button } from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 import mysql from '../../assets/images/companyIcons/mysql.png';
 import react from '../../assets/images/companyIcons/react.png';
 import express from '../../assets/images/companyIcons/express.png';
 import node from '../../assets/images/companyIcons/nodejs.png';
 import materialUi from '../../assets/images/companyIcons/materialUi.png';
+import { makeStyles } from '@mui/styles';
 import './style.css';
 import DonateButton from '../DonateButton';
 

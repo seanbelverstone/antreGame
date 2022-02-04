@@ -8,7 +8,8 @@ import Wrapper from '../../components/Wrapper';
 import Credits from '../../components/Credits';
 import API from '../../utils/API';
 import logo from '../../assets/images/AntreCrop.png';
-import { TextField, Button } from '@material-ui/core';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import './style.css';
 
 const mapStateToProps = (state) => {
