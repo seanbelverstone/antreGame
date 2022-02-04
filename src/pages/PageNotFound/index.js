@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../../components/Wrapper';
 import logo from '../../assets/images/Antre.png';
-import { Button } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import './style.css';
 import store from '../../redux/store';
 import { navigate } from 'hookrouter';

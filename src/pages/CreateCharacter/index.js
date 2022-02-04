@@ -3,12 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import { TextField, Button } from '@material-ui/core';
-import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { TextField, Button } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 import { navigate } from 'hookrouter';
 import Wrapper from '../../components/Wrapper';
 import DefaultPopup from '../../components/DefaultPopup';
@@ -26,19 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-const useStyles = makeStyles((theme) => ({
-	formControl: {
-		margin: theme.spacing(1),
-		minWidth: 120,
-	},
-	selectEmpty: {
-		marginTop: theme.spacing(2),
-	},
-}));
-
 const BoundCreateCharacter = (props) => {
-
-	const classes = useStyles();
 	const [name, setName] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [nameHelperText, setNameHelperText] = useState('');
@@ -151,7 +138,7 @@ const BoundCreateCharacter = (props) => {
 			</div>
 
 			<form id="formWrapper" onSubmit={handleSubmit}>
-				<FormControl className={classes.formControl}>
+				<FormControl>
 					<TextField
 						className="formInput"
 						label="Name"
@@ -161,7 +148,7 @@ const BoundCreateCharacter = (props) => {
 						helperText={nameHelperText}
 					/>
 				</FormControl>
-				<FormControl className={classes.formControl}>
+				<FormControl>
 					<InputLabel id="raceLabel">Race</InputLabel>
 					<Select
 						labelId="raceLabel"
@@ -174,7 +161,7 @@ const BoundCreateCharacter = (props) => {
 						<MenuItem value={'Dwarf'} id="dwarf">Dwarf</MenuItem>
 					</Select>
 				</FormControl>
-				<FormControl className={classes.formControl}>
+				<FormControl>
 					<InputLabel id="classLabel">Class</InputLabel>
 					<Select
 						labelId="classLabel"

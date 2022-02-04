@@ -6,26 +6,31 @@
     "disableHostCheck": true
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "axios": "^0.21.1",
-    "cross-env": "^7.0.3",
-    "css-loader": "^5.0.1",
-    "dotenv": "^8.2.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.4.0",
+    "@mui/styles": "^5.3.0",
+    "add": "^2.0.6",
+    "axios": "^0.25.0",
+    "css-loader": "^6.6.0",
+    "dotenv": "^16.0.0",
     "esm": "^3.2.25",
     "hookrouter": "^1.2.5",
     "if-env": "^1.0.4",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
-    "redux": "^4.1.1",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.0",
+    "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "typewriter-effect": "^2.18.2",
-    "web-vitals": "^0.2.4"
+    "url": "^0.11.0",
+    "url-loader": "^4.1.1",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.17"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,9 +48,5 @@
   "devDependencies": {
     "eslint": "^7.11.0",
     "eslint-plugin-react": "^7.28.0"
-  },
-  "resolutions": {
-    "//": "See https://github.com/facebook/create-react-app/issues/11773",
-    "react-error-overlay": "6.0.9"
   }
 }

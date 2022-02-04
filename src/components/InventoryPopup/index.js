@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { camelToTitle } from '../../utils/functions';
 
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: '100%',
-		'& > * + *': {
-			marginTop: theme.spacing(2),
-		},
-	},
-}));
-
 const InventoryPopup = (props) => {
 	const {
 		display,
 		setDisplay,
 		items
 	} = props;
-	const classes = useStyles();
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
@@ -103,7 +91,7 @@ const InventoryPopup = (props) => {
 	};
 
 	return (
-		<div className={classes.root} id="inventoryPopup">
+		<div id="inventoryPopup">
 			<Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }} style={{ height: '100%' }}>
 				<Alert onClose={handleClose} severity="info">
 					{messages}

@@ -1,23 +1,13 @@
 import React from 'react';
 import { navigate } from 'hookrouter';
 import PropTypes from 'prop-types';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Alert(props) {
 
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: '100%',
-		'& > * + *': {
-			marginTop: theme.spacing(2),
-		},
-	},
-}));
 
 const DefaultPopup = (props) => {
 	const {
@@ -29,8 +19,6 @@ const DefaultPopup = (props) => {
 		customClass
 	} = props;
 
-	const classes = useStyles();
-
 	const handleClose = () => {
 		if (destination !== '' && snackbarColor !== 'error') {
 			navigate(destination);
@@ -39,7 +27,7 @@ const DefaultPopup = (props) => {
 	};
 
 	return (
-		<div className={`${classes.root}`}>
+		<div>
 			<Snackbar
 				className={customClass}
 				open={display}
