@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import Button from '@mui/material/Button';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import DeleteButton from '../DeleteButton';
 import { isBlacklistedChoice } from '../../utils/functions';
 import './style.css';
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const BoundCharacterBlock = (props) => {
+	let history = useNavigate();
 	const { updateCharacter, character, user } = props;
 	const [timePlayed, setTimePlayed] = useState('');
 	useEffect(() => {
@@ -74,7 +75,7 @@ const BoundCharacterBlock = (props) => {
 				value: selectedCharacter.time
 			}
 		});
-		navigate('/play');
+		history('/play');
 	};
 
 	const calculateTime = () => {

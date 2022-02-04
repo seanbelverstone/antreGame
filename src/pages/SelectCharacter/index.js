@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import API from '../../utils/API';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import Wrapper from '../../components/Wrapper';
 import CharacterBlock from '../../components/CharacterBlock';
 import smallLogo from '../../assets/images/Antre.png';
@@ -28,6 +28,8 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const BoundSelectCharacter = (props) => {
+	let history = useNavigate();
+
 	const [characters, updateCharacters] = useState([]);
 	const [lessThanFour, setLessThanFour] = useState('none');
 	const { user, authenticateUser, resetStore } = props;
@@ -65,7 +67,7 @@ const BoundSelectCharacter = (props) => {
 
 	const logout = () => {
 		resetStore();
-		navigate('/');
+		history('/');
 	};
 
 	return (
@@ -84,7 +86,7 @@ const BoundSelectCharacter = (props) => {
 
 			<div style={{ display: lessThanFour }} id="creatorWrapper" className="characterWrapper">
 				<div id="createNew">Create a new character</div>
-				<IconButton variant="contained" color="primary" onClick={() => navigate('/create')}>
+				<IconButton variant="contained" color="primary" onClick={() => history('/create')}>
 					<AddIcon />
 				</IconButton>
 			</div>

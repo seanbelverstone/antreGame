@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Wrapper from '../../components/Wrapper';
@@ -9,6 +9,7 @@ import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
 
 const CreateAccount = () => {
+	let history = useNavigate();
 
 	// State for username section
 	const [username, setUsername] = useState('');
@@ -101,7 +102,7 @@ const CreateAccount = () => {
 		<Wrapper page="createAccount">
 			<div className="topRow">
 				<div className="title">CREATE ACCOUNT</div>
-				<a id="back" onClick={() => navigate('/')}>&#x2190; BACK</a>
+				<a id="back" onClick={() => history('/')}>&#x2190; BACK</a>
 			</div>
 			<form noValidate autoComplete="off" id="createAccountForm" onSubmit={handleSubmit}>
 

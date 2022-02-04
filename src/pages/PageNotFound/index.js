@@ -4,13 +4,14 @@ import logo from '../../assets/images/Antre.png';
 import Button from '@mui/material/Button';
 import './style.css';
 import store from '../../redux/store';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 
 const PageNotFound = () => {
 	const { jwtToken } = store.getState().authenticateUser.user;
+	let history = useNavigate();
 
 	const goToLogin = () => {
-		navigate('/');
+		history('/');
 	};
 
 	return (

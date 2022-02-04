@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import Wrapper from '../../components/Wrapper';
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const BoundLogin = (props) => {
+	const history = useNavigate();
 
 	const [username, setUsername] = useState('');
 	const [usernameError, setUsernameError] = useState(false);
@@ -53,7 +54,7 @@ const BoundLogin = (props) => {
 				});
 			})
 			.then(() => {
-				navigate('/select');
+				history('/select');
 			})
 			.catch(error => {
 				console.log(error);
@@ -92,7 +93,7 @@ const BoundLogin = (props) => {
 					>
                         Login
 					</Button>
-					<a id="create" onClick={() => navigate('/account')}>CREATE AN ACCOUNT</a>
+					<a id="create" onClick={() => history('/account')}>CREATE AN ACCOUNT</a>
 				</form>
 			</Wrapper>
 			<p id="disclaimer">This game is currently under development. If you discover any bugs, please create an issue on

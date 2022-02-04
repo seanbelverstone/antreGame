@@ -11,7 +11,7 @@ import DeleteButton from '../DeleteButton';
 import './style.css';
 import API from '../../utils/API';
 import DefaultPopup from '../DefaultPopup';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 
 // PSUEDOCODE
 // When modal is open, if the prop `formInProgress` = true then disable clickout
@@ -20,6 +20,7 @@ import { navigate } from 'hookrouter';
 // api call to change username/password/email/delete account?
 
 const ProfileModal = (props) => {
+	let history = useNavigate();
 	const { user, authenticateUser/*, resetStore */} = props;
 	const [open, setOpen] = useState(false);
 	const [displayUsername, setDisplayUsername] = useState('none');
@@ -64,7 +65,7 @@ const ProfileModal = (props) => {
 				.then(() => {
 					handleClose();
 					resetStore();
-					navigate('/');
+					history('/');
 				})
 				.catch(() => {
 					setSnackbarColor('error');
@@ -72,7 +73,7 @@ const ProfileModal = (props) => {
 					setSnackbarDisplay(true);
 				});
 		// resetStore
-		// navigate to login page, resetting the store as we go.
+		// history to login page, resetting the store as we go.
 		}
 		
 	};

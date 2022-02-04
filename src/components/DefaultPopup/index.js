@@ -1,8 +1,8 @@
 import React from 'react';
-import { navigate } from 'hookrouter';
 import PropTypes from 'prop-types';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 
 function Alert(props) {
 
@@ -10,6 +10,7 @@ function Alert(props) {
 }
 
 const DefaultPopup = (props) => {
+	let history = useNavigate();
 	const {
 		display,
 		setDisplay,
@@ -21,7 +22,7 @@ const DefaultPopup = (props) => {
 
 	const handleClose = () => {
 		if (destination !== '' && snackbarColor !== 'error') {
-			navigate(destination);
+			history(destination);
 		}
 		setDisplay(false);
 	};

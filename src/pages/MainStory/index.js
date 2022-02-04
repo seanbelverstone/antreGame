@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import API from '../../utils/API';
@@ -36,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const BoundMainStory = (props) => {
+	let history = useNavigate();
 
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 	const [snackbarDisplay, setSnackbarDisplay] = useState(false);
@@ -307,7 +308,7 @@ const BoundMainStory = (props) => {
 		setOptionFade('none');
 		setImageDisplay('none');
 		if (option.target === 'Main Menu') {
-			saveGame().then(() => navigate('/select'));
+			saveGame().then(() => history('/select'));
 
 		}
 	};
@@ -563,7 +564,7 @@ const BoundMainStory = (props) => {
 	const logout = () => {
 		stopTimer();
 		resetStore();
-		navigate('/');
+		history('/');
 	};
 
 	return (
@@ -571,7 +572,7 @@ const BoundMainStory = (props) => {
 			<div className="topRow">
 				<Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
 				<img src={smallLogo} alt="a small logo" id="smallLogo" />
-				<a id="back" onClick={() => navigate('/select')}>QUIT TO<br />MAIN MENU</a>
+				<a id="back" onClick={() => history('/select')}>QUIT TO<br />MAIN MENU</a>
 			</div>
 			<section className="textArea">
 				<Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>

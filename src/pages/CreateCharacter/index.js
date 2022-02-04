@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { TextField, Button } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import { navigate } from 'hookrouter';
+import { useNavigate } from 'react-router-dom';
 import Wrapper from '../../components/Wrapper';
 import DefaultPopup from '../../components/DefaultPopup';
 import API from '../../utils/API';
@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const BoundCreateCharacter = (props) => {
+	let history = useNavigate();
 	const [name, setName] = useState('');
 	const [nameError, setNameError] = useState(false);
 	const [nameHelperText, setNameHelperText] = useState('');
@@ -126,7 +127,7 @@ const BoundCreateCharacter = (props) => {
 
 	const logout = () => {
 		resetStore();
-		navigate('/');
+		history('/');
 	};
 
 	return (
@@ -134,7 +135,7 @@ const BoundCreateCharacter = (props) => {
 			<div className="topRow">
 				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
 				<div className="title">CREATE A CHARACTER</div>
-				<a id="back" onClick={() => navigate('/select')}>&#x2190; BACK</a>
+				<a id="back" onClick={() => history('/select')}>&#x2190; BACK</a>
 			</div>
 
 			<form id="formWrapper" onSubmit={handleSubmit}>
