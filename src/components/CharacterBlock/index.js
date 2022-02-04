@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
-import { Button } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import { navigate } from 'hookrouter';
 import DeleteButton from '../DeleteButton';
 import { isBlacklistedChoice } from '../../utils/functions';

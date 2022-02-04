@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import { stringToCamel } from '../../utils/functions';
 import Info from '../Info';
-import { Button } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import './style.css';
 
 const mapStateToProps = (state) => {
