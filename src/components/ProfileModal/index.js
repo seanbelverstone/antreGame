@@ -6,7 +6,6 @@ import Fade from '@mui/material/Fade';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { makeStyles } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
 import DeleteButton from '../DeleteButton';
 import './style.css';
@@ -20,23 +19,8 @@ import { navigate } from 'hookrouter';
 // if nothing edited, disable submit button.
 // api call to change username/password/email/delete account?
 
-const useStyles = makeStyles((theme) => ({
-	modal: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	paper: {
-		backgroundColor: theme.palette.background.paper,
-		border: '2px solid #000',
-		boxShadow: theme.shadows[5],
-		padding: theme.spacing(2, 4, 3),
-		minWidth: '40vh'
-	},
-}));
 const ProfileModal = (props) => {
 	const { user, authenticateUser/*, resetStore */} = props;
-	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 	const [displayUsername, setDisplayUsername] = useState('none');
 	const [displayPassword, setDisplayPassword] = useState('none');
@@ -170,10 +154,9 @@ const ProfileModal = (props) => {
 				BackdropProps={{
 					timeout: 500,
 				}}
-				className={classes.modal}
 			>
 				<Fade in={open}>
-					<div className={classes.paper} id="profileModal">
+					<div id="profileModal">
 						<h2 className="title" style={{ textDecoration: 'none' }}>EDIT ACCOUNT</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<p>Username: {user.username}</p>

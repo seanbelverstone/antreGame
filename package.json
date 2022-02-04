@@ -27,6 +27,7 @@
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "typewriter-effect": "^2.18.2",
+    "url-loader": "^4.1.1",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.17"
   },
@@ -46,9 +47,5 @@
   "devDependencies": {
     "eslint": "^7.11.0",
     "eslint-plugin-react": "^7.28.0"
-  },
-  "resolutions": {
-    "//": "See https://github.com/facebook/create-react-app/issues/11773",
-    "react-error-overlay": "6.0.10"
   }
 }

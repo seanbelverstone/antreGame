@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
-import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Modal from '@mui/material/Modal';
@@ -24,21 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-const useStyles = makeStyles((theme) => ({
-	modal: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	paper: {
-		backgroundColor: theme.palette.background.paper,
-		border: '2px solid #000',
-		boxShadow: theme.shadows[5],
-		padding: theme.spacing(2, 4, 3),
-		minWidth: '40vh'
-	},
-}));
-
 const BoundInventory = (props) => {
 	const { 
 		inventory, 
@@ -50,7 +34,6 @@ const BoundInventory = (props) => {
 	const { name, race, charClass, strength, defense, wisdom, luck } = stats;
 	const { weapon, weaponDamage, head, chest, legs, hands, feet, torch, amulet, healthPotions, gold } = inventory;
 
-	const classes = useStyles();
 	const [open, setOpen] = useState(false);
 
 	const handleOpen = () => {
@@ -91,7 +74,6 @@ const BoundInventory = (props) => {
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"
-				className={classes.modal}
 				open={open}
 				onClose={handleClose}
 				closeAfterTransition
@@ -101,7 +83,7 @@ const BoundInventory = (props) => {
 				}}
 			>
 				<Fade in={open}>
-					<div className={classes.paper} id="inventoryModal">
+					<div id="inventoryModal">
 						<h2 className="fullTitle">{name}, the {race} {charClass}.</h2>
 						<section id="left">
 							<section id="statsBlock">
