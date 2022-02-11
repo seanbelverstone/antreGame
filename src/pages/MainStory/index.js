@@ -638,7 +638,14 @@ const BoundMainStory = (props) => {
 					userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
 				/>
 				<div>
-					<Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+					<Button
+						className="primaryButton"
+						type="button"
+						id="save"
+						variant="contained"
+						disabled={buttonDisabled}
+						onClick={saveGame}
+					>Save Game</Button>
 				</div>
 			</footer>
 			<DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={'Game saved!'} destination="" snackbarColor="success" />

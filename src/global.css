@@ -7,9 +7,8 @@
   --wisdom: darkblue;
   --luck: goldenrod;
   --primary: rgb(43, 89, 129);
-  --primaryDisabled: rgba(43, 89, 129, 0.5);
   --secondary: darkred;
-  --secondaryDisabled: rgba(139, 0, 0, 0.5);
+  --choice: darkgoldenrod;
 }
 
 body {
@@ -102,7 +101,7 @@ a {
 }
 
 .primaryButton.Mui-disabled {
-	background-color: var(--primaryDisabled) !important;
+	opacity: 0.5;
 }
 
 .secondaryButton {
@@ -110,7 +109,19 @@ a {
 }
 
 .secondaryButton.Mui-disabled {
-	background-color: var(--secondaryDisabled) !important;
+	opacity: 0.5;
+}
+
+.choiceButton {
+	background-color: var(--choice) !important;
+	color: black !important;
+	font-weight: bold !important;
+}
+
+.choiceButton.Mui-disabled {
+	color: black !important;
+	font-weight: bold !important;
+	opacity: 0.5;
 }
 
 /* focused input boxes */
@@ -155,6 +166,11 @@ a {
 
 .Typewriter, #dialog, #inventoryPopup {
   white-space: pre-line;
+}
+
+#dialog {
+	background-color: var(--foreground);
+	padding: 2em;
 }
 
 /* Scrollbar */
