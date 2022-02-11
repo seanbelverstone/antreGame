@@ -142,7 +142,12 @@ const ProfileModal = (props) => {
 
 	return (
 		<div>
-			<IconButton variant="contained" color="primary" onClick={handleOpen}>
+			<IconButton
+				className="primaryOutlinedButton"
+				variant="contained"
+				color="primary"
+				onClick={handleOpen}
+			>
 				<ManageAccountsIcon />
 			</IconButton>
 			<Modal

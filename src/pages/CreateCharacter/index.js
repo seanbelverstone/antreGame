@@ -133,7 +133,12 @@ const BoundCreateCharacter = (props) => {
 	return (
 		<Wrapper page="createCharacter">
 			<div className="topRow">
-				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+				<Button
+					variant="outlined"
+					id="logout"
+					onClick={logout}
+					className="primaryOutlinedButton"
+				>LOG OUT</Button>
 				<div className="title">CREATE A CHARACTER</div>
 				<a id="back" onClick={() => history('/select')}>&#x2190; BACK</a>
 			</div>

@@ -6,7 +6,8 @@
   --defense: darkgreen;
   --wisdom: darkblue;
   --luck: goldenrod;
-  --primary: darkgoldenrod;
+  --primary: rgb(43, 89, 129);
+  --secondary: darkred;
 }
 
 body {
@@ -98,8 +99,14 @@ a {
 	background-color: var(--primary) !important;
 }
 
+/* focused input boxes */
+.Mui-focused fieldset, .primaryOutlinedButton {
+	color: var(--primary) !important;
+	border-color: var(--primary) !important;
+}
+
 .secondaryButton {
-	background-color: var(--strength) !important;
+	background-color: var(--secondary) !important;
 }
 
 @keyframes fadeIn {
