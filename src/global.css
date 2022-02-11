@@ -6,6 +6,7 @@
   --defense: darkgreen;
   --wisdom: darkblue;
   --luck: goldenrod;
+  --primary: darkgoldenrod;
 }
 
 body {
@@ -91,6 +92,14 @@ a {
 
 .luck {
   color: var(--luck);
+}
+
+.primaryButton {
+	background-color: var(--primary) !important;
+}
+
+.secondaryButton {
+	background-color: var(--strength) !important;
 }
 
 @keyframes fadeIn {

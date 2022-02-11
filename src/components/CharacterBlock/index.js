@@ -140,7 +140,12 @@ const BoundCharacterBlock = (props) => {
 				</section>
 			</div>
 			<section className="charButtons">
-				<Button variant="contained" color="primary" id="play" onClick={() => playThisCharacter(character)}>
+				<Button
+					className="primaryButton"
+					variant="contained"
+					id="play"
+					onClick={() => playThisCharacter(character)}
+				>
                     PLAY
 				</Button>
 

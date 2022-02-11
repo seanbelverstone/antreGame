@@ -88,8 +88,8 @@ const BoundLogin = (props) => {
 					/>
 					<Button
 						variant="contained"
-						color="primary"
 						type="submit"
+						className="primaryButton"
 					>
                         Login
 					</Button>

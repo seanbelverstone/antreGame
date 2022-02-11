@@ -144,6 +144,7 @@ const CreateAccount = () => {
 				/>
 
 				<Button
+					className="primaryButton"
 					variant="contained"
 					color="primary"
 					id="submit"

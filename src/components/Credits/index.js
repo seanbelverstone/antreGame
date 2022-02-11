@@ -25,7 +25,13 @@ const Credits = () => {
 
 	return (
 		<div>
-			<Button type="button" variant="contained" id="inventory" onClick={handleOpen}>
+			<Button
+				className="primaryButton"
+				type="button"
+				variant="contained"
+				id="inventory"
+				onClick={handleOpen}
+			>
         Credits
 			</Button>
 			<Modal
