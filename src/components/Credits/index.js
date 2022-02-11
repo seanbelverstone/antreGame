@@ -44,6 +44,7 @@ const Credits = () => {
 				BackdropProps={{
 					timeout: 500,
 				}}
+				style={{ margin: '6% auto'}}
 			>
 				<Fade in={open}>
 					<div style={{overflowY: 'scroll', maxHeight: '80vh', padding: '40px'}}>

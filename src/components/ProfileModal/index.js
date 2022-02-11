@@ -160,13 +160,14 @@ const ProfileModal = (props) => {
 				BackdropProps={{
 					timeout: 500,
 				}}
+				style={{ margin: '6% auto'}}
 			>
 				<Fade in={open}>
 					<div id="profileModal">
 						<h2 className="title" style={{ textDecoration: 'none' }}>EDIT ACCOUNT</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<p>Username: {user.username}</p>
-							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('username')}>
+							<a style={{ color: 'var(--primary)' }} onClick={() => displayEditBlock('username')}>
 								{displayUsername === 'none' ? 'Edit' : 'Hide'}
 							</a>
 						</div>
@@ -180,13 +181,13 @@ const ProfileModal = (props) => {
 								helperText={usernameHelperText}
 								value={username}
 							/>
-							<Button variant="contained" color="primary" onClick={checkUsername}>
+							<Button className="primaryButton" variant="contained" color="primary" onClick={checkUsername}>
 								Submit
 							</Button>
 						</form>
 						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em', marginBottom: '1em' }}>
 							<p>Password: *******</p>
-							<a style={{ color: 'var(--wisdom)' }} onClick={() => displayEditBlock('password')}>
+							<a style={{ color: 'var(--primary)' }} onClick={() => displayEditBlock('password')}>
 								{displayPassword === 'none' ? 'Edit' : 'Hide'}
 							</a>
 						</div>
@@ -209,7 +210,7 @@ const ProfileModal = (props) => {
 								helperText={passwordHelperText}
 								password={confirmPassword}
 							/>
-							<Button variant="contained" color="primary" onClick={checkPasswords}>
+							<Button className="primaryButton" variant="contained" color="primary" onClick={checkPasswords}>
 								Submit
 							</Button>
 						</form>

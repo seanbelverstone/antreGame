@@ -81,6 +81,7 @@ const BoundInventory = (props) => {
 				BackdropProps={{
 					timeout: 500,
 				}}
+				style={{ margin: '6% auto'}}
 			>
 				<Fade in={open}>
 					<div id="inventoryModal">

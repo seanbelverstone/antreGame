@@ -7,7 +7,9 @@
   --wisdom: darkblue;
   --luck: goldenrod;
   --primary: rgb(43, 89, 129);
+  --primaryDisabled: rgba(43, 89, 129, 0.5);
   --secondary: darkred;
+  --secondaryDisabled: rgba(139, 0, 0, 0.5);
 }
 
 body {
@@ -99,14 +101,27 @@ a {
 	background-color: var(--primary) !important;
 }
 
-/* focused input boxes */
-.Mui-focused fieldset, .primaryOutlinedButton {
-	color: var(--primary) !important;
-	border-color: var(--primary) !important;
+.primaryButton.Mui-disabled {
+	background-color: var(--primaryDisabled) !important;
 }
 
 .secondaryButton {
 	background-color: var(--secondary) !important;
+}
+
+.secondaryButton.Mui-disabled {
+	background-color: var(--secondaryDisabled) !important;
+}
+
+/* focused input boxes */
+.Mui-focused, .primaryOutlinedButton {
+	color: var(--primary) !important;
+	border-color: var(--primary) !important;
+	background-color: var(--foreground);
+}
+
+.Mui-focused {
+	color: var(--background) !important;
 }
 
 @keyframes fadeIn {

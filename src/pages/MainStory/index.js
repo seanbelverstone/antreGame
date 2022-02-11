@@ -570,7 +570,13 @@ const BoundMainStory = (props) => {
 	return (
 		<Wrapper page="main">
 			<div className="topRow">
-				<Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+				<Button
+					className="primaryOutlinedButton"
+					variant="outlined"
+					id="logout"
+					onClick={logout}
+					disabled={buttonDisabled}
+				>LOG OUT</Button>
 				<img src={smallLogo} alt="a small logo" id="smallLogo" />
 				<a id="back" onClick={() => history('/select')}>QUIT TO<br />MAIN MENU</a>
 			</div>

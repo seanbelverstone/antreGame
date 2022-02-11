@@ -144,7 +144,7 @@ const BoundCreateCharacter = (props) => {
 			</div>
 
 			<form id="formWrapper" onSubmit={handleSubmit}>
-				<FormControl>
+				<FormControl style={{ margin: '0 0 1em 0' }}>
 					<TextField
 						className="formInput"
 						label="Name"
@@ -154,7 +154,7 @@ const BoundCreateCharacter = (props) => {
 						helperText={nameHelperText}
 					/>
 				</FormControl>
-				<FormControl>
+				<FormControl style={{ margin: '0 0 1em 0' }}>
 					<InputLabel id="raceLabel">Race</InputLabel>
 					<Select
 						labelId="raceLabel"
@@ -195,6 +195,7 @@ const BoundCreateCharacter = (props) => {
 					</div>
 				</div>
 				<Button
+					className="primaryButton"
 					variant="contained"
 					color="primary"
 					type="submit"
