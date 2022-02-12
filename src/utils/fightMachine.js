@@ -72,8 +72,14 @@ export const fightMachine = createMachine({
 			on: { endTurn: 'enemyTurn' }
 		},
 		enemyTurn: {
-			entry: assign({ count: (ctx) => ctx.count + 1 }),
-			on: { TOGGLE: 'inactive' }
+			normalAttack: {
+				entry: assign({
+					userHealth: (userHP) => userHP - attacks.enemyNormalAttack(
+						currentStory.enemy.weapon.dmg, currentStory.enemy.strength, stats.defense, currentStory.enemy.luck
+					)
+				})
+			},
+			on: { endTurn: 'userTurn' }
 		}
 	}
 });
