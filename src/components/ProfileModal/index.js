@@ -166,7 +166,7 @@ const ProfileModal = (props) => {
 					<div id="profileModal">
 						<h2 className="title" style={{ textDecoration: 'none' }}>EDIT ACCOUNT</h2>
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<p>Username: {user.username}</p>
+							<h3>Username: {user.username}</h3>
 							<a style={{ color: 'var(--primary)' }} onClick={() => displayEditBlock('username')}>
 								{displayUsername === 'none' ? 'Edit' : 'Hide'}
 							</a>
@@ -186,7 +186,7 @@ const ProfileModal = (props) => {
 							</Button>
 						</form>
 						<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1em', marginBottom: '1em' }}>
-							<p>Password: *******</p>
+							<h3>Password: *******</h3>
 							<a style={{ color: 'var(--primary)' }} onClick={() => displayEditBlock('password')}>
 								{displayPassword === 'none' ? 'Edit' : 'Hide'}
 							</a>

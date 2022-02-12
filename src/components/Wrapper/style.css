@@ -1,4 +1,4 @@
-.wrapper, #inventoryModal {
+.wrapper, #inventoryModal, #creditsModal {
     width: 50vw;
     background-color: var(--foreground);
     padding: 20px;
