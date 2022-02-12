@@ -17,6 +17,10 @@ const DefaultPopup = (props) => {
 		customClass
 	} = props;
 
+	display && setTimeout(() => {
+		handleClose();
+	}, 6000);
+
 	const handleClose = () => {
 		if (destination !== '' && snackbarColor !== 'error') {
 			history(destination);

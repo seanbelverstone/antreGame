@@ -130,7 +130,11 @@ const BoundChoiceBlock = (props) => {
 		return options.map(option => {
 			return (
 				<div className={`options ${optionFade}`} key={option.label}>
-					<Button className="optionText primaryButton" variant="contained" id={stringToCamel(option.label)} onClick={() => handleClick(option)}>
+					<Button
+						className="optionText primaryButton"
+						variant="contained"
+						id={stringToCamel(option.label)}
+						onClick={() => handleClick(option)}>
 						{option.label}
 					</Button>
 				</div>

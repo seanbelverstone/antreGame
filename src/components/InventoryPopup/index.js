@@ -90,8 +90,11 @@ const InventoryPopup = (props) => {
 	};
 
 	return (
-		<div id="inventoryPopup">
-			<Collapse in={display}>
+		<div id="inventoryPopup" style={{
+
+		}}>
+			<Collapse
+				in={display}>
 				<Alert
 					severity="info"
 					variant="filled"

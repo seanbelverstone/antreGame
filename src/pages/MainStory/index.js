@@ -320,7 +320,7 @@ const BoundMainStory = (props) => {
 		for (let item of options) {
 			if (levels.visited.includes(item.target)) {
 				let disabledElement = document.getElementById(stringToCamel(item.label));
-				disabledElement.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
+				disabledElement.classList.add('Mui-disabled');
 			}
 		}
 	};

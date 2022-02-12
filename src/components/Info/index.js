@@ -29,7 +29,7 @@ const Info = (props) => {
 		<div className={optionFade}>
 			<InfoIcon className="infoIcon" onMouseEnter={onHover} onMouseLeave={onLeave} onClick={onHover} />
 			{hover ? (
-				<div id="dialog" style={{ backgroundColor: 'var(--foreground)' }} onMouseEnter={onHover} onMouseLeave={onLeave}>
+				<div id="dialog" onMouseEnter={onHover} onMouseLeave={onLeave}>
 					<h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>
 					{infoProps.main.map(prop => (
 						<React.Fragment key={prop.header.toLowerCase()}>
