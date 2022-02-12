@@ -1,13 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
-
-function Alert(props) {
-
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const DefaultPopup = (props) => {
 	let history = useNavigate();
@@ -26,21 +23,29 @@ const DefaultPopup = (props) => {
 		}
 		setDisplay(false);
 	};
-
 	return (
-		<div>
-			<Snackbar
+		<Collapse in={display}>
+			<Alert
 				className={customClass}
-				open={display}
-				autoHideDuration={6000}
-				onClose={handleClose}
-				anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-				style={{height: '20%', top: '40vh', width: '23vw'}}>
-				<Alert  onClose={handleClose} severity={snackbarColor}>
-					{message}
-				</Alert>
-			</Snackbar>
-		</div>
+				severity={snackbarColor}
+				variant="filled"
+				action={
+					<IconButton
+						aria-label="close"
+						color="inherit"
+						size="small"
+						onClick={() => {
+							handleClose(false);
+						}}
+					>
+						<CloseIcon fontSize="inherit" />
+					</IconButton>
+				}
+				sx={{ mb: 2 }}
+			>
+				{message}
+			</Alert>
+		</Collapse>
 	);
 };
 
