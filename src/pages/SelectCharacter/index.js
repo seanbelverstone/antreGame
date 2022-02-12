@@ -73,7 +73,12 @@ const BoundSelectCharacter = (props) => {
 	return (
 		<Wrapper page="selectCharacter">
 			<div className="topRow" style={{ marginRight: '0 !important' }}>
-				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+				<Button
+					className="primaryOutlinedButton"
+					variant="outlined"
+					id="logout"
+					onClick={logout}
+				>LOG OUT</Button>
 				<div className="title">SELECT A CHARACTER</div>
 				<ProfileModal user={user} authenticateUser={authenticateUser} resetStore={resetStore} />
 			</div>
@@ -86,7 +91,7 @@ const BoundSelectCharacter = (props) => {
 
 			<div style={{ display: lessThanFour }} id="creatorWrapper" className="characterWrapper">
 				<div id="createNew">Create a new character</div>
-				<IconButton variant="contained" color="primary" onClick={() => history('/create')}>
+				<IconButton variant="contained" className="primaryButton" onClick={() => history('/create')}>
 					<AddIcon />
 				</IconButton>
 			</div>

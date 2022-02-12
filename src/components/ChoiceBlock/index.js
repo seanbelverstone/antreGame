@@ -111,7 +111,13 @@ const BoundChoiceBlock = (props) => {
 			{options.map(fightOption => {
 				return (
 					<div className={`options ${optionFade}`} key={fightOption.label}>
-						<Button className="optionText" variant="contained" color="secondary" id={stringToCamel(fightOption.label)} onClick={() => handleFight(fightOption)} disabled={buttonDisabled}>
+						<Button
+							className="optionText choiceButton"
+							variant="contained"
+							color="secondary"
+							id={stringToCamel(fightOption.label)}
+							onClick={() => handleFight(fightOption)}
+							disabled={buttonDisabled}>
 							{fightOption.label}
 						</Button>
 					</div>
@@ -124,7 +130,11 @@ const BoundChoiceBlock = (props) => {
 		return options.map(option => {
 			return (
 				<div className={`options ${optionFade}`} key={option.label}>
-					<Button className="optionText" variant="contained" color="primary" id={stringToCamel(option.label)} onClick={() => handleClick(option)}>
+					<Button
+						className="optionText primaryButton"
+						variant="contained"
+						id={stringToCamel(option.label)}
+						onClick={() => handleClick(option)}>
 						{option.label}
 					</Button>
 				</div>

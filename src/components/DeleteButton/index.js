@@ -75,7 +75,7 @@ export default function DeleteButton(props) {
 
 	return (
 		<div id={props.id}>
-			<Button variant="contained" color="secondary" id="delete" onClick={handleClickOpen}>
+			<Button variant="contained" className="secondaryButton" id="delete" onClick={handleClickOpen}>
 				{text ? text : 'DELETE'}
 			</Button>
 			<SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} customText={customText} />

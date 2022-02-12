@@ -320,7 +320,7 @@ const BoundMainStory = (props) => {
 		for (let item of options) {
 			if (levels.visited.includes(item.target)) {
 				let disabledElement = document.getElementById(stringToCamel(item.label));
-				disabledElement.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
+				disabledElement.classList.add('Mui-disabled');
 			}
 		}
 	};
@@ -570,7 +570,13 @@ const BoundMainStory = (props) => {
 	return (
 		<Wrapper page="main">
 			<div className="topRow">
-				<Button variant="outlined" id="logout" onClick={logout} disabled={buttonDisabled}>LOG OUT</Button>
+				<Button
+					className="primaryOutlinedButton"
+					variant="outlined"
+					id="logout"
+					onClick={logout}
+					disabled={buttonDisabled}
+				>LOG OUT</Button>
 				<img src={smallLogo} alt="a small logo" id="smallLogo" />
 				<a id="back" onClick={() => history('/select')}>QUIT TO<br />MAIN MENU</a>
 			</div>
@@ -632,7 +638,14 @@ const BoundMainStory = (props) => {
 					userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
 				/>
 				<div>
-					<Button type="button" id="save" variant="contained" disabled={buttonDisabled} onClick={saveGame}>Save Game</Button>
+					<Button
+						className="primaryButton"
+						type="button"
+						id="save"
+						variant="contained"
+						disabled={buttonDisabled}
+						onClick={saveGame}
+					>Save Game</Button>
 				</div>
 			</footer>
 			<DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={'Game saved!'} destination="" snackbarColor="success" />

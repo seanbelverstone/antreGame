@@ -6,6 +6,9 @@
   --defense: darkgreen;
   --wisdom: darkblue;
   --luck: goldenrod;
+  --primary: rgb(43, 89, 129);
+  --secondary: darkred;
+  --choice: darkgoldenrod;
 }
 
 body {
@@ -93,6 +96,46 @@ a {
   color: var(--luck);
 }
 
+.primaryButton {
+	background-color: var(--primary) !important;
+}
+
+.primaryButton.Mui-disabled {
+	opacity: 0.5;
+	color: white !important;
+}
+
+.secondaryButton {
+	background-color: var(--secondary) !important;
+}
+
+.secondaryButton.Mui-disabled {
+	opacity: 0.5;
+}
+
+.choiceButton {
+	background-color: var(--choice) !important;
+	color: black !important;
+	font-weight: bold !important;
+}
+
+.choiceButton.Mui-disabled {
+	color: black !important;
+	font-weight: bold !important;
+	opacity: 0.5;
+}
+
+/* focused input boxes */
+.Mui-focused, .primaryOutlinedButton {
+	color: var(--primary) !important;
+	border-color: var(--primary) !important;
+	background-color: var(--foreground);
+}
+
+.Mui-focused {
+	color: var(--background) !important;
+}
+
 @keyframes fadeIn {
   0% {
     visibility: visible;
@@ -124,6 +167,22 @@ a {
 
 .Typewriter, #dialog, #inventoryPopup {
   white-space: pre-line;
+}
+
+#dialog {
+	background-color: var(--foreground);
+	padding: 2em;
+}
+
+#creditsModal {
+	background-color: var(--foreground);
+}
+
+/* Alert */
+.MuiCollapse-root {
+	position: absolute;
+	top: 25%;
+	left: -30%;
 }
 
 /* Scrollbar */

@@ -133,13 +133,18 @@ const BoundCreateCharacter = (props) => {
 	return (
 		<Wrapper page="createCharacter">
 			<div className="topRow">
-				<Button variant="outlined" id="logout" onClick={logout}>LOG OUT</Button>
+				<Button
+					variant="outlined"
+					id="logout"
+					onClick={logout}
+					className="primaryOutlinedButton"
+				>LOG OUT</Button>
 				<div className="title">CREATE A CHARACTER</div>
 				<a id="back" onClick={() => history('/select')}>&#x2190; BACK</a>
 			</div>
 
 			<form id="formWrapper" onSubmit={handleSubmit}>
-				<FormControl>
+				<FormControl style={{ margin: '0 0 1em 0' }}>
 					<TextField
 						className="formInput"
 						label="Name"
@@ -149,7 +154,7 @@ const BoundCreateCharacter = (props) => {
 						helperText={nameHelperText}
 					/>
 				</FormControl>
-				<FormControl>
+				<FormControl style={{ margin: '0 0 1em 0' }}>
 					<InputLabel id="raceLabel">Race</InputLabel>
 					<Select
 						labelId="raceLabel"
@@ -190,6 +195,7 @@ const BoundCreateCharacter = (props) => {
 					</div>
 				</div>
 				<Button
+					className="primaryButton"
 					variant="contained"
 					color="primary"
 					type="submit"

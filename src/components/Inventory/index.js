@@ -68,7 +68,13 @@ const BoundInventory = (props) => {
 
 	return (
 		<div>
-			<Button type="button" variant="contained" id="inventory" onClick={handleOpen}>
+			<Button
+				className="primaryButton"
+				type="button"
+				variant="contained"
+				id="inventory"
+				onClick={handleOpen}
+			>
                 Inventory
 			</Button>
 			<Modal
@@ -81,6 +87,7 @@ const BoundInventory = (props) => {
 				BackdropProps={{
 					timeout: 500,
 				}}
+				style={{ margin: '2% auto' }}
 			>
 				<Fade in={open}>
 					<div id="inventoryModal">

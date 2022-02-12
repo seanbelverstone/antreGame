@@ -1,5 +1,6 @@
 #speedButton {
     left: 24.5%;
+	color: var(--primary)
 }
 
 .MuiMenu-paper {

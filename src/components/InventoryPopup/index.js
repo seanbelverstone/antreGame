@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import { Alert } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import { camelToTitle } from '../../utils/functions';
 
-function Alert(props) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 const InventoryPopup = (props) => {
 	const {
 		display,
@@ -91,12 +90,31 @@ const InventoryPopup = (props) => {
 	};
 
 	return (
-		<div id="inventoryPopup">
-			<Snackbar open={display} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }} style={{ height: '100%' }}>
-				<Alert onClose={handleClose} severity="info">
+		<div id="inventoryPopup" style={{
+
+		}}>
+			<Collapse
+				in={display}>
+				<Alert
+					severity="info"
+					variant="filled"
+					action={
+						<IconButton
+							aria-label="close"
+							color="inherit"
+							size="small"
+							onClick={() => {
+								handleClose(false);
+							}}
+						>
+							<CloseIcon fontSize="inherit" />
+						</IconButton>
+					}
+					sx={{ mb: 2 }}
+				>
 					{messages}
 				</Alert>
-			</Snackbar>
+			</Collapse>
 		</div>
 	);
 };
