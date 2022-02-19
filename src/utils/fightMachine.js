@@ -1,9 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { createMachine, assign, interpret } from 'xstate';
+import { createMachine, assign } from 'xstate';
 import attacks from './attacks';
 import storylines from './storylines.json';
 
-export const createFightMachine = (props) => {
+
+// TODO
+// - add functions for skill/health
+// - pass in updateHealth methods from parent to update the state in the parent, or set the health based on the machine's response
+// - Add `guarded conditional functions` where we'll only do attacks if enemy/user is alive
+
+export const createFightMachine = (props, setAttackText) => {
 	const { inventory, stats, levels } = props;
 	const currentStory = storylines.find(story => story.level === levels?.current);
 
@@ -11,6 +17,7 @@ export const createFightMachine = (props) => {
 		id: 'fightMachine',
 		initial: 'USER_TURN',
 		context: {
+			roundCount: 1,
 			charClass: stats?.charClass,
 			health: stats?.health,
 			strength: stats?.strength,
@@ -40,14 +47,14 @@ export const createFightMachine = (props) => {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
 							console.log('normal attack works');
-							console.log(attacks.normalAttack(
+							const normalAttack = attacks.normalAttack(
 								inventory.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
-							).finalDamage);
+							);
+							setAttackText(normalAttack.battleText);
 							return {
 								...context,
-								enemyHealth: context.enemyHealth - attacks.normalAttack(
-									inventory.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
-								).finalDamage
+								enemyHealth: context.enemyHealth - normalAttack.finalDamage,
+								roundCount: context.roundCount++
 							};
 						})
 					},
@@ -55,9 +62,12 @@ export const createFightMachine = (props) => {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
 							console.log('special attack attack works');
+							const specialAttack = attacks.specialAttack(inventory.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck, currentStory.enemy.luck);
+							setAttackText(specialAttack.battleText);
 							return {
 								...context,
-								enemyHealth: context.enemyHealth - attacks.enemyNormalAttack(currentStory.enemy.weapon.dmg, currentStory.enemy.strength, stats.defense, currentStory.enemy.luck).finalDamage
+								enemyHealth: context.enemyHealth - specialAttack.finalDamage,
+								roundCount: context.roundCount++
 							};
 						})
 					}
@@ -68,9 +78,11 @@ export const createFightMachine = (props) => {
 					enemyNormalAttack: {
 						target: 'USER_TURN',
 						actions: assign((context) => {
+							const enemyNormalAttack = attacks.enemyNormalAttack(currentStory.enemy.weapon.dmg, currentStory.enemy.strength, stats.defense, currentStory.enemy.luck);
+							setAttackText(enemyNormalAttack.battleText);
 							return {
 								...context,
-								health: context.health - 2
+								health: context.health - enemyNormalAttack.finalDamage
 							};
 						})
 					},
