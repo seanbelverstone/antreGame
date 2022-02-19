@@ -72,8 +72,8 @@ const updateCharacter = (state = initialState, action) => {
 			};
 		}
 		break;
-	default: return state;
 	}
+	return state;
 };
 
 export default updateCharacter;

@@ -7,6 +7,8 @@ const state = store.getState();
 const { updateCharacter } = state;
 const { inventory, stats, levels } = updateCharacter;
 const currentStory = storylines.filter(story => story.level === [levels.current]);
+console.log(updateCharacter);
+
 const classStat = () => {
 	switch(stats.charClass) {
 	case 'Warrior':
@@ -17,6 +19,10 @@ const classStat = () => {
 		return 'health';
 	}
 };
+
+console.log(classStat());
+
+const reduceHealthPotionCount = (hp) => ({ type: 'UPDATE_CHARACTER', hp });
 
 export const fightMachine = createMachine({
 	id: 'fight',
@@ -45,6 +51,10 @@ export const fightMachine = createMachine({
 		})
 	},
 	states: {
+		enemy: {
+			display: { on: { DISPLAY: 'flex' } },
+			hidden: { on: { DISPLAY: 'none' } }
+		},
 		userTurn: {
 			normalAttack: {
 				entry: assign({
@@ -62,7 +72,7 @@ export const fightMachine = createMachine({
 				entry: assign({
 					health: (hp) => hp + attacks.useHealthPotion(inventory.healthPotions)
 				}),
-				on: store.dispatch({ updateCharacter: { inventory: { healthPotions: inventory.healthPotions -1 } } })
+				on: store.dispatch(reduceHealthPotionCount(-1))
 			},
 			useSkill: {
 				entry: assign({

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -20,6 +21,8 @@ import Enemy from '../../components/Enemy';
 import Typewriter from 'typewriter-effect';
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
+import { interpret } from 'xstate';
+import fightMachine from '../../utils/fightMachine';
 
 const mapStateToProps = (state) => {
 	return {
@@ -326,113 +329,54 @@ const BoundMainStory = (props) => {
 	};
 
 	const handleFight = async (option) => {
-		const { weaponDamage, healthPotions } = inventory;
-		const { strength, defense, wisdom, luck, charClass } = stats;
-		const skillButton = document.getElementById('useSkill');
-		setButtonDisabled(true);
-		switch (option.label) {
-		case 'Normal Attack': {
-			const normalAttack = await attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
-			setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
-			setAttackText(normalAttack.battleText);
-			break;
-		}
-		case 'Special Attack': {
-			const specialAttack = await attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
-			setCurrentEnemyHealth(currentEnemyHealth - specialAttack.finalDamage);
-			setAttackText(specialAttack.battleText);
-			break;
-		}
+		const toggleService = interpret(fightMachine)
+			.onTransition((state) => console.log(state.value))
+			.start();
 
-		case 'Use health potion': {
-			const heal = await attacks.useHealthPotion(healthPotions);
-			if (heal.healthIncrease > 0) {
-				updateCharacter({
-					inventory: {
-						healthPotions: inventory.healthPotions - 1
-					}
-				});
-				// if the user's health with the increase added is MORE than their max, just set it to max.
-				setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
-					maxHealth : currentUserHealth + heal.healthIncrease);
-			}
-			setAttackText(heal.battleText);
-			break;
-		}
-
-		case 'Use skill': {
-			const skill = await attacks.useSkill(charClass, wisdom);
-			// sets a style to the skill button to make it the only one that continues being disabled.
-			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
-			setSkillUsed(true);
-			setCooldownRound(roundCount + skill.cooldownLength);
-			setAttackText(skill.battleText);
-			if (charClass === 'Warrior') {
-				setTempDefense(defense);
-				await updateCharacter({
-					stats: {
-						defense: defense + skill.skillResult
-					}
-				});
-				setWarriorDefenseRound(roundCount + 3);
-			} else if (charClass === 'Rogue') {
-				setTempLuck(luck);
-				await updateCharacter({
-					stats: {
-						luck: skill.skillResult
-					}
-				});
-				setRogueLuckRound(roundCount + 1);
-			} else {
-				setCurrentUserHealth(maxHealth);
-			}
-			break;
-		}
-		default: return;
-		}
+		toggleService.send(option);
 		// Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
 		// Also check health, to make sure that enemy or user isn't dead
 		setRoundCount(current => current + 1);
 		// if the enemy is still alive, we want to check if we're on the debuff rounds instead
 		// if so, reset the stats to their pre-skill values.
-		if (roundCount === warriorDefenseRound) {
-			updateCharacter({
-				stats: {
-					defense: tempDefense
-				}
-			});
-		}
-		if (roundCount === rogueLuckRound) {
-			updateCharacter({
-				stats: {
-					luck: tempLuck
-				}
-			});
-		}
+		// if (roundCount === warriorDefenseRound) {
+		// 	updateCharacter({
+		// 		stats: {
+		// 			defense: tempDefense
+		// 		}
+		// 	});
+		// }
+		// if (roundCount === rogueLuckRound) {
+		// 	updateCharacter({
+		// 		stats: {
+		// 			luck: tempLuck
+		// 		}
+		// 	});
+		// }
 		// If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
-		if (cooldownRound === roundCount && skillUsed) {
-			skillButton.removeAttribute('style');
-		}
-		if (isEnemyAlive()) {
-			enemyTurn();
-		} else {
-			nextPhase();
-		}
+		// if (cooldownRound === roundCount && skillUsed) {
+		// 	skillButton.removeAttribute('style');
+		// }
+		// if (isEnemyAlive()) {
+		// 	enemyTurn();
+		// } else {
+		// 	nextPhase();
+		// }
 	};
 
-	const isEnemyAlive = () => currentEnemyHealth > 0 || false;
+	// const isEnemyAlive = () => currentEnemyHealth > 0 || false;
 
-	const enemyTurn = () => {
-		if (currentEnemyHealth > 0) {
-			setTimeout(() => {
-				const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
-				setCurrentUserHealth(current => current - enemyAttack.finalDamage);
-				setAttackText(enemyAttack.battleText);
-				// enable buttons after attack
-				setButtonDisabled(false);
-			}, 3000);
-		}
-	};
+	// const enemyTurn = () => {
+	// 	if (currentEnemyHealth > 0) {
+	// 		setTimeout(() => {
+	// 			const enemyAttack = attacks.enemyNormalAttack(currentEnemy.weapon.dmg, currentEnemy.strength, stats.defense, currentEnemy.luck);
+	// 			setCurrentUserHealth(current => current - enemyAttack.finalDamage);
+	// 			setAttackText(enemyAttack.battleText);
+	// 			// enable buttons after attack
+	// 			setButtonDisabled(false);
+	// 		}, 3000);
+	// 	}
+	// };
 
 	// Sets the buffed status back to their original values
 	const resetBuffs = () => {
