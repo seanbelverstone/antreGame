@@ -21,11 +21,12 @@ import Enemy from '../../components/Enemy';
 import Typewriter from 'typewriter-effect';
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
-import { interpret } from 'xstate';
-import fightMachine from '../../utils/fightMachine';
+import createFightMachine from '../../utils/fightMachine';
+import { useMachine } from '@xstate/react';
 
 const mapStateToProps = (state) => {
 	return {
+		updateCharacter: state.updateCharacter,
 		inventory: state.updateCharacter.inventory,
 		stats: state.updateCharacter.stats,
 		levels: state.updateCharacter.levels,
@@ -77,6 +78,7 @@ const BoundMainStory = (props) => {
 	const [rogueLuckRound, setRogueLuckRound] = useState(0);
 	const [tempLuck, setTempLuck] = useState(0);
 	const [timer, setTimer] = useState(0);
+	const [state, send] = useMachine(() => createFightMachine(props));
 
 	const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
@@ -329,11 +331,78 @@ const BoundMainStory = (props) => {
 	};
 
 	const handleFight = async (option) => {
-		const toggleService = interpret(fightMachine)
-			.onTransition((state) => console.log(state.value))
-			.start();
+		// const toggleService = interpret(fightMachine)
+		// 	.onTransition((state) => console.log(state.value))
+		// 	.start();
+		const camelOption = stringToCamel(option.label);
+		// toggleService.send(camelOption);
+		// console.log(toggleService.send(camelOption));
+		send({ type: camelOption });
+		console.log(send({ type: camelOption }));
+		// const { weaponDamage, healthPotions } = inventory;
+		// const { strength, defense, wisdom, luck, charClass } = stats;
+		// const skillButton = document.getElementById('useSkill');
+		// setButtonDisabled(true);
+		// switch (option.label) {
+		// case 'Normal Attack': {
+		// 	const normalAttack = await attacks.normalAttack(weaponDamage, strength, currentEnemy.defense, luck);
+		// 	setCurrentEnemyHealth(currentEnemyHealth - normalAttack.finalDamage);
+		// 	setAttackText(normalAttack.battleText);
+		// 	break;
+		// }
+		// case 'Special Attack': {
+		// 	const specialAttack = await attacks.specialAttack(weaponDamage, strength, currentEnemy.defense, luck, currentEnemy.luck);
+		// 	setCurrentEnemyHealth(currentEnemyHealth - specialAttack.finalDamage);
+		// 	setAttackText(specialAttack.battleText);
+		// 	break;
+		// }
 
-		toggleService.send(option);
+		// case 'Use health potion': {
+		// 	const heal = await attacks.useHealthPotion(healthPotions);
+		// 	if (heal.healthIncrease > 0) {
+		// 		updateCharacter({
+		// 			inventory: {
+		// 				healthPotions: inventory.healthPotions - 1
+		// 			}
+		// 		});
+		// 		// if the user's health with the increase added is MORE than their max, just set it to max.
+		// 		setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
+		// 			maxHealth : currentUserHealth + heal.healthIncrease);
+		// 	}
+		// 	setAttackText(heal.battleText);
+		// 	break;
+		// }
+
+		// case 'Use skill': {
+		// 	const skill = await attacks.useSkill(charClass, wisdom);
+		// 	// sets a style to the skill button to make it the only one that continues being disabled.
+		// 	skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
+		// 	setSkillUsed(true);
+		// 	setCooldownRound(roundCount + skill.cooldownLength);
+		// 	setAttackText(skill.battleText);
+		// 	if (charClass === 'Warrior') {
+		// 		setTempDefense(defense);
+		// 		await updateCharacter({
+		// 			stats: {
+		// 				defense: defense + skill.skillResult
+		// 			}
+		// 		});
+		// 		setWarriorDefenseRound(roundCount + 3);
+		// 	} else if (charClass === 'Rogue') {
+		// 		setTempLuck(luck);
+		// 		await updateCharacter({
+		// 			stats: {
+		// 				luck: skill.skillResult
+		// 			}
+		// 		});
+		// 		setRogueLuckRound(roundCount + 1);
+		// 	} else {
+		// 		setCurrentUserHealth(maxHealth);
+		// 	}
+		// 	break;
+		// }
+		// default: return;
+		// }
 		// Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
 		// Also check health, to make sure that enemy or user isn't dead
 		setRoundCount(current => current + 1);

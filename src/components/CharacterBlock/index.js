@@ -32,8 +32,8 @@ const BoundCharacterBlock = (props) => {
 		calculateTime();
 	}, []);
     
-	const playThisCharacter = (selectedCharacter) => {
-		updateCharacter({
+	const playThisCharacter = async (selectedCharacter) => {
+		await updateCharacter({
 			inventory: {
 				weapon: selectedCharacter.weapon,
 				weaponDamage: selectedCharacter.weaponDamage,
@@ -46,9 +46,7 @@ const BoundCharacterBlock = (props) => {
 				amulet: selectedCharacter.amulet,
 				healthPotions: selectedCharacter.healthPotions,
 				gold: selectedCharacter.gold
-			}
-		});
-		updateCharacter({
+			},
 			stats: {
 				id: selectedCharacter.id,
 				name: selectedCharacter.name,
@@ -59,18 +57,13 @@ const BoundCharacterBlock = (props) => {
 				defense: selectedCharacter.defense,
 				wisdom: selectedCharacter.wisdom,
 				luck: selectedCharacter.luck
-			}
-
-		});
-		updateCharacter({
+			},
 			levels: {
 				visited: [
 					isBlacklistedChoice(selectedCharacter.level) ? '01-Start' : selectedCharacter.level
 				],
 				current: selectedCharacter.level
-			}
-		});
-		updateCharacter({
+			},
 			time: {
 				value: selectedCharacter.time
 			}
