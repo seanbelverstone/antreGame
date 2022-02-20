@@ -63,11 +63,16 @@ const BoundMainStory = (props) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	// this determines the width of the healthbar. Will change based on damage done
-	const [enemyHealthWidth, setEnemyHealthWidth] = useState('100%');
-	const [userHealthWidth, setUserHealthWidth] = useState('100%');
-	const [currentUserHealth, setCurrentUserHealth] = useState(1);
-	const [currentEnemyHealth, setCurrentEnemyHealth] = useState(1);
-	const [maxHealth, setMaxHealth] = useState();
+	const [enemyHealth, setEnemyHealth] = useState({
+		width: '100%',
+		current: 1,
+		max: 100
+	});
+	const [userHealth, setUserHealth] = useState({
+		width: '100%',
+		current: 1,
+		max: 100
+	});
 
 	// stats that will change and be passed to save function
 	const [roundCount, setRoundCount] = useState(1);
@@ -116,10 +121,10 @@ const BoundMainStory = (props) => {
 		};
 	}, [typewriterDelay, storyText]);
 
-	useEffect(() => {
-		// Health bars now update based on the enemy and user's health
-		setHealthWidth();
-	}, [currentEnemyHealth, currentUserHealth]);
+	// useEffect(() => {
+	// 	// Health bars now update based on the enemy and user's health
+	// 	setHealthWidth();
+	// }, [currentEnemyHealth, currentUserHealth]);
     
 	const handleLevel = (choice) => {
 		// If the choice selected is one that repeats, don't add it to the visited array.
@@ -148,7 +153,7 @@ const BoundMainStory = (props) => {
 		// When a player dies, it puts them on 00-Death. This means that if they select this character
 		// again, they'll remain dead.
 		if (choice === '00-Death') {
-			handlePlayerDeath();
+			// handlePlayerDeath();
 			return;
 		}
 		// loops through the storylines array, and matches the character's level with the corresponding object
@@ -190,7 +195,7 @@ const BoundMainStory = (props) => {
 		}
 		setTimeout(() => {
 			setOptionFade('fadeIn');
-			if (currentEnemy !== {} && currentEnemyHealth !== currentEnemy.health) {
+			if (currentEnemy !== {} && enemyHealth.current !== currentEnemy.health) {
 				displayEnemy();
 			}
 		}, (storyText.split('').length * speedMultiplier + 2000));
@@ -224,7 +229,7 @@ const BoundMainStory = (props) => {
 				} else if (mod.health) {
 					updateCharacter({
 						stats: {
-							health: stats.health + mod.health > maxHealth ? maxHealth : stats.health + mod.health
+							health: stats.health + mod.health > userHealth?.max ? userHealth.max : stats.health + mod.health
 						}
 					});
 				} else if (currentMod === 'strength' ||
@@ -290,8 +295,8 @@ const BoundMainStory = (props) => {
 	// Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
 	const displayEnemy = async () => {
 		if (modifier[0].fight && modifier.length < 2) {
-			setCurrentUserHealth(stats.health);
-			setCurrentEnemyHealth(currentEnemy.health);
+			setUserHealth({ current: stats.health, max: stats.maxHealth, width: `${(100 * stats.health) / stats.maxHealth}%` });
+			setEnemyHealth({ current: currentEnemy.health, max: currentEnemy.health, width: '100%' });
 			setEnemyImage(enemyName);
 			setAttackDisplay('flex');
 			setImageDisplay('block');
@@ -332,15 +337,24 @@ const BoundMainStory = (props) => {
 
 	const handleFight = async (option) => {
 		const camelOption = stringToCamel(option.label);
-		send({ type: camelOption });
-		console.log(send({ type: camelOption }));
+		const res = send({ type: camelOption });
 		setButtonDisabled(true);
-
-		if (camelOption === 'useSkill' && !skillUsed) {
+		if (camelOption === 'normalAttack' || camelOption === 'specialAttack') {
+			setEnemyHealth({
+				...enemyHealth,
+				current: res.context.enemyHealth,
+				width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
+			});
+		} else if (camelOption === 'useSkill' && !skillUsed) {
 			const skillButton = document.getElementById('useSkill');
 			// sets a style to the skill button to make it the only one that continues being disabled.
 			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
 			setSkillUsed(true);
+		} else {
+			setUserHealth({
+				...userHealth,
+				current: res.context.health > userHealth.max
+			});
 		}
 
 		enemyTurn();
@@ -405,7 +419,12 @@ const BoundMainStory = (props) => {
 
 	const enemyTurn = () => {
 		setTimeout(() => {
-			send({ type: 'enemyNormalAttack' });
+			const res = send({ type: 'enemyNormalAttack' });
+			setUserHealth({
+				...userHealth,
+				current: res.context.health,
+				width: `${(100 * res.context.health) / userHealth.max}%`
+			});
 			setButtonDisabled(false);
 		}, 3000);
 	};
@@ -427,87 +446,87 @@ const BoundMainStory = (props) => {
 		}
 	};
 
-	const nextPhase = async () => {
-		// set enemy health to 0, and reset buffs
-		setCurrentEnemyHealth(0);
-		setEnemyHealthWidth(0);
-		resetBuffs();
-		updateCharacter({
-			stats: {
-				health: currentUserHealth
-			}
-		});
-		// Fade the image out after a second, so it's not jarringly quick.
-		setTimeout(() => {
-			setAttackDisplay('none');
-			setEnemyBlockFade('fadeOut');
-		}, 1000);
-		// Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
-		setTimeout(() => {
-			setEnemyBlockFade('hidden');
-			setImageDisplay('none');
-			setCurrentEnemy({});
-			setAttackText('');
-			setEnemyImage('');
-			setRoundCount(1);
-			handleLevel(victoryTarget.target);
-		}, 2000);
-		checkModifier();
-	};
+	// const nextPhase = async () => {
+	// 	// set enemy health to 0, and reset buffs
+	// 	setCurrentEnemyHealth(0);
+	// 	setEnemyHealthWidth(0);
+	// 	resetBuffs();
+	// 	updateCharacter({
+	// 		stats: {
+	// 			health: currentUserHealth
+	// 		}
+	// 	});
+	// 	// Fade the image out after a second, so it's not jarringly quick.
+	// 	setTimeout(() => {
+	// 		setAttackDisplay('none');
+	// 		setEnemyBlockFade('fadeOut');
+	// 	}, 1000);
+	// 	// Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
+	// 	setTimeout(() => {
+	// 		setEnemyBlockFade('hidden');
+	// 		setImageDisplay('none');
+	// 		setCurrentEnemy({});
+	// 		setAttackText('');
+	// 		setEnemyImage('');
+	// 		setRoundCount(1);
+	// 		handleLevel(victoryTarget.target);
+	// 	}, 2000);
+	// 	checkModifier();
+	// };
 
-	const setHealthWidth = () => {
-		switch (stats.charClass) {
-		case 'Warrior':
-			setMaxHealth(80);
-			break;
-		case 'Rogue':
-			setMaxHealth(60);
-			break;
-		case 'Paladin':
-			setMaxHealth(70);
-			break;
-		default: return;
-		}
-		// This sets the red enemy health bar to be a percentage of the total amount
-		let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
-		setEnemyHealthWidth(`${enemyNewWidth}%`);
-		// If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
+	// const setHealthWidth = () => {
+	// 	switch (stats.charClass) {
+	// 	case 'Warrior':
+	// 		setUserHealth({ max: 80 });
+	// 		break;
+	// 	case 'Rogue':
+	// 		setUserHealth({ max: 60 });
+	// 		break;
+	// 	case 'Paladin':
+	// 		setUserHealth({ max: 70 });
+	// 		break;
+	// 	default: return;
+	// 	}
+	// 	// This sets the red enemy health bar to be a percentage of the total amount
+	// 	let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
+	// 	setEnemyHealthWidth(`${enemyNewWidth}%`);
+	// 	// If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
 
-		let userNewWidth = (100 * currentUserHealth) / maxHealth;
-		setUserHealthWidth(`${userNewWidth}%`);
+	// 	let userNewWidth = (100 * currentUserHealth) / maxHealth;
+	// 	setUserHealthWidth(`${userNewWidth}%`);
 
-		if (enemyNewWidth <= 0) {
-			nextPhase();
-			return;
-		}
-		if (userNewWidth <= 0) {
-			handlePlayerDeath();
-		}
-	};
+	// 	if (enemyNewWidth <= 0) {
+	// 		nextPhase();
+	// 		return;
+	// 	}
+	// 	if (userNewWidth <= 0) {
+	// 		handlePlayerDeath();
+	// 	}
+	// };
 
-	const handlePlayerDeath = async () => {
-		setEnemyBlockFade('hidden');
-		setImageDisplay('none');
-		setCurrentEnemy({});
-		setStoryText('After fighting valliantly, you succumb to your wounds.');
-		setAttackDisplay('none');
-		setModifier([
-			{
-				'death': true
-			}
-		]);
-		updateCharacter({
-			stats: {
-				health: 0
-			}
-		});
-		updateCharacter({
-			levels: {
-				current: '00-Death',
-				visited: []
-			}
-		});
-	};
+	// const handlePlayerDeath = async () => {
+	// 	setEnemyBlockFade('hidden');
+	// 	setImageDisplay('none');
+	// 	setCurrentEnemy({});
+	// 	setStoryText('After fighting valliantly, you succumb to your wounds.');
+	// 	setAttackDisplay('none');
+	// 	setModifier([
+	// 		{
+	// 			'death': true
+	// 		}
+	// 	]);
+	// 	updateCharacter({
+	// 		stats: {
+	// 			health: 0
+	// 		}
+	// 	});
+	// 	updateCharacter({
+	// 		levels: {
+	// 			current: '00-Death',
+	// 			visited: []
+	// 		}
+	// 	});
+	// };
 
 	const handleMenuClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -585,13 +604,13 @@ const BoundMainStory = (props) => {
 				imageDisplay={imageDisplay}
 				enemyBlockFade={enemyBlockFade}
 				currentEnemy={currentEnemy}
-				currentEnemyHealth={currentEnemyHealth}
-				enemyHealthWidth={enemyHealthWidth}
+				currentEnemyHealth={enemyHealth.current}
+				enemyHealthWidth={enemyHealth.width}
 				enemyImage={enemyImage}
 				characterName={stats.name}
-				currentUserHealth={currentUserHealth === 1 ? stats.health : currentUserHealth}
-				maxHealth={maxHealth}
-				userHealthWidth={userHealthWidth}
+				currentUserHealth={userHealth.current === 1 ? stats.health : userHealth.current}
+				maxHealth={userHealth.max}
+				userHealthWidth={userHealth.width}
 				optionFade={optionFade}
 				attackDisplay={attackDisplay}
 				attackText={attackText}
@@ -609,9 +628,9 @@ const BoundMainStory = (props) => {
 			</div>
 			<footer id="footer">
 				<Inventory
-					health={currentUserHealth === 1 ? stats.health : currentUserHealth}
-					maxHealth={maxHealth}
-					userHealthWidth={(100 * (currentUserHealth === 1 ? stats.health : currentUserHealth)) / maxHealth}
+					health={userHealth.current === 1 ? stats.health : userHealth.current}
+					maxHealth={userHealth.max}
+					userHealthWidth={(100 * (userHealth.current === 1 ? stats.health : userHealth.current)) / userHealth.max}
 				/>
 				<div>
 					<Button

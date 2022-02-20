@@ -28,12 +28,24 @@ const BoundCharacterBlock = (props) => {
 	let history = useNavigate();
 	const { updateCharacter, character, user } = props;
 	const [timePlayed, setTimePlayed] = useState('');
+	const [maxHealth, setMaxHealth] = useState(60);
 	useEffect(() => {
 		calculateTime();
 	}, []);
+
+
     
 	const playThisCharacter = async (selectedCharacter) => {
-		await updateCharacter({
+		switch (selectedCharacter.charClass) {
+		case 'Warrior':
+			setMaxHealth(80);
+			break;
+		case 'Paladin':
+			setMaxHealth(70);
+			break;
+		default: setMaxHealth(60);
+		}
+		updateCharacter({
 			inventory: {
 				weapon: selectedCharacter.weapon,
 				weaponDamage: selectedCharacter.weaponDamage,
@@ -46,18 +58,23 @@ const BoundCharacterBlock = (props) => {
 				amulet: selectedCharacter.amulet,
 				healthPotions: selectedCharacter.healthPotions,
 				gold: selectedCharacter.gold
-			},
+			}
+		});
+		updateCharacter({
 			stats: {
 				id: selectedCharacter.id,
 				name: selectedCharacter.name,
 				race: selectedCharacter.race,
 				charClass: selectedCharacter.charClass,
 				health: selectedCharacter.health,
+				maxHealth,
 				strength: selectedCharacter.strength,
 				defense: selectedCharacter.defense,
 				wisdom: selectedCharacter.wisdom,
 				luck: selectedCharacter.luck
-			},
+			}
+		});
+		updateCharacter({
 			levels: {
 				visited: [
 					isBlacklistedChoice(selectedCharacter.level) ? '01-Start' : selectedCharacter.level
