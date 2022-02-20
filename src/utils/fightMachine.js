@@ -12,7 +12,7 @@ import storylines from './storylines.json';
 export const createFightMachine = (props, setAttackText) => {
 	const { inventory, stats, levels } = props;
 	const currentStory = storylines.find(story => story.level === levels?.current);
-
+	console.log(currentStory);
 	return createMachine({
 		id: 'fightMachine',
 		initial: 'USER_TURN',

@@ -545,6 +545,7 @@ const BoundMainStory = (props) => {
 				value: timer
 			}
 		});
+		console.log(levels.current);
 		API.saveCharacter(
 			stats,
 			inventory,
@@ -639,7 +640,7 @@ const BoundMainStory = (props) => {
 						id="save"
 						variant="contained"
 						disabled={buttonDisabled}
-						onClick={saveGame}
+						onClick={() => saveGame()}
 					>Save Game</Button>
 				</div>
 			</footer>
