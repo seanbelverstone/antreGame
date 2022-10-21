@@ -79,9 +79,7 @@ const BoundMainStory = (props) => {
 	const [roundCount, setRoundCount] = useState(1);
 	const [skillUsed, setSkillUsed] = useState(false);
 	const [cooldownRound, setCooldownRound] = useState(0);
-	const [warriorDefenseRound, setWarriorDefenseRound] = useState(0);
 	const [tempDefense, setTempDefense] = useState(0);
-	const [rogueLuckRound, setRogueLuckRound] = useState(0);
 	const [tempLuck, setTempLuck] = useState(0);
 	const [timer, setTimer] = useState(0);
 	const [state, send] = useMachine(() => createFightMachine(props, setAttackText));
@@ -225,6 +223,7 @@ const BoundMainStory = (props) => {
 							weaponDamage: mod.weapon.dmg
 						}
 					});
+					state.context.weaponDamage = mod.weapon.dmg;
 				} else if (mod.health) {
 					updateCharacter({
 						stats: {
@@ -240,6 +239,7 @@ const BoundMainStory = (props) => {
 							[currentMod]: stats[currentMod] + mod[currentMod]
 						}
 					});
+					state.context[currentMod] = stats[currentMod] + mod[currentMod];
 				} else if (currentMod === 'head' ||
                     currentMod === 'chest' ||
                     currentMod === 'legs' ||
@@ -258,6 +258,7 @@ const BoundMainStory = (props) => {
 							[currentMod]: inventory[currentMod] + mod[currentMod] < 0 ? 0 : inventory[currentMod] + mod[currentMod]
 						}
 					});
+					currentMod === 'healthPotions' && (state.context.healthPotions += mod.healthPotions);
 				} else if (mod.luckCheck) {
 					setSnackbarDisplay(false);
 					const checkingLuck = async () => {
@@ -335,9 +336,15 @@ const BoundMainStory = (props) => {
 		}
 	};
 
-	const handleFight = async (option) => {
+	const handleFight = (option) => {
 		const camelOption = stringToCamel(option.label);
 		const res = send({ type: camelOption });
+		const skillButton = document.getElementById('useSkill');
+		// resets buffs if the round is same as the specified cooldown one.
+		if (res.roundCount === cooldownRound) {
+			resetBuffs();
+			skillButton.removeAttribute('style');
+		}
 		setButtonDisabled(true);
 		if (camelOption === 'normalAttack' || camelOption === 'specialAttack') {
 			setEnemyHealth({
@@ -345,88 +352,69 @@ const BoundMainStory = (props) => {
 				current: res.context.enemyHealth,
 				width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
 			});
-			enemyHealth.current <= 0 && nextPhase();
+			enemyHealth.current <= 0 ? nextPhase() : enemyTurn(userHealth.current);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
-		} else if (camelOption === 'useSkill' && !skillUsed) {
-			const skillButton = document.getElementById('useSkill');
+		} else if (camelOption === 'useSkill') {
+			const { charClass, defense, luck } = stats;
+			console.log('cooldownRound', res.context.cooldownRound);
+			setCooldownRound(res.context.cooldownRound);
 			// sets a style to the skill button to make it the only one that continues being disabled.
-			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26); box-shadow: none; background-color: rgba(0, 0, 0, 0.12);');
-			setSkillUsed(true);
+			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26) !important; box-shadow: none; background-color: rgba(0, 0, 0, 0.12) !important;');
+			switch (charClass) {
+			case 'Warrior':
+				setTempDefense(defense);
+				updateCharacter({
+					stats: {
+						defense: defense + res.context.skillResult
+					}
+				});
+				state.context.defense = defense + res.context.skillResult;
+				enemyTurn(userHealth.current);
+				break;
+			case 'Rogue':
+				setTempLuck(luck);
+				updateCharacter({
+					stats: {
+						luck: luck + res.context.skillResult
+					}
+				});
+				state.context.luck = luck + res.context.skillResult;
+				enemyTurn(userHealth.current);
+				break;
+			default:
+				setUserHealth({
+					...userHealth,
+					current: userHealth.max
+				});
+				enemyTurn(userHealth.max);
+			}
+			
 		} else {
+		// if the user's health with the increase added is MORE than their max, just set it to max.
+			console.log(res.context.healthIncrease);
+			const finalHealth = userHealth.current + res.context.healthIncrease > userHealth.max ?
+				userHealth.max : userHealth.current + res.context.healthIncrease;
 			setUserHealth({
 				...userHealth,
-				current: res.context.health > userHealth.max
+				current: finalHealth,
+				width: `${(100 * finalHealth) / userHealth.max}%`
 			});
+			enemyTurn(finalHealth);
 		}
-
-		enemyTurn();
-		// 		// if the user's health with the increase added is MORE than their max, just set it to max.
-		// 		setCurrentUserHealth(currentUserHealth + heal.healthIncrease > maxHealth ?
-		// 			maxHealth : currentUserHealth + heal.healthIncrease);
-		// 	const skill = await attacks.useSkill(charClass, wisdom);
-		// 	setCooldownRound(roundCount + skill.cooldownLength);
-		// 	setAttackText(skill.battleText);
-		// 	if (charClass === 'Warrior') {
-		// 		setTempDefense(defense);
-		// 		await updateCharacter({
-		// 			stats: {
-		// 				defense: defense + skill.skillResult
-		// 			}
-		// 		});
-		// 		setWarriorDefenseRound(roundCount + 3);
-		// 	} else if (charClass === 'Rogue') {
-		// 		setTempLuck(luck);
-		// 		await updateCharacter({
-		// 			stats: {
-		// 				luck: skill.skillResult
-		// 			}
-		// 		});
-		// 		setRogueLuckRound(roundCount + 1);
-		// 	} else {
-		// 		setCurrentUserHealth(maxHealth);
-		// 	}
-		// 	break;
-		// }
-		// default: return;
-		// }
-		// Disables the buttons so the user can't attack while the enemy is, and then adds 1 to the round count.
-		// Also check health, to make sure that enemy or user isn't dead
-		// setRoundCount(current => current + 1);
-		// if the enemy is still alive, we want to check if we're on the debuff rounds instead
-		// if so, reset the stats to their pre-skill values.
-		// if (roundCount === warriorDefenseRound) {
-		// 	updateCharacter({
-		// 		stats: {
-		// 			defense: tempDefense
-		// 		}
-		// 	});
-		// }
-		// if (roundCount === rogueLuckRound) {
-		// 	updateCharacter({
-		// 		stats: {
-		// 			luck: tempLuck
-		// 		}
-		// 	});
-		// }
-		// If a skill has been used and both the cooldown and roundCount are the same, make the button back to how it was.
-		// if (cooldownRound === roundCount && skillUsed) {
-		// 	skillButton.removeAttribute('style');
-		// }
-		// if (isEnemyAlive()) {
-		// 	enemyTurn();
-		// } else {
-		// 	nextPhase();
-		// }
+		
 	};
 
-	const enemyTurn = () => {
+	const enemyTurn = (currentHealth) => {
+		console.log('health before attack from enemy', currentHealth);
 		setTimeout(() => {
 			const res = send({ type: 'enemyNormalAttack' });
+			const damagedHealth = currentHealth - res.context.damage;
 			setUserHealth({
 				...userHealth,
-				current: res.context.health,
-				width: `${(100 * res.context.health) / userHealth.max}%`
+				current: damagedHealth,
+				width: `${(100 * damagedHealth) / userHealth.max}%`
 			});
+			setRoundCount(current => current + 1);
 			setButtonDisabled(false);
 		}, 3000);
 		userHealth.current <= 0 && handlePlayerDeath();

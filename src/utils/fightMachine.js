@@ -48,7 +48,7 @@ export const createFightMachine = (props, setAttackText) => {
 						actions: assign((context, data) => {
 							console.log('normal attack works');
 							const normalAttack = attacks.normalAttack(
-								inventory.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
+								context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
 							);
 							setAttackText(normalAttack.battleText);
 							return {
@@ -62,12 +62,38 @@ export const createFightMachine = (props, setAttackText) => {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
 							console.log('special attack attack works');
-							const specialAttack = attacks.specialAttack(inventory.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck, currentStory.enemy.luck);
+							const specialAttack = attacks.specialAttack(context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck, currentStory.enemy.luck);
 							setAttackText(specialAttack.battleText);
 							return {
 								...context,
 								enemyHealth: context.enemyHealth - specialAttack.finalDamage,
 								roundCount: context.roundCount++
+							};
+						})
+					},
+					useSkill: {
+						target: 'ENEMY_TURN',
+						actions: assign((context, data) => {
+							console.log('skill used');
+							const useSkill = attacks.useSkill(context.charClass, context.wisdom);
+							setAttackText(useSkill.battleText);
+							return {
+								...context,
+								roundCount: context.roundCount++,
+								cooldownRound: context.roundCount + useSkill.cooldownLength,
+								skillResult: useSkill.skillResult
+							};
+						})
+					},
+					useHealthPotion: {
+						target: 'ENEMY_TURN',
+						actions: assign((context, data) => {
+							console.log('skill used');
+							const useSkill = attacks.useHealthPotion(context.healthPotions);
+							setAttackText(useSkill.battleText);
+							return {
+								...context,
+								healthIncrease: useSkill.healthIncrease
 							};
 						})
 					}
@@ -78,11 +104,11 @@ export const createFightMachine = (props, setAttackText) => {
 					enemyNormalAttack: {
 						target: 'USER_TURN',
 						actions: assign((context) => {
-							const enemyNormalAttack = attacks.enemyNormalAttack(currentStory.enemy.weapon.dmg, currentStory.enemy.strength, stats.defense, currentStory.enemy.luck);
+							const enemyNormalAttack = attacks.enemyNormalAttack(context.enemyWeaponDamage, context.enemyStrength, context.defense, context.enemyLuck);
 							setAttackText(enemyNormalAttack.battleText);
 							return {
 								...context,
-								health: context.health - enemyNormalAttack.finalDamage
+								damage: enemyNormalAttack.finalDamage
 							};
 						})
 					},
