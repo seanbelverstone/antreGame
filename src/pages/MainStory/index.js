@@ -41,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const BoundMainStory = (props) => {
 	let history = useNavigate();
+	const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 	const [snackbarDisplay, setSnackbarDisplay] = useState(false);
@@ -70,7 +71,7 @@ const BoundMainStory = (props) => {
 	});
 	const [userHealth, setUserHealth] = useState({
 		width: '100%',
-		current: 1,
+		current: stats.health,
 		max: 100
 	});
 
@@ -84,8 +85,6 @@ const BoundMainStory = (props) => {
 	const [tempLuck, setTempLuck] = useState(0);
 	const [timer, setTimer] = useState(0);
 	const [state, send] = useMachine(() => createFightMachine(props, setAttackText));
-
-	const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
 	useEffect(() => {
 		// sets the current level if visited has just been set, or if the user reloads.
@@ -294,6 +293,7 @@ const BoundMainStory = (props) => {
 
 	// Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
 	const displayEnemy = async () => {
+		console.log(currentEnemy);
 		if (modifier[0].fight && modifier.length < 2) {
 			setUserHealth({ current: stats.health, max: stats.maxHealth, width: `${(100 * stats.health) / stats.maxHealth}%` });
 			setEnemyHealth({ current: currentEnemy.health, max: currentEnemy.health, width: '100%' });
@@ -345,6 +345,8 @@ const BoundMainStory = (props) => {
 				current: res.context.enemyHealth,
 				width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
 			});
+			enemyHealth.current <= 0 && nextPhase();
+			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill' && !skillUsed) {
 			const skillButton = document.getElementById('useSkill');
 			// sets a style to the skill button to make it the only one that continues being disabled.
@@ -427,6 +429,7 @@ const BoundMainStory = (props) => {
 			});
 			setButtonDisabled(false);
 		}, 3000);
+		userHealth.current <= 0 && handlePlayerDeath();
 	};
 
 	// Sets the buffed status back to their original values
@@ -446,33 +449,36 @@ const BoundMainStory = (props) => {
 		}
 	};
 
-	// const nextPhase = async () => {
-	// 	// set enemy health to 0, and reset buffs
-	// 	setCurrentEnemyHealth(0);
-	// 	setEnemyHealthWidth(0);
-	// 	resetBuffs();
-	// 	updateCharacter({
-	// 		stats: {
-	// 			health: currentUserHealth
-	// 		}
-	// 	});
-	// 	// Fade the image out after a second, so it's not jarringly quick.
-	// 	setTimeout(() => {
-	// 		setAttackDisplay('none');
-	// 		setEnemyBlockFade('fadeOut');
-	// 	}, 1000);
-	// 	// Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
-	// 	setTimeout(() => {
-	// 		setEnemyBlockFade('hidden');
-	// 		setImageDisplay('none');
-	// 		setCurrentEnemy({});
-	// 		setAttackText('');
-	// 		setEnemyImage('');
-	// 		setRoundCount(1);
-	// 		handleLevel(victoryTarget.target);
-	// 	}, 2000);
-	// 	checkModifier();
-	// };
+	const nextPhase = async () => {
+		// set enemy health to 0, and reset buffs
+		setEnemyHealth({
+			...enemyHealth,
+			width: '0%',
+			current: 0
+		});
+		resetBuffs();
+		updateCharacter({
+			stats: {
+				health: userHealth.current
+			}
+		});
+		// Fade the image out after a second, so it's not jarringly quick.
+		setTimeout(() => {
+			setAttackDisplay('none');
+			setEnemyBlockFade('fadeOut');
+		}, 1000);
+		// Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
+		setTimeout(() => {
+			setEnemyBlockFade('hidden');
+			setImageDisplay('none');
+			setCurrentEnemy({});
+			setAttackText('');
+			setEnemyImage('');
+			setRoundCount(1);
+			handleLevel(victoryTarget.target);
+		}, 2000);
+		checkModifier();
+	};
 
 	// const setHealthWidth = () => {
 	// 	switch (stats.charClass) {
@@ -504,29 +510,30 @@ const BoundMainStory = (props) => {
 	// 	}
 	// };
 
-	// const handlePlayerDeath = async () => {
-	// 	setEnemyBlockFade('hidden');
-	// 	setImageDisplay('none');
-	// 	setCurrentEnemy({});
-	// 	setStoryText('After fighting valliantly, you succumb to your wounds.');
-	// 	setAttackDisplay('none');
-	// 	setModifier([
-	// 		{
-	// 			'death': true
-	// 		}
-	// 	]);
-	// 	updateCharacter({
-	// 		stats: {
-	// 			health: 0
-	// 		}
-	// 	});
-	// 	updateCharacter({
-	// 		levels: {
-	// 			current: '00-Death',
-	// 			visited: []
-	// 		}
-	// 	});
-	// };
+	const handlePlayerDeath = async () => {
+		setEnemyBlockFade('hidden');
+		setImageDisplay('none');
+		setCurrentEnemy({});
+		setStoryText('After fighting valliantly, you succumb to your wounds.');
+		setAttackDisplay('none');
+		setModifier([
+			{
+				'death': true
+			}
+		]);
+		updateCharacter({
+			stats: {
+				health: 0
+			}
+		});
+		updateCharacter({
+			levels: {
+				current: '00-Death',
+				visited: []
+			}
+		});
+		saveGame();
+	};
 
 	const handleMenuClick = (event) => {
 		setAnchorEl(event.currentTarget);

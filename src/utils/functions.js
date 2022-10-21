@@ -5,6 +5,10 @@ export const camelToTitle = value => {
 
 export const stringToCamel = value => value?.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 
+export const stringToUpperSnake = value => (value.replace(/\W+/g, ' ').split(/ |\B(?=[A-Z])/)
+	.map(word => word.toUpperCase())
+	.join('_'));
+
 export const isBlacklistedChoice = (choice) => {
 	switch (choice) {
 	case '02-Tunnel':
