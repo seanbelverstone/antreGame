@@ -1,28 +1,32 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as actionCreators from '../../redux/actions/actionCreators';
+import PropTypes from 'prop-types';
+import Typewriter from 'typewriter-effect';
+import { useMachine } from '@xstate/react';
+//MaterialUi
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import * as actionCreators from '../../redux/actions/actionCreators';
-import API from '../../utils/API';
-import { stringToCamel, isBlacklistedChoice } from '../../utils/functions';
+//Component Imports
 import Wrapper from '../../components/Wrapper';
-import storylines from '../../utils/storylines.json';
-import attacks from '../../utils/attacks.js';
 import Inventory from '../../components/Inventory';
-import InventoryPopup from '../../components/InventoryPopup';
+import SuccessScreen from '../../components/SuccessScreen';
 import DefaultPopup from '../../components/DefaultPopup';
 import ChoiceBlock from '../../components/ChoiceBlock';
 import Enemy from '../../components/Enemy';
-import Typewriter from 'typewriter-effect';
+//Utils
+import API from '../../utils/API';
+import { stringToCamel, isBlacklistedChoice } from '../../utils/functions';
+import storylines from '../../utils/storylines.json';
+import attacks from '../../utils/attacks.js';
+import createFightMachine from '../../utils/fightMachine';
+//Assets
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
-import createFightMachine from '../../utils/fightMachine';
-import { useMachine } from '@xstate/react';
 
 const mapStateToProps = (state) => {
 	return {
@@ -44,7 +48,7 @@ const BoundMainStory = (props) => {
 	const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
 
 	const [buttonDisabled, setButtonDisabled] = useState(false);
-	const [snackbarDisplay, setSnackbarDisplay] = useState(false);
+	const [snackbarDisplay, setSnackbarDisplay] = useState(true);
 
 	const [initalLevel, setInitalLevel] = useState('');
 	const [storyText, setStoryText] = useState('');
@@ -62,6 +66,7 @@ const BoundMainStory = (props) => {
 	const [saveGameDisplay, setSaveGameDisplay] = useState(false);
 	const [typewriterDelay, setTypewriterDelay] = useState(20);
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [roundCount, setRoundCount] = useState(1);
 
 	// this determines the width of the healthbar. Will change based on damage done
 	const [enemyHealth, setEnemyHealth] = useState({
@@ -72,11 +77,10 @@ const BoundMainStory = (props) => {
 	const [userHealth, setUserHealth] = useState({
 		width: '100%',
 		current: stats.health,
-		max: 100
+		max: stats.maxHealth
 	});
 
 	// stats that will change and be passed to save function
-	const [roundCount, setRoundCount] = useState(1);
 	const [skillUsed, setSkillUsed] = useState(false);
 	const [cooldownRound, setCooldownRound] = useState(0);
 	const [tempDefense, setTempDefense] = useState(0);
@@ -450,6 +454,7 @@ const BoundMainStory = (props) => {
 				health: userHealth.current
 			}
 		});
+		setButtonDisabled(false);
 		// Fade the image out after a second, so it's not jarringly quick.
 		setTimeout(() => {
 			setAttackDisplay('none');
@@ -467,36 +472,6 @@ const BoundMainStory = (props) => {
 		}, 2000);
 		checkModifier();
 	};
-
-	// const setHealthWidth = () => {
-	// 	switch (stats.charClass) {
-	// 	case 'Warrior':
-	// 		setUserHealth({ max: 80 });
-	// 		break;
-	// 	case 'Rogue':
-	// 		setUserHealth({ max: 60 });
-	// 		break;
-	// 	case 'Paladin':
-	// 		setUserHealth({ max: 70 });
-	// 		break;
-	// 	default: return;
-	// 	}
-	// 	// This sets the red enemy health bar to be a percentage of the total amount
-	// 	let enemyNewWidth = (100 * currentEnemyHealth) / currentEnemy.health;
-	// 	setEnemyHealthWidth(`${enemyNewWidth}%`);
-	// 	// If enemy's health reaches or surpasses 0, set it all to 0 and begin the next phase
-
-	// 	let userNewWidth = (100 * currentUserHealth) / maxHealth;
-	// 	setUserHealthWidth(`${userNewWidth}%`);
-
-	// 	if (enemyNewWidth <= 0) {
-	// 		nextPhase();
-	// 		return;
-	// 	}
-	// 	if (userNewWidth <= 0) {
-	// 		handlePlayerDeath();
-	// 	}
-	// };
 
 	const handlePlayerDeath = async () => {
 		setEnemyBlockFade('hidden');
@@ -640,7 +615,7 @@ const BoundMainStory = (props) => {
 				</div>
 			</footer>
 			<DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={'Game saved!'} destination="" snackbarColor="success" />
-			<InventoryPopup display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} />
+			<SuccessScreen display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} enemyName={enemyName} />
 		</Wrapper>
 
 	);
