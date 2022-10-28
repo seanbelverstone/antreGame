@@ -352,7 +352,8 @@ const BoundMainStory = (props) => {
 				current: res.context.enemyHealth,
 				width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
 			});
-			enemyHealth.current <= 0 ? nextPhase() : enemyTurn(userHealth.current);
+			console.log(enemyHealth.current);
+			res.context.enemyHealth <= 0 ? nextPhase() : enemyTurn(userHealth.current);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill') {
 			const { charClass, defense, luck } = stats;
@@ -405,7 +406,6 @@ const BoundMainStory = (props) => {
 	};
 
 	const enemyTurn = (currentHealth) => {
-		console.log('health before attack from enemy', currentHealth);
 		setTimeout(() => {
 			const res = send({ type: 'enemyNormalAttack' });
 			const damagedHealth = currentHealth - res.context.damage;
