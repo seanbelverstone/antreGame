@@ -467,6 +467,7 @@ const BoundMainStory = (props) => {
 			setCurrentEnemy({});
 			setAttackText('');
 			setEnemyImage('');
+			setEnemyName('');
 			setRoundCount(1);
 			handleLevel(victoryTarget.target);
 		}, 2000);
