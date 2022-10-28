@@ -3,7 +3,11 @@ export const camelToTitle = value => {
 	return result.charAt(0).toUpperCase() + result.slice(1);
 };
 
-export const stringToCamel = value => value.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+export const stringToCamel = value => value?.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+
+export const stringToUpperSnake = value => (value.replace(/\W+/g, ' ').split(/ |\B(?=[A-Z])/)
+	.map(word => word.toUpperCase())
+	.join('_'));
 
 export const isBlacklistedChoice = (choice) => {
 	switch (choice) {

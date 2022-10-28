@@ -18,6 +18,7 @@ export const initialState = {
 		race: '',
 		charClass: '',
 		health: 0,
+		maxHealth: 0,
 		strength: 0,
 		defense: 0,
 		wisdom: 0,
@@ -72,8 +73,8 @@ const updateCharacter = (state = initialState, action) => {
 			};
 		}
 		break;
-	default: return state;
 	}
+	return state;
 };
 
 export default updateCharacter;

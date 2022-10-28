@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import Wrapper from '../../components/Wrapper';
 import Credits from '../../components/Credits';
+import DefaultPopup from '../../components/DefaultPopup';
 import API from '../../utils/API';
 import logo from '../../assets/images/AntreCrop.png';
 import TextField from '@mui/material/TextField';
@@ -34,6 +35,8 @@ const BoundLogin = (props) => {
 	const [passwordError, setPasswordError] = useState(false);
 	const [passwordHelperText, setPasswordHelperText] = useState('');
 	const { authenticateUser } = props;
+
+	const [snackbarDisplay, setSnackbarDisplay] = useState(false);
 
 
 	const onSubmit = async (event) => {
@@ -93,6 +96,17 @@ const BoundLogin = (props) => {
 					>
                         Login
 					</Button>
+					<a
+						id="forgotten"
+						style={{ color: 'var(--primary)', marginTop: '0.5em', opacity: 0.7 }}
+						onClick={() => setSnackbarDisplay(!snackbarDisplay)}>
+						FORGOT PASSWORD?</a>
+					<DefaultPopup
+						customClass="forgottenPopup"
+						display={snackbarDisplay}
+						setDisplay={setSnackbarDisplay}
+						message="Please contact support at support@antregame.com"
+						snackbarColor="info"/>
 					<a id="create" onClick={() => history('/account')}>CREATE AN ACCOUNT</a>
 				</form>
 			</Wrapper>

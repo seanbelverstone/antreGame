@@ -96,7 +96,7 @@ a {
   color: var(--luck);
 }
 
-.primaryButton {
+.primaryButton, .MuiAlert-filledInfo {
 	background-color: var(--primary) !important;
 }
 
@@ -105,7 +105,7 @@ a {
 	color: white !important;
 }
 
-.secondaryButton {
+.secondaryButton, .MuiAlert-filledError {
 	background-color: var(--secondary) !important;
 }
 
