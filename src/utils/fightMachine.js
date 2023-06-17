@@ -9,10 +9,10 @@ import storylines from './storylines.json';
 // - pass in updateHealth methods from parent to update the state in the parent, or set the health based on the machine's response
 // - Add `guarded conditional functions` where we'll only do attacks if enemy/user is alive
 
-export const createFightMachine = (props, setAttackText) => {
+export const createFightMachine = (props) => {
 	const { inventory, stats, levels } = props;
 	const currentStory = storylines.find(story => story.level === levels?.current);
-
+	console.log(currentStory);
 	return createMachine({
 		id: 'fightMachine',
 		initial: 'USER_TURN',
@@ -50,11 +50,11 @@ export const createFightMachine = (props, setAttackText) => {
 							const normalAttack = attacks.normalAttack(
 								context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
 							);
-							setAttackText(normalAttack.battleText);
 							return {
 								...context,
 								enemyHealth: context.enemyHealth - normalAttack.finalDamage,
-								roundCount: context.roundCount++
+								roundCount: context.roundCount++,
+								battleText: normalAttack.battleText
 							};
 						})
 					},
@@ -63,11 +63,11 @@ export const createFightMachine = (props, setAttackText) => {
 						actions: assign((context, data) => {
 							console.log('special attack attack works');
 							const specialAttack = attacks.specialAttack(context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck, currentStory.enemy.luck);
-							setAttackText(specialAttack.battleText);
 							return {
 								...context,
 								enemyHealth: context.enemyHealth - specialAttack.finalDamage,
-								roundCount: context.roundCount++
+								roundCount: context.roundCount++,
+								battleText: specialAttack.battleText
 							};
 						})
 					},
@@ -76,24 +76,25 @@ export const createFightMachine = (props, setAttackText) => {
 						actions: assign((context, data) => {
 							console.log('skill used');
 							const useSkill = attacks.useSkill(context.charClass, context.wisdom);
-							setAttackText(useSkill.battleText);
 							return {
 								...context,
 								roundCount: context.roundCount++,
 								cooldownRound: context.roundCount + useSkill.cooldownLength,
-								skillResult: useSkill.skillResult
+								skillResult: useSkill.skillResult,
+								battleText: useSkill.battleText
 							};
 						})
 					},
 					useHealthPotion: {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
-							console.log('skill used');
-							const useSkill = attacks.useHealthPotion(context.healthPotions);
-							setAttackText(useSkill.battleText);
+							console.log('Health potion used');
+							console.log(context.healthPotions);
+							const usePotion = attacks.useHealthPotion(context.healthPotions);
 							return {
 								...context,
-								healthIncrease: useSkill.healthIncrease
+								healthIncrease: usePotion.healthIncrease,
+								battleText: usePotion.battleText
 							};
 						})
 					}
@@ -105,10 +106,10 @@ export const createFightMachine = (props, setAttackText) => {
 						target: 'USER_TURN',
 						actions: assign((context) => {
 							const enemyNormalAttack = attacks.enemyNormalAttack(context.enemyWeaponDamage, context.enemyStrength, context.defense, context.enemyLuck);
-							setAttackText(enemyNormalAttack.battleText);
 							return {
 								...context,
-								damage: enemyNormalAttack.finalDamage
+								damage: enemyNormalAttack.finalDamage,
+								battleText: enemyNormalAttack.battleText
 							};
 						})
 					},

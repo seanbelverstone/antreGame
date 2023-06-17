@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import PropTypes from 'prop-types';
 import Typewriter from 'typewriter-effect';
-import { useMachine } from '@xstate/react';
+import { interpret } from 'xstate';
 //MaterialUi
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -20,13 +18,14 @@ import ChoiceBlock from '../../components/ChoiceBlock';
 import Enemy from '../../components/Enemy';
 //Utils
 import API from '../../utils/API';
-import { stringToCamel, isBlacklistedChoice } from '../../utils/functions';
+import { stringToCamel, isBlacklistedChoice, isEmpty } from '../../utils/functions';
 import storylines from '../../utils/storylines.json';
 import attacks from '../../utils/attacks.js';
 import createFightMachine from '../../utils/fightMachine';
 //Assets
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
+import { withRouter } from '../../components/withRouter/withRouter';
 
 const mapStateToProps = (state) => {
 	return {
@@ -43,91 +42,99 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators(actionCreators, dispatch);
 };
 
-const BoundMainStory = (props) => {
-	let history = useNavigate();
-	const { updateCharacter, inventory, stats, levels, time, user, resetStore } = props;
+class BoundMainStory extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			buttonDisabled: false,
+			snackbarDisplay: false,
+			initialLevel: '',
+			currentLevel: '',
+			storyText: '',
+			attackText: '',
+			modifier: [],
+			options: [],
+			currentEnemy: {},
+			enemyName: '',
+			victoryTarget: '',
+			enemyImage: '',
+			imageDisplay: 'none',
+			optionFade: 'hidden',
+			enemyBlockFade: 'hidden',
+			attackDisplay: '',
+			saveGameDisplay: false,
+			typewriterDelay: 20,
+			anchorEl: null,
+			roundCount: 1,
+			// this determines the width of the healthbar. Will change based on damage done
+			enemyHealth: {
+				width: '100%',
+				current: 1,
+				max: 100
+			},
+			userHealth: {
+				width: '100%',
+				current: 1,
+				max: 100
+			},
+			// stats that will change and be passed to save function
+			skillUsed: false,
+			cooldownRound: 0,
+			tempDefense: 0,
+			tempLuck: 0,
+			timer: 0,
+			machineState: null
+		};
+	}
 
-	const [buttonDisabled, setButtonDisabled] = useState(false);
-	const [snackbarDisplay, setSnackbarDisplay] = useState(true);
+	service = interpret(createFightMachine(this.props)).onTransition((current) =>
+		this.setState({ machineState: current })
+	);
 
-	const [initalLevel, setInitalLevel] = useState('');
-	const [storyText, setStoryText] = useState('');
-	const [attackText, setAttackText] = useState('');
-	const [modifier, setModifier] = useState([]);
-	const [options, setOptions] = useState([]);
-	const [currentEnemy, setCurrentEnemy] = useState({});
-	const [enemyName, setEnemyName] = useState('');
-	const [victoryTarget, setVictoryTarget] = useState({});
-	const [enemyImage, setEnemyImage] = useState('');
-	const [imageDisplay, setImageDisplay] = useState('none');
-	const [optionFade, setOptionFade] = useState('hidden');
-	const [enemyBlockFade, setEnemyBlockFade] = useState('hidden');
-	const [attackDisplay, setAttackDisplay] = useState('none');
-	const [saveGameDisplay, setSaveGameDisplay] = useState(false);
-	const [typewriterDelay, setTypewriterDelay] = useState(20);
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [roundCount, setRoundCount] = useState(1);
+	componentDidMount() {
+		this.mounted = true;
+		this.initialize();
+		this.service.start();
+	}
 
-	// this determines the width of the healthbar. Will change based on damage done
-	const [enemyHealth, setEnemyHealth] = useState({
-		width: '100%',
-		current: 1,
-		max: 100
-	});
-	const [userHealth, setUserHealth] = useState({
-		width: '100%',
-		current: stats.health,
-		max: stats.maxHealth
-	});
-
-	// stats that will change and be passed to save function
-	const [skillUsed, setSkillUsed] = useState(false);
-	const [cooldownRound, setCooldownRound] = useState(0);
-	const [tempDefense, setTempDefense] = useState(0);
-	const [tempLuck, setTempLuck] = useState(0);
-	const [timer, setTimer] = useState(0);
-	const [state, send] = useMachine(() => createFightMachine(props, setAttackText));
-
-	useEffect(() => {
-		// sets the current level if visited has just been set, or if the user reloads.
-		// Aids the check in checkModifier to prevent users from reloading for unlimited buffs
-		if (levels.visited.length <= 1 || window.performance.getEntriesByType('navigation')[0].type === 'reload') {
-			setInitalLevel(levels.current);
+	componentDidUpdate() {
+		const { enemyBlockFade } = this.state;
+		// const { initialLevel, currentLevel } = this.state;
+		// if (prevState.initialLevel !== initialLevel && )
+		if (enemyBlockFade === 'fadeIn') {
+			const enemyBlock = document.getElementById('enemyBlock');
+			enemyBlock.scrollIntoView({ behavior: 'smooth' });
 		}
-		window.onbeforeunload = () => {
-			setInitalLevel(levels.current);
-		};
-		startTimer();
+	}
 
-		// prevents scrollIntoView error
-		return () => {
-			setEnemyBlockFade('hidden');
-			clearInterval(startTimer);
-		};
-	}, []);
+	componentWillUnmount() {
+		this.mounted = false;
+		this.service.stop();
+	}
 
-	useEffect(() => {
-		handleText(levels.current);
-	}, [levels]);
+	updateState = (state, callback) => {
+		this.mounted && this.setState(state, callback);
+	}
 
-	useEffect(() => {
-		disableIfClicked();
-		checkModifier();
-	}, [storyText]);
+	initialize = () => {
+		const { stats, levels } = this.props;
+		const { userHealth } = this.state;
+		this.updateState({
+			userHealth: {
+				...userHealth,
+				current: stats.health,
+				max: stats.maxHealth
+			},
+			// sets the current level if visited has just been set, or if the user reloads.
+			// ...(levels.visited.length <= 1 || window.performance.getEntriesByType('navigation')[0].type === 'reload') && {
+			initialLevel: levels.current
+			// }
+		}, () => this.handleText(levels.current));
+		this.startTimer();
+	}
 
-	useEffect(() => {
-		setButtonTimes();
-		return () => {
-			clearTimeout(setButtonTimes);
-		};
-	}, [typewriterDelay, storyText]);
-
-	// useEffect(() => {
-	// 	// Health bars now update based on the enemy and user's health
-	// 	setHealthWidth();
-	// }, [currentEnemyHealth, currentUserHealth]);
-    
-	const handleLevel = (choice) => {
+	handleLevel = (choice) => {
+		const { updateCharacter, levels } = this.props;
 		// If the choice selected is one that repeats, don't add it to the visited array.
 		if (isBlacklistedChoice(choice)) {
 			updateCharacter({
@@ -135,7 +142,7 @@ const BoundMainStory = (props) => {
 					current: choice
 				}
 			});
-			handleText(choice);
+			this.handleText(choice);
 		} else {
 			updateCharacter({
 				levels: {
@@ -146,11 +153,11 @@ const BoundMainStory = (props) => {
 					current: choice
 				}
 			});
-			handleText(choice);
+			this.handleText(choice);
 		}
 	};
 
-	const handleText = (choice) => {
+	handleText = (choice) => {
 		// When a player dies, it puts them on 00-Death. This means that if they select this character
 		// again, they'll remain dead.
 		if (choice === '00-Death') {
@@ -158,26 +165,27 @@ const BoundMainStory = (props) => {
 			return;
 		}
 		// loops through the storylines array, and matches the character's level with the corresponding object
-		for (let i = 0; i < storylines.length; i++) {
-			if (storylines[i].level === choice) {
-				setStoryText(storylines[i].text);
-				setModifier(storylines[i].modifier);
-				setOptions(storylines[i].options);
-				if (storylines[i].enemy) {
-					setCurrentEnemy(storylines[i].enemy);
-					// if the enemy has two words in its name, it replaces the space with an underscore for importing
-					setEnemyName(storylines[i].enemy.name.replace(' ', '_'));
-					setVictoryTarget(storylines[i].victory);
-					setCooldownRound(0);
-					setSkillUsed(false);
-				}
-			}
+		const levelMatch = storylines.some(story => story.level === choice);
+		if (isEmpty(levelMatch)) {
+			this.updateState({
+				storyText: levelMatch.text,
+				modifier: levelMatch.modifier,
+				options: levelMatch.options,
+				...(levelMatch.enemy ? {
+					currentEnemy: levelMatch.enemy,
+					enemyName: levelMatch.enemy.name.replace(' ', '_'),
+					victoryTarget: levelMatch.victory,
+					cooldownRound: 0,
+					skillUsed: false
+				} : {})
+			});
 		}
 	};
 
 	// This function renders the decision buttons based on how long it takes to write the story text.
 	// number of letters
-	const setButtonTimes = () => {
+	setButtonTimes = () => {
+		const { storyText, typewriterDelay, currentEnemy, enemyHealth } = this.state;
 		let speedMultiplier;
 		clearTimeout();
 		if (storyText.length === 0) {
@@ -195,31 +203,35 @@ const BoundMainStory = (props) => {
 			break;
 		}
 		setTimeout(() => {
-			setOptionFade('fadeIn');
-			if (currentEnemy !== {} && enemyHealth.current !== currentEnemy.health) {
-				displayEnemy();
-			}
+			this.updateState({
+				optionFade: 'fadeIn'
+			}, currentEnemy !== {} && enemyHealth.current !== currentEnemy.health ? this.displayEnemy : () => {});
 		}, (storyText.split('').length * speedMultiplier + 2000));
-
 	};
 
-	const startTimer = () => {
+	startTimer = () => {
+		const { time } = this.props;
 		let currentTime = time.value;
-		setInterval(() => setTimer(currentTime++), 1000);
+		setInterval(() => this.updateState({ timer: currentTime++ }), 1000);
 	};
 
-	const stopTimer = () => {
-		clearInterval(startTimer);
+	stopTimer = () => {
+		clearInterval();
 	};
 
-	const checkModifier = () => {
+	checkModifier = () => {
+		const { levels, updateCharacter, stats, inventory } = this.props;
+		const { modifier, initialLevel, userHealth, machineState } = this.state;
+		console.log(machineState);
 		// checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
 		// If it's their saved level, they can't get the buff again.
 		// Needed to add in an extra check for torchCheck only, as it wasn't playing nice
-		if ((modifier.length && levels.current !== initalLevel) || modifier[0]?.torchCheck) {
-			setSnackbarDisplay(true);
+		if ((modifier.length && levels.current !== initialLevel) || modifier[0]?.torchCheck) {
+			this.updateState({
+				snackbarDisplay: true
+			});
 			modifier.forEach(mod => {
-				const currentMod = Object.keys(mod)[0];
+				const [currentMod] = Object.keys(mod);
 				if (mod.weapon) {
 					updateCharacter({
 						inventory: {
@@ -227,7 +239,7 @@ const BoundMainStory = (props) => {
 							weaponDamage: mod.weapon.dmg
 						}
 					});
-					state.context.weaponDamage = mod.weapon.dmg;
+					machineState.context.weaponDamage = mod.weapon.dmg;
 				} else if (mod.health) {
 					updateCharacter({
 						stats: {
@@ -235,22 +247,22 @@ const BoundMainStory = (props) => {
 						}
 					});
 				} else if (currentMod === 'strength' ||
-                    currentMod === 'defense' ||
-                    currentMod === 'wisdom' ||
-                    currentMod === 'luck') {
+					currentMod === 'defense' ||
+					currentMod === 'wisdom' ||
+					currentMod === 'luck') {
 					updateCharacter({
 						stats: {
 							[currentMod]: stats[currentMod] + mod[currentMod]
 						}
 					});
-					state.context[currentMod] = stats[currentMod] + mod[currentMod];
+					machineState.context[currentMod] = stats[currentMod] + mod[currentMod];
 				} else if (currentMod === 'head' ||
-                    currentMod === 'chest' ||
-                    currentMod === 'legs' ||
-                    currentMod === 'hands' ||
-                    currentMod === 'feet' ||
-                    currentMod === 'torch' ||
-                    currentMod === 'amulet') {
+					currentMod === 'chest' ||
+					currentMod === 'legs' ||
+					currentMod === 'hands' ||
+					currentMod === 'feet' ||
+					currentMod === 'torch' ||
+					currentMod === 'amulet') {
 					updateCharacter({
 						inventory: {
 							[currentMod]: mod[currentMod]
@@ -262,73 +274,92 @@ const BoundMainStory = (props) => {
 							[currentMod]: inventory[currentMod] + mod[currentMod] < 0 ? 0 : inventory[currentMod] + mod[currentMod]
 						}
 					});
-					currentMod === 'healthPotions' && (state.context.healthPotions += mod.healthPotions);
+					currentMod === 'healthPotions' && (machineState.context.healthPotions += mod.healthPotions);
 				} else if (mod.luckCheck) {
-					setSnackbarDisplay(false);
+					this.updateState({
+						snackbarDisplay: false
+					});
 					const checkingLuck = async () => {
 						return attacks.campaignLuckCheck(stats.luck, mod.event);
 					};
 					checkingLuck().then((results) => {
-						setOptions([
-							{
-								'label': results[0].label,
-								'target': results[0].target
-							}
-						]);
+						this.updateState({
+							options: [
+								{
+									'label': results[0].label,
+									'target': results[0].target
+								}
+							]});
 					});
 				} else if (mod.torchCheck) {
-					setSnackbarDisplay(false);
+					this.updateState({
+						snackbarDisplay: false
+					});
 					const checkingTorch = async () => {
 						return attacks.torchCheck(inventory.torch);
 					};
 					checkingTorch().then((results) => {
-						setOptions([
-							{
-								'label': results.label,
-								'target': results.target
-							}
-						]);
+						this.updateState({
+							options: [
+								{
+									'label': results.label,
+									'target': results.target
+								}
+							]});
 					});
 				} else {
-					setSnackbarDisplay(false);
+					this.updateState({
+						snackbarDisplay: false
+					});
 				}
 			});
 		}
 	};
 
 	// Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
-	const displayEnemy = async () => {
+	displayEnemy = async () => {
+		const { stats } = this.props;
+		const { currentEnemy, modifier, enemyName } = this.state;
 		console.log(currentEnemy);
 		if (modifier[0].fight && modifier.length < 2) {
-			setUserHealth({ current: stats.health, max: stats.maxHealth, width: `${(100 * stats.health) / stats.maxHealth}%` });
-			setEnemyHealth({ current: currentEnemy.health, max: currentEnemy.health, width: '100%' });
-			setEnemyImage(enemyName);
-			setAttackDisplay('flex');
-			setImageDisplay('block');
-			setEnemyBlockFade('fadeIn');
-			setTimeout(() => {
-				if (enemyBlockFade === 'fadeIn') {
-					const enemyBlock = document.getElementById('enemyBlock');
-					enemyBlock.scrollIntoView({ behavior: 'smooth' });
-				}
-			}, 1000);
+			this.updateState({
+				userHealth: {
+					current: stats.health,
+					max: stats.maxHealth,
+					width: `${(100 * stats.health) / stats.maxHealth}%`
+				},
+				enemyHealth: {
+					current: currentEnemy.health,
+					max: currentEnemy.health,
+					width: '100%'
+				},
+				enemyImage: enemyName,
+				attackDisplay: 'flex',
+				imageDisplay: 'block',
+				enemyBlockFade: 'fadeIn'
+			});
 		}
-		return;
 	};
 
 	// This takes the value from the option, and sets the level and text based on its target
-	const handleClick = (option) => {
+	handleClick = async (option) => {
+		const { navigate } = this.props;
 		// updateClickedArray(option);
-		handleLevel(option.target);
-		setOptionFade('none');
-		setImageDisplay('none');
+		this.updateState({
+			level: option.target,
+			optionFade: 'none',
+			imageDisplay: 'none'
+		});
 		if (option.target === 'Main Menu') {
-			saveGame().then(() => history('/select'));
+			await this.saveGame();
+			navigate('/select');
 
 		}
 	};
 
-	const disableIfClicked = () => {
+	disableIfClicked = () => {
+		const { levels } = this.props;
+		const { options } = this.state;
 		if (!options) {
 			return;
 		}
@@ -340,92 +371,117 @@ const BoundMainStory = (props) => {
 		}
 	};
 
-	const handleFight = (option) => {
+	handleFight = (option) => {
+		const { stats, updateCharacter } = this.props;
+		const { charClass, defense, luck } = stats;
+		const { cooldownRound, enemyHealth, userHealth, machineState } = this.state;
+		const { send } = this.service;
 		const camelOption = stringToCamel(option.label);
 		const res = send({ type: camelOption });
 		const skillButton = document.getElementById('useSkill');
 		// resets buffs if the round is same as the specified cooldown one.
 		if (res.roundCount === cooldownRound) {
-			resetBuffs();
+			this.resetBuffs();
 			skillButton.removeAttribute('style');
 		}
-		setButtonDisabled(true);
+		this.updateState({
+			buttonDisabled: true
+		});
 		if (camelOption === 'normalAttack' || camelOption === 'specialAttack') {
-			setEnemyHealth({
-				...enemyHealth,
-				current: res.context.enemyHealth,
-				width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
+			this.updateState({
+				enemyHealth: {
+					...enemyHealth,
+					current: res.context.enemyHealth,
+					width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
+				}
 			});
 			console.log(enemyHealth.current);
-			res.context.enemyHealth <= 0 ? nextPhase() : enemyTurn(userHealth.current);
+			res.context.enemyHealth <= 0 ? this.nextPhase() : this.enemyTurn(userHealth.current);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill') {
-			const { charClass, defense, luck } = stats;
 			console.log('cooldownRound', res.context.cooldownRound);
-			setCooldownRound(res.context.cooldownRound);
+			this.updateState({
+				cooldownRound: res.context.cooldownRound
+			});
 			// sets a style to the skill button to make it the only one that continues being disabled.
 			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26) !important; box-shadow: none; background-color: rgba(0, 0, 0, 0.12) !important;');
 			switch (charClass) {
 			case 'Warrior':
-				setTempDefense(defense);
+				this.updateState({
+					tempDefense: defense
+				});
 				updateCharacter({
 					stats: {
 						defense: defense + res.context.skillResult
 					}
 				});
-				state.context.defense = defense + res.context.skillResult;
-				enemyTurn(userHealth.current);
+				machineState.context.defense = defense + res.context.skillResult;
+				this.enemyTurn(userHealth.current);
 				break;
 			case 'Rogue':
-				setTempLuck(luck);
+				this.updateState({
+					tempLuck: luck
+				});
 				updateCharacter({
 					stats: {
 						luck: luck + res.context.skillResult
 					}
 				});
-				state.context.luck = luck + res.context.skillResult;
-				enemyTurn(userHealth.current);
+				machineState.context.luck = luck + res.context.skillResult;
+				this.enemyTurn(userHealth.current);
 				break;
 			default:
-				setUserHealth({
-					...userHealth,
-					current: userHealth.max
+				this.updateState({
+					userHealth: {
+						...userHealth,
+						current: userHealth.max
+					}
 				});
-				enemyTurn(userHealth.max);
+				this.enemyTurn(userHealth.max);
 			}
-			
+
 		} else {
-		// if the user's health with the increase added is MORE than their max, just set it to max.
+			// if the user's health with the increase added is MORE than their max, just set it to max.
 			console.log(res.context.healthIncrease);
 			const finalHealth = userHealth.current + res.context.healthIncrease > userHealth.max ?
 				userHealth.max : userHealth.current + res.context.healthIncrease;
-			setUserHealth({
-				...userHealth,
-				current: finalHealth,
-				width: `${(100 * finalHealth) / userHealth.max}%`
+			this.updateState({
+				userHealth: {
+					...userHealth,
+					current: finalHealth,
+					width: `${(100 * finalHealth) / userHealth.max}%`
+				}
 			});
-			enemyTurn(finalHealth);
+			this.enemyTurn(finalHealth);
 		}
-		
+
 	};
 
-	const enemyTurn = (currentHealth) => {
+	enemyTurn = (currentHealth) => {
+		const { userHealth, roundCount, machineState } = this.state;
+		const { send } = this.service;
 		setTimeout(() => {
 			const res = send({ type: 'enemyNormalAttack' });
 			const damagedHealth = currentHealth - res.context.damage;
-			setUserHealth({
-				...userHealth,
-				current: damagedHealth,
-				width: `${(100 * damagedHealth) / userHealth.max}%`
+			console.log(machineState);
+			const nextRound = roundCount + 1;
+			this.updateState({
+				userHealth: {
+					...userHealth,
+					current: damagedHealth,
+					width: `${(100 * damagedHealth) / userHealth.max}%`
+				},
+				roundCount: nextRound,
+				buttonDisabled: false
 			});
-			setRoundCount(current => current + 1);
-			setButtonDisabled(false);
 		}, 3000);
-		userHealth.current <= 0 && handlePlayerDeath();
+		userHealth.current <= 0 && this.handlePlayerDeath();
 	};
 
 	// Sets the buffed status back to their original values
-	const resetBuffs = () => {
+	resetBuffs = () => {
+		const { updateCharacter } = this.props;
+		const { tempDefense, tempLuck } = this.state;
 		if (tempDefense !== 0) {
 			updateCharacter({
 				stats: {
@@ -441,188 +497,244 @@ const BoundMainStory = (props) => {
 		}
 	};
 
-	const nextPhase = async () => {
+	nextPhase = async () => {
+		const { updateCharacter } = this.props;
+		const { enemyHealth, userHealth, victoryTarget } = this.state;
 		// set enemy health to 0, and reset buffs
-		setEnemyHealth({
-			...enemyHealth,
-			width: '0%',
-			current: 0
-		});
-		resetBuffs();
+		this.updateState({
+			enemyHealth: {
+				...enemyHealth,
+				width: '0%',
+				current: 0
+			},
+			buttonDisabled: false
+		}, this.resetBuffs);
 		updateCharacter({
 			stats: {
 				health: userHealth.current
 			}
 		});
-		setButtonDisabled(false);
 		// Fade the image out after a second, so it's not jarringly quick.
 		setTimeout(() => {
-			setAttackDisplay('none');
-			setEnemyBlockFade('fadeOut');
+			this.updateState({
+				attackDisplay: 'none',
+				enemyBlockFade: 'fadeOut'
+			});
 		}, 1000);
 		// Once it's faded, wait another second and hide the image. Clear out the current enemy object and the image, and change the level.
 		setTimeout(() => {
-			setEnemyBlockFade('hidden');
-			setImageDisplay('none');
-			setCurrentEnemy({});
-			setAttackText('');
-			setEnemyImage('');
-			setEnemyName('');
-			setRoundCount(1);
-			handleLevel(victoryTarget.target);
+			this.updateState({
+				enemyBlockFade: 'hidden',
+				imageDisplay: 'none',
+				currentEnemy: {},
+				attackText: '',
+				enemyImage: '',
+				roundCount: 1,
+				
+			});
+			this.handleLevel(victoryTarget.target);
 		}, 2000);
-		checkModifier();
+		this.checkModifier();
 	};
 
-	const handlePlayerDeath = async () => {
-		setEnemyBlockFade('hidden');
-		setImageDisplay('none');
-		setCurrentEnemy({});
-		setStoryText('After fighting valliantly, you succumb to your wounds.');
-		setAttackDisplay('none');
-		setModifier([
-			{
-				'death': true
-			}
-		]);
-		updateCharacter({
+	handlePlayerDeath = async () => {
+		const { updateCharacter } = this.props;
+		await updateCharacter({
 			stats: {
 				health: 0
 			}
 		});
-		updateCharacter({
+		await updateCharacter({
 			levels: {
 				current: '00-Death',
 				visited: []
 			}
 		});
-		saveGame();
+		this.updateState({
+			enemyBlockFade: 'hidden',
+			imageDisplay: 'none',
+			currentEnemy: {},
+			storyText: 'After fighting valliantly, you succumb to your wounds.',
+			attackDisplay: 'none',
+			modifier: [
+				{
+					death: true
+				}
+			]
+		}, this.saveGame());
 	};
 
-	const handleMenuClick = (event) => {
-		setAnchorEl(event.currentTarget);
+	handleMenuClick = (event) => {
+		this.updateState({
+			anchorEl: event.currentTarget
+		});
 	};
 
-	const handleMenuClose = (speed, reason) => {
-		if (reason !== 'backdropClick') {
-			setTypewriterDelay(speed);
-		}
-		setAnchorEl(null);
+	handleMenuClose = (speed, reason) => {
+		this.updateState({
+			...(reason !== 'backdropClick' ? {
+				typewriterDelay: speed
+			}: {}),
+			anchorEl: null
+		});
 	};
 
-	const saveGame = () => {
+	saveGame = async () => {
+		const { updateCharacter, levels, stats, inventory, user } = this.props;
+		const { timer } = this.state;
 		updateCharacter({
 			time: {
 				value: timer
 			}
 		});
 		console.log(levels.current);
-		API.saveCharacter(
+		await API.saveCharacter(
 			stats,
 			inventory,
 			levels.current,
 			timer,
 			user.jwtToken
-		).then(() => {
-			setSaveGameDisplay(true);
+		);
+		this.setSaveGameDisplayCallback(true);
+	};
+
+	setSaveGameDisplayCallback = (value) => {
+		this.updateState({
+			saveGameDisplay: value
 		});
-	};
+	}
 
-	const logout = () => {
-		stopTimer();
+	setSnackbarDisplayCallback = (value) => {
+		this.updateState({
+			snackbarDisplay: value
+		});
+	}
+
+	logout = () => {
+		const { resetStore, navigate } = this.props;
+		this.stopTimer();
 		resetStore();
-		history('/');
+		navigate('/');
 	};
-
-	return (
-		<Wrapper page="main">
-			<div className="topRow">
-				<Button
-					className="primaryOutlinedButton"
-					variant="outlined"
-					id="logout"
-					onClick={logout}
-					disabled={buttonDisabled}
-				>LOG OUT</Button>
-				<img src={smallLogo} alt="a small logo" id="smallLogo" />
-				<a id="back" onClick={() => history('/select')}>QUIT TO<br />MAIN MENU</a>
-			</div>
-			<section className="textArea">
-				<Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={handleMenuClick}>
-					{'Text Speed >>'}
-				</Button>
-				<Menu
-					anchorEl={anchorEl}
-					keepMounted
-					open={Boolean(anchorEl)}
-					onClose={handleMenuClose}
-					elevation={0}
-				>
-					<MenuItem onClick={() => handleMenuClose(40)}>Slow</MenuItem>
-					<MenuItem onClick={() => handleMenuClose(20)}>Medium</MenuItem>
-					<MenuItem onClick={() => handleMenuClose(1)}>Fast</MenuItem>
-				</Menu>
-				<Typewriter
-					options={{
-						strings: storyText,
-						autoStart: true,
-						loop: false,
-						delay: typewriterDelay,
-						wrapperClassName: 'text'
-					}}
-				/>
-			</section>
-			<Enemy
-				imageDisplay={imageDisplay}
-				enemyBlockFade={enemyBlockFade}
-				currentEnemy={currentEnemy}
-				currentEnemyHealth={enemyHealth.current}
-				enemyHealthWidth={enemyHealth.width}
-				enemyImage={enemyImage}
-				characterName={stats.name}
-				currentUserHealth={userHealth.current === 1 ? stats.health : userHealth.current}
-				maxHealth={userHealth.max}
-				userHealthWidth={userHealth.width}
-				optionFade={optionFade}
-				attackDisplay={attackDisplay}
-				attackText={attackText}
-			/>
-			<div id="optionArea" className={optionFade}>
-				<ChoiceBlock
-					modifier={modifier}
-					optionFade={optionFade}
-					options={options}
-					buttonDisabled={buttonDisabled}
-					handleFight={handleFight}
-					handleClick={handleClick}
-					enemyDefense={currentEnemy.defense}
-				/>
-			</div>
-			<footer id="footer">
-				<Inventory
-					health={userHealth.current === 1 ? stats.health : userHealth.current}
-					maxHealth={userHealth.max}
-					userHealthWidth={(100 * (userHealth.current === 1 ? stats.health : userHealth.current)) / userHealth.max}
-				/>
-				<div>
+	render() {
+		const { stats, navigate } = this.props;
+		const {
+			buttonDisabled,
+			anchorEl,
+			storyText,
+			typewriterDelay,
+			imageDisplay,
+			enemyBlockFade,
+			currentEnemy,
+			enemyHealth,
+			enemyImage,
+			userHealth,
+			optionFade,
+			attackDisplay,
+			attackText,
+			modifier,
+			options,
+			saveGameDisplay,
+			snackbarDisplay,
+			enemyName
+		} = this.state;
+		return (
+			<Wrapper page="main">
+				<div className="topRow">
 					<Button
-						className="primaryButton"
-						type="button"
-						id="save"
-						variant="contained"
+						className="primaryOutlinedButton"
+						variant="outlined"
+						id="logout"
+						onClick={this.logout}
 						disabled={buttonDisabled}
-						onClick={() => saveGame()}
-					>Save Game</Button>
+					>LOG OUT</Button>
+					<img src={smallLogo} alt="a small logo" id="smallLogo" />
+					<a id="back" onClick={() => navigate('/select')}>QUIT TO<br />MAIN MENU</a>
 				</div>
-			</footer>
-			<DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={setSaveGameDisplay} message={'Game saved!'} destination="" snackbarColor="success" />
-			<SuccessScreen display={snackbarDisplay} setDisplay={setSnackbarDisplay} items={modifier} enemyName={enemyName} />
-		</Wrapper>
+				<section className="textArea">
+					<Button aria-controls="simple-menu" aria-haspopup="true" id="speedButton" onClick={this.handleMenuClick}>
+						{'Text Speed >>'}
+					</Button>
+					<Menu
+						anchorEl={anchorEl}
+						keepMounted
+						open={Boolean(anchorEl)}
+						onClose={this.handleMenuClose}
+						elevation={0}
+					>
+						<MenuItem onClick={() => this.handleMenuClose(40)}>Slow</MenuItem>
+						<MenuItem onClick={() => this.handleMenuClose(20)}>Medium</MenuItem>
+						<MenuItem onClick={() => this.handleMenuClose(1)}>Fast</MenuItem>
+					</Menu>
+					<Typewriter
+						options={{
+							strings: storyText,
+							autoStart: true,
+							loop: false,
+							delay: typewriterDelay,
+							wrapperClassName: 'text'
+						}}
+					/>
+				</section>
+				<Enemy
+					imageDisplay={imageDisplay}
+					enemyBlockFade={enemyBlockFade}
+					currentEnemy={currentEnemy}
+					currentEnemyHealth={enemyHealth.current}
+					enemyHealthWidth={enemyHealth.width}
+					enemyImage={enemyImage}
+					characterName={stats.name}
+					currentUserHealth={userHealth.current === 1 ? stats.health : userHealth.current}
+					maxHealth={userHealth.max}
+					userHealthWidth={userHealth.width}
+					optionFade={optionFade}
+					attackDisplay={attackDisplay}
+					attackText={attackText}
+				/>
+				<div id="optionArea" className={optionFade}>
+					<ChoiceBlock
+						modifier={modifier}
+						optionFade={optionFade}
+						options={options}
+						buttonDisabled={buttonDisabled}
+						handleFight={this.handleFight}
+						handleClick={this.handleClick}
+						enemyDefense={currentEnemy.defense}
+					/>
+				</div>
+				<footer id="footer">
+					<Inventory
+						health={userHealth.current === 1 ? stats.health : userHealth.current}
+						maxHealth={userHealth.max}
+						userHealthWidth={(100 * (userHealth.current === 1 ? stats.health : userHealth.current)) / userHealth.max}
+					/>
+					<div>
+						<Button
+							className="primaryButton"
+							type="button"
+							id="save"
+							variant="contained"
+							disabled={buttonDisabled}
+							onClick={this.saveGame}
+						>Save Game</Button>
+					</div>
+				</footer>
+				<DefaultPopup customClass="saveSuccess" display={saveGameDisplay} setDisplay={this.setSaveGameDisplayCallback} message={'Game saved!'} destination="" snackbarColor="success" />
+				<SuccessScreen
+					display={snackbarDisplay}
+					setDisplay={this.setSnackbarDisplayCallback}
+					items={modifier}
+					enemyName={enemyName}
+				/>
+			</Wrapper>
 
-	);
-};
+		);
+	}
+
+}
 
 BoundMainStory.propTypes = {
+	navigate: PropTypes.func,
 	updateCharacter: PropTypes.func,
 	inventory: PropTypes.object,
 	stats: PropTypes.object,
@@ -633,6 +745,7 @@ BoundMainStory.propTypes = {
 };
 
 BoundMainStory.defaultProps = {
+	navigate: () => {},
 	updateCharacter: () => {},
 	inventory: {},
 	stats: {},
@@ -644,4 +757,4 @@ BoundMainStory.defaultProps = {
 
 const MainStory = connect(mapStateToProps, mapDispatchToProps)(BoundMainStory);
 
-export default MainStory;
+export default withRouter(MainStory);

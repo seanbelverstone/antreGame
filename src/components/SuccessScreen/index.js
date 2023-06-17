@@ -33,8 +33,8 @@ const SuccessScreen = (props) => {
 			let note;
 			items.forEach((item) => {
 				const itemName = Object.keys(item);
-				const quantity = Object.values(item)[0];
-				const armorPiece = Object.values(item)[0];
+				const [quantity] = Object.values(item);
+				const [armorPiece] = Object.values(item);
 				if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
 					// if no modifier is present, just return.
 					setDisplay(false);
@@ -82,6 +82,7 @@ const SuccessScreen = (props) => {
 
 	const setColor = (message) => {
 		const messageArray = message.split(' ');
+		// eslint-disable-next-line prefer-destructuring
 		const item = messageArray[messageArray.length -2].toLowerCase().split('.\n')[0];
 		console.log('running');
 		if (messageArray[1] === 'equipped') return { color: 'var(--primary' };
@@ -108,7 +109,7 @@ const SuccessScreen = (props) => {
 						</div>
 						{fire()}
 						{enemyName ? (<h1>You defeated {snakeToTitle(enemyName) || 'enemyName'}!</h1>)
-							: (<h1>Player Update:</h1>)}
+							: (<h2>Player Update:</h2>)}
 						<div>
 							{messages.map((message, index) => {
 								return (<p style={setColor(message)} key={index}>{message}</p>);
@@ -126,14 +127,16 @@ SuccessScreen.propTypes = {
 	display: PropTypes.bool,
 	setDisplay: PropTypes.func,
 	items: PropTypes.oneOfType([PropTypes.array]),
-	enemyName: PropTypes.string
+	enemyName: PropTypes.string,
+	setEnemyName: PropTypes.func
 };
 
 SuccessScreen.defaultProps = {
 	display: false,
 	setDisplay: () => {},
 	items: [],
-	enemyName: ''
+	enemyName: '',
+	setEnemyName: () => {}
 };
 
 export default SuccessScreen;

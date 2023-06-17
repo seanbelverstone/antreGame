@@ -7,15 +7,21 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+	"parser": "@babel/eslint-parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
         "ecmaVersion": 2020,
-        "sourceType": "module"
+        "sourceType": "module",
+		"requireConfigFile": false,
+		"babelOptions": {
+			"presets": ["@babel/preset-react"]
+		 }
     },
     "plugins": [
-        "react"
+        "react",
+		"jsx"
     ],
     "rules": {
         "indent": [
@@ -29,6 +35,12 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+		"prefer-destructuring": ["error", {
+			"array": true,
+			"object": true
+		  }, {
+			"enforceForRenamedProperties": false
+		  }]
     }
 }
