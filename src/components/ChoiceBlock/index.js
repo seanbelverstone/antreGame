@@ -30,6 +30,7 @@ const BoundChoiceBlock = (props) => {
 		handleFight,
 		handleClick,
 		enemyDefense,
+		visitedLevels
 	} = props;
 	const { weaponDamage } = inventory;
 	const { charClass, strength, wisdom } = stats;
@@ -134,7 +135,8 @@ const BoundChoiceBlock = (props) => {
 						className="optionText primaryButton"
 						variant="contained"
 						id={stringToCamel(option.label)}
-						onClick={() => handleClick(option)}>
+						onClick={() => handleClick(option)}
+						disabled={visitedLevels.includes(option.target)}>
 						{option.label}
 					</Button>
 				</div>
@@ -152,7 +154,8 @@ BoundChoiceBlock.propTypes = {
 	buttonDisabled: PropTypes.bool,
 	handleFight: PropTypes.func,
 	handleClick: PropTypes.func,
-	enemyDefense: PropTypes.number
+	enemyDefense: PropTypes.number,
+	visitedLevels: PropTypes.oneOfType([PropTypes.array]),
 };
 
 BoundChoiceBlock.defaultProps = {
@@ -164,7 +167,8 @@ BoundChoiceBlock.defaultProps = {
 	buttonDisabled: false,
 	handleFight: () => {},
 	handleClick: () => {},
-	enemyDefense: 0
+	enemyDefense: 0,
+	visitedLevels: []
 };
 
 const ChoiceBlock = connect(mapStateToProps, mapDispatchToProps)(BoundChoiceBlock);

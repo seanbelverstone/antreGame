@@ -6,7 +6,6 @@ import * as actionCreators from '../../redux/actions/actionCreators';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import DeleteButton from '../DeleteButton';
-import { isBlacklistedChoice } from '../../utils/functions';
 import './style.css';
 import API from '../../utils/API';
 
@@ -76,9 +75,7 @@ const BoundCharacterBlock = (props) => {
 		});
 		updateCharacter({
 			levels: {
-				visited: [
-					isBlacklistedChoice(selectedCharacter.level) ? '01-Start' : selectedCharacter.level
-				],
+				visited: selectedCharacter.pastLevels.split(','),
 				current: selectedCharacter.level
 			},
 			time: {

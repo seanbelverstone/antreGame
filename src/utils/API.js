@@ -54,8 +54,8 @@ export default {
 				'Authorization': `Bearer ${jwtToken}`}
 		});
 	},
-	saveCharacter: (stats, inventory, levels, time, jwtToken) => {
-		console.log(stats, inventory, levels, time);
+	saveCharacter: (stats, inventory, level, pastLevels, time, jwtToken) => {
+		console.log(stats, inventory, level, time);
 		const { id, health, strength, defense, wisdom, luck } = stats;
 		const {weapon, weaponDamage, head,  chest,  legs,  hands,  feet,  torch,  amulet,  healthPotions,  gold } = inventory;
 		return axios.put(`${endpoint}/api/characters/${id}`, {
@@ -76,7 +76,8 @@ export default {
 			amulet, 
 			healthPotions, 
 			gold, 
-			level: levels, 
+			level,
+			pastLevels: pastLevels.toString(), 
 			time
 		}, {
 			headers: {

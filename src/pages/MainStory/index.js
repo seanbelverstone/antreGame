@@ -54,6 +54,7 @@ class BoundMainStory extends React.Component {
 			attackText: '',
 			modifier: [],
 			options: [],
+			visitedLevels: [],
 			currentEnemy: {},
 			enemyName: '',
 			victoryTarget: '',
@@ -119,7 +120,8 @@ class BoundMainStory extends React.Component {
 			},
 			// sets the current level if visited has just been set, or if the user reloads.
 			// ...(levels.visited.length <= 1 || window.performance.getEntriesByType('navigation')[0].type === 'reload') && {
-			initialLevel: levels.current
+			initialLevel: levels.current,
+			visitedLevels: levels.visited
 			// }
 		}, () => this.handleText(levels.current));
 		this.startTimer();
@@ -363,7 +365,7 @@ class BoundMainStory extends React.Component {
 	// This takes the value from the option, and sets the level and text based on its target
 	handleClick = async (option) => {
 		const { navigate } = this.props;
-		// updateClickedArray(option);
+		this.updateClickedArray(option.target);
 		this.updateState({
 			optionFade: 'none',
 			imageDisplay: 'none'
@@ -374,6 +376,16 @@ class BoundMainStory extends React.Component {
 
 		}
 	};
+
+	updateClickedArray = (levelName) => {
+		const { visitedLevels } = this.state;
+		const levelAlreadyExists = visitedLevels.some(level => level === levelName);
+		if (!levelAlreadyExists && !isBlacklistedChoice(levelName)) {
+			this.updateState({
+				visitedLevels: [...visitedLevels, levelName]
+			});
+		}
+	}
 
 	disableIfClicked = () => {
 		const { levels } = this.props;
@@ -596,7 +608,7 @@ class BoundMainStory extends React.Component {
 
 	saveGame = async () => {
 		const { updateCharacter, levels, stats, inventory, user } = this.props;
-		const { timer } = this.state;
+		const { timer, visitedLevels } = this.state;
 		updateCharacter({
 			time: {
 				value: timer
@@ -606,8 +618,9 @@ class BoundMainStory extends React.Component {
 			stats,
 			inventory,
 			levels.current,
+			visitedLevels,
 			timer,
-			user.jwtToken
+			user.jwtToken,
 		);
 		this.setSaveGameDisplayCallback(true);
 	};
@@ -651,7 +664,8 @@ class BoundMainStory extends React.Component {
 			options,
 			saveGameDisplay,
 			snackbarDisplay,
-			enemyName
+			enemyName,
+			visitedLevels
 		} = this.state;
 		return (
 			<Wrapper page="main">
@@ -714,6 +728,7 @@ class BoundMainStory extends React.Component {
 						handleFight={this.handleFight}
 						handleClick={this.handleClick}
 						enemyDefense={currentEnemy.defense}
+						visitedLevels={visitedLevels}
 					/>
 				</div>
 				<footer id="footer">
