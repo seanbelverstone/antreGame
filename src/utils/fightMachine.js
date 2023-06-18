@@ -12,7 +12,6 @@ import storylines from './storylines.json';
 export const createFightMachine = (props) => {
 	const { inventory, stats, levels } = props;
 	const currentStory = storylines.find(story => story.level === levels?.current);
-	console.log(currentStory);
 	return createMachine({
 		id: 'fightMachine',
 		initial: 'USER_TURN',
@@ -47,7 +46,6 @@ export const createFightMachine = (props) => {
 					// normalAttack is an action.
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
-							console.log('normal attack works');
 							const normalAttack = attacks.normalAttack(
 								context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck
 							);
@@ -62,7 +60,6 @@ export const createFightMachine = (props) => {
 					specialAttack: {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
-							console.log('special attack attack works');
 							const specialAttack = attacks.specialAttack(context.weaponDamage, stats.strength, currentStory.enemy.defense, stats.luck, currentStory.enemy.luck);
 							return {
 								...context,
@@ -75,7 +72,6 @@ export const createFightMachine = (props) => {
 					useSkill: {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
-							console.log('skill used');
 							const useSkill = attacks.useSkill(context.charClass, context.wisdom);
 							return {
 								...context,
@@ -89,8 +85,6 @@ export const createFightMachine = (props) => {
 					useHealthPotion: {
 						target: 'ENEMY_TURN',
 						actions: assign((context, data) => {
-							console.log('Health potion used');
-							console.log(context.healthPotions);
 							const usePotion = attacks.useHealthPotion(context.healthPotions);
 							return {
 								...context,

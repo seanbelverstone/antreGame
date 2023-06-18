@@ -84,7 +84,6 @@ const SuccessScreen = (props) => {
 		const messageArray = message.split(' ');
 		// eslint-disable-next-line prefer-destructuring
 		const item = messageArray[messageArray.length -2].toLowerCase().split('.\n')[0];
-		console.log('running');
 		if (messageArray[1] === 'equipped') return { color: 'var(--primary' };
 		return { color: `var(--${item})` };
 	};

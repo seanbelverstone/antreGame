@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../redux/actions/actionCreators';
 import PropTypes from 'prop-types';
 import Typewriter from 'typewriter-effect';
-import { interpret } from 'xstate';
+import { interpret, assign } from 'xstate';
 //MaterialUi
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -61,7 +61,6 @@ class BoundMainStory extends React.Component {
 			imageDisplay: 'none',
 			optionFade: 'hidden',
 			enemyBlockFade: '',
-			attackDisplay: '',
 			saveGameDisplay: false,
 			typewriterDelay: 20,
 			anchorEl: null,
@@ -159,7 +158,6 @@ class BoundMainStory extends React.Component {
 		}
 		// loops through the storylines array, and matches the character's level with the corresponding object
 		const levelMatch = storylines.filter(story => story.level === choice);
-		console.log(levelMatch);
 		if (!isEmpty(levelMatch)) {
 			this.updateState({
 				storyText: levelMatch[0].text,
@@ -173,6 +171,9 @@ class BoundMainStory extends React.Component {
 					skillUsed: false
 				} : {})
 			}, this.handleOptionFadeIn);
+			assign({
+				currentLevel: levelMatch[0]
+			});
 
 		}
 	};
@@ -185,8 +186,8 @@ class BoundMainStory extends React.Component {
 		setTimeout(() => {
 			this.updateState({
 				optionFade: 'fadeIn'
-			});
-			currentEnemy !== {} && this.displayEnemy();
+			}, this.checkModifier);
+			!isEmpty(currentEnemy) && this.displayEnemy();
 		}, storyText.split('').length * [multi ? multi : 10] + 2000);
 	}
 
@@ -225,10 +226,11 @@ class BoundMainStory extends React.Component {
 
 	checkModifier = () => {
 		const { levels, updateCharacter, stats, inventory } = this.props;
-		const { modifier, initialLevel, userHealth, machineState } = this.state;
+		const { modifier, initialLevel, userHealth } = this.state;
 		// checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
 		// If it's their saved level, they can't get the buff again.
 		// Needed to add in an extra check for torchCheck only, as it wasn't playing nice
+		console.log(modifier);
 		if ((modifier.length && levels.current !== initialLevel) || modifier[0]?.torchCheck) {
 			this.updateState({
 				snackbarDisplay: true
@@ -242,12 +244,24 @@ class BoundMainStory extends React.Component {
 							weaponDamage: mod.weapon.dmg
 						}
 					});
-					machineState.context.weaponDamage = mod.weapon.dmg;
+					assign({
+						weaponDamage: mod.weapon.dmg
+					});
 				} else if (mod.health) {
+					const newHealth = userHealth.current + mod.health > userHealth.max ? userHealth.max : userHealth.current + mod.health;
 					updateCharacter({
 						stats: {
-							health: stats.health + mod.health > userHealth?.max ? userHealth.max : stats.health + mod.health
+							health: newHealth
 						}
+					});
+					this.updateState({
+						userHealth: {
+							...userHealth,
+							current: newHealth
+						}
+					});
+					assign({
+						health: newHealth
 					});
 				} else if (currentMod === 'strength' ||
 					currentMod === 'defense' ||
@@ -258,7 +272,9 @@ class BoundMainStory extends React.Component {
 							[currentMod]: stats[currentMod] + mod[currentMod]
 						}
 					});
-					machineState.context[currentMod] = stats[currentMod] + mod[currentMod];
+					assign({
+						[currentMod]: (context) => context[currentMod] + mod[currentMod]
+					});
 				} else if (currentMod === 'head' ||
 					currentMod === 'chest' ||
 					currentMod === 'legs' ||
@@ -277,7 +293,9 @@ class BoundMainStory extends React.Component {
 							[currentMod]: inventory[currentMod] + mod[currentMod] < 0 ? 0 : inventory[currentMod] + mod[currentMod]
 						}
 					});
-					currentMod === 'healthPotions' && (machineState.context.healthPotions += mod.healthPotions);
+					currentMod === 'healthPotions' && assign({
+						healthPotions: (context) => context.healthPotions + mod.healthPotions
+					});
 				} else if (mod.luckCheck) {
 					this.updateState({
 						snackbarDisplay: false
@@ -323,7 +341,6 @@ class BoundMainStory extends React.Component {
 	displayEnemy = async () => {
 		const { stats } = this.props;
 		const { currentEnemy, modifier, enemyName } = this.state;
-		console.log(modifier[0].fight);
 		if (modifier[0].fight) {
 			this.updateState({
 				userHealth: {
@@ -337,7 +354,6 @@ class BoundMainStory extends React.Component {
 					width: '100%'
 				},
 				enemyImage: enemyName,
-				attackDisplay: 'flex',
 				imageDisplay: 'block',
 				enemyBlockFade: 'fadeIn'
 			});
@@ -401,7 +417,6 @@ class BoundMainStory extends React.Component {
 			res.context.enemyHealth <= 0 ? this.nextPhase() : this.enemyTurn(userHealth.current);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill') {
-			console.log('cooldownRound', res.context.cooldownRound);
 			this.updateState({
 				cooldownRound: res.context.cooldownRound,
 				attackText: res.context.battleText
@@ -446,7 +461,6 @@ class BoundMainStory extends React.Component {
 
 		} else {
 			// if the user's health with the increase added is MORE than their max, just set it to max.
-			console.log(res.context.healthIncrease);
 			const finalHealth = userHealth.current + res.context.healthIncrease > userHealth.max ?
 				userHealth.max : userHealth.current + res.context.healthIncrease;
 			this.updateState({
@@ -468,7 +482,6 @@ class BoundMainStory extends React.Component {
 		setTimeout(() => {
 			const res = send({ type: 'enemyNormalAttack' });
 			const damagedHealth = currentHealth - res.context.damage;
-			console.log(res);
 			const nextRound = roundCount + 1;
 			this.updateState({
 				userHealth: {
@@ -523,7 +536,6 @@ class BoundMainStory extends React.Component {
 		// Fade the image out after a second, so it's not jarringly quick.
 		setTimeout(() => {
 			this.updateState({
-				attackDisplay: 'none',
 				enemyBlockFade: 'fadeOut'
 			});
 		}, 1000);
@@ -536,11 +548,9 @@ class BoundMainStory extends React.Component {
 				attackText: '',
 				enemyImage: '',
 				roundCount: 1,
-				
 			});
 			this.handleLevel(victoryTarget.target);
 		}, 2000);
-		this.checkModifier();
 	};
 
 	handlePlayerDeath = async () => {
@@ -561,7 +571,6 @@ class BoundMainStory extends React.Component {
 			imageDisplay: 'none',
 			currentEnemy: {},
 			storyText: 'After fighting valliantly, you succumb to your wounds.',
-			attackDisplay: 'none',
 			modifier: [
 				{
 					death: true
@@ -593,7 +602,6 @@ class BoundMainStory extends React.Component {
 				value: timer
 			}
 		});
-		console.log(levels.current);
 		await API.saveCharacter(
 			stats,
 			inventory,
@@ -611,8 +619,10 @@ class BoundMainStory extends React.Component {
 	}
 
 	setSnackbarDisplayCallback = (value) => {
+		const { modifier } = this.state;
 		this.updateState({
-			snackbarDisplay: value
+			snackbarDisplay: value,
+			...(!value && !modifier[0].fight ? { enemyName: '' } : {})
 		});
 	}
 
@@ -636,7 +646,6 @@ class BoundMainStory extends React.Component {
 			enemyImage,
 			userHealth,
 			optionFade,
-			attackDisplay,
 			attackText,
 			modifier,
 			options,
@@ -694,7 +703,6 @@ class BoundMainStory extends React.Component {
 					maxHealth={userHealth.max}
 					userHealthWidth={userHealth.width}
 					optionFade={optionFade}
-					attackDisplay={attackDisplay}
 					attackText={attackText}
 				/>
 				<div id="optionArea" className={optionFade}>

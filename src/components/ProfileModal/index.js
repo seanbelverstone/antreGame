@@ -120,8 +120,7 @@ const ProfileModal = (props) => {
 		const { id, jwtToken } = user;
 		const value = type === 'username' ? username : password;
 		API.editUser(type, value, id, jwtToken)
-			.then((res) => {
-				console.log(res);
+			.then(() => {
 				setSnackbarColor('success');
 				setSnackbarMessage(`Successfully updated ${type}.`);
 				setSnackbarDisplay(true);

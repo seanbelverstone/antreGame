@@ -28,7 +28,6 @@ const BoundCharacterBlock = (props) => {
 	let history = useNavigate();
 	const { updateCharacter, character, user } = props;
 	const [timePlayed, setTimePlayed] = useState('');
-	const [maxHealth, setMaxHealth] = useState(60);
 	useEffect(() => {
 		calculateTime();
 	}, []);
@@ -36,14 +35,15 @@ const BoundCharacterBlock = (props) => {
 
     
 	const playThisCharacter = async (selectedCharacter) => {
+		let maxHealth;
 		switch (selectedCharacter.charClass) {
 		case 'Warrior':
-			setMaxHealth(80);
+			maxHealth = 80;
 			break;
 		case 'Paladin':
-			setMaxHealth(70);
+			maxHealth = 70;
 			break;
-		default: setMaxHealth(60);
+		default: maxHealth = 60;
 		}
 		updateCharacter({
 			inventory: {
