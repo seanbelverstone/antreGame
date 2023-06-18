@@ -60,7 +60,7 @@ class BoundMainStory extends React.Component {
 			enemyImage: '',
 			imageDisplay: 'none',
 			optionFade: 'hidden',
-			enemyBlockFade: 'hidden',
+			enemyBlockFade: '',
 			attackDisplay: '',
 			saveGameDisplay: false,
 			typewriterDelay: 20,
@@ -87,7 +87,7 @@ class BoundMainStory extends React.Component {
 		};
 	}
 
-	service = interpret(createFightMachine(this.props)).onTransition((current) =>
+	service = interpret(createFightMachine(this.props)).onTransition(async (current) =>
 		this.setState({ machineState: current })
 	);
 
@@ -98,13 +98,6 @@ class BoundMainStory extends React.Component {
 	}
 
 	componentDidUpdate() {
-		const { enemyBlockFade } = this.state;
-		// const { initialLevel, currentLevel } = this.state;
-		// if (prevState.initialLevel !== initialLevel && )
-		if (enemyBlockFade === 'fadeIn') {
-			const enemyBlock = document.getElementById('enemyBlock');
-			enemyBlock.scrollIntoView({ behavior: 'smooth' });
-		}
 	}
 
 	componentWillUnmount() {
@@ -165,27 +158,42 @@ class BoundMainStory extends React.Component {
 			return;
 		}
 		// loops through the storylines array, and matches the character's level with the corresponding object
-		const levelMatch = storylines.some(story => story.level === choice);
-		if (isEmpty(levelMatch)) {
+		const levelMatch = storylines.filter(story => story.level === choice);
+		console.log(levelMatch);
+		if (!isEmpty(levelMatch)) {
 			this.updateState({
-				storyText: levelMatch.text,
-				modifier: levelMatch.modifier,
-				options: levelMatch.options,
-				...(levelMatch.enemy ? {
-					currentEnemy: levelMatch.enemy,
-					enemyName: levelMatch.enemy.name.replace(' ', '_'),
-					victoryTarget: levelMatch.victory,
+				storyText: levelMatch[0].text,
+				modifier: levelMatch[0].modifier,
+				options: levelMatch[0].options,
+				...(levelMatch[0].enemy ? {
+					currentEnemy: levelMatch[0].enemy,
+					enemyName: levelMatch[0].enemy.name.replace(' ', '_'),
+					victoryTarget: levelMatch[0].victory,
 					cooldownRound: 0,
 					skillUsed: false
 				} : {})
-			});
+			}, this.handleOptionFadeIn);
+
 		}
 	};
+
+	handleOptionFadeIn = (multi) => {
+		const { storyText, currentEnemy } = this.state;
+		this.updateState({
+			optionFade: 'hidden'
+		}, clearTimeout());
+		setTimeout(() => {
+			this.updateState({
+				optionFade: 'fadeIn'
+			});
+			currentEnemy !== {} && this.displayEnemy();
+		}, storyText.split('').length * [multi ? multi : 10] + 2000);
+	}
 
 	// This function renders the decision buttons based on how long it takes to write the story text.
 	// number of letters
 	setButtonTimes = () => {
-		const { storyText, typewriterDelay, currentEnemy, enemyHealth } = this.state;
+		const { storyText, typewriterDelay } = this.state;
 		let speedMultiplier;
 		clearTimeout();
 		if (storyText.length === 0) {
@@ -202,11 +210,7 @@ class BoundMainStory extends React.Component {
 			speedMultiplier = 44;
 			break;
 		}
-		setTimeout(() => {
-			this.updateState({
-				optionFade: 'fadeIn'
-			}, currentEnemy !== {} && enemyHealth.current !== currentEnemy.health ? this.displayEnemy : () => {});
-		}, (storyText.split('').length * speedMultiplier + 2000));
+		this.handleOptionFadeIn(speedMultiplier);
 	};
 
 	startTimer = () => {
@@ -222,7 +226,6 @@ class BoundMainStory extends React.Component {
 	checkModifier = () => {
 		const { levels, updateCharacter, stats, inventory } = this.props;
 		const { modifier, initialLevel, userHealth, machineState } = this.state;
-		console.log(machineState);
 		// checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
 		// If it's their saved level, they can't get the buff again.
 		// Needed to add in an extra check for torchCheck only, as it wasn't playing nice
@@ -320,8 +323,8 @@ class BoundMainStory extends React.Component {
 	displayEnemy = async () => {
 		const { stats } = this.props;
 		const { currentEnemy, modifier, enemyName } = this.state;
-		console.log(currentEnemy);
-		if (modifier[0].fight && modifier.length < 2) {
+		console.log(modifier[0].fight);
+		if (modifier[0].fight) {
 			this.updateState({
 				userHealth: {
 					current: stats.health,
@@ -346,10 +349,9 @@ class BoundMainStory extends React.Component {
 		const { navigate } = this.props;
 		// updateClickedArray(option);
 		this.updateState({
-			level: option.target,
 			optionFade: 'none',
 			imageDisplay: 'none'
-		});
+		}, () => this.handleLevel(option.target));
 		if (option.target === 'Main Menu') {
 			await this.saveGame();
 			navigate('/select');
@@ -374,13 +376,13 @@ class BoundMainStory extends React.Component {
 	handleFight = (option) => {
 		const { stats, updateCharacter } = this.props;
 		const { charClass, defense, luck } = stats;
-		const { cooldownRound, enemyHealth, userHealth, machineState } = this.state;
+		const { cooldownRound, enemyHealth, userHealth } = this.state;
 		const { send } = this.service;
 		const camelOption = stringToCamel(option.label);
 		const res = send({ type: camelOption });
 		const skillButton = document.getElementById('useSkill');
 		// resets buffs if the round is same as the specified cooldown one.
-		if (res.roundCount === cooldownRound) {
+		if (res.context.roundCount === cooldownRound) {
 			this.resetBuffs();
 			skillButton.removeAttribute('style');
 		}
@@ -393,15 +395,16 @@ class BoundMainStory extends React.Component {
 					...enemyHealth,
 					current: res.context.enemyHealth,
 					width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
-				}
+				},
+				attackText: res.context.battleText
 			});
-			console.log(enemyHealth.current);
 			res.context.enemyHealth <= 0 ? this.nextPhase() : this.enemyTurn(userHealth.current);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill') {
 			console.log('cooldownRound', res.context.cooldownRound);
 			this.updateState({
-				cooldownRound: res.context.cooldownRound
+				cooldownRound: res.context.cooldownRound,
+				attackText: res.context.battleText
 			});
 			// sets a style to the skill button to make it the only one that continues being disabled.
 			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26) !important; box-shadow: none; background-color: rgba(0, 0, 0, 0.12) !important;');
@@ -415,7 +418,7 @@ class BoundMainStory extends React.Component {
 						defense: defense + res.context.skillResult
 					}
 				});
-				machineState.context.defense = defense + res.context.skillResult;
+				res.context.defense = defense + res.context.skillResult;
 				this.enemyTurn(userHealth.current);
 				break;
 			case 'Rogue':
@@ -427,7 +430,7 @@ class BoundMainStory extends React.Component {
 						luck: luck + res.context.skillResult
 					}
 				});
-				machineState.context.luck = luck + res.context.skillResult;
+				res.context.luck = luck + res.context.skillResult;
 				this.enemyTurn(userHealth.current);
 				break;
 			default:
@@ -435,7 +438,8 @@ class BoundMainStory extends React.Component {
 					userHealth: {
 						...userHealth,
 						current: userHealth.max
-					}
+					},
+					attackText: res.context.battleText
 				});
 				this.enemyTurn(userHealth.max);
 			}
@@ -450,7 +454,8 @@ class BoundMainStory extends React.Component {
 					...userHealth,
 					current: finalHealth,
 					width: `${(100 * finalHealth) / userHealth.max}%`
-				}
+				},
+				attackText: res.context.battleText
 			});
 			this.enemyTurn(finalHealth);
 		}
@@ -458,12 +463,12 @@ class BoundMainStory extends React.Component {
 	};
 
 	enemyTurn = (currentHealth) => {
-		const { userHealth, roundCount, machineState } = this.state;
+		const { userHealth, roundCount } = this.state;
 		const { send } = this.service;
 		setTimeout(() => {
 			const res = send({ type: 'enemyNormalAttack' });
 			const damagedHealth = currentHealth - res.context.damage;
-			console.log(machineState);
+			console.log(res);
 			const nextRound = roundCount + 1;
 			this.updateState({
 				userHealth: {
@@ -472,7 +477,8 @@ class BoundMainStory extends React.Component {
 					width: `${(100 * damagedHealth) / userHealth.max}%`
 				},
 				roundCount: nextRound,
-				buttonDisabled: false
+				buttonDisabled: false,
+				attackText: res.context.battleText
 			});
 		}, 3000);
 		userHealth.current <= 0 && this.handlePlayerDeath();

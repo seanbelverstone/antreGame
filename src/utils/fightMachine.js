@@ -16,6 +16,7 @@ export const createFightMachine = (props) => {
 	return createMachine({
 		id: 'fightMachine',
 		initial: 'USER_TURN',
+		predictableActionArguments: true,
 		context: {
 			roundCount: 1,
 			charClass: stats?.charClass,
