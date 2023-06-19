@@ -150,7 +150,7 @@ class BoundMainStory extends React.Component {
 		// When a player dies, it puts them on 00-Death. This means that if they select this character
 		// again, they'll remain dead.
 		if (choice === '00-Death') {
-			// handlePlayerDeath();
+			this.handlePlayerDeath();
 			return;
 		}
 		// loops through the storylines array, and matches the character's level with the corresponding object
@@ -483,9 +483,9 @@ class BoundMainStory extends React.Component {
 	enemyTurn = () => {
 		const { userHealth, roundCount, tempDefense, tempLuck, cooldownRound } = this.state;
 		const { send } = this.service;
+		const res = send({ type: 'enemyNormalAttack', data: { tempDefense, tempLuck, cooldownRound } });
+		const damagedHealth = userHealth.current - res.context.damage;
 		setTimeout(() => {
-			const res = send({ type: 'enemyNormalAttack', data: { tempDefense, tempLuck, cooldownRound } });
-			const damagedHealth = userHealth.current - res.context.damage;
 			const nextRound = roundCount + 1;
 			this.updateState({
 				userHealth: {
@@ -498,7 +498,7 @@ class BoundMainStory extends React.Component {
 				attackText: res.context.battleText
 			});
 		}, 3000);
-		userHealth.current <= 0 && this.handlePlayerDeath();
+		damagedHealth <= 0 && this.handlePlayerDeath();
 	};
 
 	// Sets the buffed status back to their original values
@@ -558,14 +558,14 @@ class BoundMainStory extends React.Component {
 		this.service.stop();
 	};
 
-	handlePlayerDeath = async () => {
+	handlePlayerDeath = () => {
 		const { updateCharacter } = this.props;
-		await updateCharacter({
+		updateCharacter({
 			stats: {
 				health: 0
 			}
 		});
-		await updateCharacter({
+		updateCharacter({
 			levels: {
 				current: '00-Death',
 				visited: []
@@ -581,7 +581,7 @@ class BoundMainStory extends React.Component {
 					death: true
 				}
 			]
-		}, this.saveGame());
+		}, this.saveGame);
 	};
 
 	handleMenuClick = (event) => {
@@ -601,21 +601,25 @@ class BoundMainStory extends React.Component {
 
 	saveGame = async () => {
 		const { updateCharacter, levels, stats, inventory, user } = this.props;
-		const { timer, visitedLevels } = this.state;
+		const { timer, visitedLevels, initialLevel } = this.state;
 		updateCharacter({
 			time: {
 				value: timer
 			}
 		});
-		await API.saveCharacter(
-			stats,
-			inventory,
-			levels.current,
-			visitedLevels,
-			timer,
-			user.jwtToken,
-		);
-		this.setSaveGameDisplayCallback(true);
+		if (initialLevel !== '00-Death') {
+			// we don't wanna keep saving an old death save has been loaded
+			await API.saveCharacter(
+				stats,
+				inventory,
+				levels.current,
+				visitedLevels,
+				timer,
+				user.jwtToken,
+			);
+			this.setSaveGameDisplayCallback(true);
+		}
+
 	};
 
 	setSaveGameDisplayCallback = (value) => {

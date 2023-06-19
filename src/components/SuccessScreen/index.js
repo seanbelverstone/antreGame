@@ -5,7 +5,6 @@ import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import { camelToTitle, snakeToTitle } from '../../utils/functions';
 import './style.css';
-import { fire } from '../Confetti';
 
 const SuccessScreen = (props) => {
 	const {
@@ -106,7 +105,6 @@ const SuccessScreen = (props) => {
 								<CloseIcon />
 							</IconButton>
 						</div>
-						{fire()}
 						{enemyName ? (<h1>You defeated {snakeToTitle(enemyName) || 'enemyName'}!</h1>)
 							: (<h2>Player Update:</h2>)}
 						<div>

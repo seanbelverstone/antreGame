@@ -6,7 +6,7 @@
     border-radius: 10px;
     text-align: center;
     align-items: center;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.75s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
