@@ -147,7 +147,7 @@ export default {
 		}
 
 		return {
-			cooldownLength,
+			cooldownLength: charClass === 'Paladin' ? cooldownLength + 5 : cooldownLength,
 			battleText,
 			skillResult
 		};

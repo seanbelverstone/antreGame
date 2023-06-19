@@ -79,6 +79,8 @@ const BoundChoiceBlock = (props) => {
 	}
 
 	const renderSkillText = (label) => {
+		console.log(label);
+		console.log(roundsTilCooldown);
 		if (roundsTilCooldown > 0 && tempDefense > 0) {
 			return (
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -91,6 +93,14 @@ const BoundChoiceBlock = (props) => {
 			return (
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
 					<p style={{ color: 'var(--luck)', height: 'min-content', margin: 0 }}>Luck +20</p>
+					<p style={{ height: 'min-content', margin: 0 }}>Cooldown: {roundsTilCooldown}</p>
+				</div>
+			);
+		}
+		if (roundsTilCooldown > 0) {
+			return (
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<p style={{ color: 'var(--health)', height: 'min-content', margin: 0 }}>Health Restored</p>
 					<p style={{ height: 'min-content', margin: 0 }}>Cooldown: {roundsTilCooldown}</p>
 				</div>
 			);
@@ -135,7 +145,7 @@ const BoundChoiceBlock = (props) => {
 			},
 			{
 				header: 'Use Skill',
-				subheading: `${currentSkill}\n ${cooldownLength} round cooldown.`,
+				subheading: `${currentSkill}\n ${charClass === 'Paladin' ? cooldownLength + 5 : cooldownLength} round cooldown.`,
 				body: skillText
 			}
 		]

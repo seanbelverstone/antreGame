@@ -401,7 +401,7 @@ class BoundMainStory extends React.Component {
 		const { cooldownRound, enemyHealth, userHealth } = this.state;
 		const { send } = this.service;
 		const camelOption = stringToCamel(option.label);
-		const res = send({ type: camelOption, ...(camelOption === 'useSkill' ? { maxHealth: userHealth.max } : {}) });
+		const res = send({ type: camelOption, ...(camelOption === 'useSkill' ? { data: { maxHealth: userHealth.max } } : {}) });
 		const skillButton = document.getElementById('useSkill');
 		// resets buffs if the round is same as the specified cooldown one.
 		if (res.context.roundCount === cooldownRound) {
@@ -453,7 +453,8 @@ class BoundMainStory extends React.Component {
 				this.updateState({
 					userHealth: {
 						...userHealth,
-						current: userHealth.max
+						current: userHealth.max,
+						width: `${(100 * userHealth.max) / stats.maxHealth}%`
 					},
 					attackText: res.context.battleText
 				}, this.enemyTurn);
