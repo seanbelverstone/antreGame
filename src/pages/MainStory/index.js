@@ -21,7 +21,7 @@ import API from '../../utils/API';
 import { stringToCamel, isBlacklistedChoice, isEmpty } from '../../utils/functions';
 import storylines from '../../utils/storylines.json';
 import attacks from '../../utils/attacks.js';
-import createFightMachine from '../../utils/fightMachine';
+import fightMachine from '../../utils/fightMachine';
 //Assets
 import smallLogo from '../../assets/images/Antre.png';
 import './style.css';
@@ -87,7 +87,7 @@ class BoundMainStory extends React.Component {
 		};
 	}
 
-	service = interpret(createFightMachine(this.props)).onTransition(async (current) =>
+	service = interpret(fightMachine).onTransition((current) =>
 		this.setState({ machineState: current })
 	);
 
@@ -123,35 +123,30 @@ class BoundMainStory extends React.Component {
 			initialLevel: levels.current,
 			visitedLevels: levels.visited
 			// }
-		}, () => this.handleText(levels.current));
+		}, () => this.handleLevel(levels.current));
 		this.startTimer();
 	}
 
-	handleLevel = (choice) => {
+	handleLevel = async (choice) => {
 		const { updateCharacter, levels } = this.props;
 		// If the choice selected is one that repeats, don't add it to the visited array.
-		if (isBlacklistedChoice(choice)) {
-			updateCharacter({
-				level: {
-					current: choice
-				}
-			});
-			this.handleText(choice);
-		} else {
-			updateCharacter({
-				levels: {
+		await updateCharacter({
+			levels: {
+				...(!isBlacklistedChoice(choice) ? {
 					visited: [
 						...levels.visited,
 						choice
-					],
-					current: choice
-				}
-			});
-			this.handleText(choice);
-		}
+					]
+				} : {}),
+				current: choice
+			}
+		});
+		this.handleText(choice);
 	};
 
 	handleText = (choice) => {
+		const { stats, inventory, levels } = this.props;
+		const { send } = this.service;
 		// When a player dies, it puts them on 00-Death. This means that if they select this character
 		// again, they'll remain dead.
 		if (choice === '00-Death') {
@@ -173,10 +168,11 @@ class BoundMainStory extends React.Component {
 					skillUsed: false
 				} : {})
 			}, this.handleOptionFadeIn);
-			assign({
-				currentLevel: levelMatch[0]
-			});
-
+			!isEmpty(levelMatch[0].enemy) && send({ type: 'updateValues', data: {
+				stats,
+				inventory,
+				levels
+			} });
 		}
 	};
 
@@ -232,7 +228,6 @@ class BoundMainStory extends React.Component {
 		// checks if there are any modifiers present in this level, and if so sets the applicable one when the buttons render
 		// If it's their saved level, they can't get the buff again.
 		// Needed to add in an extra check for torchCheck only, as it wasn't playing nice
-		console.log(modifier);
 		if ((modifier.length && levels.current !== initialLevel) || modifier[0]?.torchCheck) {
 			this.updateState({
 				snackbarDisplay: true
@@ -290,13 +285,12 @@ class BoundMainStory extends React.Component {
 						}
 					});
 				} else if (currentMod === 'healthPotions' || currentMod === 'gold') {
+					const potionOrGoldCurrentValue = inventory[currentMod];
+					const potionOrGoldIncrease = mod[currentMod];
 					updateCharacter({
 						inventory: {
-							[currentMod]: inventory[currentMod] + mod[currentMod] < 0 ? 0 : inventory[currentMod] + mod[currentMod]
+							[currentMod]: potionOrGoldCurrentValue + potionOrGoldIncrease < 0 ? 0 : potionOrGoldCurrentValue + potionOrGoldIncrease
 						}
-					});
-					currentMod === 'healthPotions' && assign({
-						healthPotions: (context) => context.healthPotions + mod.healthPotions
 					});
 				} else if (mod.luckCheck) {
 					this.updateState({
@@ -402,12 +396,12 @@ class BoundMainStory extends React.Component {
 	};
 
 	handleFight = (option) => {
-		const { stats, updateCharacter } = this.props;
+		const { stats, updateCharacter, inventory } = this.props;
 		const { charClass, defense, luck } = stats;
 		const { cooldownRound, enemyHealth, userHealth } = this.state;
 		const { send } = this.service;
 		const camelOption = stringToCamel(option.label);
-		const res = send({ type: camelOption });
+		const res = send({ type: camelOption, ...(camelOption === 'useSkill' ? { maxHealth: userHealth.max } : {}) });
 		const skillButton = document.getElementById('useSkill');
 		// resets buffs if the round is same as the specified cooldown one.
 		if (res.context.roundCount === cooldownRound) {
@@ -425,8 +419,7 @@ class BoundMainStory extends React.Component {
 					width: `${(100 * res.context.enemyHealth) / enemyHealth.max}%`
 				},
 				attackText: res.context.battleText
-			});
-			res.context.enemyHealth <= 0 ? this.nextPhase() : this.enemyTurn(userHealth.current);
+			}, res.context.enemyHealth <= 0 ? this.nextPhase : this.enemyTurn);
 			// TODO: Add an "enemy defeated!" popup, maybe show rewards there too with an advance button
 		} else if (camelOption === 'useSkill') {
 			this.updateState({
@@ -437,28 +430,24 @@ class BoundMainStory extends React.Component {
 			skillButton.setAttribute('style', 'pointer-events: none; color: rgba(0, 0, 0, 0.26) !important; box-shadow: none; background-color: rgba(0, 0, 0, 0.12) !important;');
 			switch (charClass) {
 			case 'Warrior':
-				this.updateState({
-					tempDefense: defense
-				});
 				updateCharacter({
 					stats: {
 						defense: defense + res.context.skillResult
 					}
 				});
-				res.context.defense = defense + res.context.skillResult;
-				this.enemyTurn(userHealth.current);
+				this.updateState({
+					tempDefense: defense
+				}, this.enemyTurn);
 				break;
 			case 'Rogue':
-				this.updateState({
-					tempLuck: luck
-				});
 				updateCharacter({
 					stats: {
 						luck: luck + res.context.skillResult
 					}
 				});
-				res.context.luck = luck + res.context.skillResult;
-				this.enemyTurn(userHealth.current);
+				this.updateState({
+					tempLuck: luck
+				}, this.enemyTurn);
 				break;
 			default:
 				this.updateState({
@@ -467,14 +456,18 @@ class BoundMainStory extends React.Component {
 						current: userHealth.max
 					},
 					attackText: res.context.battleText
-				});
-				this.enemyTurn(userHealth.max);
+				}, this.enemyTurn);
 			}
 
 		} else {
 			// if the user's health with the increase added is MORE than their max, just set it to max.
 			const finalHealth = userHealth.current + res.context.healthIncrease > userHealth.max ?
 				userHealth.max : userHealth.current + res.context.healthIncrease;
+			updateCharacter({
+				inventory: {
+					healthPotions: inventory.healthPotions - 1
+				}
+			});
 			this.updateState({
 				userHealth: {
 					...userHealth,
@@ -482,18 +475,17 @@ class BoundMainStory extends React.Component {
 					width: `${(100 * finalHealth) / userHealth.max}%`
 				},
 				attackText: res.context.battleText
-			});
-			this.enemyTurn(finalHealth);
+			}, this.enemyTurn);
 		}
 
 	};
 
-	enemyTurn = (currentHealth) => {
-		const { userHealth, roundCount } = this.state;
+	enemyTurn = () => {
+		const { userHealth, roundCount, tempDefense, tempLuck, cooldownRound } = this.state;
 		const { send } = this.service;
 		setTimeout(() => {
-			const res = send({ type: 'enemyNormalAttack' });
-			const damagedHealth = currentHealth - res.context.damage;
+			const res = send({ type: 'enemyNormalAttack', data: { tempDefense, tempLuck, cooldownRound } });
+			const damagedHealth = userHealth.current - res.context.damage;
 			const nextRound = roundCount + 1;
 			this.updateState({
 				userHealth: {
@@ -563,6 +555,7 @@ class BoundMainStory extends React.Component {
 			});
 			this.handleLevel(victoryTarget.target);
 		}, 2000);
+		this.service.stop();
 	};
 
 	handlePlayerDeath = async () => {

@@ -55,7 +55,6 @@ export default {
 		});
 	},
 	saveCharacter: (stats, inventory, level, pastLevels, time, jwtToken) => {
-		console.log(stats, inventory, level, time);
 		const { id, health, strength, defense, wisdom, luck } = stats;
 		const {weapon, weaponDamage, head,  chest,  legs,  hands,  feet,  torch,  amulet,  healthPotions,  gold } = inventory;
 		return axios.put(`${endpoint}/api/characters/${id}`, {
