@@ -30,7 +30,10 @@ const BoundChoiceBlock = (props) => {
 		handleFight,
 		handleClick,
 		enemyDefense,
-		visitedLevels
+		visitedLevels,
+		tempDefense,
+		tempLuck,
+		roundsTilCooldown
 	} = props;
 	const { weaponDamage } = inventory;
 	const { charClass, strength, wisdom } = stats;
@@ -75,6 +78,38 @@ const BoundChoiceBlock = (props) => {
 	default: return;
 	}
 
+	const renderSkillText = (label) => {
+		if (roundsTilCooldown > 0 && tempDefense > 0) {
+			return (
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<p className="extraText" style={{ color: 'var(--defense)' }}>Defense +20</p>
+					<p className="extraText">Cooldown: {roundsTilCooldown}</p>
+				</div>
+			);
+		}
+		if (roundsTilCooldown > 0 && tempLuck > 0) {
+			return (
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<p style={{ color: 'var(--luck)', height: 'min-content', margin: 0 }}>Luck +20</p>
+					<p style={{ height: 'min-content', margin: 0 }}>Cooldown: {roundsTilCooldown}</p>
+				</div>
+			);
+		}
+		return label;
+	};
+
+	const renderEffectivenessValues = (type) => {
+		if (type === 'normalAttack') {
+			return <p className="extraText">{`(${normalMinDamage}-${normalMaxDamage})`}</p>;
+		}
+		if (type === 'specialAttack') {
+			return <p className="extraText">{`(${specialMinDamage}-${specialMaxDamage})`}</p>;
+		}
+		if (type === 'useHealthPotion') {
+			return <p className="extraText">{`(${minHealthIncrease}-${maxHealthIncrease})`}</p>;
+		}
+	};
+
 	const fightInfo = {
 		title: 'Combat',
 		main: [
@@ -118,8 +153,10 @@ const BoundChoiceBlock = (props) => {
 							color="secondary"
 							id={stringToCamel(fightOption.label)}
 							onClick={() => handleFight(fightOption)}
-							disabled={buttonDisabled}>
-							{fightOption.label}
+							disabled={buttonDisabled}
+						>
+							{stringToCamel(fightOption.label) === 'useSkill' ? renderSkillText(fightOption.label) : fightOption.label}
+							{renderEffectivenessValues(stringToCamel(fightOption.label))}
 						</Button>
 					</div>
 				);
@@ -156,6 +193,9 @@ BoundChoiceBlock.propTypes = {
 	handleClick: PropTypes.func,
 	enemyDefense: PropTypes.number,
 	visitedLevels: PropTypes.oneOfType([PropTypes.array]),
+	tempDefense: PropTypes.number,
+	tempLuck: PropTypes.number,
+	roundsTilCooldown: PropTypes.number
 };
 
 BoundChoiceBlock.defaultProps = {
@@ -168,7 +208,10 @@ BoundChoiceBlock.defaultProps = {
 	handleFight: () => {},
 	handleClick: () => {},
 	enemyDefense: 0,
-	visitedLevels: []
+	visitedLevels: [],
+	tempDefense: 0,
+	tempLuck: 0,
+	roundsTilCooldown: 0
 };
 
 const ChoiceBlock = connect(mapStateToProps, mapDispatchToProps)(BoundChoiceBlock);

@@ -658,7 +658,11 @@ class BoundMainStory extends React.Component {
 			saveGameDisplay,
 			snackbarDisplay,
 			enemyName,
-			visitedLevels
+			visitedLevels,
+			tempDefense,
+			tempLuck,
+			roundCount,
+			cooldownRound
 		} = this.state;
 		return (
 			<Wrapper page="main">
@@ -722,6 +726,9 @@ class BoundMainStory extends React.Component {
 						handleClick={this.handleClick}
 						enemyDefense={currentEnemy.defense}
 						visitedLevels={visitedLevels}
+						tempDefense={tempDefense}
+						tempLuck={tempLuck}
+						roundsTilCooldown={cooldownRound - roundCount}
 					/>
 				</div>
 				<footer id="footer">

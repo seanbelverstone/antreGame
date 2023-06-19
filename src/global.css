@@ -173,6 +173,7 @@ a {
 #dialog {
 	background-color: var(--foreground);
 	padding: 2em;
+	border: 1px solid black;
 }
 
 #creditsModal {
