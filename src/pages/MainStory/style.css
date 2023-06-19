@@ -32,13 +32,14 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 0 auto 0 auto
+    margin: 0 auto 0 auto;
 }
 
 .options button {
     padding: 20px;
     width: 150px;
     height: 80px;
+	font-size: 0.8em !important;
 }
 
 #footer {
@@ -50,13 +51,13 @@
 }
 
 .fadeIn {
-    animation: fadeIn 1s;
+    animation: fadeIn 0.75s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
 .fadeOut {
-    animation: fadeOut 1s;
+    animation: fadeOut 0.75s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }

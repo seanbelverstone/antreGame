@@ -12,3 +12,14 @@
 .hidden {
     visibility: hidden;
 }
+
+.choiceButton {
+	display: flex;
+	flex-direction: column;
+}
+
+.extraText {
+	height: min-content;
+	margin: 0;
+	width: 100%;
+}

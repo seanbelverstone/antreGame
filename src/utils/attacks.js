@@ -78,8 +78,8 @@ export default {
 	useHealthPotion: (potionCount) => {
 		const initalRoll = diceRoll();
 		const secondRoll = diceRoll();
-		// perfect roll (6 x 6) + 25 = 61 health increased
-		let healthIncrease = (initalRoll * secondRoll) + 35;
+		// perfect roll (6 x 6) + 15 = 51 health increased
+		let healthIncrease = (initalRoll * secondRoll) + 15;
 
 		// checks that the user has potions.
 		if (potionCount > 0) {
@@ -136,7 +136,7 @@ export default {
 			break;
 		case 'Rogue':
 			// 'Gambler's Strike';
-			battleText = 'You used Gambler\'s Strike. Your luck has been massively increased for 1 turn!';
+			battleText = 'You used Gambler\'s Strike. Your luck has been massively increased!';
 			skillResult = 20;
 			break;
 		case 'Paladin':

@@ -30,7 +30,10 @@ const BoundChoiceBlock = (props) => {
 		handleFight,
 		handleClick,
 		enemyDefense,
-		visitedLevels
+		visitedLevels,
+		tempDefense,
+		tempLuck,
+		roundsTilCooldown
 	} = props;
 	const { weaponDamage } = inventory;
 	const { charClass, strength, wisdom } = stats;
@@ -39,8 +42,8 @@ const BoundChoiceBlock = (props) => {
 	const normalMaxDamage = Math.ceil(((weaponDamage * 6) + (strength * 2)) / enemyDefense);
 	const specialMinDamage = Math.ceil((((3 * weaponDamage) * 1) + (strength * 3)) / enemyDefense);
 	const specialMaxDamage = Math.ceil((((3 * weaponDamage) * 6) + (strength * 3)) / enemyDefense);
-	const minHealthIncrease = (1 * 1) + 35;
-	const maxHealthIncrease = (6 * 6) + 35;
+	const minHealthIncrease = (1 * 1) + 15;
+	const maxHealthIncrease = (6 * 6) + 15;
 	let currentSkill;
 	let skillText;
 	let cooldownLength;
@@ -75,6 +78,38 @@ const BoundChoiceBlock = (props) => {
 	default: return;
 	}
 
+	const renderSkillText = (label) => {
+		if (roundsTilCooldown > 0 && tempDefense > 0) {
+			return (
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<p className="extraText" style={{ color: 'var(--defense)' }}>Defense +20</p>
+					<p className="extraText">Cooldown: {roundsTilCooldown}</p>
+				</div>
+			);
+		}
+		if (roundsTilCooldown > 0 && tempLuck > 0) {
+			return (
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<p style={{ color: 'var(--luck)', height: 'min-content', margin: 0 }}>Luck +20</p>
+					<p style={{ height: 'min-content', margin: 0 }}>Cooldown: {roundsTilCooldown}</p>
+				</div>
+			);
+		}
+		return label;
+	};
+
+	const renderEffectivenessValues = (type) => {
+		if (type === 'normalAttack') {
+			return <p className="extraText">{`(${normalMinDamage}-${normalMaxDamage})`}</p>;
+		}
+		if (type === 'specialAttack') {
+			return <p className="extraText">{`(${specialMinDamage}-${specialMaxDamage})`}</p>;
+		}
+		if (type === 'useHealthPotion') {
+			return <p className="extraText">{`(${minHealthIncrease}-${maxHealthIncrease})`}</p>;
+		}
+	};
+
 	const fightInfo = {
 		title: 'Combat',
 		main: [
@@ -87,6 +122,11 @@ const BoundChoiceBlock = (props) => {
 				header: 'Special Attack',
 				subheading: `${specialMinDamage} - ${specialMaxDamage} dmg`,
 				body: 'Powerful but with a chance to miss, a special attack can sometimes be a risky choice but can take down enemies quickly. There is also a reduced chance for a critical hit when performing a special attack.'
+			},
+			{
+				header: 'Critical Hits',
+				subheading: 'Hit them where it hurts.',
+				body: 'A critical hit strikes an enemy in a weak spot and does 3x regular damage. High luck stats increase your chance of hitting one, but be warned - enemies can get lucky too.'
 			},
 			{
 				header: 'Use Health Potion',
@@ -118,8 +158,10 @@ const BoundChoiceBlock = (props) => {
 							color="secondary"
 							id={stringToCamel(fightOption.label)}
 							onClick={() => handleFight(fightOption)}
-							disabled={buttonDisabled}>
-							{fightOption.label}
+							disabled={buttonDisabled}
+						>
+							{stringToCamel(fightOption.label) === 'useSkill' ? renderSkillText(fightOption.label) : fightOption.label}
+							{renderEffectivenessValues(stringToCamel(fightOption.label))}
 						</Button>
 					</div>
 				);
@@ -156,6 +198,9 @@ BoundChoiceBlock.propTypes = {
 	handleClick: PropTypes.func,
 	enemyDefense: PropTypes.number,
 	visitedLevels: PropTypes.oneOfType([PropTypes.array]),
+	tempDefense: PropTypes.number,
+	tempLuck: PropTypes.number,
+	roundsTilCooldown: PropTypes.number
 };
 
 BoundChoiceBlock.defaultProps = {
@@ -168,7 +213,10 @@ BoundChoiceBlock.defaultProps = {
 	handleFight: () => {},
 	handleClick: () => {},
 	enemyDefense: 0,
-	visitedLevels: []
+	visitedLevels: [],
+	tempDefense: 0,
+	tempLuck: 0,
+	roundsTilCooldown: 0
 };
 
 const ChoiceBlock = connect(mapStateToProps, mapDispatchToProps)(BoundChoiceBlock);

@@ -29,6 +29,10 @@
   overflow-y: scroll;
 }
 
+.key {
+	margin-bottom: 0;
+}
+
 @media screen and (max-width: 1382px) {
   #main #dialog {
     right: -37px !important;

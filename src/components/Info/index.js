@@ -33,7 +33,7 @@ const Info = (props) => {
 					<h2 style={{ textAlign: 'center' }}>{infoProps.title}</h2>
 					{infoProps.main.map(prop => (
 						<React.Fragment key={prop.header.toLowerCase()}>
-							<h3 className="key"id={prop.header.toLowerCase()}>{prop.header}</h3>
+							<h3 className="key" id={prop.header.toLowerCase()}>{prop.header}</h3>
 							{prop?.subheading ? <div className="subheading" style={{color: 'darkred'}}>{prop.subheading}</div> : ''}
 							<div className="dialogBody">{prop.body}</div>
 						</React.Fragment>
