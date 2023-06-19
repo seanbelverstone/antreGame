@@ -42,8 +42,7 @@ export const fightMachine = createMachine({
 					target: 'USER_TURN',
 					actions: assign((context, event) => {
 						const { data } = event;
-						const { stats, inventory, levels } = data;
-						const currentStory = storylines.find(story => story.level === levels?.current);
+						const { stats, inventory, levels, currentEnemy } = data;
 						return {
 							roundCount: 1,
 							charClass: stats.charClass,
@@ -57,14 +56,14 @@ export const fightMachine = createMachine({
 							healthPotions: inventory?.healthPotions,
 							currentLevel: levels?.current,
 							// enemy stats
-							...(!isEmpty(currentStory.enemy) && {
-								enemyHealth: currentStory.enemy.health,
-								enemyStrength: currentStory.enemy.strength,
-								enemyDefense: currentStory.enemy.defense,
-								enemyWisdom: currentStory.enemy.wisdom,
-								enemyLuck: currentStory.enemy.luck,
-								enemyWeapon: currentStory.enemy.weapon.name,
-								enemyWeaponDamage: currentStory.enemy.weapon.dmg
+							...(!isEmpty(currentEnemy) && {
+								enemyHealth: currentEnemy.health,
+								enemyStrength: currentEnemy.strength,
+								enemyDefense: currentEnemy.defense,
+								enemyWisdom: currentEnemy.wisdom,
+								enemyLuck: currentEnemy.luck,
+								enemyWeapon: currentEnemy.weapon.name,
+								enemyWeaponDamage: currentEnemy.weapon.dmg
 							})
 						};
 					})
@@ -107,10 +106,13 @@ export const fightMachine = createMachine({
 						return {
 							...context,
 							roundCount: context.roundCount + 1,
-							healthIncrease: usePotion.healthIncrease,
 							battleText: usePotion.battleText,
-							healthPotions: context.healthPotions - 1
+							...(context.healthPotions > 0 ? {
+								healthIncrease: usePotion.healthIncrease,
+								healthPotions: context.healthPotions - 1
+							} : {})
 						};
+
 					})
 				},
 				useSkill: {

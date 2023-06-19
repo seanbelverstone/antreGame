@@ -94,7 +94,6 @@ class BoundMainStory extends React.Component {
 	componentDidMount() {
 		this.mounted = true;
 		this.initialize();
-		this.service.start();
 	}
 
 	componentDidUpdate() {
@@ -145,8 +144,6 @@ class BoundMainStory extends React.Component {
 	};
 
 	handleText = (choice) => {
-		const { stats, inventory, levels } = this.props;
-		const { send } = this.service;
 		// When a player dies, it puts them on 00-Death. This means that if they select this character
 		// again, they'll remain dead.
 		if (choice === '00-Death') {
@@ -168,11 +165,6 @@ class BoundMainStory extends React.Component {
 					skillUsed: false
 				} : {})
 			}, this.handleOptionFadeIn);
-			!isEmpty(levelMatch[0].enemy) && send({ type: 'updateValues', data: {
-				stats,
-				inventory,
-				levels
-			} });
 		}
 	};
 
@@ -334,9 +326,17 @@ class BoundMainStory extends React.Component {
 	};
 
 	// Checks that we're in a fight sequence, then displays the enemy based on what its name is. 
-	displayEnemy = async () => {
-		const { stats } = this.props;
+	displayEnemy = () => {
 		const { currentEnemy, modifier, enemyName } = this.state;
+		const { stats, inventory, levels } = this.props;
+		const { send } = this.service;
+		this.service.start();
+		send({ type: 'updateValues', data: {
+			stats,
+			inventory,
+			levels,
+			currentEnemy
+		} });
 		if (modifier[0].fight) {
 			this.updateState({
 				userHealth: {
@@ -401,7 +401,7 @@ class BoundMainStory extends React.Component {
 		const { cooldownRound, enemyHealth, userHealth } = this.state;
 		const { send } = this.service;
 		const camelOption = stringToCamel(option.label);
-		const res = send({ type: camelOption, ...(camelOption === 'useSkill' ? { maxHealth: userHealth.max } : {}) });
+		const res = send({ type: camelOption, ...(camelOption === 'useSkill' ? { data: { maxHealth: userHealth.max } } : {}) });
 		const skillButton = document.getElementById('useSkill');
 		// resets buffs if the round is same as the specified cooldown one.
 		if (res.context.roundCount === cooldownRound) {
@@ -453,7 +453,8 @@ class BoundMainStory extends React.Component {
 				this.updateState({
 					userHealth: {
 						...userHealth,
-						current: userHealth.max
+						current: userHealth.max,
+						width: `${(100 * userHealth.max) / stats.maxHealth}%`
 					},
 					attackText: res.context.battleText
 				}, this.enemyTurn);
@@ -524,6 +525,7 @@ class BoundMainStory extends React.Component {
 		const { updateCharacter } = this.props;
 		const { enemyHealth, userHealth, victoryTarget } = this.state;
 		// set enemy health to 0, and reset buffs
+		this.service.stop();
 		this.updateState({
 			enemyHealth: {
 				...enemyHealth,
@@ -555,7 +557,6 @@ class BoundMainStory extends React.Component {
 			});
 			this.handleLevel(victoryTarget.target);
 		}, 2000);
-		this.service.stop();
 	};
 
 	handlePlayerDeath = () => {
