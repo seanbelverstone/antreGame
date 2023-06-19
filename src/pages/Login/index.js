@@ -59,8 +59,7 @@ const BoundLogin = (props) => {
 			.then(() => {
 				history('/select');
 			})
-			.catch(error => {
-				console.log(error);
+			.catch(() => {
 				setUsernameError(true);
 				setPasswordError(true);
 				setPasswordHelperText('Username/password doesn\'t exist.');

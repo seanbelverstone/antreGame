@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import enemies from '../../assets/images/enemyIcons';
+import { isEmpty } from '../../utils/functions';
 
 const Enemy = (props) => {
 
@@ -16,7 +17,6 @@ const Enemy = (props) => {
 		maxHealth,
 		userHealthWidth,
 		optionFade,
-		attackDisplay,
 		attackText
 	} = props;
 
@@ -42,9 +42,11 @@ const Enemy = (props) => {
 				</div>
 			</div>
 
-			<div id="attackText" className={optionFade} style={{ display: attackDisplay }}>
-				{attackText}
-			</div>
+			{!isEmpty(attackText) && (
+				<div id="attackText" className={optionFade}>
+					{attackText}
+				</div>
+			)}
 		</>
 	);
 };

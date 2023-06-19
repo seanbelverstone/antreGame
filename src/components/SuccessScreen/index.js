@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from '@mui/material';
+import { Backdrop, IconButton, Modal } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { camelToTitle } from '../../utils/functions';
+import { camelToTitle, snakeToTitle } from '../../utils/functions';
+import './style.css';
+import { fire } from '../Confetti';
 
-const InventoryPopup = (props) => {
+const SuccessScreen = (props) => {
 	const {
 		display,
 		setDisplay,
-		items
+		items,
+		enemyName
 	} = props;
 	const [messages, setMessages] = useState([]);
 
@@ -24,26 +26,15 @@ const InventoryPopup = (props) => {
 		checkItems();
 	}, [items]);
 
-	const addIfUnique = (note) => {
-		if (messages.indexOf(note) === -1) {
-			messages.push(note);
-		} else {
-			return;
-		}
-
-		setTimeout(() => {
-			setMessages([]);
-			setDisplay(false);
-		}, 6000);
-	};
+	const addIfUnique = (note) => (messages.indexOf(note) === -1 && messages.push(note));
 
 	const checkItems = () => {
 		if (items !== []) {
 			let note;
 			items.forEach((item) => {
 				const itemName = Object.keys(item);
-				const quantity = Object.values(item)[0];
-				const armorPiece = Object.values(item)[0];
+				const [quantity] = Object.values(item);
+				const [armorPiece] = Object.values(item);
 				if (item.none || item.fight || item.luckCheck || item.torchCheck || item.end || item.death) {
 					// if no modifier is present, just return.
 					setDisplay(false);
@@ -89,46 +80,62 @@ const InventoryPopup = (props) => {
 		setDisplay(false);
 	};
 
-	return (
-		<div id="inventoryPopup" style={{
+	const setColor = (message) => {
+		const messageArray = message.split(' ');
+		// eslint-disable-next-line prefer-destructuring
+		const item = messageArray[messageArray.length -2].toLowerCase().split('.\n')[0];
+		if (messageArray[1] === 'equipped') return { color: 'var(--primary' };
+		return { color: `var(--${item})` };
+	};
 
-		}}>
+	return (
+		<div style={{ display: 'flex' }}>
 			<Collapse
 				in={display}>
-				<Alert
-					severity="info"
-					variant="filled"
-					action={
-						<IconButton
-							aria-label="close"
-							color="inherit"
-							size="small"
-							onClick={() => {
-								handleClose(false);
-							}}
-						>
-							<CloseIcon fontSize="inherit" />
-						</IconButton>
-					}
-					sx={{ mb: 2 }}
+				<Modal
+					aria-labelledby="transition-modal-title"
+					aria-describedby="transition-modal-description"
+					open={display && messages.length > 0}
+					onClose={handleClose}
+					closeAfterTransition
+					BackdropComponent={Backdrop}
 				>
-					{messages}
-				</Alert>
+					<div id="successScreen">
+						<div id="successScreenTitle">
+							<IconButton onClick={handleClose}>
+								<CloseIcon />
+							</IconButton>
+						</div>
+						{fire()}
+						{enemyName ? (<h1>You defeated {snakeToTitle(enemyName) || 'enemyName'}!</h1>)
+							: (<h2>Player Update:</h2>)}
+						<div>
+							{messages.map((message, index) => {
+								return (<p style={setColor(message)} key={index}>{message}</p>);
+							}
+							)}
+						</div>
+					</div>
+				</Modal>
 			</Collapse>
 		</div>
 	);
 };
 
-InventoryPopup.propTypes = {
+SuccessScreen.propTypes = {
 	display: PropTypes.bool,
 	setDisplay: PropTypes.func,
-	items: PropTypes.oneOfType([PropTypes.array])
+	items: PropTypes.oneOfType([PropTypes.array]),
+	enemyName: PropTypes.string,
+	setEnemyName: PropTypes.func
 };
 
-InventoryPopup.defaultProps = {
+SuccessScreen.defaultProps = {
 	display: false,
 	setDisplay: () => {},
-	items: []
+	items: [],
+	enemyName: '',
+	setEnemyName: () => {}
 };
 
-export default InventoryPopup;
+export default SuccessScreen;

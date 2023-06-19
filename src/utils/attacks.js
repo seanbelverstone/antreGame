@@ -125,7 +125,7 @@ export default {
 		} else if (wisdom > 8 && wisdom <= 10) {
 			cooldownLength = 1;
 		} else {
-			cooldownLength = 0;
+			cooldownLength = 1;
 		}
 
 		switch (charClass) {

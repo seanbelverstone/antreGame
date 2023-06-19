@@ -5,6 +5,8 @@ export const camelToTitle = value => {
 
 export const stringToCamel = value => value?.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 
+export const snakeToTitle = s => s.replace(/^_*(.)|_+(.)/g, (s, c, d) => c ? c.toUpperCase() : ' ' + d.toUpperCase());
+
 export const stringToUpperSnake = value => (value.replace(/\W+/g, ' ').split(/ |\B(?=[A-Z])/)
 	.map(word => word.toUpperCase())
 	.join('_'));
@@ -21,4 +23,16 @@ export const isBlacklistedChoice = (choice) => {
 		return true;
 	default: return false;
 	}
-}; 
+};
+
+export const isEmpty = (value) => {
+	const valueType = typeof value;
+	switch (valueType) {
+	case 'object':
+		return Object.entries(value).length === 0;
+	case 'array':
+		return value.length === 0;
+	default:
+		return !value || value.length === 0;
+	}
+};
