@@ -42,8 +42,8 @@ const BoundChoiceBlock = (props) => {
 	const normalMaxDamage = Math.ceil(((weaponDamage * 6) + (strength * 2)) / enemyDefense);
 	const specialMinDamage = Math.ceil((((3 * weaponDamage) * 1) + (strength * 3)) / enemyDefense);
 	const specialMaxDamage = Math.ceil((((3 * weaponDamage) * 6) + (strength * 3)) / enemyDefense);
-	const minHealthIncrease = (1 * 1) + 35;
-	const maxHealthIncrease = (6 * 6) + 35;
+	const minHealthIncrease = (1 * 1) + 15;
+	const maxHealthIncrease = (6 * 6) + 15;
 	let currentSkill;
 	let skillText;
 	let cooldownLength;
@@ -122,6 +122,11 @@ const BoundChoiceBlock = (props) => {
 				header: 'Special Attack',
 				subheading: `${specialMinDamage} - ${specialMaxDamage} dmg`,
 				body: 'Powerful but with a chance to miss, a special attack can sometimes be a risky choice but can take down enemies quickly. There is also a reduced chance for a critical hit when performing a special attack.'
+			},
+			{
+				header: 'Critical Hits',
+				subheading: 'Hit them where it hurts.',
+				body: 'A critical hit strikes an enemy in a weak spot and does 3x regular damage. High luck stats increase your chance of hitting one, but be warned - enemies can get lucky too.'
 			},
 			{
 				header: 'Use Health Potion',
