@@ -100,7 +100,7 @@ const BoundChoiceBlock = (props) => {
 		if (roundsTilCooldown > 0) {
 			return (
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
-					<p style={{ color: 'var(--health)', height: 'min-content', margin: 0 }}>Health Restored</p>
+					<p style={{ color: 'var(--strength)', height: 'min-content', margin: 0 }}>Health Restored</p>
 					<p style={{ height: 'min-content', margin: 0 }}>Cooldown: {roundsTilCooldown}</p>
 				</div>
 			);
@@ -145,7 +145,7 @@ const BoundChoiceBlock = (props) => {
 			},
 			{
 				header: 'Use Skill',
-				subheading: `${currentSkill}\n ${charClass === 'Paladin' ? cooldownLength + 5 : cooldownLength} round cooldown.`,
+				subheading: `${currentSkill}\n ${charClass === 'Paladin' ? Math.ceil((cooldownLength + 10) / Math.ceil(wisdom / 2)) : cooldownLength} round cooldown.`,
 				body: skillText
 			}
 		]

@@ -116,7 +116,6 @@ export const fightMachine = createMachine({
 				useSkill: {
 					target: 'ENEMY_TURN',
 					actions: assign((context, event) => {
-						console.log(event);
 						const useSkill = attacks.useSkill(context.charClass, context.wisdom);
 						return {
 							...context,

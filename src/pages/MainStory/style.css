@@ -71,8 +71,8 @@
 }
 
 #enemyImage {
-    width: 15vw;
-    margin-top: 10%;
+    width: 10vw;
+    margin-top: 5%;
 }
 
 .healthArea {
@@ -129,7 +129,7 @@
         width: 35vw
     }
     #enemyImage {
-        width: 20vw;
+        width: 15vw;
     }
 }
 
@@ -148,7 +148,7 @@
         width: 40vw;
     }
     #enemyImage {
-        width: 35vw;
+        width: 20vw;
     }
 }
 
@@ -189,7 +189,7 @@
         width: 55vw;
     }
     #enemyImage {
-        width: 50vw;
+        width: 30vw;
     }
 }
 
@@ -207,6 +207,6 @@
         width: 80vw;
     }
     #enemyImage {
-        width: 60vw;
+        width: 35vw;
     }
 }

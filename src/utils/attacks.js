@@ -127,7 +127,6 @@ export default {
 		} else {
 			cooldownLength = 1;
 		}
-
 		switch (charClass) {
 		case 'Warrior':
 			// 'Stalwart defense';
@@ -147,7 +146,7 @@ export default {
 		}
 
 		return {
-			cooldownLength: charClass === 'Paladin' ? cooldownLength + 5 : cooldownLength,
+			cooldownLength: charClass === 'Paladin' ? Math.ceil((cooldownLength + 10) / Math.ceil(wisdom / 2)) : cooldownLength,
 			battleText,
 			skillResult
 		};
