@@ -100,6 +100,19 @@ export const fightMachine = createMachine({
 						};
 					})
 				},
+				useHealthPotion: {
+					target: 'ENEMY_TURN',
+					actions: assign((context, data) => {
+						const usePotion = attacks.useHealthPotion(context.healthPotions);
+						return {
+							...context,
+							roundCount: context.roundCount + 1,
+							healthIncrease: usePotion.healthIncrease,
+							battleText: usePotion.battleText,
+							healthPotions: context.healthPotions - 1
+						};
+					})
+				},
 				useSkill: {
 					target: 'ENEMY_TURN',
 					actions: assign((context, event) => {
@@ -119,19 +132,6 @@ export const fightMachine = createMachine({
 							}),
 							skillResult: useSkill.skillResult,
 							battleText: useSkill.battleText
-						};
-					})
-				},
-				useHealthPotion: {
-					target: 'ENEMY_TURN',
-					actions: assign((context, data) => {
-						const usePotion = attacks.useHealthPotion(context.healthPotions);
-						return {
-							...context,
-							roundCount: context.roundCount + 1,
-							healthIncrease: usePotion.healthIncrease,
-							battleText: usePotion.battleText,
-							healthPotions: context.healthPotions - 1
 						};
 					})
 				}

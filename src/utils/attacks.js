@@ -136,7 +136,7 @@ export default {
 			break;
 		case 'Rogue':
 			// 'Gambler's Strike';
-			battleText = 'You used Gambler\'s Strike. Your luck has been massively increased for 1 turn!';
+			battleText = 'You used Gambler\'s Strike. Your luck has been massively increased!';
 			skillResult = 20;
 			break;
 		case 'Paladin':
