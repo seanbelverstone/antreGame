@@ -51,7 +51,7 @@ export default {
 		// checks luck
 		let myLuckRoll = diceRoll();
 		let enemyLuckRoll = diceRoll();
-
+		console.log(myLuckRoll + luck, enemyLuckRoll, enemyLuck);
 		if (myLuckRoll + luck >= enemyLuckRoll + enemyLuck) {
 			if (critChance(Math.floor(luck / 1.5))) {
 				battleText = `You roll for a special attack. \n You compare luck values with the enemy, your roll is higher, AND it's a crit! \n Your special attack does ${critDamage} damage!`;
