@@ -5,7 +5,6 @@
   "devServer": {
     "disableHostCheck": true
   },
-	"proxy": "https://www.antregame.com",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emotion/react": "^11.7.1",
