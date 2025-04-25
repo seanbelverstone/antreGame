@@ -5,6 +5,7 @@
   "devServer": {
     "disableHostCheck": true
   },
+	"proxy": "http://localhost:3001",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emotion/react": "^11.7.1",
