@@ -68,6 +68,7 @@ const BoundLogin = (props) => {
 
 	return (
 		<>
+			<div style={{ position: 'absolute', backgroundColor: 'black', color: 'white', zIndex: 1000, width: '100%', height: '100%', textAlign: 'center', opacity: '0.8'}}>Under Construction, new version coming soon!</div>
 			<Wrapper page="login">
 				<Credits />
 				<img src={logo} alt="logo" id="antreLogo" />
